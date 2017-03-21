@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Require.js | J Dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="require.js" />
+    
+    <meta name="description" content="Require.js란requirejs는 자바스크립트 코드들을 모듈화 관리가 가능한 프레임워크 이며, AMD(Asynchronous Module Definition) 모듈 로딩 표준을 따르기에 기본적으로 모든 모듈을 비동기적으로 처리한다. 또한 자바스크립트 모듈의 의존관계등의 관리도 쉽게 할수 있게 도와준다.
+ 모듈 정의와 사용 
+모듈을 정의하는 기본 형태는">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Require.js">
+<meta property="og:url" content="http://woonyzzang.github.com/2017/02/23/requirejs/index.html">
+<meta property="og:site_name" content="J Dev">
+<meta property="og:description" content="Require.js란requirejs는 자바스크립트 코드들을 모듈화 관리가 가능한 프레임워크 이며, AMD(Asynchronous Module Definition) 모듈 로딩 표준을 따르기에 기본적으로 모든 모듈을 비동기적으로 처리한다. 또한 자바스크립트 모듈의 의존관계등의 관리도 쉽게 할수 있게 도와준다.
+ 모듈 정의와 사용 
+모듈을 정의하는 기본 형태는">
+<meta property="og:updated_time" content="2017-02-26T07:52:30.093Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Require.js">
+<meta name="twitter:description" content="Require.js란requirejs는 자바스크립트 코드들을 모듈화 관리가 가능한 프레임워크 이며, AMD(Asynchronous Module Definition) 모듈 로딩 표준을 따르기에 기본적으로 모든 모듈을 비동기적으로 처리한다. 또한 자바스크립트 모듈의 의존관계등의 관리도 쉽게 할수 있게 도와준다.
+ 모듈 정의와 사용 
+모듈을 정의하는 기본 형태는">
+    
+    <link rel="canonical" href="http://woonyzzang.github.com/2017/02/23/requirejs/"/>
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Web Development Blog Story</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/">App</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/ionic/">ionic</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/BackEnd/">BackEnd</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/BackEnd/APMSETUP/">APMSETUP</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/">CSS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/CSS3/">CSS3</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/">Etc</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/Log/">Log</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/Windows/">Windows</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/">FrontEnd</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Angularjs-js/">Angularjs.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Tip/">Tip</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/">HTML</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/Markdown/">Markdown</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/">Tools</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Webstorm/">Webstorm</a></li></ul></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/FrontEnd/">FrontEnd</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/FrontEnd/Require-js/">Require.js</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-requirejs" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Require.js
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2017/02/23/requirejs/" class="article-date">
+    <time datetime="2017-02-23T12:57:55.000Z" itemprop="datePublished">2017-02-23</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/require-js/">require.js</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h3 id="Require-js란"><a href="#Require-js란" class="headerlink" title="Require.js란"></a>Require.js란</h3><p><a href="http://requirejs.org/" target="_blank" rel="external">requirejs</a>는 자바스크립트 코드들을 모듈화 관리가 가능한 프레임워크 이며, AMD(Asynchronous Module Definition) 모듈 로딩 표준을 따르기에 기본적으로 모든 모듈을 비동기적으로 처리한다. 또한 자바스크립트 모듈의 의존관계등의 관리도 쉽게 할수 있게 도와준다.</p>
+<p><strong> 모듈 정의와 사용 </strong></p>
+<p>모듈을 정의하는 기본 형태는 다음과 같다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">-js/foo.js</div><div class="line"><span class="comment">// 모듈 정의의 기본 형태</span></div><div class="line">define([ <span class="comment">// 의존 모듈들을 나열한다. 모듈이 한 개라도 배열로 넘겨야 한다.  </span></div><div class="line">    <span class="string">'js/util'</span>,</div><div class="line">    <span class="string">'js/Ajax'</span>,</div><div class="line">    <span class="string">'js/Event'</span></div><div class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">util, Ajax, Event</span>) </span>&#123; <span class="comment">// 의존 모듈들은 순서대로 매개변수에 담긴다.</span></div><div class="line">    <span class="comment">// 의존 모듈들이 모두 로딩 완료되면 이 함수를 실행한다.</span></div><div class="line">    <span class="comment">// 초기화 영역</span></div><div class="line">    <span class="keyword">var</span> i = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">increase</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        i++;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> i;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 외부에 노출할 함수들만 반환한다.</span></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">increase</span>: increase,</div><div class="line">        <span class="attr">get</span>: get</div><div class="line">    &#125;;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">-js/main.js</div><div class="line"><span class="built_in">require</span>([  </div><div class="line">    <span class="string">'js/foo'</span></div><div class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">foo</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(foo.get()); <span class="comment">// 0</span></div><div class="line">    foo.increase();</div><div class="line">    <span class="built_in">console</span>.log(foo.get()); <span class="comment">// 1</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>모듈의 이름을 명시적으로 설정할 수도 있지만 이름 없는 모듈로 정의하는 것을 권장한다. 이름 없는 모듈은 호출될 때 모듈의 위치에 따라 이름을 결정한다. 개발할 때 파일의 이름이나 위치는 자주 변경되므로 유연한 상태로 둘 필요가 있다.</p>
+<p><strong> 설정 옵션 </strong></p>
+<p>require.js는 여러 설정 옵션들을 제공한다. 대표적인 옵션은 다음과 같다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line"><span class="comment">// RequireJS 설정 객체</span></div><div class="line"><span class="comment">// require.js가 로딩되면 이 객체를 자동으로 읽어 들여 반영한다.</span></div><div class="line"><span class="keyword">var</span> <span class="built_in">require</span> = &#123;        </div><div class="line">    <span class="attr">baseUrl</span>: <span class="string">'/js/app'</span>,           </div><div class="line">    <span class="attr">paths</span>: &#123; </div><div class="line">        <span class="string">'lib'</span>: <span class="string">'../lib'</span> <span class="comment">// "/js/lib" 과 동일하다. baseUrl 기준</span></div><div class="line">    &#125;,       </div><div class="line">    <span class="attr">shim</span>: &#123;</div><div class="line">        <span class="string">'modernizr'</span>: &#123; <span class="comment">// Modernizr 라이브러리</span></div><div class="line">            exports: <span class="string">'Modernizr'</span> </div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">urlArgs</span> : <span class="string">'ts='</span> + (<span class="keyword">new</span> <span class="built_in">Date</span>()).getTime()</div><div class="line">&#125;;</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span>  </div><div class="line">&lt;script src=<span class="string">"/js/lib/require.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span>  </div><div class="line">&lt;script&gt;</div><div class="line">    <span class="comment">//</span></div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<p>var require = {}; 설정은 require.js 파일의 로딩 전에 사용하는 방법 이다.<br>require.js 파일을 로딩한 후에는 require.config() 함수를 사용하여 설정할 수 있다.</p>
+<p><strong> 모듈 위치 </strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* /index.html */</span></div><div class="line">&lt;script&gt;  </div><div class="line"><span class="keyword">var</span> <span class="built_in">require</span> = &#123;</div><div class="line">    <span class="attr">baseUrl</span>: <span class="string">'/js/app'</span></div><div class="line">&#125;;</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span>  </div><div class="line">&lt;script src=<span class="string">"/js/lib/require.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span>  </div><div class="line">&lt;script&gt;  </div><div class="line"><span class="built_in">require</span>([ </div><div class="line">  <span class="string">'common/relative'</span>,            <span class="comment">// (1) 위치: "/js/app/common/relative.js"</span></div><div class="line">  <span class="string">'dotjs.js'</span>,                   <span class="comment">// (2) 위치: "/dotjs.js"</span></div><div class="line">  <span class="string">'/js/lib/absolute.js'</span>,        <span class="comment">// (3) 위치: "/js/lib/absolute.js"</span></div><div class="line">  <span class="string">'http://another.com/foo.js'</span>   <span class="comment">// (4) 위치: "http://another.com/foo.js"</span></div><div class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">relative, dotjs, absolute, foo</span>) </span>&#123;</div><div class="line">  <span class="comment">//</span></div><div class="line">&#125;);</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>(1)의 경우가 일반적인 사용이며, (2), (3), (4)는 특별한 경우가 아니면 사용할 일이 없지만 알아 둘 필요는 있다.<br>(2)의 경우 baseUrl이 설정을 무시하고 현재 페이지의 경로를 사용한 결과이다. (3), (4)는 절대 경로로 이름을 지정한 경우이며 꼭 이름의 뒤에 ‘.js’를 붙여야 한다.</p>
+<p><strong> 모듈이 아닌 외부 라이브러리 사용 </strong></p>
+<p>AMD를 지원하지 않는 외부의 좋은 라이브러리를 사용하려면 paths와 shim 설정 옵션을 사용한다. 외부 라이브러리를 모듈처럼 사용할 수 있게 한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line">-config.js</div><div class="line">requirejs.config(&#123;</div><div class="line">    <span class="comment">// 모듈의 기본 위치를 지정한다.</span></div><div class="line">    baseUrl: <span class="string">'vendor'</span>,</div><div class="line"></div><div class="line">    <span class="comment">// 모듈의 단축 경로 지정 또는 이름에 대한 별칭(Alias)을 지정할 수 있다.</span></div><div class="line">    <span class="comment">// ".js"는 자동 추가</span></div><div class="line">    paths: &#123;</div><div class="line">        <span class="attr">app</span>: <span class="string">'../app'</span>,</div><div class="line">        <span class="comment">// 배열로 선언시 첫번째 파일 로드 실패 시 두번째 파일을 로드한다.</span></div><div class="line">        jquery: [</div><div class="line">            <span class="string">'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min'</span>,</div><div class="line">            <span class="string">'jquery/dist/jquery.min'</span></div><div class="line">        ],</div><div class="line">        <span class="attr">underscore</span>: [</div><div class="line">            <span class="string">'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min'</span>,</div><div class="line">            <span class="string">'underscore/underscore-min'</span></div><div class="line">        ],</div><div class="line">        <span class="attr">text</span>: [</div><div class="line">            <span class="string">'https://cdnjs.cloudflare.com/ajax/libs/require-text/2.0.12/text.min'</span>,</div><div class="line">            <span class="string">'text/text'</span></div><div class="line">        ],</div><div class="line">        <span class="attr">backbone</span>: [</div><div class="line">            <span class="string">'https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min'</span>,</div><div class="line">            <span class="string">'backbone/backbone-min'</span></div><div class="line">        ],</div><div class="line">        <span class="attr">bootstrap</span>: [</div><div class="line">            <span class="string">'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min'</span>,</div><div class="line">            <span class="string">'bootstrap/dist/js/bootstrap.min'</span></div><div class="line">        ]</div><div class="line">    &#125;,</div><div class="line">    </div><div class="line">    <span class="comment">// 타임스탬프</span></div><div class="line">    <span class="comment">// 모듈 위치 URL뒤에 덧붙여질 쿼리를 설정한다.</span></div><div class="line">    <span class="comment">// 개발 환경에서는 브라우저 캐시를 회피하기 위해 사용할 수 있고, </span></div><div class="line">    <span class="comment">// 실제 서비스 환경이라면 bust값을 배포한 시간으로 설정하여 새로 캐시하게 할 수 있다.</span></div><div class="line">    <span class="comment">//urlArgs: 'bust=' + (new Date()).getTime(),</span></div><div class="line"></div><div class="line">    <span class="comment">// 타이머 지연(타이머 관련 에러시 대처)</span></div><div class="line">    <span class="comment">//waitSeconds: 200,</span></div><div class="line"></div><div class="line">    <span class="comment">// AMD를 지원하지 않는 외부 라이브러리를 모듈로 사용할 수 있게 한다. ex) modernizr</span></div><div class="line">    <span class="comment">// jQuery의 경우 paths 설정만으로 사용 가능한 이유는 jQuery가 사실 AMD를 지원하기 때문이다.</span></div><div class="line">    <span class="comment">// jQuery 소스의 마지막 부분을 살펴보면 define으로 모듈을 반환하는 코드를 볼 수 있다.</span></div><div class="line">    shim: &#123;</div><div class="line">        <span class="comment">/*jquery: &#123;</span></div><div class="line">            exports: '$'</div><div class="line">        &#125;,</div><div class="line">        underscore: &#123;</div><div class="line">            exports: '_'</div><div class="line">        &#125;,</div><div class="line">        text: &#123;</div><div class="line">            deps: ['underscore'],</div><div class="line">            exports: 'text'</div><div class="line">        &#125;,</div><div class="line">        backbone: &#123;</div><div class="line">            deps: ['jquery', 'underscore'],</div><div class="line">            exports: 'Backbone'</div><div class="line">        &#125;,*/</div><div class="line">        bootstrap: &#123;</div><div class="line">            <span class="attr">deps</span>: [<span class="string">'jquery'</span>]</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// Load the main app module to start the app</span></div><div class="line">requirejs([<span class="string">'app/main'</span>]);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">-app/main.js</div><div class="line"><span class="built_in">require</span>([</div><div class="line">    <span class="string">'jquery'</span>,</div><div class="line">    <span class="string">'underscore'</span>,</div><div class="line">    <span class="string">'backbone'</span>,</div><div class="line">    <span class="string">'text!/backbone/header.html'</span>,</div><div class="line">    <span class="string">'text!/backbone/home.html'</span>,</div><div class="line">    <span class="string">'text!/backbone/footer.html'</span></div><div class="line">], <span class="function"><span class="keyword">function</span>(<span class="params">$, _, Backbone, headerTempl, homeTempl, footerTempl</span>) </span>&#123;</div><div class="line">    <span class="comment">//</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h3><ul>
+<li><a href="http://requirejs.org/" target="_blank" rel="external">http://requirejs.org/</a></li>
+<li><a href="http://d2.naver.com/helloworld/591319" target="_blank" rel="external">http://d2.naver.com/helloworld/591319</a></li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://woonyzzang.github.com/2017/02/23/requirejs/" data-id="cj0jl1z91002my4vegog0uwxg" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/woonyzzang/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="cloud" href="http://j-portfolio.herokuapp.com/" target="_blank">
+                        <i class="icon fa fa-cloud"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="jsfiddle" href="https://jsfiddle.net/user/woonyzzang/fiddles/" target="_blank">
+                        <i class="icon fa fa-jsfiddle"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    <!-- github card -->
+    <!-- [I] http://lab.lepture.com/github-cards/ -->
+    <div class="github-card" data-github="woonyzzang" data-width="100%" data-height="150" data-theme="default"></div>
+    <script src="http://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+    <!-- //github card -->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/02/24/requirejs-plugin/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Require.js Plugin
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/02/23/chrome-console-tip/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Chrome Console Tip</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/ionic/">ionic</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/BackEnd/">BackEnd</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/BackEnd/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/CSS3/">CSS3</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/">Etc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Log/">Log</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Windows/">Windows</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Angularjs-js/">Angularjs.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Tip/">Tip</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Markdown/">Markdown</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Webstorm/">Webstorm</a><span class="category-list-count">5</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-js/">angular.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apmsetup/">apmsetup</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone-js/">backbone.js</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/d3-js/">d3.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic-v1/">ionic v1</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic-v2/">ionic v2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-js/">javascript.js</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/">log</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/require-js/">require.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webstorm/">webstorm</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular-js/" style="font-size: 11.67px;">angular.js</a> <a href="/tags/apmsetup/" style="font-size: 10px;">apmsetup</a> <a href="/tags/backbone-js/" style="font-size: 18.33px;">backbone.js</a> <a href="/tags/css3/" style="font-size: 11.67px;">css3</a> <a href="/tags/d3-js/" style="font-size: 20px;">d3.js</a> <a href="/tags/ionic-v1/" style="font-size: 15px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/javascript-js/" style="font-size: 13.33px;">javascript.js</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/require-js/" style="font-size: 11.67px;">require.js</a> <a href="/tags/tip/" style="font-size: 10px;">tip</a> <a href="/tags/webstorm/" style="font-size: 16.67px;">webstorm</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/cms/">CMS Theme</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/listmap/listmap.xml">Markup Listmap</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/generatorCSS3/">GeneratorCSS3</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/html5_OR/">HTML5 Open Reference</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/prototype/">Prototype</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/designDraft/">Design Draft Gallery</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/responsiveDesignView/">Responsive Design View</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 woonyzzang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://woonyzzang.github.com/2017/02/23/requirejs/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

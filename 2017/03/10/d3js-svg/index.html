@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>D3.js SVG | J Dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="d3.js" />
+    
+    <meta name="description" content="D3.js SVGSVG는 도형을 그리기 위한 HTML의 태그로 rect, circle, line, path, ellipse, polyline 등을 사용하여 그린다.
+ HTML의 SVG 코드 
+12345678910111213141516&amp;lt;svg wdth=&quot;500&quot; height=&quot;500&quot; style=&quot;background-color:#f00&quot;&amp;gt;    &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="D3.js SVG">
+<meta property="og:url" content="http://woonyzzang.github.com/2017/03/10/d3js-svg/index.html">
+<meta property="og:site_name" content="J Dev">
+<meta property="og:description" content="D3.js SVGSVG는 도형을 그리기 위한 HTML의 태그로 rect, circle, line, path, ellipse, polyline 등을 사용하여 그린다.
+ HTML의 SVG 코드 
+12345678910111213141516&amp;lt;svg wdth=&quot;500&quot; height=&quot;500&quot; style=&quot;background-color:#f00&quot;&amp;gt;    &amp;">
+<meta property="og:updated_time" content="2017-03-09T18:07:22.970Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="D3.js SVG">
+<meta name="twitter:description" content="D3.js SVGSVG는 도형을 그리기 위한 HTML의 태그로 rect, circle, line, path, ellipse, polyline 등을 사용하여 그린다.
+ HTML의 SVG 코드 
+12345678910111213141516&amp;lt;svg wdth=&quot;500&quot; height=&quot;500&quot; style=&quot;background-color:#f00&quot;&amp;gt;    &amp;">
+    
+    <link rel="canonical" href="http://woonyzzang.github.com/2017/03/10/d3js-svg/"/>
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Web Development Blog Story</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/">App</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/ionic/">ionic</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/BackEnd/">BackEnd</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/BackEnd/APMSETUP/">APMSETUP</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/">CSS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/CSS3/">CSS3</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/">Etc</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/Log/">Log</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/Windows/">Windows</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/">FrontEnd</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Angularjs-js/">Angularjs.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Tip/">Tip</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/">HTML</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/Markdown/">Markdown</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/">Tools</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Webstorm/">Webstorm</a></li></ul></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/FrontEnd/">FrontEnd</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/FrontEnd/D3-js/">D3.js</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-d3js-svg" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        D3.js SVG
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2017/03/10/d3js-svg/" class="article-date">
+    <time datetime="2017-03-09T18:06:40.000Z" itemprop="datePublished">2017-03-10</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/d3-js/">d3.js</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h3 id="D3-js-SVG"><a href="#D3-js-SVG" class="headerlink" title="D3.js SVG"></a>D3.js SVG</h3><p>SVG는 도형을 그리기 위한 HTML의 태그로 rect, circle, line, path, ellipse, polyline 등을 사용하여 그린다.</p>
+<p><strong> HTML의 SVG 코드 </strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">wdth</span>=<span class="string">"500"</span> <span class="attr">height</span>=<span class="string">"500"</span> <span class="attr">style</span>=<span class="string">"background-color:#f00"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"10"</span> <span class="attr">y</span>=<span class="string">"10"</span> <span class="attr">width</span>=<span class="string">"480"</span> <span class="attr">height</span>=<span class="string">"30"</span> <span class="attr">fill</span>=<span class="string">"green"</span> <span class="attr">stroke</span>=<span class="string">"blue"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"100"</span> <span class="attr">cy</span>=<span class="string">"100"</span> <span class="attr">r</span>=<span class="string">"50"</span> <span class="attr">fill</span>=<span class="string">"red"</span> <span class="attr">stroke</span>=<span class="string">"blue"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span>&gt;</span><span class="tag">&lt;/<span class="name">circle</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ellipse</span> <span class="attr">cx</span>=<span class="string">"300"</span> <span class="attr">cy</span>=<span class="string">"100"</span> <span class="attr">rx</span>=<span class="string">"70"</span> <span class="attr">ry</span>=<span class="string">"30"</span> <span class="attr">fill</span>=<span class="string">"red"</span> <span class="attr">stroke</span>=<span class="string">"blue"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span>&gt;</span><span class="tag">&lt;/<span class="name">ellipse</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">"10"</span> <span class="attr">y1</span>=<span class="string">"200"</span> <span class="attr">x2</span>=<span class="string">"480"</span> <span class="attr">y2</span>=<span class="string">"200"</span> <span class="attr">stroke</span>=<span class="string">"red"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span>&gt;</span><span class="tag">&lt;/<span class="name">line</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M10,210 L110,220 210,210 310,220 410,210"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">stroke</span>=<span class="string">"blue"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span>&gt;</span><span class="tag">&lt;/<span class="name">path</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">polyline</span> <span class="attr">points</span>=<span class="string">"200,300 230,250 260,300"</span> <span class="attr">fill</span>= <span class="string">"red"</span> <span class="attr">stroke</span>=<span class="string">"blue"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span>&gt;</span><span class="tag">&lt;/<span class="name">polyline</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">"150"</span> <span class="attr">y</span>=<span class="string">"35"</span> <span class="attr">fill</span>=<span class="string">"black"</span> <span class="attr">font-size</span>=<span class="string">"30px"</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">"75"</span> <span class="attr">y</span>=<span class="string">"120"</span> <span class="attr">fill</span>=<span class="string">"white"</span> <span class="attr">font-size</span>=<span class="string">"50px"</span>&gt;</span>39<span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">g</span> <span class="attr">stroke</span>=<span class="string">"green"</span> <span class="attr">fill</span>=<span class="string">"white"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"25"</span> <span class="attr">cy</span>=<span class="string">"25"</span> <span class="attr">r</span>=<span class="string">"15"</span>&gt;</span><span class="tag">&lt;/<span class="name">circle</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"40"</span> <span class="attr">cy</span>=<span class="string">"25"</span> <span class="attr">r</span>=<span class="string">"15"</span>&gt;</span><span class="tag">&lt;/<span class="name">circle</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"55"</span> <span class="attr">cy</span>=<span class="string">"25"</span> <span class="attr">r</span>=<span class="string">"15"</span>&gt;</span><span class="tag">&lt;/<span class="name">circle</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"70"</span> <span class="attr">cy</span>=<span class="string">"25"</span> <span class="attr">r</span>=<span class="string">"15"</span>&gt;</span><span class="tag">&lt;/<span class="name">circle</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">g</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong> d3.js SVG 코드 </strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// svg(켄버스) : 넓이(500), 높이(500), 배경색(yellow)</span></div><div class="line"><span class="keyword">var</span> svg = d3.select(<span class="string">'body'</span>).append(<span class="string">'svg'</span>)</div><div class="line">    .attr(<span class="string">'width'</span>, <span class="number">500</span>) <span class="comment">// 넓이</span></div><div class="line">    .attr(<span class="string">'height'</span>, <span class="number">500</span>) <span class="comment">// 높이</span></div><div class="line">        .style(<span class="string">'background-color'</span>, <span class="string">'#ff0'</span>);</div><div class="line"></div><div class="line"><span class="comment">// rect(사각형) : 시작위치(10,10), 넓이(480), 내부색(green), 테두리색(blue), 테두리크기(5)</span></div><div class="line"><span class="keyword">var</span> rect = svg.append(<span class="string">'rect'</span>)</div><div class="line">    .attr(<span class="string">'x'</span>, <span class="number">10</span>) <span class="comment">// 처음 그림 x축 위치</span></div><div class="line">    .attr(<span class="string">'y'</span>, <span class="number">10</span>) <span class="comment">// 처음 그림 y축 위치</span></div><div class="line">    .attr(<span class="string">'width'</span>, <span class="number">480</span>) <span class="comment">// 넓이</span></div><div class="line">    .attr(<span class="string">'height'</span>, <span class="number">30</span>) <span class="comment">// 높이</span></div><div class="line">    .attr(<span class="string">'fill'</span>, <span class="string">'green'</span>) <span class="comment">// 내부색</span></div><div class="line">    .attr(<span class="string">'stroke'</span>, <span class="string">'blue'</span>) <span class="comment">// 테두리색</span></div><div class="line">    .attr(<span class="string">'stroke-width'</span>, <span class="number">5</span>); <span class="comment">// 테두리크기</span></div><div class="line"></div><div class="line"><span class="comment">// circle(원) : 위치(100,100), 반지름(50), 내부색(red), 테두리색(blue), 테두리크기(5)</span></div><div class="line"><span class="keyword">var</span> circle = svg.append(<span class="string">'circle'</span>)</div><div class="line">    .attr(<span class="string">'cx'</span>, <span class="number">100</span>) <span class="comment">// 시작 x축 꼭지점</span></div><div class="line">    .attr(<span class="string">'cy'</span>, <span class="number">100</span>) <span class="comment">// 시작 y축 꼭지점</span></div><div class="line">    .attr(<span class="string">'r'</span>, <span class="number">50</span>) <span class="comment">// 반지름</span></div><div class="line">    .attr(<span class="string">'fill'</span>, <span class="string">'red'</span>)</div><div class="line">    .attr(<span class="string">'stroke'</span>, <span class="string">'blue'</span>)</div><div class="line">    .attr(<span class="string">'stroke-width'</span>, <span class="number">5</span>);</div><div class="line"></div><div class="line"><span class="comment">// ellipse(타원) : 위치(300,100), 폭반지름(70), 높이반지름(30), 내부색(red), 테두리색(blue), 테두리크기(5)</span></div><div class="line"><span class="keyword">var</span> ellipse = svg.append(<span class="string">'ellipse'</span>)</div><div class="line">    .attr(<span class="string">'cx'</span>, <span class="number">300</span>) <span class="comment">// 시작 x축 꼭지점</span></div><div class="line">    .attr(<span class="string">'cy'</span>, <span class="number">100</span>) <span class="comment">// 시작 y축 꼭지점</span></div><div class="line">    .attr(<span class="string">'rx'</span>, <span class="number">70</span>) <span class="comment">// x축으로 넓이 반지름</span></div><div class="line">    .attr(<span class="string">'ry'</span>, <span class="number">30</span>) <span class="comment">// y축으로 넓이 반지름</span></div><div class="line">    .attr(<span class="string">'fill'</span>, <span class="string">'red'</span>)</div><div class="line">    .attr(<span class="string">'stroke'</span>, <span class="string">'blue'</span>)</div><div class="line">    .attr(<span class="string">'stroke-width'</span>, <span class="number">5</span>);</div><div class="line"></div><div class="line"><span class="comment">// line(선) : 시작점(10,200), 끝점(480,200), 테두리색(red), 테두리크기(5)</span></div><div class="line"><span class="keyword">var</span> line = svg.append(<span class="string">'line'</span>)</div><div class="line">    .attr(<span class="string">'x1'</span>, <span class="number">10</span>)</div><div class="line">    .attr(<span class="string">'y1'</span>, <span class="number">200</span>)</div><div class="line">    .attr(<span class="string">'x2'</span>, <span class="number">480</span>)</div><div class="line">    .attr(<span class="string">'y2'</span>, <span class="number">200</span>)</div><div class="line">    .attr(<span class="string">'stroke'</span>, <span class="string">'blue'</span>)</div><div class="line">    .attr(<span class="string">'stroke-width'</span>, <span class="number">5</span>);</div><div class="line"></div><div class="line"><span class="comment">// path(특수라인) :</span></div><div class="line"><span class="keyword">var</span> path = svg.append(<span class="string">'path'</span>)</div><div class="line">    <span class="comment">// M: 시작 위치로 이동 (M 10,210 =&gt; (10,210)꼭지점이 시작위치가 됨</span></div><div class="line">    <span class="comment">// L: 이동할 라인 좌표 (L 110,220 =&gt; (110,220)꼭지점으로 라인을 그음)</span></div><div class="line">    <span class="comment">// C: 곡선 S : 부드러운곡선  Q : 차 베지에곡선 T :  부드러운 차 베지에 곡선 A : 호  Z = 끝경로(시작점과 이음)</span></div><div class="line">    .attr(<span class="string">'d'</span>, <span class="string">'M10,210 L110,220 210,210 310,220 410,210'</span>)</div><div class="line">    .attr(<span class="string">'fill'</span>, <span class="string">'none'</span>)</div><div class="line">    .attr(<span class="string">'stroke'</span>, <span class="string">'blue'</span>)</div><div class="line">    .attr(<span class="string">'stroke-width'</span>, <span class="number">5</span>);</div></pre></td></tr></table></figure>
+<p>위에서 사용된 d3.js의 메소드를 살펴보면</p>
+<ul>
+<li>.select(‘태그’) =&gt; 특정태그를 선택한다. 그림을 그릴 위치를 선택한는것</li>
+<li>.append(‘태그’) =&gt; 태그 추가</li>
+<li>.attr(‘name’, ‘value’) =&gt; 태그의 속성 name에 해당 value를 넣음</li>
+<li>style(‘name’, ‘value’) =&gt; 해당 태그의 style를 지정한다. 별로로 태그의 기본속성없는 외부 스타일을 추가할때 사용</li>
+</ul>
+<p>style의 경우는 css로 따로 관리가 가능하다.</p>
+<h3 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h3><ul>
+<li><a href="http://blog.naver.com/PostView.nhn?blogId=zero_kjy&amp;logNo=220778573029&amp;parentCategoryNo=&amp;categoryNo=18&amp;viewDate=&amp;isShowPopularPosts=false&amp;from=postList" target="_blank" rel="external">http://blog.naver.com/PostView.nhn?blogId=zero_kjy&amp;logNo=220778573029&amp;parentCategoryNo=&amp;categoryNo=18&amp;viewDate=&amp;isShowPopularPosts=false&amp;from=postList</a></li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://woonyzzang.github.com/2017/03/10/d3js-svg/" data-id="cj0jl1z5k001by4ve4th3tq9h" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/woonyzzang/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="cloud" href="http://j-portfolio.herokuapp.com/" target="_blank">
+                        <i class="icon fa fa-cloud"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="jsfiddle" href="https://jsfiddle.net/user/woonyzzang/fiddles/" target="_blank">
+                        <i class="icon fa fa-jsfiddle"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    <!-- github card -->
+    <!-- [I] http://lab.lepture.com/github-cards/ -->
+    <div class="github-card" data-github="woonyzzang" data-width="100%" data-height="150" data-theme="default"></div>
+    <script src="http://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+    <!-- //github card -->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/03/10/d3js-text/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            D3.js Text
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/03/10/d3js-select/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">D3.js Select</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/ionic/">ionic</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/BackEnd/">BackEnd</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/BackEnd/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/CSS3/">CSS3</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/">Etc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Log/">Log</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Windows/">Windows</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Angularjs-js/">Angularjs.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Tip/">Tip</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Markdown/">Markdown</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Webstorm/">Webstorm</a><span class="category-list-count">5</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-js/">angular.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apmsetup/">apmsetup</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone-js/">backbone.js</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/d3-js/">d3.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic-v1/">ionic v1</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic-v2/">ionic v2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-js/">javascript.js</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/">log</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/require-js/">require.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webstorm/">webstorm</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular-js/" style="font-size: 11.67px;">angular.js</a> <a href="/tags/apmsetup/" style="font-size: 10px;">apmsetup</a> <a href="/tags/backbone-js/" style="font-size: 18.33px;">backbone.js</a> <a href="/tags/css3/" style="font-size: 11.67px;">css3</a> <a href="/tags/d3-js/" style="font-size: 20px;">d3.js</a> <a href="/tags/ionic-v1/" style="font-size: 15px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/javascript-js/" style="font-size: 13.33px;">javascript.js</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/require-js/" style="font-size: 11.67px;">require.js</a> <a href="/tags/tip/" style="font-size: 10px;">tip</a> <a href="/tags/webstorm/" style="font-size: 16.67px;">webstorm</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/cms/">CMS Theme</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/listmap/listmap.xml">Markup Listmap</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/generatorCSS3/">GeneratorCSS3</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/html5_OR/">HTML5 Open Reference</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/prototype/">Prototype</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/designDraft/">Design Draft Gallery</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/responsiveDesignView/">Responsive Design View</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 woonyzzang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://woonyzzang.github.com/2017/03/10/d3js-svg/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
