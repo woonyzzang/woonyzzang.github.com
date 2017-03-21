@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="J Dev">
 <meta property="og:description" content="Javascript 모듈 패턴을 이용한 window 객체의 프로퍼티로 추가각각의 자바스크립트 파일을 모듈화 하여, 즉시 실행 함수로 실행하고, 실행하여 생성된 생성자 함수를 전역 객체인 window 객체의 프로퍼티로 추가하여 접근하는 방법이다.export를 통해 프로퍼티를 추가할수 있다.
 12345678(function(exports) &amp;#123;	expo">
-<meta property="og:updated_time" content="2017-03-21T14:46:04.502Z">
+<meta property="og:updated_time" content="2017-03-21T14:46:54.310Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Javascript Module Pattern">
 <meta name="twitter:description" content="Javascript 모듈 패턴을 이용한 window 객체의 프로퍼티로 추가각각의 자바스크립트 파일을 모듈화 하여, 즉시 실행 함수로 실행하고, 실행하여 생성된 생성자 함수를 전역 객체인 window 객체의 프로퍼티로 추가하여 접근하는 방법이다.export를 통해 프로퍼티를 추가할수 있다.
@@ -157,6 +157,10 @@
         <div class="article-entry" itemprop="articleBody">
             <h3 id="Javascript-모듈-패턴을-이용한-window-객체의-프로퍼티로-추가"><a href="#Javascript-모듈-패턴을-이용한-window-객체의-프로퍼티로-추가" class="headerlink" title="Javascript 모듈 패턴을 이용한 window 객체의 프로퍼티로 추가"></a>Javascript 모듈 패턴을 이용한 window 객체의 프로퍼티로 추가</h3><p>각각의 자바스크립트 파일을 모듈화 하여, 즉시 실행 함수로 실행하고, 실행하여 생성된 생성자 함수를 전역 객체인 window 객체의 프로퍼티로 추가하여 접근하는 방법이다.<br>export를 통해 프로퍼티를 추가할수 있다.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">exports</span>) </span>&#123;</div><div class="line">	exports.module = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'hello'</span>);</div><div class="line">	&#125;;</div><div class="line">&#125;)(<span class="built_in">window</span>);</div><div class="line"></div><div class="line"><span class="comment">// output</span></div><div class="line"><span class="built_in">module</span>(); <span class="comment">// hellow</span></div></pre></td></tr></table></figure>
+<h3 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h3><ul>
+<li><a href="http://asfirstalways.tistory.com/236" target="_blank" rel="external">http://asfirstalways.tistory.com/236</a></li>
+</ul>
+
         </div>
         <footer class="article-footer">
             
@@ -284,7 +288,7 @@
     
         <a href="/2017/03/21/javascript-include/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">javascript include</p>
+        <p class="article-nav-title">Javascript include</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
