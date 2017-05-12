@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Javascript Video Custom Controls | J Dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="javascript.js" />
+    
+    <meta name="description" content="HTML5 Video 네이티브 커스텀 컨트롤 만들기커스텀 컨트롤을 만들기 위해서는 우선 브라우저에서 자체 제공하는 네이티브 컨트롤을 감춰야 한다.Video 엘리먼트의 속성중 controls에 false 값을 주면 브라우저가 알아서 네이티브 컨트롤을 숨길수 있다.(controls 속성은 default 값이 false이기 때문에 아예 속성을 지정 안해도 무관하">
+<meta name="keywords" content="javascript.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript Video Custom Controls">
+<meta property="og:url" content="http://woonyzzang.github.com/2017/04/28/javascript-video-custom-controls/index.html">
+<meta property="og:site_name" content="J Dev">
+<meta property="og:description" content="HTML5 Video 네이티브 커스텀 컨트롤 만들기커스텀 컨트롤을 만들기 위해서는 우선 브라우저에서 자체 제공하는 네이티브 컨트롤을 감춰야 한다.Video 엘리먼트의 속성중 controls에 false 값을 주면 브라우저가 알아서 네이티브 컨트롤을 숨길수 있다.(controls 속성은 default 값이 false이기 때문에 아예 속성을 지정 안해도 무관하">
+<meta property="og:updated_time" content="2017-05-12T07:48:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript Video Custom Controls">
+<meta name="twitter:description" content="HTML5 Video 네이티브 커스텀 컨트롤 만들기커스텀 컨트롤을 만들기 위해서는 우선 브라우저에서 자체 제공하는 네이티브 컨트롤을 감춰야 한다.Video 엘리먼트의 속성중 controls에 false 값을 주면 브라우저가 알아서 네이티브 컨트롤을 숨길수 있다.(controls 속성은 default 값이 false이기 때문에 아예 속성을 지정 안해도 무관하">
+    
+    <link rel="canonical" href="http://woonyzzang.github.com/2017/04/28/javascript-video-custom-controls/"/>
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Web Development Story Blog</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/">App</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/ionic/">ionic</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/">CSS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/CSS3/">CSS3</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/">Editor</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Webstorm/">Webstorm</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/">Etc</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/Log/">Log</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/">FrontEnd</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Tip/">Tip</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/">HTML</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/Markdown/">Markdown</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/">OS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Mac/">Mac</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Windows/">Windows</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Openssl/">Openssl</a></li></ul></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/FrontEnd/">FrontEnd</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-javascript-video-custom-controls" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Javascript Video Custom Controls
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2017/04/28/javascript-video-custom-controls/" class="article-date">
+    <time datetime="2017-04-28T07:46:42.000Z" itemprop="datePublished">2017-04-28</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-js/">javascript.js</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h3 id="HTML5-Video-네이티브-커스텀-컨트롤-만들기"><a href="#HTML5-Video-네이티브-커스텀-컨트롤-만들기" class="headerlink" title="HTML5 Video 네이티브 커스텀 컨트롤 만들기"></a>HTML5 Video 네이티브 커스텀 컨트롤 만들기</h3><p>커스텀 컨트롤을 만들기 위해서는 우선 브라우저에서 자체 제공하는 네이티브 컨트롤을 감춰야 한다.<br>Video 엘리먼트의 속성중 controls에 false 값을 주면 브라우저가 알아서 네이티브 컨트롤을 숨길수 있다.(controls 속성은 default 값이 false이기 때문에 아예 속성을 지정 안해도 무관하다.)<br>네이티브 컨트롤을 감춘 후 커스텀 컨트롤을 추가해서 제어하면 된다.</p>
+<p><strong> HTML 코드 </strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"videoContainer"</span> <span class="attr">class</span>=<span class="string">"video_container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"video"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"http://content.bitsontherun.com/videos/q1fx20VZ-27m5HpIu.webm"</span> <span class="attr">type</span>=<span class="string">"video/webm"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"http://content.bitsontherun.com/videos/q1fx20VZ-52qL9xLP.mp4"</span> <span class="attr">type</span>=<span class="string">"video/mp4"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">video</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"videoControls"</span> <span class="attr">class</span>=<span class="string">"video_controls"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"group"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btnRestart"</span>&gt;</span>Re<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btnRew"</span>&gt;</span>&amp;lt;&amp;lt;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btnPlay"</span> <span class="attr">class</span>=<span class="string">"play"</span>&gt;</span>Play<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btnFastFwd"</span>&gt;</span>&amp;gt;&amp;gt;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"range"</span> <span class="attr">value</span>=<span class="string">"0"</span> <span class="attr">id</span>=<span class="string">"seekBar"</span> <span class="attr">class</span>=<span class="string">"seek_bar"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btnMute"</span>&gt;</span>Mute<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"range"</span> <span class="attr">min</span>=<span class="string">"0"</span> <span class="attr">max</span>=<span class="string">"1"</span> <span class="attr">step</span>=<span class="string">"0.1"</span> <span class="attr">value</span>=<span class="string">"1"</span> <span class="attr">id</span>=<span class="string">"volumeBar"</span> <span class="attr">class</span>=<span class="string">"volume_bar"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btnVolUp"</span>&gt;</span>Vol Up<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btnVolDown"</span>&gt;</span>Vol Down<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btnFullScreen"</span>&gt;</span>Full Screen<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong> CSS 코드 </strong><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line">* &#123;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</div><div class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.video_container</span> &#123;</div><div class="line">    <span class="attribute">overflow</span>: hidden;</div><div class="line">    <span class="attribute">position</span>: relative;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#000</span>;</div><div class="line">    <span class="attribute">width</span>: <span class="number">640px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">365px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.video_container</span> <span class="selector-tag">video</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.video_container</span> <span class="selector-tag">video</span><span class="selector-pseudo">::-webkit-media-controls</span> &#123;</div><div class="line">    <span class="attribute">display</span>:none <span class="meta">!important</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.video_container</span> <span class="selector-tag">video</span><span class="selector-pseudo">::-webkit-media-controls-enclosure</span> &#123;</div><div class="line">    <span class="attribute">display</span>:none <span class="meta">!important</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.video_container</span> <span class="selector-class">.video_controls</span> &#123;</div><div class="line">    <span class="attribute">position</span>: absolute;</div><div class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</div><div class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</div><div class="line">    <span class="attribute">left</span>: <span class="number">0</span>;</div><div class="line">    <span class="comment">/*z-index: 2147483647;*/</span></div><div class="line">    <span class="attribute">padding</span>: <span class="number">5px</span>;</div><div class="line">    <span class="attribute">opacity</span>: <span class="number">1</span>;</div><div class="line">    <span class="attribute">-webkit-transition</span>: opacity .<span class="number">3s</span>;</div><div class="line">    <span class="attribute">-moz-transition</span>: opacity .<span class="number">3s</span>;</div><div class="line">    <span class="attribute">-o-transition</span>: opacity .<span class="number">3s</span>;</div><div class="line">    <span class="attribute">-ms-transition</span>: opacity .<span class="number">3s</span>;</div><div class="line">    <span class="attribute">transition</span>: opacity .<span class="number">3s</span>;</div><div class="line">    <span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(bottom, rgb(3,113,168) <span class="number">13%</span>, <span class="built_in">rgb</span>(0,136,204) <span class="number">100%</span>);</div><div class="line">    <span class="attribute">background-image</span>: <span class="built_in">-o-linear-gradient</span>(bottom, rgb(3,113,168) <span class="number">13%</span>, <span class="built_in">rgb</span>(0,136,204) <span class="number">100%</span>);</div><div class="line">    <span class="attribute">background-image</span>: <span class="built_in">-moz-linear-gradient</span>(bottom, rgb(3,113,168) <span class="number">13%</span>, <span class="built_in">rgb</span>(0,136,204) <span class="number">100%</span>);</div><div class="line">    <span class="attribute">background-image</span>: <span class="built_in">-webkit-linear-gradient</span>(bottom, rgb(3,113,168) <span class="number">13%</span>, <span class="built_in">rgb</span>(0,136,204) <span class="number">100%</span>);</div><div class="line">    <span class="attribute">background-image</span>: <span class="built_in">-ms-linear-gradient</span>(bottom, rgb(3,113,168) <span class="number">13%</span>, <span class="built_in">rgb</span>(0,136,204) <span class="number">100%</span>);</div><div class="line">    <span class="attribute">background-image</span>: <span class="built_in">-webkit-gradient</span>(linear, left bottom, left top, color-stop(0.13, rgb(3,113,168)), <span class="built_in">color-stop</span>(1, rgb(0,136,204)));</div><div class="line">    <span class="attribute">text-align</span>: center;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.video_container</span> <span class="selector-class">.video_controls</span>&gt;<span class="selector-class">.group</span> &#123;</div><div class="line">    <span class="attribute">display</span>: inline-block;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.video_container</span> <span class="selector-class">.video_controls</span> <span class="selector-tag">button</span><span class="selector-attr">[type=button]</span> &#123;</div><div class="line">    <span class="attribute">padding</span>: <span class="number">4px</span>;</div><div class="line">    <span class="attribute">background</span>: <span class="built_in">rgba</span>(0,0,0,.5);</div><div class="line">    <span class="attribute">border</span>: <span class="number">0</span>;</div><div class="line">    <span class="attribute">border-radius</span>: <span class="number">3px</span>;</div><div class="line">    <span class="attribute">color</span>: <span class="number">#eee</span>;</div><div class="line">    <span class="attribute">vertical-align</span>: top;</div><div class="line">    <span class="attribute">cursor</span>: pointer;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.video_container</span> <span class="selector-class">.video_controls</span> <span class="selector-class">.seek_bar</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.video_container</span> <span class="selector-class">.video_controls</span> <span class="selector-class">.volume_bar</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">40px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong> JavaScript 코드 </strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $video = <span class="built_in">document</span>.querySelector(<span class="string">"#video"</span>);</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * videoPlay</div><div class="line"> * @description 비디오 영상 플레이/정지</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">videoPlay</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> ($video.paused) &#123;</div><div class="line">        $video.currentTime = <span class="built_in">parseInt</span>($video.duration * (<span class="keyword">this</span>.value / <span class="number">100</span>), <span class="number">10</span>);</div><div class="line">        $video.play();</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        $video.pause();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * skip</div><div class="line"> * @description 비디오 영상 앞/뒤 스킵</div><div class="line"> * @param &#123;Number&#125; value - 비디오 재생 타임 시간</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">skip</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> ($video.paused) &#123; <span class="keyword">return</span>; &#125;</div><div class="line"></div><div class="line">    $video.currentTime += value;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * setVolume</div><div class="line"> * @description 볼륨 조절</div><div class="line"> * @param &#123;Number&#125; value - 볼륨 조절 값(min: 0 ~ max: 1)</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setVolume</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> vol = $video.volume;</div><div class="line"></div><div class="line">    vol += value;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (vol &gt;= <span class="number">0</span> &amp;&amp; vol &lt;= <span class="number">1</span>) &#123;</div><div class="line">        $video.volume = vol;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        $video.volume = (vol &lt; <span class="number">0</span>)? <span class="number">0</span> : <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 진행바 업데이트 이동 이벤트</span></div><div class="line">$video.addEventListener(<span class="string">'timeupdate'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> ($video.paused) &#123; <span class="keyword">return</span>; &#125;</div><div class="line"></div><div class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'#seekBar'</span>).value = (<span class="number">100</span> / $video.duration) * $video.currentTime;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 재시작 버튼 클릭 이벤트 핸들러</span></div><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#btnRestart'</span>).addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    $video.currentTime = <span class="number">0</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 플레이 버튼 클릭 이벤트 핸들러</span></div><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#btnPlay'</span>).addEventListener(<span class="string">'click'</span>, videoPlay);</div><div class="line"></div><div class="line"><span class="comment">// 재시작 버튼 클릭 이벤트 핸들러1</span></div><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#btnRew'</span>).addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    skip(<span class="number">-10</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 재시작 버튼 클릭 이벤트 핸들러2</span></div><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#btnFastFwd'</span>).addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    skip(<span class="number">10</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 진행바 마우스다운 이벤트 핸들러</span></div><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#seekBar'</span>).addEventListener(<span class="string">'mousedown'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    $video.pause();</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 진행바 마우스업 이벤트 핸들러</span></div><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#seekBar'</span>).addEventListener(<span class="string">'mouseup'</span>, videoPlay);</div><div class="line"></div><div class="line"><span class="comment">// muted 속성 사운드트랙 음소거 제어</span></div><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#btnMute'</span>).addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> ($video.muted) &#123;</div><div class="line">        $video.muted = <span class="literal">false</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        $video.muted = <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="comment">// 볼륨 range 컨트롤</span></div><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#volumeBar'</span>).addEventListener(<span class="string">'change'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $video.volume = <span class="keyword">this</span>.value;</div><div class="line">&#125;, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="comment">// 볼륨 버튼 컨트롤</span></div><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#btnVolUp'</span>).addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    setVolume(<span class="number">.1</span>);  <span class="comment">// up by 10%</span></div><div class="line">&#125;, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#btnVolDown'</span>).addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    setVolume(<span class="number">-.1</span>); <span class="comment">// down by 10%</span></div><div class="line">&#125;, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="comment">// FullScreen 클릭 이벤트 핸들러</span></div><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#btnFullScreen'</span>).addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> $videoContainer = <span class="built_in">document</span>.querySelector(<span class="string">'#videoContainer'</span>);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> ($videoContainer.requestFullscreen) &#123;</div><div class="line">        $videoContainer.requestFullscreen();</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ($videoContainer.mozRequestFullScreen) &#123;</div><div class="line">        $videoContainer.mozRequestFullScreen();</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ($videoContainer.webkitRequestFullscreen) &#123;</div><div class="line">        $videoContainer.webkitRequestFullscreen();</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>($videoContainer.msRequestFullscreen)&#123;</div><div class="line">        $videoContainer.msRequestFullscreen();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    $videoContainer.style.width = <span class="string">'100%'</span>;</div><div class="line">    $videoContainer.style.height = <span class="string">'100%'</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// FullScreen 상태를 해제 시 원래 사이즈로 복원</span></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'webkitfullscreenchange'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// Webkit</span></div><div class="line">    <span class="keyword">var</span> $videoContainer = <span class="built_in">document</span>.querySelector(<span class="string">'#videoContainer'</span>);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (!<span class="built_in">document</span>.webkitIsFullScreen) &#123;</div><div class="line">        $videoContainer.style.width = <span class="string">'640px'</span>;</div><div class="line">        $videoContainer.style.height = <span class="string">'365px'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'mozfullscreenchange'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// Firefox</span></div><div class="line">    <span class="keyword">if</span> (!<span class="built_in">document</span>.mozIsFullScreen) &#123;</div><div class="line">        videoContainer.style.width = <span class="string">'640px'</span>;</div><div class="line">        videoContainer.style.height = <span class="string">'365px'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'MSFullscreenChange'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// Explorer</span></div><div class="line">    <span class="keyword">if</span> (!<span class="built_in">document</span>.msFullscreenElement) &#123;</div><div class="line">        videoContainer.style.width = <span class="string">'640px'</span>;</div><div class="line">        videoContainer.style.height = <span class="string">'365px'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h3><ul>
+<li><a href="http://huns.me/development/1415" target="_blank" rel="external">http://huns.me/development/1415</a></li>
+<li><a href="https://msdn.microsoft.com/ko-kr/library/hh924823(v=vs.85).aspx" target="_blank" rel="external">https://msdn.microsoft.com/ko-kr/library/hh924823(v=vs.85).aspx</a></li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://woonyzzang.github.com/2017/04/28/javascript-video-custom-controls/" data-id="cj2ljlorr002ys5f93wcwhlfv" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/woonyzzang/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="cloud" href="http://j-portfolio.herokuapp.com/" target="_blank">
+                        <i class="icon fa fa-cloud"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="jsfiddle" href="https://jsfiddle.net/user/woonyzzang/fiddles/" target="_blank">
+                        <i class="icon fa fa-jsfiddle"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    <!-- github card -->
+    <!-- [I] http://lab.lepture.com/github-cards/ -->
+    <div class="github-card" data-github="woonyzzang" data-width="100%" data-height="150" data-theme="default"></div>
+    <script src="http://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+    <!-- //github card -->
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/04/20/javascript-bookmark/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Javascript Bookmark</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/ionic/">ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/CSS3/">CSS3</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/">Etc</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Log/">Log</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a><span class="category-list-count">29</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Tip/">Tip</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Markdown/">Markdown</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Openssl/">Openssl</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-js-v1/">angular.js v1</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone-js/">backbone.js</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/d3-js/">d3.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic-v1/">ionic v1</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic-v2/">ionic v2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-js/">javascript.js</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/">log</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/require-js/">require.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/">server</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/visualstudio/">visualstudio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webstorm/">webstorm</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular-js-v1/" style="font-size: 11.67px;">angular.js v1</a> <a href="/tags/backbone-js/" style="font-size: 16.67px;">backbone.js</a> <a href="/tags/css3/" style="font-size: 11.67px;">css3</a> <a href="/tags/d3-js/" style="font-size: 20px;">d3.js</a> <a href="/tags/ionic-v1/" style="font-size: 15px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/javascript-js/" style="font-size: 18.33px;">javascript.js</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/mac/" style="font-size: 11.67px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/require-js/" style="font-size: 11.67px;">require.js</a> <a href="/tags/server/" style="font-size: 11.67px;">server</a> <a href="/tags/tip/" style="font-size: 10px;">tip</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/webstorm/" style="font-size: 16.67px;">webstorm</a> <a href="/tags/windows/" style="font-size: 13.33px;">windows</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/cms/">CMS Theme</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/listmap/listmap.xml">Markup Listmap</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/generatorCSS3/">GeneratorCSS3</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/html5_OR/">HTML5 Open Reference</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/prototype/">Prototype</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/designDraft/">Design Draft Gallery</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/responsiveDesignView/">Responsive Design View</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 woonyzzang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://woonyzzang.github.com/2017/04/28/javascript-video-custom-controls/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

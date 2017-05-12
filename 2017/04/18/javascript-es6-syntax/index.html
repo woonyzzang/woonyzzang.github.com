@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Javascript ES6 Syntax | J Dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="javascript.js" />
+    
+    <meta name="description" content="ES6 - ECMAScript2015 기초 문법ECMAScript는 자바스크립트 표준 단체인 ECMA가 제정하는 자바스크립트 표준을 뜻하며, ECMAScript는 브라우저에 사용되는 자바스크립트 부분만 표준으로 정의한다.현재 대부분 사용하고있는 자바스크립트는 ES5이며, 이전에는 ES1 ~ ES3까지 존재하고 있다.ES4는 논쟁요소가 많아 중도 폐기 되었으">
+<meta name="keywords" content="javascript.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript ES6 Syntax">
+<meta property="og:url" content="http://woonyzzang.github.com/2017/04/18/javascript-es6-syntax/index.html">
+<meta property="og:site_name" content="J Dev">
+<meta property="og:description" content="ES6 - ECMAScript2015 기초 문법ECMAScript는 자바스크립트 표준 단체인 ECMA가 제정하는 자바스크립트 표준을 뜻하며, ECMAScript는 브라우저에 사용되는 자바스크립트 부분만 표준으로 정의한다.현재 대부분 사용하고있는 자바스크립트는 ES5이며, 이전에는 ES1 ~ ES3까지 존재하고 있다.ES4는 논쟁요소가 많아 중도 폐기 되었으">
+<meta property="og:updated_time" content="2017-04-19T14:47:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript ES6 Syntax">
+<meta name="twitter:description" content="ES6 - ECMAScript2015 기초 문법ECMAScript는 자바스크립트 표준 단체인 ECMA가 제정하는 자바스크립트 표준을 뜻하며, ECMAScript는 브라우저에 사용되는 자바스크립트 부분만 표준으로 정의한다.현재 대부분 사용하고있는 자바스크립트는 ES5이며, 이전에는 ES1 ~ ES3까지 존재하고 있다.ES4는 논쟁요소가 많아 중도 폐기 되었으">
+    
+    <link rel="canonical" href="http://woonyzzang.github.com/2017/04/18/javascript-es6-syntax/"/>
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Web Development Story Blog</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/">App</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/ionic/">ionic</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/">CSS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/CSS3/">CSS3</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/">Editor</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Webstorm/">Webstorm</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/">Etc</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/Log/">Log</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/">FrontEnd</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Tip/">Tip</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/">HTML</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/Markdown/">Markdown</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/">OS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Mac/">Mac</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Windows/">Windows</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Openssl/">Openssl</a></li></ul></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/FrontEnd/">FrontEnd</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-javascript-es6-syntax" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Javascript ES6 Syntax
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2017/04/18/javascript-es6-syntax/" class="article-date">
+    <time datetime="2017-04-18T14:44:36.000Z" itemprop="datePublished">2017-04-18</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-js/">javascript.js</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h3 id="ES6-ECMAScript2015-기초-문법"><a href="#ES6-ECMAScript2015-기초-문법" class="headerlink" title="ES6 - ECMAScript2015 기초 문법"></a>ES6 - ECMAScript2015 기초 문법</h3><p>ECMAScript는 자바스크립트 표준 단체인 ECMA가 제정하는 자바스크립트 표준을 뜻하며, ECMAScript는 브라우저에 사용되는 자바스크립트 부분만 표준으로 정의한다.<br>현재 대부분 사용하고있는 자바스크립트는 ES5이며, 이전에는 ES1 ~ ES3까지 존재하고 있다.<br>ES4는 논쟁요소가 많아 중도 폐기 되었으며 ES5부터 먼저 재정의 되었다.</p>
+<p><strong> let 키워드 </strong><br>가장 먼저 변수 선언에 대하여 알아보자. 기존 Javascript 에서는 var 로 거의 통일되다 시피 변수를 선언하였다.<br>다만 var 의 문제점은 scope 에 있다.<br>var 의 scope 는 function 안에서 모두 접근 하게 되는데, 이는 타 언어 출신의 개발자를 헷갈리게 만들고 자칫 잘못하면 엄청난 버그를 만들어내는 방식이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;   <span class="comment">//  global variable</span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Test1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(a);</div><div class="line">    <span class="keyword">var</span> b = <span class="number">2</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</div><div class="line">        <span class="keyword">var</span> c = <span class="number">3</span>;</div><div class="line">        <span class="built_in">console</span>.log(b);</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="built_in">console</span>.log(c);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">Test1();</div><div class="line"><span class="comment">// 1</span></div><div class="line"><span class="comment">// 2</span></div><div class="line"><span class="comment">// 3</span></div></pre></td></tr></table></figure></p>
+<p>위와 같이 Test1() 함수에서 전역변수인 a를 호출하고 변수 b를 지정하였다.<br>if 문안에서 변수 c를 지정하고 지역변수인 b를 호출하였다.<br>그리고 if문 밖에서 변수 c를 호출하였다.<br>이는 에러를 야기 시키지 않는가? 타 언어에서는 c가 if문 안에 있으니 undefined 라고 나올 수 있을꺼다 라고 하지만 자바스크립트에서는 그렇지 않다.<br>자바스크립트에서 변수의 범위는 function 즉 , 최초의 부모함수 (여기서는 Test1 함수) 가 되기 때문에 해당 코드의 실행 결과로 1 , 2 ,3 이 나타난다. </p>
+<p>ES6 에서는<br>이를 보완하기 위해 let 이라는 block scope 의 변수를 선언하는  형식을 만들었다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Test1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(a);   </div><div class="line">      </div><div class="line">    <span class="keyword">let</span> b = <span class="number">2</span>;</div><div class="line">    <span class="keyword">if</span>(<span class="literal">true</span>) &#123;</div><div class="line">    <span class="keyword">let</span> c = <span class="number">3</span>;</div><div class="line">    <span class="built_in">console</span>.log(b);</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="built_in">console</span>.log(c);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">Test1();</div><div class="line"><span class="comment">// 1</span></div><div class="line"><span class="comment">// 2</span></div><div class="line"><span class="comment">// undefined</span></div></pre></td></tr></table></figure></p>
+<p>var 를 let 으로 변경하였다. a 는 여전히 전역변수가 되어있고 b 는 Test1 함수내에 어디서든 호출이 가능하며,<br>문제는 c 이다. 해당 함수를 실행하면 c는 나타나지 않는다.<br>let 으로 변경한 지금 c 변수는 if 문 안에서만 통용되도록 변경되었다. 타 언어의 변수 scope 와 같아진것 이다.<br>여기서 또 한가지 같은 범위 안이라면 var 는 이미 선언한 변수를 같은 이름으로 덮어 씌우는게 가능하다.<br>하지만 let 은 그렇지 않다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line"> </div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 2</span></div><div class="line"> </div><div class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</div><div class="line"><span class="keyword">let</span> b = <span class="number">2</span>;</div><div class="line">  </div><div class="line"><span class="built_in">console</span>.log(b); <span class="comment">// Type Error</span></div></pre></td></tr></table></figure></p>
+<p>위 코드 처럼 let 은 같은 범위내에서 같은 이름으로 덮어 씌우려 할 경우 Type Error 를 발생시킨다. </p>
+<p><strong> Const 키워드 </strong><br>Const 키워드는 let 과 같이 block scope 를 가지며, let 과 다른점은 상수로 선언된다는 점이다.<br>기존의 var 로 선언했을 시에는 프로그램 어디서나 해당 변수에 접근하여 값을 고칠 수 있다.<br>하지만 const 로 선언한다면 상수로 선언되기에 값을 변경시에는 에러가 발생하게 된다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> r = <span class="number">4</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> pi = <span class="number">3.14</span>;</div><div class="line"><span class="built_in">console</span>.log(r * r * pi);  <span class="comment">// 50.24</span></div><div class="line"> </div><div class="line">pi = <span class="number">2.14</span></div><div class="line"><span class="built_in">console</span>.log(r * r * pi);  <span class="comment">// 34.24</span></div><div class="line">  </div><div class="line"><span class="keyword">const</span> pi2 = <span class="number">3.14</span>;</div><div class="line"><span class="built_in">console</span>.log(r * r * pi2);  <span class="comment">// 50.24</span></div><div class="line"> </div><div class="line">pi2 = <span class="number">2.14</span>;    </div><div class="line"><span class="built_in">console</span>.log(r * r * pi2);  <span class="comment">// Error</span></div></pre></td></tr></table></figure></p>
+<p>위 코드를 보면 var 로 선언한 pi 변수는 얼마든지 변경 할 수 있기에 단지 상수라고 생각하고 적어놨을 뿐 전혀 상수의 기능을 못 하고 있다.<br>하지만 const 로 선언한 변수는 값의 변경을 시도 했을 때 읽기 전용 예외 가 발생하며 변경이 되지 않는다. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a =  &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'Tracer'</span></div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(a.name);  <span class="comment">// Tracer</span></div><div class="line">  </div><div class="line"><span class="keyword">var</span> a = &#123;</div><div class="line">    <span class="attr">age</span>: <span class="string">'12'</span></div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(a.age);  <span class="comment">// 12</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> b = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'Over'</span></div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(b.name);  <span class="comment">// Over</span></div><div class="line"> </div><div class="line">b.name = <span class="string">'Watch'</span>;</div><div class="line"><span class="built_in">console</span>.log(b.name);  <span class="comment">// Watch</span></div><div class="line"> </div><div class="line"><span class="keyword">const</span> b= &#123;</div><div class="line">   <span class="attr">name</span> : <span class="string">'OverWatch'</span> <span class="comment">// Error</span></div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(b.name);</div></pre></td></tr></table></figure>
+<p>const 범위는 let 과 같으며 만약 객체를 const 로 선언했을 경우 객체안의 내용은 변경이 가능하지만 객체 자체를 재정의 하는 것은 불가능하다.</p>
+<p><strong>  …배열 연산자(Spread Operator) </strong></p>
+<p>기존 자바스크립트에서 배열 값을 인자로 넘길때는 apply 메소드를 사용하여 넘겼다.<br>하지만 … 연산자를 사용하여 더욱 간단하게 인자값을 넘길 수 있다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Test1</span>(<span class="params">a,b</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> a + b;</div><div class="line">&#125;;</div><div class="line"> </div><div class="line"><span class="keyword">var</span> data = [<span class="number">1</span>,<span class="number">2</span>];</div><div class="line"> </div><div class="line"><span class="built_in">console</span>.log(Test1.apply(<span class="literal">null</span>,data)); <span class="comment">// 3</span></div><div class="line"><span class="built_in">console</span>.log(Test1(...data));  <span class="comment">//3</span></div></pre></td></tr></table></figure></p>
+<p>… 연산자는 배열에 있는 값을 하나하나 꺼내서 개별적인 함수 인자로 만들어서 호출 한다. </p>
+<p>… 연산자를 응용하면 다음과 같이도 사용할 수 있다. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> data1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div><div class="line"><span class="keyword">let</span> data2 = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</div><div class="line"><span class="keyword">let</span> data3 = [...data1, ...data2, <span class="number">7</span>];</div><div class="line"> </div><div class="line"><span class="built_in">console</span>.log(data3);  <span class="comment">// 1,2,3,4,5,6,7</span></div><div class="line">  </div><div class="line">data1.push(...data2);</div><div class="line"> </div><div class="line"><span class="built_in">console</span>.log(data1); <span class="comment">// 1,2,3,4,5,6</span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">a, b, c, d, e, f</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> a + b + c + d + e + f;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="built_in">console</span>.log(add(...data1,...data2)); <span class="comment">// 21</span></div></pre></td></tr></table></figure>
+<p>첫번째로 data3 배열은 data1 과 data2 의 배열을 포함시키는데 여기서 … 연산자를 사용하였다.<br>두번째로 배열에 배열을 push 할때 기존의 Array.prototype.push.apply(arr1,arr2) 가 아닌 좀 더 깔끔하고 간결하게 push 사용이 가능하다.<br>마지막으로 함수의 인자로 값을 넘길때 여러개의 배열을 … 연산자를 사용하여 넘길 수 있다. </p>
+<p><strong> 배열 </strong><br>ES6 에서 간편해진 배열관련 문법들을 살펴보자.<br>위 … 연산자를 활용하는 방법과 그 외 기존에 쓰던 방법을 더욱 간단하게 표현할 수 있도록 ES6는 많은 변화가 있다.<br>먼저 배열에 값을 할당 할 때의 예제를 살펴보자.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ES5</span></div><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="keyword">let</span> a = array[<span class="number">0</span>];</div><div class="line"><span class="keyword">let</span> b = array[<span class="number">1</span>];</div><div class="line"><span class="keyword">let</span> c = array[<span class="number">2</span>];</div><div class="line"> </div><div class="line"><span class="built_in">console</span>.log(a,b,c);  <span class="comment">// 1 2 3</span></div><div class="line"> </div><div class="line"><span class="comment">// ES6</span></div><div class="line"><span class="keyword">let</span> array2 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="keyword">let</span> d, e, f;</div><div class="line">[d,e,f] = array2;</div><div class="line"> </div><div class="line"><span class="built_in">console</span>.log(d,e,f);  <span class="comment">// 1 2 3 </span></div><div class="line"></div><div class="line"><span class="comment">// ES6</span></div><div class="line"><span class="keyword">let</span> array3 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="keyword">let</span> [g,h,i] = array;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(g,h,i);  <span class="comment">// 1 2 3</span></div></pre></td></tr></table></figure></p>
+<p>배열 값을 할당하는 방법이 아주아주 간단해 진 걸 볼 수 있을 것이다. </p>
+<p>여기서 배열 값의 건너뜀 과 응용하여 위에서 배운 … 연산자를 사용해보자.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="keyword">let</span>[a, ,b] = array;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(a,b); <span class="comment">// 1,3</span></div><div class="line"> </div><div class="line"><span class="keyword">let</span> array2 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="keyword">let</span> [c, ...d] = array2;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(c);  <span class="comment">// 1</span></div><div class="line"><span class="built_in">console</span>.log(d);  <span class="comment">// 2,3</span></div><div class="line"> </div><div class="line"><span class="keyword">let</span> array3 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</div><div class="line"><span class="keyword">let</span> [e, , ...f] = array3;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(e); <span class="comment">// 1</span></div><div class="line"><span class="built_in">console</span>.log(f); <span class="comment">// 3,4</span></div></pre></td></tr></table></figure></p>
+<p>위 코드를 보면 배열에 값을 지정할 때 중간값을 건너뛰는 것이 가능하다. </p>
+<p>그리고 … 연산자를 이용하여 배열의 남은 값들을 다 포함시킬 수도 있고 , 역시 값을 건너뛰면서도 … 연산자가 사용가능 한 것을 볼 수 있다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>];</div><div class="line"><span class="keyword">let</span> [a, b, c=<span class="number">3</span>] = array;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(a,b,c); <span class="comment">//1,2,3</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params">a = <span class="number">1</span>, b = <span class="number">2</span>, c = <span class="number">3</span></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> a + b + c;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="built_in">console</span>.log(test1()); <span class="comment">// 6</span></div></pre></td></tr></table></figure></p>
+<p>첫번째 배열에서는 c에 기본값을 주고 출력하는 것을 볼 수 있다.<br>그리고 함수의 인자값에도 기본값을 주고 출력이 가능한 것을 확인 할 수 있다. </p>
+<p><strong> 객체 </strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ES5</span></div><div class="line"> </div><div class="line"><span class="keyword">var</span> Person = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'Korea'</span>,</div><div class="line">    <span class="attr">age</span>: <span class="string">'5000'</span></div><div class="line">&#125;;</div><div class="line"> </div><div class="line"><span class="keyword">var</span> name = Person.name;</div><div class="line"><span class="keyword">var</span> age = Person.age;</div><div class="line"> </div><div class="line"><span class="built_in">console</span>.log(name,age); <span class="comment">// Korea , 5000</span></div><div class="line"></div><div class="line"><span class="comment">//ES6</span></div><div class="line"><span class="comment">//변수명이 객체 값과 같아야 한다.</span></div><div class="line"><span class="keyword">let</span> Person2 = &#123;</div><div class="line">    <span class="attr">name2</span>: <span class="string">'Korea'</span>,</div><div class="line">    <span class="attr">age2</span>: <span class="string">'5000'</span></div><div class="line">&#125;;</div><div class="line"> </div><div class="line"><span class="keyword">let</span> &#123;name2 , age2&#125; = Person2;</div><div class="line"><span class="built_in">console</span>.log(name2,age2); <span class="comment">// Korea , 5000</span></div><div class="line"></div><div class="line"><span class="comment">//ES6</span></div><div class="line"><span class="comment">//변수명을 다르게 주고 싶은 경우</span></div><div class="line"><span class="keyword">let</span> Person3 = &#123;</div><div class="line">    <span class="attr">name3</span>: <span class="string">'Korea'</span>,</div><div class="line">    <span class="attr">age3</span>: <span class="string">'5000'</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">let</span> &#123;<span class="attr">name3</span>: x , <span class="attr">age3</span>: y&#125; =  Person3;</div><div class="line"><span class="built_in">console</span>.log(x,y); <span class="comment">// Korea , 5000</span></div></pre></td></tr></table></figure></p>
+<p>ES6 에서는 객체 값을 변수에 할당할 때 변수를 객체 값의 이름과 같이 만들어서 할당하는 방법이 있다.<br>그리고 마지막 부분은 변수의 이름을 객체 값과 같은 것이 아닌 다른 이름을 쓰고자 할때의 예제이다. </p>
+<p><strong> Arrow function </strong><br>ES6 부터 Arrow function 이 추가 되었다.<br>(파라미터)=&gt; {함수 본체};<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ES5</span></div><div class="line"><span class="keyword">var</span> Test1 = <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> a + b;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(Test1(<span class="number">1</span>,<span class="number">2</span>));  <span class="comment">// 3</span></div><div class="line"></div><div class="line"><span class="comment">//ES6</span></div><div class="line"><span class="keyword">let</span> Test2 = <span class="function">(<span class="params">a,b</span>)=&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> result = a + b;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(Test2(<span class="number">1</span>,<span class="number">2</span>));  <span class="comment">// 3</span></div><div class="line"></div><div class="line"><span class="comment">//ES6</span></div><div class="line"><span class="keyword">let</span> Test3 = <span class="function">(<span class="params">a, b</span>)=&gt;</span> (a + b);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(Test3(<span class="number">1</span>,<span class="number">2</span>));   <span class="comment">// 3</span></div></pre></td></tr></table></figure></p>
+<p>코드를 보면 알 수 있듯이 함수를 간결하게 표현할 수 있도록 바뀌었다.<br>함수의 return 문이 하나인 경우에 3번째 예제처럼 한줄로 만들 수도 있다. </p>
+<p>Arrow function 의 가장 중요한 특징은 this 값의 scope 변경이다.  예제를 살펴보자.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span> === <span class="built_in">window</span>);  <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.a);   <span class="comment">// 1</span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span> === <span class="built_in">window</span>);  <span class="comment">// true</span></div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="keyword">var</span> object1 = &#123;</div><div class="line">    <span class="attr">test</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span> === object1);  <span class="comment">// true</span></div><div class="line">        </div><div class="line">        (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span> === object1);  <span class="comment">// false</span></div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);  <span class="comment">// 1</span></div><div class="line">        &#125;());  </div><div class="line">    &#125; ,</div><div class="line">    <span class="attr">test2</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span> === object1);  <span class="comment">// true</span></div><div class="line">        </div><div class="line">        <span class="keyword">var</span> that = <span class="keyword">this</span>;</div><div class="line">        </div><div class="line">        (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(that === object1);  <span class="comment">// true</span></div><div class="line">        &#125;)();</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"> </div><div class="line">test1();</div><div class="line">object1.test();</div><div class="line">object1.test2();</div></pre></td></tr></table></figure></p>
+<p>위 코드는 es5 에서 this 의 scope 를 나타낸다. es5 에서는 this 의 scope 가 기본적으로 전역객체 (브라우저라면 window)<br>를 가르키고 있으며 함수를 만들어도 this 값은 여전히 window 객체를 가리키고 있다.<br>하지만 object 를 만들게 되면 this 는 자신을 호출한 object 를 가리키게 되며 object1 의 test 를 보면 알 수 있다.<br>이런 부분은 callback 함수를 만들 었을 때 문제가 생긴다.<br>test 의 내부 함수를 보면 해당 함수의 this 는 object1 을 가리키지 않고 여전히 window 객체를 가리키고 있다.<br>왜 그런고 하니 내부함수는 객체의 멤버 메서드가 아닌 단지 호출된 함수 일 뿐이다.<br>그럼 function 이라는 놈을 가지고 있는 부모 객체는 누구인가? 바로 전지전능한 window 객체가 된다.<br>그렇기 때문에 내부 함수에서는 this 가 global 객체 를 가리키게 된다. </p>
+<p>이를 해결하기 위해 object1 의 test2 함수처럼 함수 선언시에 this 를 임의의 변수에 넣어서 쓰는 방법을 사용한다.<br>( 보통 that 또는 self , _this 등의 이름을 쓴다. ) 그리고 내부 함수에서는 이를 호출하여 사용하게 되는데 , arrow function 에서는 이런 부분이 해결된다.  </p>
+<p>위 코드의 object1 을 arrow function 을 이용하여 만들어 보자.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</div><div class="line"><span class="keyword">let</span> object1 = &#123;</div><div class="line">    <span class="attr">test</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span> === object1);  <span class="comment">// true</span></div><div class="line">        </div><div class="line">        (<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span> === object1);  <span class="comment">// true</span></div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);  <span class="comment">// undefined</span></div><div class="line">        &#125;)(); </div><div class="line">    &#125; ,</div><div class="line">    <span class="attr">test2</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span> === object1);  <span class="comment">// true</span></div><div class="line">         </div><div class="line">        (<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span> === object1);  <span class="comment">// true</span></div><div class="line">        &#125;)();</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">object1.test();</div><div class="line">object1.test2();</div></pre></td></tr></table></figure></p>
+<p>코드의 결과를 보면 내부 함수의 this 가 가리키는 곳이 window 가 아닌 object1 으로 바뀌었다.<br>이는 이전의 this 범위와 다르게 자신을 둘러싸는 문맥의 this 값을 가진다.<br>참고로 Arrow function 은 new 연산자를 사용할 수 없다.</p>
+<p><strong> 객체 리터럴 </strong><br>ES6 에서 객체 리터럴로 프로퍼티를 생성하는 새로운 구문이 있다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> first = <span class="string">'one'</span>;</div><div class="line"><span class="keyword">let</span> second = <span class="string">'two'</span>;</div><div class="line"> </div><div class="line"><span class="keyword">let</span> object = &#123;first, second&#125;;</div><div class="line"><span class="built_in">console</span>.log(object.first); <span class="comment">// one</span></div><div class="line"><span class="built_in">console</span>.log(object.second); <span class="comment">// two </span></div><div class="line"> </div><div class="line"><span class="keyword">let</span> third = <span class="string">'three'</span>;</div><div class="line"><span class="keyword">let</span> object2 = &#123;object , third&#125;;</div><div class="line"><span class="built_in">console</span>.log(object2.object.first); <span class="comment">// one</span></div><div class="line"><span class="built_in">console</span>.log(object2.object.second); <span class="comment">// two</span></div><div class="line"><span class="built_in">console</span>.log(object2.third); <span class="comment">// three</span></div></pre></td></tr></table></figure></p>
+<p><strong> 2진수 , 8진수 표현 방식 </strong><br>ES6 에서의 2진수와 8진수 표현 방식을 보자. 예전에는 자바스크립트 만으로는 2진수를 나타낼 방법은 없었다.<br>하지만 ES6 에서는 숫자앞에 0b 를 붙이면 자바스크립트 엔진이 2진수로 처리하게 된다.<br>더불어 8진수를 표현할 때 숫자 앞에 0을 붙여서 표기를 하였다.  하지만 이는 초심자에게 헷갈릴 수 있다고 판단, 0 이 아닌 0o 를 붙이는 것 으로 변경되었다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ES6   2진수 표현</span></div><div class="line"><span class="keyword">let</span> a = <span class="number">0b00001111</span>;</div><div class="line"><span class="keyword">let</span> b = <span class="number">15</span>;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(a === b);  <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(a);  <span class="comment">//15</span></div><div class="line"></div><div class="line"><span class="comment">//ES5  8진수 표현</span></div><div class="line"><span class="keyword">var</span> aa = <span class="number">017</span>;</div><div class="line"><span class="keyword">var</span> bb = <span class="number">15</span>;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(aa === bb);  <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(aa);  <span class="comment">//15</span></div><div class="line"></div><div class="line"><span class="comment">//ES6 8진수 표현</span></div><div class="line"><span class="keyword">let</span> aaa = <span class="number">0o17</span>;</div><div class="line"><span class="keyword">let</span> bbb = <span class="number">15</span>;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(aaa === bbb);   <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(bbb);   <span class="comment">//15</span></div></pre></td></tr></table></figure></p>
+<h3 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h3><ul>
+<li><a href="http://alexband.tistory.com/37" target="_blank" rel="external">http://alexband.tistory.com/37</a></li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://woonyzzang.github.com/2017/04/18/javascript-es6-syntax/" data-id="cj2ljlorj002hs5f9hwsbj5kk" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/woonyzzang/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="cloud" href="http://j-portfolio.herokuapp.com/" target="_blank">
+                        <i class="icon fa fa-cloud"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="jsfiddle" href="https://jsfiddle.net/user/woonyzzang/fiddles/" target="_blank">
+                        <i class="icon fa fa-jsfiddle"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    <!-- github card -->
+    <!-- [I] http://lab.lepture.com/github-cards/ -->
+    <div class="github-card" data-github="woonyzzang" data-width="100%" data-height="150" data-theme="default"></div>
+    <script src="http://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+    <!-- //github card -->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/04/19/windows-icon-shortcut/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Windows Icon ShortCut
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/04/13/node-npm-cli/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Node.js NPM CLI</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/ionic/">ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/CSS3/">CSS3</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/">Etc</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Log/">Log</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a><span class="category-list-count">29</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Tip/">Tip</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Markdown/">Markdown</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Openssl/">Openssl</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-js-v1/">angular.js v1</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone-js/">backbone.js</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/d3-js/">d3.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic-v1/">ionic v1</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic-v2/">ionic v2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-js/">javascript.js</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/">log</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/require-js/">require.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/">server</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/visualstudio/">visualstudio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webstorm/">webstorm</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular-js-v1/" style="font-size: 11.67px;">angular.js v1</a> <a href="/tags/backbone-js/" style="font-size: 16.67px;">backbone.js</a> <a href="/tags/css3/" style="font-size: 11.67px;">css3</a> <a href="/tags/d3-js/" style="font-size: 20px;">d3.js</a> <a href="/tags/ionic-v1/" style="font-size: 15px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/javascript-js/" style="font-size: 18.33px;">javascript.js</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/mac/" style="font-size: 11.67px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/require-js/" style="font-size: 11.67px;">require.js</a> <a href="/tags/server/" style="font-size: 11.67px;">server</a> <a href="/tags/tip/" style="font-size: 10px;">tip</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/webstorm/" style="font-size: 16.67px;">webstorm</a> <a href="/tags/windows/" style="font-size: 13.33px;">windows</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/cms/">CMS Theme</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/listmap/listmap.xml">Markup Listmap</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/generatorCSS3/">GeneratorCSS3</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/html5_OR/">HTML5 Open Reference</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/prototype/">Prototype</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/designDraft/">Design Draft Gallery</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/responsiveDesignView/">Responsive Design View</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 woonyzzang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://woonyzzang.github.com/2017/04/18/javascript-es6-syntax/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
