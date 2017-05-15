@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Javascript Animation Performance | J Dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="js" />
+    
+    <meta name="description" content="JavaScript 애니메이션 성능을 높이는 방법애니메이션이 많은 화면에서는 성능과 관련된 문제가 일어나기 쉽다. 특히, 하드웨어 성능이 PC에 비해 열악한 모바일 환경에서는 성능이 문제가 되는 경우가 더욱 많다.  브라우저 렌더링 과정 웹 브라우저의 애니메이션 성능을 이야기하기 전에 이해해야 할 것이 브라우저의 렌더링 과정이다. 애니메이션도 브라우저 렌더">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript Animation Performance">
+<meta property="og:url" content="http://woonyzzang.github.com/2017/05/15/javascript-animation-performance/index.html">
+<meta property="og:site_name" content="J Dev">
+<meta property="og:description" content="JavaScript 애니메이션 성능을 높이는 방법애니메이션이 많은 화면에서는 성능과 관련된 문제가 일어나기 쉽다. 특히, 하드웨어 성능이 PC에 비해 열악한 모바일 환경에서는 성능이 문제가 되는 경우가 더욱 많다.  브라우저 렌더링 과정 웹 브라우저의 애니메이션 성능을 이야기하기 전에 이해해야 할 것이 브라우저의 렌더링 과정이다. 애니메이션도 브라우저 렌더">
+<meta property="og:updated_time" content="2017-05-15T12:53:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript Animation Performance">
+<meta name="twitter:description" content="JavaScript 애니메이션 성능을 높이는 방법애니메이션이 많은 화면에서는 성능과 관련된 문제가 일어나기 쉽다. 특히, 하드웨어 성능이 PC에 비해 열악한 모바일 환경에서는 성능이 문제가 되는 경우가 더욱 많다.  브라우저 렌더링 과정 웹 브라우저의 애니메이션 성능을 이야기하기 전에 이해해야 할 것이 브라우저의 렌더링 과정이다. 애니메이션도 브라우저 렌더">
+    
+    <link rel="canonical" href="http://woonyzzang.github.com/2017/05/15/javascript-animation-performance/"/>
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Web Development Story Blog</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/">App</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/ionic/">ionic</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/">CSS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/CSS3/">CSS3</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/">Editor</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/SublimeText/">SublimeText</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Webstorm/">Webstorm</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/">Etc</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/Dictionary/">Dictionary</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/Log/">Log</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/">FrontEnd</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Tip/">Tip</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/">HTML</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/Markdown/">Markdown</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/Moblie/">Moblie</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/">OS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Mac/">Mac</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Windows/">Windows</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Openssl/">Openssl</a></li></ul></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/FrontEnd/">FrontEnd</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-javascript-animation-performance" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Javascript Animation Performance
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2017/05/15/javascript-animation-performance/" class="article-date">
+    <time datetime="2017-05-15T12:35:47.000Z" itemprop="datePublished">2017-05-15</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h3 id="JavaScript-애니메이션-성능을-높이는-방법"><a href="#JavaScript-애니메이션-성능을-높이는-방법" class="headerlink" title="JavaScript 애니메이션 성능을 높이는 방법"></a>JavaScript 애니메이션 성능을 높이는 방법</h3><p>애니메이션이 많은 화면에서는 성능과 관련된 문제가 일어나기 쉽다. 특히, 하드웨어 성능이 PC에 비해 열악한 모바일 환경에서는 성능이 문제가 되는 경우가 더욱 많다.</p>
+<p><strong> 브라우저 렌더링 과정 </strong><br>웹 브라우저의 애니메이션 성능을 이야기하기 전에 이해해야 할 것이 브라우저의 렌더링 과정이다. 애니메이션도 브라우저 렌더링 과정의 한 형태이기 때문에 브라우저 렌더링 과정을 이해하면 성능에 미치는 부분을 찾을 수 있다.</p>
+<p><strong> HTML 렌더링 순서 </strong></p>
+<ol>
+<li>브라우저가 HTMl을 파싱한다.</li>
+<li>DOM 트리를 구성한다.</li>
+<li>DOM 트리에서 화면에 표시되는 엘리멘트를 렌더 객체(RenderObject) 트리로 구성한다. 렌더 객체 트리는 DOM 트리에서 화면에 보이는 요소를 노드를 구성한다. 가령 display:none 속성인 요소나 HEAD, SCRIPT와 같이 화명에 보이지 않는 노드는 렌더 객체에서 제외된다.</li>
+<li>렌더 객체 트리에서 별도의 영역으로 구성할 수 있는 노드를 렌더 레이어(RenderLayer) 트리로 구성한다. 렌더 레이어 트리는 렌더 객체 트리에서 transform과 같은 특수 속성이 적용된 노드로 구성된다.</li>
+<li>브라우저는 구성된 정보를 바탕으로 비동기식으로 화명을 표현한다.</li>
+</ol>
+<p>크롬 개발자 도구에 있는 Timeline 탭에서 실제 렌더링이 어떻게 이뤄지는지 확인 할 수 있다. Timeline 탭에서 HTML 을 불러오면 다음과 같이 렌더링 과정이 나타난다.</p>
+<ul>
+<li>ParseHTML : HTML을 파싱할 때 발생한다.</li>
+<li>Recalculate Sytyle : 요소에 스타일이 적용될 때 발생한다.</li>
+<li>Layout : 적용된 스타일에 의해 위치나 크기가 변경되어 계산이 필요할 때 발생한다.</li>
+<li>Paint : 요소를 화면에 다시 그려야 할 때 발생한다.</li>
+<li>Composite Layer : 변경되지 않은 각 렌더 레이어를 합성할 때 발생한다.</li>
+</ul>
+<p>브라우저는 문서를 화면에 표시하려고 위와 같은 다양한 과정을 수행한다. 로컬환경에서의 Timeline 탭에서는 HTML 파싱에 가장 많은 시간이 걸렸지만 실제 애니메이션은 HTML 파싱이 완료된 후 사용자의 동작에 의해 실행되기 때문에 애니메이션 성능에 영향을 미치는 요소는 다르다. 애니메이션이 동작할 때는 레이아웃 계산이나 연속적인 페인트(Paint) 작업으로 성능 문제가 발생한다.</p>
+<p><strong> 애니메이션 성능을 높이는 방법 </strong><br>크롬 개발자 도구에서 알 수 있듯이 렌더링 과정 중에 DIV 요소에 적용된 스타일의 속성이 무엇이냐에 따라 레이아웃 작업이 발생하기도 하고, 레이어 병합(composite layers)작업이 이뤄지기도 한다.</p>
+<p><strong> 레이어 구성하기 </strong><br>레이어는 얇은 쿠명막과 같이 여러 장을 겹쳐서 화면을 구성할 수 있는 요소로, 여기서는 렌더 객체를 지칭한다. 브라우저가 레이어를 구성하는 목적은 변경될 요소가 많은 영역을 별도로 관리해 해당 영역이 변경됐을 때 해당 부분만 반영하라는 것이다.</p>
+<p>다음 그림은 한 화면이 레이어로 구성된 것을 표현한 그림이다.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- [I] 레이어 구성 구조</span></div><div class="line">    03. 앞면레이어</div><div class="line">    02. 마스크레이어</div><div class="line">    01. 영상레이어</div><div class="line">    00. 배경레이어</div><div class="line">--&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span> <span class="comment">&lt;!-- 00. 배경레이어 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span> <span class="comment">&lt;!-- 01. 영상레이어 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span> <span class="comment">&lt;!-- 02. 마스크레이어 --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 03. 앞면레이어 --&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>    </div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>하나의 화면이 4개의 레이어로 구성돼 있고, 실제 화면에 표시될 때에는 4개의 레이어가 합쳐져 화면에 보이게 된다. 휴대폰 화면 속 영상이 변경될 때 실제 변경되는 부분은 전체 화면이 아니라 휴대폰 화면 속의 영상만이다. 배경과 휴대폰 모양의 사진은 기존 레이어(배경 레이어, 휴대폰 모양 사진 레이어)를 그대로 사용할 수 있다. 즉, 변경된 부분만 바꾸고 나머지 부분을 합쳐 빠르게 화면을 수성할 수 있다. 이를 레이어 병합이라고 한다. 레이어 병합을 사용하면 페인트나 레이아웃 작업이 발생하지 않기 때문에 변경된 화면을 빠르게 구성성할 수 있다.</p>
+<p>이러한 레이어 구성은 브라우저가 판단하며, 그 규칙은 다음과 같다.</p>
+<ul>
+<li>3D(translate3d, preserve-3d 등) 나 perspective transform을 사용하는 경우</li>
+<li>&lt;video&gt; 태그나 &lt;canvas&gt; 태그를 사용하는 경우</li>
+<li>플래시나 ActiveX 컨트롤을 사용하는 경우</li>
+<li>CSS 애니메이션, CSS 필터를 사용하는 경우</li>
+<li>자식 요소가 레이어로 구성돼 있을 경우</li>
+</ul>
+<p>z-index가 낮은 형제 요소가 레이어로 구성돼 있을 경우 대상 요소도 레이어로 구성된다.<br>애니메이션은 대상 요소의 스타일을 주기적으로 변경해서 이동한다. 스타일 변경 때문에 페인트나 레이아웃 작업이 연속적으로 발생해 애니메이션의 성능을 저하시키는 경우가 있다. 이때 레이어 병합을 이용해 페인트와 레이아웃 작업이 일어나지 않도록 유도하면 애니메이션의 성능을 높일 수 있다.</p>
+<p><strong> GPU 가속 사용하기 </strong><br>GPU 가속은 앞에서 설명한 레이어 병합 방식으로만 동작한다. 하지만 브라우저의 레이어 병합 방식과 달리 각 레이어를 GPU 메모리에 비트맵 형태의 텍스처(texture)로 저장해 실제 레이어를 병합할 때는 GPU의 메모리에서 실행 한다. 그래서 굉장히 빠르다.</p>
+<p>다음 스타일이 적용되면 브라우저는 해당 요소 영역(layer)을 GPU 메모리에 텍스처로 저장한다.<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">-webkit-transform</span> : <span class="selector-tag">translate3d</span></div><div class="line"><span class="selector-tag">-webkit-transform</span> : <span class="selector-tag">translateZ</span></div><div class="line"><span class="selector-tag">-webkit-transform</span> : <span class="selector-tag">rotate3d</span></div><div class="line"><span class="selector-tag">-webkit-transform-style</span> : <span class="selector-tag">preserved-3d</span></div></pre></td></tr></table></figure></p>
+<p>그러나 GPU는 하드웨어에 따라 성능이 달라지기 때문에 GPU 가속을 사용할 때는 주의를 기율여랴 한다. 무분별한 GPU 사용은 오히려 브라우저를 느리게 한다.요소에 GPU 사용 속성이 부여되는 순간 브라우저가 대상 영역을 GPU 메모리에 로딩하기 때문에 콘텐츠가 클 경우에는 화면이 깜빡이는 현상이 발생할 수 있다.</p>
+<p>요소에 GPU 사용 속성이 부여되면 레이어로 분리되며 레이어는 변경되는 내용이 없는 한 다시 요소의 내용을 GPU 메모리에 올리지 않는다. GPU 사용 속성을 사용한 요소의 내용이 변경되면 GPU 메모리가 갱신되기 때문에 요소의 내용을 미리 변경하고 그 이후에 GPU 사용 속성을 부여한다.</p>
+<p>성능이 안 좋은  휴대폰에서 하드웨어 가속을 사용하는 것은 오히려 성능 저하의 주범이 된다. 경험상 iOS 3.x 이상과 안드로이드 4.1 이상을 지원하는 기기에서 GPU 가속을 적용했을 때 더 성능이 좋았다.</p>
+<p><strong> 애니메이션 동작 시 레이아웃을 변경하는 스타일이나 메서드 사용하지 않기 </strong><br>브라우저 렌더링 과정 중 가장 느린 작업 가운데 하나가 레이아웃 작업이다. 이작업은 요소의 위치나 크기를 계산하는 작업이라서 비용이 높고, 자주 하면 성능에 치명적이다. 특히, 주기적으로 요소의 스타일을 변경하는 애니메이션에서 너비나 높이와 같이 대상의 크기를 변경하는 레이아웃 작업이 발생하면 부드러운 애니메이션을 기대하기 어렵다.</p>
+<p>다음은 레이아웃 작업을 유발하는 스타일이나 메서드를 정리한 표다.</p>
+<table>
+<thead>
+<tr>
+<th>대상</th>
+<th>메서드 및 속성</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>요소</td>
+<td>clientHeight, clientLeft, clientTop, clientWidth, focus(),<br>getBoundingClientRect(), getClientRects(), innerText, offsetHeight,<br>offsetLeft, offsetParent, offsetTop, offsetWidth, outerText, scrollByLines(),<br>scrollByPages(), scrollHeight, scrollIntoView(), scrollIntoViewIfNeeded(),<br>scrollLeft, scrollTop, scrollWidth</td>
+</tr>
+<tr>
+<td>위치</td>
+<td>left, top, position, float</td>
+</tr>
+<tr>
+<td>박스, 테두리</td>
+<td>height, width, padding, margin, display,border-width,border</td>
+</tr>
+<tr>
+<td>범위</td>
+<td>getBoundingClientRect(),getClientRects()</td>
+</tr>
+<tr>
+<td>window 객체</td>
+<td>getComputedStyle(), scrollBy(), scrollTo(), scrollX, scrollY,<br>webkitConvertPointFromeNodeToPage(), webkitConvertPointFromeNode()</td>
+</tr>
+</tbody>
+</table>
+<p>따라서 되도록 애니메이션을 동작할 때 위의 표에 나열된 메서드와 속성은 호출하거나 변경하지 않는 편이 좋다. 혹시 변경이 필요하다면 애니메이션을 동작할 때가 아니라 동작 전후에 미리 작업을 하거나 레이아웃 작업이 발생하지 않는 대체 속성을 사용하는 것이 좋다. 다음 속성을 대체하면 레이아웃 작업 대신 레이어 병합이 발생한다.</p>
+<p>width, height -&gt; transform:scale<br>left, top -&gt; transform:translateX, translateY 또는 translate(x,y), translate3d(x,y,0)</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://woonyzzang.github.com/2017/05/15/javascript-animation-performance/" data-id="cj2q56afl002dkif923gub80t" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/woonyzzang/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="cloud" href="http://j-portfolio.herokuapp.com/" target="_blank">
+                        <i class="icon fa fa-cloud"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="jsfiddle" href="https://jsfiddle.net/user/woonyzzang/fiddles/" target="_blank">
+                        <i class="icon fa fa-jsfiddle"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    <!-- github card -->
+    
+    <div class="github-card" data-github="woonyzzang" data-width="100%" data-height="150" data-theme="default"></div>
+    
+    <script src="/libs/github-cards/widget.min.js"></script>
+    <!-- //github card -->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/05/15/tip-mobile-web-debbuging/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Mobile Web Debbuging
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/05/15/javascript-pages-show-hide-event/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Javascript PagesShow PagesHide Event</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/ionic/">ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/CSS3/">CSS3</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/">Etc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Dictionary/">Dictionary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Log/">Log</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a><span class="category-list-count">40</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Tip/">Tip</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Markdown/">Markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Moblie/">Moblie</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Openssl/">Openssl</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-js-v1/">angular.js v1</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone-js/">backbone.js</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/d3-js/">d3.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dictionary/">dictionary</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic-v1/">ionic v1</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic-v2/">ionic v2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/">log</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mobile/">mobile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/moblie/">moblie</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/require-js/">require.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/">server</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublimeText/">sublimeText</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">tip</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/visualstudio/">visualstudio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webstorm/">webstorm</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular-js-v1/" style="font-size: 11.43px;">angular.js v1</a> <a href="/tags/backbone-js/" style="font-size: 17.14px;">backbone.js</a> <a href="/tags/css3/" style="font-size: 11.43px;">css3</a> <a href="/tags/d3-js/" style="font-size: 18.57px;">d3.js</a> <a href="/tags/dictionary/" style="font-size: 10px;">dictionary</a> <a href="/tags/es6/" style="font-size: 12.86px;">es6</a> <a href="/tags/ionic-v1/" style="font-size: 15.71px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/mac/" style="font-size: 11.43px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/moblie/" style="font-size: 17.14px;">moblie</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/require-js/" style="font-size: 11.43px;">require.js</a> <a href="/tags/server/" style="font-size: 11.43px;">server</a> <a href="/tags/sublimeText/" style="font-size: 12.86px;">sublimeText</a> <a href="/tags/tip/" style="font-size: 11.43px;">tip</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/webstorm/" style="font-size: 17.14px;">webstorm</a> <a href="/tags/windows/" style="font-size: 14.29px;">windows</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/cms/">CMS Theme</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/listmap/listmap.xml">Markup Listmap</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/generatorCSS3/">GeneratorCSS3</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/html5_OR/">HTML5 Open Reference</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/prototype/">Prototype</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/designDraft/">Design Draft Gallery</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/responsiveDesignView/">Responsive Design View</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 woonyzzang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://woonyzzang.github.com/2017/05/15/javascript-animation-performance/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
