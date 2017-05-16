@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>EcmaScript This Binding | J Dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="js,es6" />
+    
+    <meta name="description" content="ECMAScript this자바스크립트에서는 매번 함수의 호출마다 새로운 실행 구문(Execution Context)가 생성된다. Execution Context는 Lexical Environment, Variable Environment, 그리고 ThisBinding에 대한 정보를 가지고 있는데, 바로 this 키워드가 이 이 thisbinding이라고">
+<meta name="keywords" content="js,es6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EcmaScript This Binding">
+<meta property="og:url" content="http://woonyzzang.github.com/2017/05/16/javascript-ecmascript-this/index.html">
+<meta property="og:site_name" content="J Dev">
+<meta property="og:description" content="ECMAScript this자바스크립트에서는 매번 함수의 호출마다 새로운 실행 구문(Execution Context)가 생성된다. Execution Context는 Lexical Environment, Variable Environment, 그리고 ThisBinding에 대한 정보를 가지고 있는데, 바로 this 키워드가 이 이 thisbinding이라고">
+<meta property="og:updated_time" content="2017-05-16T16:18:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EcmaScript This Binding">
+<meta name="twitter:description" content="ECMAScript this자바스크립트에서는 매번 함수의 호출마다 새로운 실행 구문(Execution Context)가 생성된다. Execution Context는 Lexical Environment, Variable Environment, 그리고 ThisBinding에 대한 정보를 가지고 있는데, 바로 this 키워드가 이 이 thisbinding이라고">
+    
+    <link rel="canonical" href="http://woonyzzang.github.com/2017/05/16/javascript-ecmascript-this/"/>
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Web Development Story Blog</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/">App</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/ionic/">ionic</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/">CSS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/CSS3/">CSS3</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/">Editor</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/SublimeText/">SublimeText</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Webstorm/">Webstorm</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/">Etc</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/Log/">Log</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/">FrontEnd</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Tip/">Tip</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/">HTML</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/Markdown/">Markdown</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/Moblie/">Moblie</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/">OS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Mac/">Mac</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Ubuntu/">Ubuntu</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Windows/">Windows</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Fiddler/">Fiddler</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Openssl/">Openssl</a></li></ul></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/FrontEnd/">FrontEnd</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-javascript-ecmascript-this" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        EcmaScript This Binding
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2017/05/16/javascript-ecmascript-this/" class="article-date">
+    <time datetime="2017-05-16T13:20:33.000Z" itemprop="datePublished">2017-05-16</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h3 id="ECMAScript-this"><a href="#ECMAScript-this" class="headerlink" title="ECMAScript this"></a>ECMAScript this</h3><p>자바스크립트에서는 매번 함수의 호출마다 새로운 실행 구문(Execution Context)가 생성된다. Execution Context는 Lexical Environment, Variable Environment, 그리고 ThisBinding에 대한 정보를 가지고 있는데, 바로 this 키워드가 이 이 thisbinding이라고 할 수 있겠다. this값은 해당 함수가 현재 어느 Execution Context에서 구동하고 있는지를 알려준다.</p>
+<p>Context는 함수 호출에 의해 새로이 생성되며, thisBinding 값은 함수 호출시점에 정해지게 된다.<br>쉽게 설명하자면 자바스크립트에서 this는 기본적으로 전역객체(브라우저에서는 window)지만 상황(실행 구문)에 따라 다른 값을 반환 한다고 생각하면 된다.</p>
+<p><strong> 우선 몇 가지 먼저 기억해 둘 사항 </strong><br>1.자바스크립트에서 코드는 다음 세 가지 영역에서 수행된다: </p>
+<ul>
+<li>global 영역 </li>
+<li>function 영역 </li>
+<li>eval 영역</li>
+</ul>
+<p>2.this 키워드는 다음 두 가지 조건에 의해 값이 결정된다. </p>
+<ul>
+<li>어떤 실행 구문(Execution Context)에서 수행되었는가 </li>
+<li>호출자가 누구인가</li>
+</ul>
+<p>3.global 객체에 대해 이해해야 한다.</p>
+<ul>
+<li>자바스크립트가 구동 될 때에는 언제나 global 객체가 존재한다. 브라우저에서는 window 객체가 그 역할을 하고 있고, node.js에서는 그냥 global object로 불리는 객체가 하나 있다.</li>
+</ul>
+<p><strong> ES5 </strong><br>[함수로서 호출할 경우]<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 함수로서 호출할 때</span></div><div class="line">    <span class="comment">// strict mode에서는 undefined</span></div><div class="line">    <span class="comment">// non-strict mode에서는 Window</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">a();</div></pre></td></tr></table></figure></p>
+<p>[생성자 함수로서 호출할 경우]<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 생성자로서 호출할 때</span></div><div class="line">    <span class="keyword">this</span>.a = <span class="string">'1'</span>;</div><div class="line">    <span class="keyword">this</span>.b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">    <span class="comment">// this === &#123;a: 1, b: function() &#123;&#125;&#125;</span></div><div class="line">    <span class="comment">// 인스턴스 멤버(변수, 메소드)를 포함하고 있는 객체</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">new</span> b();</div></pre></td></tr></table></figure></p>
+<p>[객체의 메소드로서 호출할 경우]<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> C = &#123;</div><div class="line">    <span class="attr">a</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 메소드로서 호출할 때</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// C</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">b</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 메소드로서 호출할 때</span></div><div class="line">        <span class="keyword">var</span> a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 함수로서 호출해버리면 this를 재바인딩함.</span></div><div class="line">            <span class="comment">// strict mode에서는 undefined</span></div><div class="line">            <span class="comment">// non-strict mode에서는 Window</span></div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">        &#125;;</div><div class="line">        </div><div class="line">        a();</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">c</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 메소드로서 호출할 때</span></div><div class="line">        <span class="comment">// 메소드를 호출</span></div><div class="line">        <span class="keyword">this</span>.a(); <span class="comment">// C</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">C.a();</div><div class="line">C.b();</div><div class="line">C.c();</div></pre></td></tr></table></figure></p>
+<p><strong> ES6 </strong><br>새로 나온 애로우 펑션은 this를 바인딩하지 않는다.<br>call, apply, bind 메소드로도 강제 바인딩이 이루어지지 않는다. 상위 스코프로부터 상속 받을 뿐이다.</p>
+<p>[일반 함수로서 호출할 경우]<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 함수로서 호출할 때</span></div><div class="line">    <span class="comment">// strict mode에서는 undefined</span></div><div class="line">    <span class="comment">// non-strict mode에서는 Window</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">a();</div></pre></td></tr></table></figure></p>
+<p>[애로우 펑션으로서 호출할 경우]<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> b = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="comment">// 애로우 펑션은 strict mode 여부에 상관없이 Window</span></div><div class="line">    <span class="comment">// 전역에서 this가 Window이기 때문에 상속받는 것임.</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// Window</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">b();</div><div class="line"></div><div class="line"><span class="keyword">const</span> _b = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 전부 다 Window가 출력됨</span></div><div class="line">_b.call(&#123;<span class="attr">a</span>: <span class="number">1</span>&#125;);</div><div class="line">_b.apply(&#123;<span class="attr">a</span>: <span class="number">1</span>&#125;);</div><div class="line">_b.bind(&#123;<span class="attr">a</span>: <span class="number">1</span>&#125;)(); <span class="comment">// ES5에서는 this값을 넘기기 위해서 bind를 사용할 수도 있다. 중첩된 함수 내에서 this의 컨텍스트를 보존하는 용도로 종종 사용된다.</span></div></pre></td></tr></table></figure></p>
+<p>[클래스]<br>ES6 들어서 생성자 함수를 대체할 수 있는 클래스란 개념이 추가되었다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 함수를 통해 객체의 인스턴스를 생성하던 것 대신에 클래스가 등장함.</span></div><div class="line"><span class="comment">// 멤버: 변수와 메소드</span></div><div class="line"><span class="comment">// 클래스 멤버: new 생성자 함수를 통해 생성된 인스턴스마다 동일한 값을 가짐.(공유함)</span></div><div class="line"><span class="comment">//           클래스의 인스턴스가 생기기 전에도 클래스이름.멤버로 사용 가능.</span></div><div class="line"><span class="comment">//           static으로 생성된 메소드 및 prototype이 이에 해당.</span></div><div class="line"><span class="comment">// 인스턴스 멤버: new 생성자 함수를 통해 생성된 인스턴스마다 다른 값을 가짐.(공유하지 않음)</span></div><div class="line"><span class="comment">//            클래스의 인스턴스가 생기기 전에는 사용 불가능, 인스턴스이름.멤버로 사용 가능</span></div><div class="line"><span class="comment">//            생성자 함수 내부에 작성된 애들이나 static 키워드를 쓰지 않고 생성한 메소드들이 해당됨.</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</div><div class="line">    <span class="keyword">constructor</span>() &#123;</div><div class="line">        <span class="comment">// 생성자 함수 외부에서 인스턴스 변수를 선언하지 못한다.</span></div><div class="line">        <span class="keyword">this</span>.a = <span class="number">1</span>;</div><div class="line">        <span class="keyword">this</span>.b = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;;</div><div class="line">        <span class="comment">// 인스턴스 멤버(변수, 메소드)를 포함하고 있는 객체</span></div><div class="line">        <span class="comment">// &#123;</span></div><div class="line">        <span class="comment">//   a: 1,</span></div><div class="line">        <span class="comment">//   b: () =&gt; &#123;&#125;,</span></div><div class="line">        <span class="comment">//   __proto__: &#123; // 상속받는 놈이기 때문에 바로 this.d()와 같이 사용 가능.</span></div><div class="line">        <span class="comment">//                   위에 있는 놈들과 이름이 같다면 위에 있는 놈들이 우선 순위를 가짐.</span></div><div class="line">        <span class="comment">//     d: function() &#123;&#125;,</span></div><div class="line">        <span class="comment">//     e: function() &#123;&#125;,</span></div><div class="line">        <span class="comment">//     f: function() &#123;&#125;,</span></div><div class="line">        <span class="comment">//     g: function() &#123;&#125;</span></div><div class="line">        <span class="comment">//   &#125;</span></div><div class="line">        <span class="comment">// &#125;</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// 클래스 메소드의 this는</span></div><div class="line">    <span class="comment">// 클래스 멤버(변수, 메소드) 등등을 담고있는 생성자 함수이다.</span></div><div class="line">    <span class="comment">// 클래스 변수는 클래스 내에서 선언하지 못하고,</span></div><div class="line">    <span class="comment">// className.prototype.variable = value 와 같이 선언한다.</span></div><div class="line">    <span class="keyword">static</span> a() &#123;</div><div class="line">        <span class="comment">// function, 함수 또한 객체기 때문에 프로퍼티로 접근이 가능하다.</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="keyword">this</span>);</div><div class="line">        <span class="comment">// new this(); 이렇게 생성자를 호출할 수도 있다.</span></div><div class="line">        <span class="comment">// __proto__는 상속받는 놈들이기 때문에 바로 this.머시기로 사용할 수 있었으나</span></div><div class="line">        <span class="comment">// prototype은 상속해주는 놈들이기 때문에 this.prototype.머시기로 사용해야한다.</span></div><div class="line">        <span class="comment">// &#123;</span></div><div class="line">        <span class="comment">//   a: function() &#123;&#125;,</span></div><div class="line">        <span class="comment">//   b: function() &#123;&#125;,</span></div><div class="line">        <span class="comment">//   c: function() &#123;&#125;,</span></div><div class="line">        <span class="comment">//   prototype: &#123;</span></div><div class="line">        <span class="comment">//     a: 1</span></div><div class="line">        <span class="comment">//   &#125;</span></div><div class="line">        <span class="comment">// &#125;</span></div><div class="line">        <span class="built_in">console</span>.dir(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">static</span> b() &#123;</div><div class="line">        <span class="keyword">const</span> a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 함수로서 호출하면 this를 재바인딩</span></div><div class="line">        <span class="comment">// strict mode에서는 undefined</span></div><div class="line">        <span class="comment">// non-strict mode에서는 Window</span></div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">        &#125;;</div><div class="line">        </div><div class="line">        a();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">static</span> c() &#123;</div><div class="line">        <span class="keyword">const</span> a = <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="comment">// 애로우 펑션은 this를 상속받음.</span></div><div class="line">            <span class="comment">// function, 함수 또한 객체기 때문에 프로퍼티로 접근이 가능하다.</span></div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="keyword">this</span>);</div><div class="line">            <span class="comment">// new this(); 이렇게 생성자를 호출할 수도 있다.</span></div><div class="line">            <span class="comment">// __proto__는 상속받는 놈들이기 때문에 바로 this.머시기로 사용할 수 있었으나</span></div><div class="line">            <span class="comment">// prototype은 상속해주는 놈들이기 때문에 this.prototype.머시기로 사용해야한다.</span></div><div class="line">            <span class="comment">// &#123;</span></div><div class="line">            <span class="comment">//   a: function() &#123;&#125;,</span></div><div class="line">            <span class="comment">//   b: function() &#123;&#125;,</span></div><div class="line">            <span class="comment">//   c: function() &#123;&#125;,</span></div><div class="line">            <span class="comment">//   prototype: &#123;</span></div><div class="line">            <span class="comment">//     a: 1</span></div><div class="line">            <span class="comment">//   &#125;</span></div><div class="line">            <span class="comment">// &#125;</span></div><div class="line">            <span class="built_in">console</span>.dir(<span class="keyword">this</span>);</div><div class="line">        &#125;;</div><div class="line">        </div><div class="line">        a();</div><div class="line">    &#125;</div><div class="line">        </div><div class="line">    <span class="comment">// 인스턴스 메소드의 this는 생성자 내의 this와 일치한다.</span></div><div class="line">    d() &#123;</div><div class="line">        <span class="comment">// 인스턴스 멤버(변수, 메소드)를 포함하고 있는 객체</span></div><div class="line">        <span class="comment">// &#123;</span></div><div class="line">        <span class="comment">//   a: 1,</span></div><div class="line">        <span class="comment">//   b: () =&gt; &#123;&#125;,</span></div><div class="line">        <span class="comment">//   __proto__: &#123; // 상속받는 놈이기 때문에 바로 this.d()와 같이 사용 가능.</span></div><div class="line">        <span class="comment">//                   위에 있는 놈들과 이름이 같다면 위에 있는 놈들이 우선 순위를 가짐.</span></div><div class="line">        <span class="comment">//     d: function() &#123;&#125;,</span></div><div class="line">        <span class="comment">//     e: function() &#123;&#125;,</span></div><div class="line">        <span class="comment">//     f: function() &#123;&#125;,</span></div><div class="line">        <span class="comment">//     g: function() &#123;&#125;</span></div><div class="line">        <span class="comment">//   &#125;</span></div><div class="line">        <span class="comment">// &#125;</span></div><div class="line">        <span class="built_in">console</span>.dir(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">  </div><div class="line">    e() &#123;</div><div class="line">        <span class="keyword">const</span> a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 역시 ES5식 함수는 this를 덮어버린다.</span></div><div class="line">            <span class="comment">// strict mode에서는 undefined</span></div><div class="line">            <span class="comment">// non-strict mode에서는 Window</span></div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">        &#125;;</div><div class="line">        </div><div class="line">        a();</div><div class="line">    &#125;</div><div class="line">  </div><div class="line">    f() &#123;</div><div class="line">        <span class="keyword">const</span> a = <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="comment">// 역시 애로우 펑션은 this를 상속 받음.</span></div><div class="line">            <span class="comment">// 인스턴스 멤버(변수, 메소드)를 포함하고 있는 객체</span></div><div class="line">            <span class="comment">// &#123;</span></div><div class="line">            <span class="comment">//   a: 1,</span></div><div class="line">            <span class="comment">//   b: () =&gt; &#123;&#125;,</span></div><div class="line">            <span class="comment">//   __proto__: &#123; // 상속받는 놈이기 때문에 바로 this.d()와 같이 사용 가능.</span></div><div class="line">            <span class="comment">//                   위에 있는 놈들과 이름이 같다면 위에 있는 놈들이 우선 순위를 가짐.</span></div><div class="line">            <span class="comment">//     d: function() &#123;&#125;,</span></div><div class="line">            <span class="comment">//     e: function() &#123;&#125;,</span></div><div class="line">            <span class="comment">//     f: function() &#123;&#125;,</span></div><div class="line">            <span class="comment">//     g: function() &#123;&#125;</span></div><div class="line">            <span class="comment">//   &#125;</span></div><div class="line">            <span class="comment">// &#125;</span></div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">        &#125;;</div><div class="line">        </div><div class="line">        a();</div><div class="line">    &#125;</div><div class="line">  </div><div class="line">    g() &#123;</div><div class="line">        <span class="comment">// 인스턴스의 this에 클래스 멤버는 없다.</span></div><div class="line">        <span class="comment">// 따라서 클래스 멤버를 사용할 수는 없다.</span></div><div class="line">        <span class="comment">// this.a(); // 클래스 메소드 사용 불가.</span></div><div class="line">        <span class="keyword">this</span>.f(); <span class="comment">// 인스턴스 멤버(메소드, 변수)는 사용 가능하다.</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 클래스 변수는 클래스 내에서 선언하지 못함.</span></div><div class="line"><span class="comment">// 레거시 환경을 지원하기 위해 프로토타입 방식의 상속을 포기하지 못했기 때문인 듯 하다.</span></div><div class="line">C.prototype.q = <span class="number">1</span>;</div><div class="line"><span class="keyword">const</span> c = <span class="keyword">new</span> C();</div><div class="line"></div><div class="line">C.a();</div><div class="line">C.b();</div><div class="line">C.c();</div><div class="line">c.d();</div><div class="line">c.e();</div><div class="line">c.f();</div><div class="line">c.g();</div></pre></td></tr></table></figure></p>
+<p>[객체의 메소드로서 호출할 경우]<br>ES6에서 객체의 메소드를 key: function() {} 대신에 key() {}와 같이 줄여쓸 수 있게 됐는데 두 개는 동일하다고 봐도 된다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> d = &#123;</div><div class="line">    <span class="attr">a</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 메소드로서 호출할 때</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// d</span></div><div class="line">    &#125;,</div><div class="line">    </div><div class="line">    <span class="attr">b</span>: <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="comment">// 애로우 펑션은 바로 상위 스코프인 전역의 this를 상속받음.</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// Window</span></div><div class="line">    &#125;,</div><div class="line">    </div><div class="line">    c() &#123; <span class="comment">// a 메소드와 다를 바가 없다.</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// d</span></div><div class="line">    &#125;,</div><div class="line">    </div><div class="line">    d() &#123; <span class="comment">// 메소드로서 호출할 때</span></div><div class="line">        <span class="keyword">const</span> a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 역시 그냥 펑션은 this를 재바인딩함.</span></div><div class="line">            <span class="comment">// strict mode에서는 undefined</span></div><div class="line">            <span class="comment">// non-strict mode에서는 Window</span></div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">        &#125;;</div><div class="line">    </div><div class="line">        a();</div><div class="line">    &#125;,</div><div class="line">    </div><div class="line">    e() &#123; <span class="comment">// 메소드로서 호출할 때</span></div><div class="line">        <span class="keyword">const</span> a = <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="comment">// 애로우 펑션은 상위 스코프에 있는 this를 상속 받음.</span></div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// d</span></div><div class="line">        &#125;;</div><div class="line">    </div><div class="line">        a();</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">d.a();</div><div class="line">d.b();</div><div class="line">d.c();</div><div class="line">d.d();</div><div class="line">d.e();</div></pre></td></tr></table></figure></p>
+<p>[별도의 컨텍스트를 만드는 함수]<br>setTimeout, setInterval 함수는 함수 선언 시점과 함수 호출 시점에 별개의 컨텍스트를 가지는 대표적인 함수이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> e = &#123;</div><div class="line">    a() &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">    &#125;,</div><div class="line">        </div><div class="line">    b() &#123;</div><div class="line">        <span class="comment">// setTimeout은 별개의 컨텍스트를 만든다.</span></div><div class="line">        <span class="comment">// 바로 실행시점에 컨텍스트를 만드는데, 실행 시점의 this는 전역의 this(Window)가 된다.</span></div><div class="line">        setTimeout(<span class="keyword">this</span>.a, <span class="number">1000</span>);</div><div class="line">    &#125;,</div><div class="line">        </div><div class="line">    c() &#123;</div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="comment">// setTimeout은 별개의 컨텍스트를 만든다.</span></div><div class="line">            <span class="comment">// 바로 실행시점에 컨텍스트를 만드는데, 실행 시점의 this는 전역의 this(Window)가 된다.</span></div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">        &#125;, <span class="number">2000</span>);</div><div class="line">    &#125;,</div><div class="line">        </div><div class="line">    d() &#123;</div><div class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">            <span class="comment">// setTimeout은 별개의 컨텍스트를 만든다.</span></div><div class="line">            <span class="comment">// 바로 실행시점에 컨텍스트를 만드는데, 실행 시점의 this는 전역의 this(Window)가 된다.</span></div><div class="line">            <span class="comment">// 하지만 애로우 펑션을 쓰면 클로저가 형성된다.</span></div><div class="line">            <span class="comment">// 실행 시점의 this(Window)와 선언 시점의 this(e 객체)가 달라서 그것을 동기화(?)시키기 위해서 클로저가 형성되는 듯 하다.</span></div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// e</span></div><div class="line">        &#125;, <span class="number">3000</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>하지만 애로우 펑션으로 래핑하면 클로저를 형성해서 원하는 결과를 얻어낼 수 있다.</p>
+<h3 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h3><ul>
+<li><a href="https://perfectacle.github.io/2017/02/15/es-this/" target="_blank" rel="external">https://perfectacle.github.io/2017/02/15/es-this/</a></li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://woonyzzang.github.com/2017/05/16/javascript-ecmascript-this/" data-id="cj2rpnkdb002vopf9qw6x6aq6" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/woonyzzang/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="cloud" href="http://j-portfolio.herokuapp.com/" target="_blank">
+                        <i class="icon fa fa-cloud"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="jsfiddle" href="https://jsfiddle.net/user/woonyzzang/fiddles/" target="_blank">
+                        <i class="icon fa fa-jsfiddle"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    <!-- github card -->
+    
+    <div class="github-card" data-github="woonyzzang" data-width="100%" data-height="150" data-theme="default"></div>
+    
+    <script src="/libs/github-cards/widget.min.js"></script>
+    <!-- //github card -->
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/05/16/css3-conditional-statements/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">CSS3 Conditional Statements</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/ionic/">ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/CSS3/">CSS3</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/">Etc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Log/">Log</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a><span class="category-list-count">42</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Tip/">Tip</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Markdown/">Markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Moblie/">Moblie</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Ubuntu/">Ubuntu</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Fiddler/">Fiddler</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Openssl/">Openssl</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-js-v1/">angular.js v1</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone-js/">backbone.js</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/d3-js/">d3.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fiddler/">fiddler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic-v1/">ionic v1</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic-v2/">ionic v2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/">log</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mobile/">mobile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/moblie/">moblie</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/require-js/">require.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/">server</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublimeText/">sublimeText</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">tip</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/visualstudio/">visualstudio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webstorm/">webstorm</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular-js-v1/" style="font-size: 11.43px;">angular.js v1</a> <a href="/tags/backbone-js/" style="font-size: 17.14px;">backbone.js</a> <a href="/tags/css3/" style="font-size: 12.86px;">css3</a> <a href="/tags/d3-js/" style="font-size: 18.57px;">d3.js</a> <a href="/tags/es6/" style="font-size: 14.29px;">es6</a> <a href="/tags/fiddler/" style="font-size: 11.43px;">fiddler</a> <a href="/tags/ionic-v1/" style="font-size: 15.71px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/log/" style="font-size: 11.43px;">log</a> <a href="/tags/mac/" style="font-size: 11.43px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/moblie/" style="font-size: 17.14px;">moblie</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/require-js/" style="font-size: 11.43px;">require.js</a> <a href="/tags/server/" style="font-size: 11.43px;">server</a> <a href="/tags/sublimeText/" style="font-size: 12.86px;">sublimeText</a> <a href="/tags/tip/" style="font-size: 12.86px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/webstorm/" style="font-size: 17.14px;">webstorm</a> <a href="/tags/windows/" style="font-size: 14.29px;">windows</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/cms/">CMS Theme</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/listmap/listmap.xml">Markup Listmap</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/generatorCSS3/">GeneratorCSS3</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/html5_OR/">HTML5 Open Reference</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/prototype/">Prototype</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/designDraft/">Design Draft Gallery</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/responsiveDesignView/">Responsive Design View</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 woonyzzang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://woonyzzang.github.com/2017/05/16/javascript-ecmascript-this/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
