@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Windows VMware Mac OS | J Dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="windows,vmware" />
+    
+    <meta name="description" content="Windows의 VMware에 macOS Sierra 설치하기윈도우 환경에서 VMware인 가상머신을 이용하여 Mac OS 시에라 버전을 설치하는 방법을 정리한다.  다운로드   VMware Unlocker v2.0.8 macOS Sierra 이미지 파일 VM Tool   설치 방법   VMware를 설치한다. Unlocker를 영문으로 된 폴더에 압축을">
+<meta name="keywords" content="windows,vmware">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows VMware Mac OS">
+<meta property="og:url" content="http://woonyzzang.github.com/2017/05/18/windows-vmware-mac/index.html">
+<meta property="og:site_name" content="J Dev">
+<meta property="og:description" content="Windows의 VMware에 macOS Sierra 설치하기윈도우 환경에서 VMware인 가상머신을 이용하여 Mac OS 시에라 버전을 설치하는 방법을 정리한다.  다운로드   VMware Unlocker v2.0.8 macOS Sierra 이미지 파일 VM Tool   설치 방법   VMware를 설치한다. Unlocker를 영문으로 된 폴더에 압축을">
+<meta property="og:updated_time" content="2017-05-18T10:13:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows VMware Mac OS">
+<meta name="twitter:description" content="Windows의 VMware에 macOS Sierra 설치하기윈도우 환경에서 VMware인 가상머신을 이용하여 Mac OS 시에라 버전을 설치하는 방법을 정리한다.  다운로드   VMware Unlocker v2.0.8 macOS Sierra 이미지 파일 VM Tool   설치 방법   VMware를 설치한다. Unlocker를 영문으로 된 폴더에 압축을">
+    
+    <link rel="canonical" href="http://woonyzzang.github.com/2017/05/18/windows-vmware-mac/"/>
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Web Development Story Blog</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/">App</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/ionic/">ionic</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/">CSS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/CSS3/">CSS3</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/">Editor</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/SublimeText/">SublimeText</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Webstorm/">Webstorm</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/">Etc</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/Log/">Log</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/">FrontEnd</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Tip/">Tip</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/">HTML</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/Markdown/">Markdown</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/Moblie/">Moblie</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/">OS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Mac/">Mac</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Ubuntu/">Ubuntu</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Windows/">Windows</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Fiddler/">Fiddler</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Openssl/">Openssl</a></li></ul></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/OS/">OS</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/OS/Windows/">Windows</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-windows-vmware-mac" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Windows VMware Mac OS
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2017/05/18/windows-vmware-mac/" class="article-date">
+    <time datetime="2017-05-18T09:57:46.000Z" itemprop="datePublished">2017-05-18</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vmware/">vmware</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows/">windows</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h3 id="Windows의-VMware에-macOS-Sierra-설치하기"><a href="#Windows의-VMware에-macOS-Sierra-설치하기" class="headerlink" title="Windows의 VMware에 macOS Sierra 설치하기"></a>Windows의 VMware에 macOS Sierra 설치하기</h3><p>윈도우 환경에서 VMware인 가상머신을 이용하여 Mac OS 시에라 버전을 설치하는 방법을 정리한다.</p>
+<p><strong> 다운로드 </strong></p>
+<ul>
+<li><a href="http://www.vmware.com/kr/products/workstation/workstation-evaluation.html" target="_blank" rel="external">VMware</a></li>
+<li><a href="https://mega.nz/#!JccgEIpB!eDASbz-O7IMdwgeFum8ilMGrRkFT-qmtgTQYlDJeA4c" target="_blank" rel="external">Unlocker v2.0.8</a></li>
+<li><a href="https://www.youtube.com/watch?v=IqffmlfJ0ko&amp;feature=youtu.be" target="_blank" rel="external">macOS Sierra 이미지 파일</a></li>
+<li><a href="https://mega.nz/#!1d9T3bqb!KtcJxI53FNyXcVwoUDtm2gk_pYFv_nxBZCJd8Y9AqdA" target="_blank" rel="external">VM Tool</a></li>
+</ul>
+<p><strong> 설치 방법 </strong></p>
+<ol>
+<li>VMware를 설치한다.</li>
+<li>Unlocker를 영문으로 된 폴더에 압축을 푼다.(폴더 경로 상에 한글이 포함되지 않도록 주의)</li>
+<li>Unlocker 폴더에서 win-install.cmd를 관리자 권한으로 실행한다.</li>
+<li>VMware에서 ‘Create a New Virtual Machine’ 선택</li>
+<li>Typical 선택</li>
+<li>I will install the operating system later. 선택</li>
+<li>Guset operating system에서 Apple Mac OS X, Version에서 macOS 10.12 선택(만약 선택 리스트에서 Apple 제품이 표시되지 않는다면 위의 Unlocker 실행이 정상적으로 되지 않은 것이므로, 관리자 권한으로 다시 실행해 보시기 바란다.)</li>
+<li>원하는 이름과 경로 선택</li>
+<li>디스크 크기는 변경하지 않고 ‘Store virtual disk as a single file’ 선택</li>
+<li>Edit Virtual Machine Setting에서 Hard Disk (SATA) 40 GB 선택하고 Remove 선택</li>
+<li>Add 클릭하고 Hard Disk, SATA, Use an Existing Virtual Disk 선택</li>
+<li>아까 다운로드 받은 Sierra 이미지 파일을 영문 폴더에 압축을 푼다. 마찬가지로 경로 상에 한글이 포함되지 않아야 한다.</li>
+<li>Sierra 이미지 파일을 선택한다.</li>
+<li>Ram을 4 GB로 변경하고 Processor를 4 core로 변경한다.</li>
+<li>아까 원하는 경로를 선택한 곳에서(ex. \Documents\Virtual Machines\macOS 10.12) `vmx’ 파일을 메모장으로 연다.</li>
+<li>맨 마지막 줄에 smc.version = “0”이라고 추가하고 저장한다.</li>
+<li>버추얼 머신을 실행하여 맥을 설치한다.</li>
+<li>맥 설치 후 실행한 후에, VM – Removable Devices – CD/DVD – Setting…을 선택한다.</li>
+<li>VM Tool.iso를 선택하면 맥에서 설치 창이 뜨는데 설치를 진행한다.</li>
+</ol>
+<p>18, 19번 과정은 필수 과정은 아니며, VMware로 맥을 더 편하게 사용하기 위해 추가로 소프트웨어를 설치하는 과정이다. VMware 버전에 따라서 알아서 자동으로 설치를 유도하는 경우도 있다.</p>
+<p><strong> 설치 후 해상도 이슈 해결 </strong><br>VMware로 맥을 설치하니 크기가 너무 작게 표시된다면 이를 해결하기 위해 맥을 실행한 후에 터미널에서 아래 명령어를 실행하면 된다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo defaults write /Library/Preferences/com.apple.windowserver.plist DisplayResolutionEnabled -bool <span class="literal">true</span></div></pre></td></tr></table></figure></p>
+<p>그런 후에 재부팅을 하면 디스플레이 설정에 해상도가 추가로 노출될 것이다. 해당 해상도를 선택하면 레티나가 적용되어 적당한 크기로 화면에 표시된다.</p>
+<h3 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h3><ul>
+<li><a href="http://bimmermac.com/2228" target="_blank" rel="external">http://bimmermac.com/2228</a></li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://woonyzzang.github.com/2017/05/18/windows-vmware-mac/" data-id="cj2u98tum006digf9wixmh50s" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/woonyzzang/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="cloud" href="http://j-portfolio.herokuapp.com/" target="_blank">
+                        <i class="icon fa fa-cloud"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="jsfiddle" href="https://jsfiddle.net/user/woonyzzang/fiddles/" target="_blank">
+                        <i class="icon fa fa-jsfiddle"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    <!-- github card -->
+    
+    <div class="github-card" data-github="woonyzzang" data-width="100%" data-height="150" data-theme="default"></div>
+    
+    <script src="/libs/github-cards/widget.min.js"></script>
+    <!-- //github card -->
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/05/16/javascript-ecmascript-this/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">EcmaScript This Binding</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/ionic/">ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/CSS3/">CSS3</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/">Etc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Log/">Log</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a><span class="category-list-count">42</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Tip/">Tip</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Markdown/">Markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Moblie/">Moblie</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Ubuntu/">Ubuntu</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Fiddler/">Fiddler</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Openssl/">Openssl</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular-v1/" style="font-size: 11.43px;">angular v1</a> <a href="/tags/backbone/" style="font-size: 17.14px;">backbone</a> <a href="/tags/css3/" style="font-size: 12.86px;">css3</a> <a href="/tags/d3/" style="font-size: 18.57px;">d3</a> <a href="/tags/es6/" style="font-size: 14.29px;">es6</a> <a href="/tags/fiddler/" style="font-size: 11.43px;">fiddler</a> <a href="/tags/ionic-v1/" style="font-size: 15.71px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/log/" style="font-size: 11.43px;">log</a> <a href="/tags/mac/" style="font-size: 11.43px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 18.57px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/require/" style="font-size: 11.43px;">require</a> <a href="/tags/server/" style="font-size: 11.43px;">server</a> <a href="/tags/sublimeText/" style="font-size: 12.86px;">sublimeText</a> <a href="/tags/tip/" style="font-size: 12.86px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/webstorm/" style="font-size: 17.14px;">webstorm</a> <a href="/tags/windows/" style="font-size: 15.71px;">windows</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/cms/">CMS Theme</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/listmap/listmap.xml">Markup Listmap</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/generatorCSS3/">GeneratorCSS3</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/html5_OR/">HTML5 Open Reference</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/prototype/">Prototype</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/designDraft/">Design Draft Gallery</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/responsiveDesignView/">Responsive Design View</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 woonyzzang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://woonyzzang.github.com/2017/05/18/windows-vmware-mac/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
