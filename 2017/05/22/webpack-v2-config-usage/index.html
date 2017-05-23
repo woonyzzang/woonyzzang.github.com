@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Webpack-v2 Config Usage | J Dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="webpack,webpack v2" />
+    
+    <meta name="description" content="webpack2 사용 예제 기본 설치 및 사용법은 webpack 내용 참조 모듈 및 플러그인 사용법은 webpack-v2 module plugin 내용 참조  실제로 webpack2 어떻게 작성하고 사용하는지 샘플 코드로 작성 후 한번 살펴 보자.  디렉토리 구성 샘플 123456789101112131415[src]    [css]        -style">
+<meta name="keywords" content="webpack,webpack v2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Webpack-v2 Config Usage">
+<meta property="og:url" content="http://woonyzzang.github.com/2017/05/22/webpack-v2-config-usage/index.html">
+<meta property="og:site_name" content="J Dev">
+<meta property="og:description" content="webpack2 사용 예제 기본 설치 및 사용법은 webpack 내용 참조 모듈 및 플러그인 사용법은 webpack-v2 module plugin 내용 참조  실제로 webpack2 어떻게 작성하고 사용하는지 샘플 코드로 작성 후 한번 살펴 보자.  디렉토리 구성 샘플 123456789101112131415[src]    [css]        -style">
+<meta property="og:updated_time" content="2017-05-23T03:51:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Webpack-v2 Config Usage">
+<meta name="twitter:description" content="webpack2 사용 예제 기본 설치 및 사용법은 webpack 내용 참조 모듈 및 플러그인 사용법은 webpack-v2 module plugin 내용 참조  실제로 webpack2 어떻게 작성하고 사용하는지 샘플 코드로 작성 후 한번 살펴 보자.  디렉토리 구성 샘플 123456789101112131415[src]    [css]        -style">
+    
+    <link rel="canonical" href="http://woonyzzang.github.com/2017/05/22/webpack-v2-config-usage/"/>
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Web Development Story Blog</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/">App</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/ionic/">ionic</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/">CSS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/CSS3/">CSS3</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/">Editor</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/SublimeText/">SublimeText</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Webstorm/">Webstorm</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/">Etc</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/Log/">Log</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/">FrontEnd</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Tip/">Tip</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/">HTML</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/Markdown/">Markdown</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/Moblie/">Moblie</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/">OS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Mac/">Mac</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Ubuntu/">Ubuntu</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Windows/">Windows</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Fiddler/">Fiddler</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Openssl/">Openssl</a></li></ul></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/FrontEnd/">FrontEnd</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/FrontEnd/Node-js/">Node.js</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-webpack-v2-config-usage" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Webpack-v2 Config Usage
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2017/05/22/webpack-v2-config-usage/" class="article-date">
+    <time datetime="2017-05-22T08:04:12.000Z" itemprop="datePublished">2017-05-22</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack-v2/">webpack v2</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h3 id="webpack2-사용-예제"><a href="#webpack2-사용-예제" class="headerlink" title="webpack2 사용 예제"></a>webpack2 사용 예제</h3><ul>
+<li>기본 설치 및 사용법은 <a href="http://woonyzzang.github.io/2017/05/20/webpack/" target="_blank" rel="external">webpack</a> 내용 참조</li>
+<li>모듈 및 플러그인 사용법은 <a href="http://woonyzzang.github.io/2017/05/20/webpack-v2-module-plugin/" target="_blank" rel="external">webpack-v2 module plugin</a> 내용 참조</li>
+</ul>
+<p>실제로 webpack2 어떻게 작성하고 사용하는지 샘플 코드로 작성 후 한번 살펴 보자.</p>
+<p><strong> 디렉토리 구성 샘플 </strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">[src]</div><div class="line">    [css]</div><div class="line">        -style.css</div><div class="line">    [img]</div><div class="line">    [js]</div><div class="line">        -module-a.js</div><div class="line">        -module-b.js</div><div class="line">        -module-c.js</div><div class="line">    [scss]</div><div class="line">        -style.scss</div><div class="line">    -entry-index.js</div><div class="line">    -index.html</div><div class="line"></div><div class="line">-package.json</div><div class="line">-webpack.config.js</div></pre></td></tr></table></figure></p>
+<p><strong> 파일 구성 샘플 </strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- index.html --&gt;</span></div><div class="line"></div><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"ko"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">htmlWebpackPlugin.options.title</span> %&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>나는 문서의 제목이얌! 내가 짱이지!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>IE11+에서 나는 드래그 안 될 걸?!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// module-a.js</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> a = <span class="string">'나는 a'</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> ab = a + <span class="string">', a를 외부에 노출시키지 않고 변수 a를 활용!'</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// module-b.js</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="string">'모듈 a에 존재하는 변수 a와는 다른 스코프를 가짐'</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// module-c.js</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> b = <span class="string">'나도 써주랑!'</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// entry-index.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'../css/style.css'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'../scss/style.scss'</span>;  </div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123;ab&#125; <span class="keyword">from</span> <span class="string">'./module-a'</span>;</div><div class="line"><span class="keyword">import</span> &#123;a&#125; <span class="keyword">from</span> <span class="string">'./module-b'</span>;</div><div class="line"><span class="keyword">import</span> &#123;b&#125; <span class="keyword">from</span> <span class="string">'./module-c'</span>;</div><div class="line">  </div><div class="line"><span class="built_in">console</span>.log(ab); <span class="comment">// "나는 a, a를 외부에 노출시키지 않고 변수 a를 활용!"</span></div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">// "모듈 a에 존재하는 변수 a와는 다른 스코프를 가짐"</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* style.css */</span></div><div class="line"></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">user-select</span>: none</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* style.scss */</span></div><div class="line"></div><div class="line"><span class="variable">$color</span>: red;</div><div class="line"><span class="selector-tag">h1</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="variable">$color</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">const</span> autoprefixer = <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="attr">devtool</span>: <span class="string">'source-map'</span>,</div><div class="line">    <span class="attr">entry</span>: <span class="string">'./src/entry-index.js'</span>,</div><div class="line">    <span class="attr">output</span>: &#123;</div><div class="line">        <span class="attr">filename</span>: <span class="string">'bundle.js'</span>,</div><div class="line">    &#125;,</div><div class="line">    <span class="comment">// 플러그인 옵션</span></div><div class="line">    plugins: [</div><div class="line">        <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</div><div class="line">            <span class="attr">compressor</span>: &#123;</div><div class="line">                <span class="attr">warnings</span>: <span class="literal">false</span>,</div><div class="line">            &#125;</div><div class="line">        &#125;),</div><div class="line">        <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">            <span class="attr">title</span>: <span class="string">'Project Demo'</span>,</div><div class="line">            <span class="attr">minify</span>: &#123;</div><div class="line">                <span class="attr">collapseWhitespace</span>: <span class="literal">true</span></div><div class="line">            &#125;,</div><div class="line">            <span class="attr">hash</span>: <span class="literal">true</span>,</div><div class="line">            <span class="attr">template</span>: <span class="string">'./src/index.html'</span></div><div class="line">        &#125;)</div><div class="line">    ],</div><div class="line">    <span class="comment">// 파일들에 영향을 주는 옵션</span></div><div class="line">    <span class="built_in">module</span>: &#123;</div><div class="line">        <span class="attr">rules</span>: [&#123;</div><div class="line">            <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,</div><div class="line">            <span class="comment">// exclude: /(node_modules|bower_components)/,</span></div><div class="line">            use: [</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'babel-loader'</span>, <span class="attr">options</span>: &#123;</div><div class="line">                    <span class="attr">presets</span>: [</div><div class="line">                        <span class="comment">// ['es2015', &#123;moduels: false&#125;]</span></div><div class="line">                        [<span class="string">'latest'</span>, &#123;<span class="attr">moduels</span>: <span class="literal">false</span>&#125;]</div><div class="line">                    ]</div><div class="line">                &#125;&#125;</div><div class="line">            ]</div><div class="line">        &#125;, &#123;</div><div class="line">            <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</div><div class="line">            <span class="comment">// exclude: /node_modules/,</span></div><div class="line">            use: [</div><div class="line">                <span class="string">'style-loader'</span>,</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'css-loader'</span>, <span class="attr">options</span>: &#123;<span class="attr">sourceMap</span>: <span class="literal">true</span>&#125;&#125;,</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'postcss-loader'</span>, <span class="attr">options</span>: &#123;</div><div class="line">                    <span class="attr">plugins</span>: <span class="function">(<span class="params">loader</span>) =&gt;</span> [</div><div class="line">                        autoprefixer(&#123;</div><div class="line">                            <span class="attr">browsers</span>: [<span class="string">'last 2 version'</span>, <span class="string">'ie &gt;= 10'</span>]</div><div class="line">                        &#125;)</div><div class="line">                    ]</div><div class="line">                &#125;&#125;</div><div class="line">            ]</div><div class="line">        &#125;, &#123;</div><div class="line">            <span class="attr">test</span>: <span class="regexp">/\.(scss|sass)$/</span>,</div><div class="line">            <span class="comment">// exclude: /node_modules/,</span></div><div class="line">            use: [</div><div class="line">                <span class="string">'style-loader'</span>,</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'css-loader'</span>, <span class="attr">options</span>: &#123;<span class="attr">sourceMap</span>: <span class="literal">true</span>&#125;&#125;,</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'postcss-loader'</span>, <span class="attr">options</span>: &#123;</div><div class="line">                    <span class="attr">plugins</span>: <span class="function">(<span class="params">loader</span>) =&gt;</span> [</div><div class="line">                        autoprefixer(&#123;</div><div class="line">                            <span class="attr">browsers</span>: [<span class="string">'last 2 version'</span>, <span class="string">'ie &gt;= 10'</span>]</div><div class="line">                        &#125;)</div><div class="line">                    ]</div><div class="line">                &#125;&#125;,</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'sass-loader'</span>, <span class="attr">options</span>: &#123;<span class="attr">sourceMap</span>: <span class="literal">true</span>&#125;&#125;</div><div class="line">            ]</div><div class="line">        &#125;]</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>그럼 실제로 번들링을 해보자.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ webpack -w</div></pre></td></tr></table></figure></p>
+<p>위 명령어를 실행하면 모듈들이 번들링되며 엔트리 포인트와 엔트리 포인트에 관련된 모듈들이 변경될 때마다 다시 번들링되는 감시(watch)를 진행하게 된다.<br><code>Ctrl + C</code> 키를 누르면 빠져나올 수 있다.</p>
+<p>그리고나서 다시 디렉토리를 보면 다음과 같은 파일이 생긴 것을 볼 수 있다.</p>
+<ol>
+<li>bundle.js</li>
+<li>bundle.js.map</li>
+</ol>
+<h3 id="웹팩-설정-파일-Development-개발모드-47-Production-배포모드-구분"><a href="#웹팩-설정-파일-Development-개발모드-47-Production-배포모드-구분" class="headerlink" title="웹팩 설정 파일 Development(개발모드) &#47; Production(배포모드) 구분"></a>웹팩 설정 파일 Development(개발모드) &#47; Production(배포모드) 구분</h3><p>webpack의 개발 및 배포용 환경은 보통 구분되어져야 하는데 이에 따라 기본환경파일인 webpack.config.js 는 보통 webpack.donfig.dev.js(개발용) 및 webpack.config.prod.js(배포용) 으로 구분한다.<br>개발모드에서는 source-map 등 debugging용 설정등이 추가되고, 배포모드에서는 소스크기등 최적화용 설정등이 추가된다.</p>
+<p>그럼 개발용 파일과 배포용 파일을 분리해 보자!<br>우선 디렉토리를 아래와 같이 바꾼다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[src]</div><div class="line">    [css]</div><div class="line">        -style.css</div><div class="line">    [img]</div><div class="line">    [js]</div><div class="line">        -module-a.js</div><div class="line">        -module-b.js</div><div class="line">        -module-c.js</div><div class="line">    [scss]</div><div class="line">        -style.scss</div><div class="line">    -entry-index.js</div><div class="line">    -index.html</div><div class="line"></div><div class="line">package.json</div><div class="line">-webpack.config.dev.js</div><div class="line">-webpack.config.prod.js</div></pre></td></tr></table></figure></p>
+<p>몇몇 파일들도 아래와 같이 변경한다.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- index.html --&gt;</span></div><div class="line"></div><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"ko"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">htmlWebpackPlugin.options.title</span> %&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>나는 문서의 제목이얌! 내가 짱이지!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>IE11+에서 나는 드래그 안 될 걸?!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn"</span> <span class="attr">class</span>=<span class="string">"btn btn-warning"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-address-book"</span> <span class="attr">aria-hidden</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./img/logo_webpack.png"</span> <span class="attr">alt</span>=<span class="string">"로고"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// entry-index.js</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">'production'</span>) &#123;</div><div class="line">    <span class="built_in">require</span>(<span class="string">'../index.html'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'bootstrap/dist/css/bootstrap.min.css'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'font-awesome/css/font-awesome.min.css'</span>;</div><div class="line"><span class="keyword">import</span> $ <span class="keyword">from</span> <span class="string">'jquery/dist/jquery.slim'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'./css/style.css'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'./scss/style.scss'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; ab &#125; <span class="keyword">from</span> <span class="string">'./js/module-a'</span>;</div><div class="line"><span class="keyword">import</span> &#123; a &#125; <span class="keyword">from</span> <span class="string">'./js/module-b'</span>;</div><div class="line"><span class="keyword">import</span> &#123; b &#125; <span class="keyword">from</span> <span class="string">'./js/module-c'</span>;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(ab); <span class="comment">// "나는 a, a를 외부에 노출시키지 않고 변수 a를 활용!"</span></div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">// "모듈 a에 존재하는 변수 a와는 다른 스코프를 가짐"</span></div><div class="line"><span class="built_in">console</span>.log(b);</div><div class="line"></div><div class="line">$(<span class="string">'#btn'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="string">'test'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* style.scss */</span></div><div class="line"></div><div class="line"><span class="variable">$color</span>: blue;</div><div class="line"><span class="variable">$square</span>: <span class="number">90px</span>;</div><div class="line"></div><div class="line"><span class="selector-tag">h1</span> &#123;</div><div class="line">    <span class="attribute">box-sizing</span>: border-box;</div><div class="line">    <span class="attribute">color</span>: <span class="variable">$color</span></div><div class="line">&#125;</div><div class="line">span &#123;</div><div class="line">    display: inline-block;</div><div class="line">    <span class="attribute">background-image</span>: url(<span class="string">'../img/logo_webpack.png'</span>);</div><div class="line">    <span class="attribute">width</span>: <span class="variable">$square</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="variable">$square</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>추가로 패키지를 설치할 필요가 있다.(설치되어 있거나 필요없는 패키지는 제외하면 된다.)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ npm i -g webpack-dev-server</div><div class="line">$ npm i -D webpack-dev-server raw-loader webpack-browser-plugin extract-text-webpack-plugin webpack-strip clean-webpack-plugin</div><div class="line">$ npm i -S jquery bootstrap font-awesome</div><div class="line">$ npm i -D url-loader file-loader</div></pre></td></tr></table></figure></p>
+<ol>
+<li><code>webpack-dev-server</code>: -g로 설치하는 이유는 해당 명령어를 터미널에서 쓰기 위함이고 다시 한 번 -D로 설치하는 이유는 현재 프로젝트에서 해당 패키지를 쓰기 위함이다. webpack-dev-server는 실제 눈에 보이지 않는 디렉토리를 만들고 그 디렉토리에 번들링을 진행하고 watch하며 테스트를 하는 웹팩 개발용 서버이다.</li>
+<li><code>raw-loader</code>: html 파일을 핫리로드하게 만드는 로더.</li>
+<li><code>webpack-browser-plugin</code>: webpack-dev-server에서 번들링을 끝낸 후 자동으로 브라우저를 열어주는 플러그인. 자세한 옵션은 <a href="https://www.npmjs.com/package/webpack-browser-plugin" target="_blank" rel="external">webpack-browser-plugin</a>을 확인하자.</li>
+<li><code>extract-text-webpack-plugin</code>: 스타일 시트를 따로 빼기 위한 플러그인</li>
+<li><code>webpack-strip</code>: js 파일에서 디버깅을 위해 찍어본 로그를 삭제</li>
+<li><code>clean-webpack-plugin</code>: 배포용 파일을 빌드하기 전에 배포용 디렉토리를 지워주는 플러그인</li>
+<li><code>jquery</code> <code>bootstrap</code> <code>font-awesome</code>: 라이브러리 모듈 로더 설치</li>
+<li><code>url-loader</code> <code>file-loader</code>: jquery, bootstrap, font-awesome 이미지 모듈 사용을 위한 로더</li>
+</ol>
+<p><strong> Development(개발모드) </strong><br>webpack.config.dev.js 파일을 다음과 같이 수정한다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.dev.js</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</div><div class="line"><span class="keyword">const</span> autoprefixer = <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>);</div><div class="line"><span class="keyword">const</span> WebpackBrowserPlugin = <span class="built_in">require</span>(<span class="string">'webpack-browser-plugin'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="attr">devtool</span>: <span class="string">'cheap-eval-source-map'</span>,</div><div class="line">    <span class="attr">entry</span>: [</div><div class="line">        <span class="string">'./src/entry-index.js'</span></div><div class="line">    ],</div><div class="line">    <span class="attr">output</span>: &#123;</div><div class="line">        <span class="attr">filename</span>: <span class="string">'bundle.js'</span>,</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">plugins</span>: [</div><div class="line">        <span class="keyword">new</span> webpack.HotModuleReplacementPlugin(),</div><div class="line">        <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">            <span class="comment">//title: 'Project Demo',</span></div><div class="line">            template: <span class="string">'./src/index.html'</span></div><div class="line">            <span class="comment">//filename: './index.html'</span></div><div class="line">        &#125;),</div><div class="line">        <span class="keyword">new</span> WebpackBrowserPlugin()</div><div class="line">    ],</div><div class="line">    <span class="attr">module</span>: &#123;</div><div class="line">        <span class="attr">rules</span>: [&#123;</div><div class="line">            <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,</div><div class="line">            <span class="attr">use</span>: [</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'babel-loader'</span>, <span class="attr">options</span>: &#123;</div><div class="line">                    <span class="attr">presets</span>: [</div><div class="line">                        [<span class="string">'latest'</span>, &#123;<span class="attr">moduels</span>: <span class="literal">false</span>&#125;]</div><div class="line">                    ]</div><div class="line">                &#125;&#125;</div><div class="line">            ]</div><div class="line">        &#125;, &#123;</div><div class="line">            <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</div><div class="line">            <span class="attr">use</span>: [</div><div class="line">                <span class="string">'style-loader'</span>,</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'css-loader'</span>, <span class="attr">options</span>: &#123;<span class="attr">sourceMap</span>: <span class="literal">true</span>&#125;&#125;,</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'postcss-loader'</span>, <span class="attr">options</span>: &#123;</div><div class="line">                    <span class="attr">plugins</span>: <span class="function">(<span class="params">loader</span>) =&gt;</span> [</div><div class="line">                        autoprefixer(&#123;</div><div class="line">                            <span class="attr">browsers</span>: [<span class="string">'last 2 version'</span>, <span class="string">'ie &gt;= 10'</span>]</div><div class="line">                        &#125;)</div><div class="line">                    ]</div><div class="line">                &#125;&#125;</div><div class="line">            ]</div><div class="line">        &#125;, &#123;</div><div class="line">            <span class="attr">test</span>: <span class="regexp">/\.(scss|sass)$/</span>,</div><div class="line">            <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>,</div><div class="line">            <span class="attr">use</span>: [</div><div class="line">                <span class="string">'style-loader'</span>,</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'css-loader'</span>, <span class="attr">options</span>: &#123;<span class="attr">sourceMap</span>: <span class="literal">true</span>&#125;&#125;,</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'postcss-loader'</span>, <span class="attr">options</span>: &#123;</div><div class="line">                    <span class="attr">plugins</span>: <span class="function">(<span class="params">loader</span>) =&gt;</span> [</div><div class="line">                        autoprefixer(&#123;</div><div class="line">                            <span class="attr">browsers</span>: [<span class="string">'last 2 version'</span>, <span class="string">'ie &gt;= 10'</span>]</div><div class="line">                        &#125;)</div><div class="line">                    ]</div><div class="line">                &#125;&#125;,</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'sass-loader'</span>, <span class="attr">options</span>: &#123;<span class="attr">sourceMap</span>: <span class="literal">true</span>&#125;&#125;</div><div class="line">            ]</div><div class="line">        &#125;, &#123;</div><div class="line">            <span class="attr">test</span>: <span class="regexp">/\.html$/</span>,</div><div class="line">            <span class="attr">use</span>: [</div><div class="line">                <span class="string">'raw-loader'</span></div><div class="line">            ]</div><div class="line">        &#125;, &#123;</div><div class="line">            <span class="attr">test</span>: <span class="regexp">/\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/</span>,</div><div class="line">            <span class="attr">use</span>: [</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'url-loader'</span>, <span class="attr">options</span>: &#123;</div><div class="line">                    <span class="attr">limit</span>: <span class="number">10000</span>,</div><div class="line">                    <span class="attr">mimetype</span>: <span class="string">'application/font-woff'</span>,</div><div class="line">                    <span class="attr">name</span>: <span class="string">'fonts/[name].[ext]'</span></div><div class="line">                &#125;&#125;</div><div class="line">            ]</div><div class="line">        &#125;, &#123;</div><div class="line">            <span class="attr">test</span>: <span class="regexp">/\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/</span>,</div><div class="line">            <span class="attr">use</span>: [</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'file-loader'</span>, <span class="attr">options</span>: &#123;</div><div class="line">                    <span class="attr">name</span>: <span class="string">'fonts/[name].[ext]'</span></div><div class="line">                &#125;&#125;</div><div class="line">            ]</div><div class="line">        &#125;, &#123;</div><div class="line">            <span class="attr">test</span>: <span class="regexp">/\.(jp(e)g|gif|png)?$/</span>,</div><div class="line">            <span class="attr">use</span>: [</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'file-loader'</span>, <span class="attr">options</span>: &#123;</div><div class="line">                    <span class="attr">name</span>: <span class="string">'img/[name].[ext]'</span></div><div class="line">                &#125;&#125;</div><div class="line">            ]</div><div class="line">        &#125;]</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">devServer</span>: &#123;</div><div class="line">        <span class="attr">contentBase</span>: path.resolve(__dirname, <span class="string">'src'</span>),</div><div class="line">        <span class="attr">host</span>: <span class="string">'127.0.0.1'</span>,</div><div class="line">        <span class="attr">port</span>: <span class="number">4000</span>,</div><div class="line">        <span class="attr">hot</span>: <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><strong> Production(배포모드) </strong><br>배포용 설정 파일인 webpack.config.prod.js를 아래와 같이 수정한다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.prod.js</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>);</div><div class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</div><div class="line"><span class="keyword">const</span> autoprefixer = <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>);</div><div class="line"><span class="keyword">const</span> ExtractTextPlugin = <span class="built_in">require</span>(<span class="string">'extract-text-webpack-plugin'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="attr">entry</span>: [</div><div class="line">        <span class="string">'./src/entry-index.js'</span></div><div class="line">    ],</div><div class="line">    <span class="attr">output</span>: &#123;</div><div class="line">        <span class="attr">path</span>: path.join(__dirname, <span class="string">'build'</span>),</div><div class="line">        <span class="attr">filename</span>: <span class="string">'js/[name].bundle.js'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">plugins</span>: [</div><div class="line">        <span class="keyword">new</span> CleanWebpackPlugin([<span class="string">'build'</span>]),</div><div class="line">        <span class="keyword">new</span> webpack.DefinePlugin(&#123;</div><div class="line">            <span class="string">'process.env.NODE_ENV'</span>: <span class="built_in">JSON</span>.stringify(<span class="string">'production'</span>)</div><div class="line">        &#125;),</div><div class="line">        <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</div><div class="line">            <span class="attr">compressor</span>: &#123;</div><div class="line">                <span class="attr">warnings</span>: <span class="literal">false</span>,</div><div class="line">            &#125;</div><div class="line">        &#125;),</div><div class="line">        <span class="keyword">new</span> webpack.optimize.OccurrenceOrderPlugin(),</div><div class="line">        <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">            <span class="attr">template</span>: <span class="string">'./src/index.html'</span>,</div><div class="line">            <span class="attr">minify</span>: &#123;</div><div class="line">                <span class="attr">collapseWhitespace</span>: <span class="literal">true</span>,</div><div class="line">                <span class="attr">keepClosingSlash</span>: <span class="literal">true</span>,</div><div class="line">                <span class="attr">removeComments</span>: <span class="literal">true</span>,</div><div class="line">            &#125;,</div><div class="line">            <span class="attr">xhtml</span>: <span class="literal">true</span></div><div class="line">        &#125;),</div><div class="line">        <span class="keyword">new</span> ExtractTextPlugin(&#123;</div><div class="line">            <span class="attr">filename</span>: <span class="string">'./css/bundle.min.css'</span>,</div><div class="line">            <span class="attr">disable</span>: <span class="literal">false</span>,</div><div class="line">            <span class="attr">allChunks</span>: <span class="literal">true</span>,</div><div class="line">        &#125;)</div><div class="line">    ],</div><div class="line">    <span class="attr">module</span>: &#123;</div><div class="line">        <span class="attr">rules</span>: [&#123;</div><div class="line">            <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,</div><div class="line">            <span class="attr">use</span>: [</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'babel-loader'</span>, <span class="attr">options</span>: &#123;</div><div class="line">                    <span class="attr">presets</span>: [</div><div class="line">                        [<span class="string">'latest'</span>, &#123;<span class="attr">moduels</span>: <span class="literal">false</span>&#125;]</div><div class="line">                    ]</div><div class="line">                &#125;&#125;</div><div class="line">            ]</div><div class="line">        &#125;, &#123;</div><div class="line">            <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</div><div class="line">            <span class="attr">use</span>: ExtractTextPlugin.extract(&#123;</div><div class="line">                <span class="attr">fallback</span>: <span class="string">'style-loader'</span>,</div><div class="line">                <span class="attr">use</span>: [</div><div class="line">                    &#123;<span class="attr">loader</span>: <span class="string">'css-loader'</span>, <span class="attr">options</span>: &#123;<span class="attr">minimize</span>: <span class="literal">true</span>&#125;&#125;,</div><div class="line">                    &#123;<span class="attr">loader</span>: <span class="string">'postcss-loader'</span>, <span class="attr">options</span>: &#123;</div><div class="line">                        <span class="attr">plugins</span>: <span class="function">(<span class="params">loader</span>) =&gt;</span> [</div><div class="line">                            autoprefixer(&#123;</div><div class="line">                                <span class="attr">browsers</span>: [<span class="string">'last 2 version'</span>, <span class="string">'ie &gt;= 10'</span>]</div><div class="line">                            &#125;)</div><div class="line">                        ]</div><div class="line">                    &#125;&#125;</div><div class="line">                ],</div><div class="line">                <span class="attr">publicPath</span>: <span class="string">'../'</span></div><div class="line">            &#125;)</div><div class="line">        &#125;, &#123;</div><div class="line">            <span class="attr">test</span>: <span class="regexp">/\.(scss|sass)$/</span>,</div><div class="line">            <span class="attr">use</span>: ExtractTextPlugin.extract(&#123;</div><div class="line">                <span class="attr">fallback</span>: <span class="string">'style-loader'</span>,</div><div class="line">                <span class="attr">use</span>: [</div><div class="line">                    &#123;<span class="attr">loader</span>: <span class="string">'css-loader'</span>, <span class="attr">options</span>: &#123;<span class="attr">minimize</span>: <span class="literal">true</span><span class="comment">/*, url: false*/</span>&#125;&#125;,</div><div class="line">                    &#123;<span class="attr">loader</span>: <span class="string">'sass-loader'</span>, <span class="attr">options</span>: &#123;<span class="attr">outputStyle</span>: <span class="string">'compact'</span>&#125;&#125;,</div><div class="line">                    &#123;<span class="attr">loader</span>: <span class="string">'postcss-loader'</span>, <span class="attr">options</span>: &#123;</div><div class="line">                        <span class="attr">plugins</span>: <span class="function">(<span class="params">loader</span>) =&gt;</span> [</div><div class="line">                            autoprefixer(&#123;</div><div class="line">                                <span class="attr">browsers</span>: [<span class="string">'last 2 version'</span>, <span class="string">'ie &gt;= 10'</span>]</div><div class="line">                            &#125;)</div><div class="line">                        ]</div><div class="line">                    &#125;&#125;</div><div class="line">                ],</div><div class="line">                <span class="attr">publicPath</span>: <span class="string">'../'</span> <span class="comment">// background-url 경로 prefix 값으로 들어간다. </span></div><div class="line">            &#125;)</div><div class="line">        &#125;, &#123;</div><div class="line">            <span class="attr">test</span>: <span class="regexp">/\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/</span>,</div><div class="line">            <span class="attr">use</span>: [</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'url-loader'</span>, <span class="attr">options</span>: &#123;</div><div class="line">                    <span class="attr">limit</span>: <span class="number">10000</span>,</div><div class="line">                    <span class="attr">mimetype</span>: <span class="string">'application/font-woff'</span>,</div><div class="line">                    <span class="attr">name</span>: <span class="string">'fonts/[name].[ext]'</span></div><div class="line">                &#125;&#125;</div><div class="line">            ]</div><div class="line">        &#125;, &#123;</div><div class="line">            <span class="attr">test</span>: <span class="regexp">/\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/</span>,</div><div class="line">            <span class="attr">use</span>: [</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'file-loader'</span>, <span class="attr">options</span>: &#123;</div><div class="line">                    <span class="attr">name</span>: <span class="string">'fonts/[name].[ext]'</span></div><div class="line">                &#125;&#125;</div><div class="line">            ]</div><div class="line">        &#125;, &#123;</div><div class="line">            <span class="attr">test</span>: <span class="regexp">/\.(jp(e)g|gif|png)?$/</span>,</div><div class="line">            <span class="attr">use</span>: [</div><div class="line">                &#123;<span class="attr">loader</span>: <span class="string">'file-loader'</span>, <span class="attr">options</span>: &#123;</div><div class="line">                    <span class="attr">name</span>: <span class="string">'img/[name].[ext]'</span></div><div class="line">                &#125;&#125;</div><div class="line">            ]</div><div class="line">        &#125;]</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>웹팩의 설정 파일의 기본적인 이름은 webpack.config.js이다.<br>그래서 webpack 이라는 명령어만 붙여도 자동으로 webpack.config.js 파일을 인식했는데,<br>우리는 임의로 설정 파일의 이름을 바꿨기 때문에 달리 진행해야한다.</p>
+<p>개발을 진행하기 위해서는 터미널에 아래와 같이 입력을 해야한다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ webpack-dev-server <span class="_">-d</span> --config webpack.config.dev.js</div></pre></td></tr></table></figure></p>
+<p>배포를 진행하기 위해서는 아래와 같이 입력을 해야한다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ webpack --config webpack.config.prod.js</div></pre></td></tr></table></figure></p>
+<p>** package.json 의 script 에 개발&#47;배포 script 지정<br>하지만 위와 같은 작업은 번들링 할때마다 매우 번거롭게 느낄수 있다. npm의 스크립트를 이용하면 좀 더 간단하게 명령어로 번들링 할 수 있다.<br>우선 위의 개발&#47;배포 명령어를 package.json 의 scripts 부분에 아래와 같이 추가해준다.<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">"scripts": &#123;</div><div class="line">  "dev": "webpack-dev-server -d --config webpack.config.dev.js",</div><div class="line">  "build": "webpack --config webpack.config.prod.js",</div><div class="line">  "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>이제는 개발을 진행하고자 할 때는 아래와 같이 입력해주면 된다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm run dev</div></pre></td></tr></table></figure></p>
+<p>배포를 진행하고자 할 때는 아래과 같이 입력해주면 된다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm run build</div></pre></td></tr></table></figure></p>
+<p>테스트 샘플로 진행한 전체 package.json 파일은 다음과 같다.<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"webpack-test"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">  <span class="attr">"description"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</div><div class="line">  <span class="attr">"scripts"</span>: &#123;</div><div class="line">    <span class="attr">"dev"</span>: <span class="string">"webpack-dev-server -d --config webpack.config.dev.js"</span>,</div><div class="line">    <span class="attr">"build"</span>: <span class="string">"webpack --config webpack.config.prod.js"</span>,</div><div class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"keywords"</span>: [</div><div class="line">    <span class="string">"webpack"</span></div><div class="line">  ],</div><div class="line">  <span class="attr">"author"</span>: <span class="string">"woonyzzang"</span>,</div><div class="line">  <span class="attr">"license"</span>: <span class="string">"MIT"</span>,</div><div class="line">  <span class="attr">"devDependencies"</span>: &#123;</div><div class="line">    <span class="attr">"autoprefixer"</span>: <span class="string">"^7.1.0"</span>,</div><div class="line">    <span class="attr">"babel-core"</span>: <span class="string">"^6.24.1"</span>,</div><div class="line">    <span class="attr">"babel-loader"</span>: <span class="string">"^7.0.0"</span>,</div><div class="line">    <span class="attr">"babel-preset-latest"</span>: <span class="string">"^6.24.1"</span>,</div><div class="line">    <span class="attr">"clean-webpack-plugin"</span>: <span class="string">"^0.1.16"</span>,</div><div class="line">    <span class="attr">"css-loader"</span>: <span class="string">"^0.28.1"</span>,</div><div class="line">    <span class="attr">"extract-text-webpack-plugin"</span>: <span class="string">"^2.1.0"</span>,</div><div class="line">    <span class="attr">"file-loader"</span>: <span class="string">"^0.11.1"</span>,</div><div class="line">    <span class="attr">"html-webpack-plugin"</span>: <span class="string">"^2.28.0"</span>,</div><div class="line">    <span class="attr">"node-sass"</span>: <span class="string">"^4.5.3"</span>,</div><div class="line">    <span class="attr">"postcss-loader"</span>: <span class="string">"^2.0.5"</span>,</div><div class="line">    <span class="attr">"raw-loader"</span>: <span class="string">"^0.5.1"</span>,</div><div class="line">    <span class="attr">"sass-loader"</span>: <span class="string">"^6.0.5"</span>,</div><div class="line">    <span class="attr">"style-loader"</span>: <span class="string">"^0.17.0"</span>,</div><div class="line">    <span class="attr">"url-loader"</span>: <span class="string">"^0.5.8"</span>,</div><div class="line">    <span class="attr">"webpack"</span>: <span class="string">"^2.5.1"</span>,</div><div class="line">    <span class="attr">"webpack-browser-plugin"</span>: <span class="string">"^1.0.20"</span>,</div><div class="line">    <span class="attr">"webpack-dev-server"</span>: <span class="string">"^2.4.5"</span>,</div><div class="line">    <span class="attr">"webpack-strip"</span>: <span class="string">"^0.1.0"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"dependencies"</span>: &#123;</div><div class="line">    <span class="attr">"bootstrap"</span>: <span class="string">"^3.3.7"</span>,</div><div class="line">    <span class="attr">"font-awesome"</span>: <span class="string">"^4.7.0"</span>,</div><div class="line">    <span class="attr">"jquery"</span>: <span class="string">"^3.2.1"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h3><ul>
+<li><a href="https://perfectacle.github.io/2016/11/18/Module-bundling-with-Webpck/" target="_blank" rel="external">https://perfectacle.github.io/2016/11/18/Module-bundling-with-Webpck/</a></li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://woonyzzang.github.com/2017/05/22/webpack-v2-config-usage/" data-id="cj2zukhjh005lzdf9p1j2r1ek" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/woonyzzang/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="cloud" href="http://j-portfolio.herokuapp.com/" target="_blank">
+                        <i class="icon fa fa-cloud"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="jsfiddle" href="https://jsfiddle.net/user/woonyzzang/fiddles/" target="_blank">
+                        <i class="icon fa fa-jsfiddle"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    <!-- github card -->
+    
+    <div class="github-card" data-github="woonyzzang" data-width="100%" data-height="150" data-theme="default"></div>
+    
+    <script src="/libs/github-cards/widget.min.js"></script>
+    <!-- //github card -->
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/05/20/webpack-v2-module-plugin/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Webpack-v2 Module Plugin</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/ionic/">ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/CSS3/">CSS3</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/">Etc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Log/">Log</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a><span class="category-list-count">45</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Tip/">Tip</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Markdown/">Markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Moblie/">Moblie</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Ubuntu/">Ubuntu</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Fiddler/">Fiddler</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Openssl/">Openssl</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular-v1/" style="font-size: 11.43px;">angular v1</a> <a href="/tags/backbone/" style="font-size: 17.14px;">backbone</a> <a href="/tags/css3/" style="font-size: 12.86px;">css3</a> <a href="/tags/d3/" style="font-size: 18.57px;">d3</a> <a href="/tags/es6/" style="font-size: 14.29px;">es6</a> <a href="/tags/fiddler/" style="font-size: 11.43px;">fiddler</a> <a href="/tags/ionic-v1/" style="font-size: 15.71px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/log/" style="font-size: 11.43px;">log</a> <a href="/tags/mac/" style="font-size: 11.43px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 18.57px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/require/" style="font-size: 11.43px;">require</a> <a href="/tags/server/" style="font-size: 11.43px;">server</a> <a href="/tags/sublimeText/" style="font-size: 12.86px;">sublimeText</a> <a href="/tags/tip/" style="font-size: 12.86px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/webpack/" style="font-size: 12.86px;">webpack</a> <a href="/tags/webpack-v2/" style="font-size: 11.43px;">webpack v2</a> <a href="/tags/webstorm/" style="font-size: 17.14px;">webstorm</a> <a href="/tags/windows/" style="font-size: 15.71px;">windows</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/cms/">CMS Theme</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/listmap/listmap.xml">Markup Listmap</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/generatorCSS3/">GeneratorCSS3</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/html5_OR/">HTML5 Open Reference</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/prototype/">Prototype</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/designDraft/">Design Draft Gallery</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/responsiveDesignView/">Responsive Design View</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 woonyzzang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://woonyzzang.github.com/2017/05/22/webpack-v2-config-usage/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
