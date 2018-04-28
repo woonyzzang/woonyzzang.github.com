@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>React.js Router v3 | J Dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="react" />
+    
+    <meta name="description" content="React.js Router v3 사용하기아직 React-Router v3 는 유지보수가 이뤄지고 있는 상태이며, 현재 2017년 3월 기준 가장 최신 버전은 v4 이다. (한동안 베타였는데 정식 릴리즈되었다. 관련 동영상이 만들어졌으니 여기를 참조) 리액트 프로젝트에서 여러 페이지가 있을 땐, 라우터를 사용한다. 라우터는 사용자가 요청한 URL에 따라서">
+<meta name="keywords" content="react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React.js Router v3">
+<meta property="og:url" content="http://woonyzzang.github.com/2017/10/06/reactjs-router-v3/index.html">
+<meta property="og:site_name" content="J Dev">
+<meta property="og:description" content="React.js Router v3 사용하기아직 React-Router v3 는 유지보수가 이뤄지고 있는 상태이며, 현재 2017년 3월 기준 가장 최신 버전은 v4 이다. (한동안 베타였는데 정식 릴리즈되었다. 관련 동영상이 만들어졌으니 여기를 참조) 리액트 프로젝트에서 여러 페이지가 있을 땐, 라우터를 사용한다. 라우터는 사용자가 요청한 URL에 따라서">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-10-06T01:05:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React.js Router v3">
+<meta name="twitter:description" content="React.js Router v3 사용하기아직 React-Router v3 는 유지보수가 이뤄지고 있는 상태이며, 현재 2017년 3월 기준 가장 최신 버전은 v4 이다. (한동안 베타였는데 정식 릴리즈되었다. 관련 동영상이 만들어졌으니 여기를 참조) 리액트 프로젝트에서 여러 페이지가 있을 땐, 라우터를 사용한다. 라우터는 사용자가 요청한 URL에 따라서">
+    
+    <link rel="canonical" href="http://woonyzzang.github.com/2017/10/06/reactjs-router-v3/"/>
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Web Development Story Blog</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/">App</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/ionic/">ionic</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/">CSS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/CSS3/">CSS3</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/">Editor</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/SublimeText/">SublimeText</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Webstorm/">Webstorm</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/">Etc</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Etc/Log/">Log</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/">FrontEnd</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/React-js/">React.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/Tip/">Tip</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FrontEnd/jQuery/">jQuery</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/">HTML</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/Markdown/">Markdown</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML/Moblie/">Moblie</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/">OS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Mac/">Mac</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Ubuntu/">Ubuntu</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Windows/">Windows</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/ASP/">ASP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Fiddler/">Fiddler</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Openssl/">Openssl</a></li></ul></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/FrontEnd/">FrontEnd</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/FrontEnd/React-js/">React.js</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-reactjs-router-v3" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        React.js Router v3
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2017/10/06/reactjs-router-v3/" class="article-date">
+    <time datetime="2017-10-05T23:29:54.000Z" itemprop="datePublished">2017-10-06</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h3 id="React-js-Router-v3-사용하기"><a href="#React-js-Router-v3-사용하기" class="headerlink" title="React.js Router v3 사용하기"></a>React.js Router v3 사용하기</h3><p>아직 React-Router v3 는 유지보수가 이뤄지고 있는 상태이며, 현재 2017년 3월 기준 가장 최신 버전은 v4 이다. (한동안 베타였는데 정식 릴리즈되었다. 관련 동영상이 만들어졌으니 여기를 참조)</p>
+<p>리액트 프로젝트에서 여러 페이지가 있을 땐, 라우터를 사용한다. 라우터는 사용자가 요청한 URL에 따라서 다른 결과물을 렌더링해준다. 일반 Apache, Nginx 등의 웹 서버에서 각 페이지마다 다른 디렉토리 및 파일을 제공하여 여러 페이지를 구현하는것과 달리, 리액트 라우터(react-router)를 사용하는 프로젝트에서는 어떤 경로로 들어오던 똑같은 html 파일과 자바스크립트 파일을 제공을 한다.</p>
+<p>여기서 제공되는 js 파일에서는 웹 어플리케이션에서 사용 할 모든 컴포넌트들이 담겨있고, URL에 따라서 지정된 컴포넌트를 렌더링해준다. 그리고, 페이지가 한번 로드 된 다음에 다른 페이지로 이동 시, 이동 될 때 마다 페이지를 처음부터 로딩하지 않고 기존에 불러왔었던 자바스크립트 파일을 이용하여 페이지에서 기존 컴포넌트를 언마운트 시키고 다른 컴포넌트를 마운트한다.</p>
+<p>예를들어서, 웹의 헤더 컴포넌트와 같이 모든 페이지에서 존재하는 컴포넌트의 경우 페이지가 바뀌어도 처음부터 렌더링 할 필요 없이, 그대로 유지 할 수 있다는 뜻이다.</p>
+<p>이 포스트에서는, React-router 를 프로젝트에서 사용하는 방법을 알아보도록 하겠다.</p>
+<p>현재 React-router 의 최신버전은 v4 이다. React Router v4 Pre Release 버전의 경우 아직까진 베타여서 production-ready 하지는 않은 것 같다. 서브라우트의 경우 뒤로가기가 제대로 작동하지 않는 이슈가 있었고 (/ → /post/1 → /post/2 로 이동을 한다음에 뒤로가기를 하면 중간 서브라우트가 생략되고 / 로 이동 됨) 문서들이 부족해서 서버사이드 렌더링을 하게 될 때 가이드가 좀 부족한 편이고 (특히 리덕스 등의 상태 관리 라이브러리와 함께 사용시..) 써드 파티 라이브러리도 조금 적은 편이다.<br>그래서, 이 포스트에서는 v3 를 다뤄보겠다. 이 버전은 기존의 v2 버전과 동일하게 작동하는데, 기능개선 및 버그수정이 된 버전이다. v4 의 경우 새로운 방식의 라우팅이라 편하고 멋지긴 하지만, 만약에 문제를 겪을 시 혼자 해결해 나갈 수 있는 자신이 있으신 분들만 사용하시길 권장한다.</p>
+<h3 id="1-프로젝트-만들기"><a href="#1-프로젝트-만들기" class="headerlink" title="1. 프로젝트 만들기"></a>1. 프로젝트 만들기</h3><p>react-router 를 사용해보기 위하여, 프로젝트를 준비해준다. create-react-app 이란 도구를 사용하면 간편하게 프로젝트를 만들 수 있다. 자세한 사용법은 <a href="https://@추후제공" target="_blank" rel="external">여기</a>를 참조하면 된다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ create-react-app react-router-tutorial</div></pre></td></tr></table></figure>
+<p>이 작업은 2~3분 정도 소요됩니다. 그 동안, 이 포스트를 훑어가면서 앞으로 어떤 작업을 하게 될 지 간단하게 예습을 해보세요.</p>
+<p>설치가 완료되면, react-router 를 로컬 모듈로 설치하자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save react-router</div></pre></td></tr></table></figure>
+<h3 id="2-프로젝트-계획"><a href="#2-프로젝트-계획" class="headerlink" title="2. 프로젝트 계획"></a>2. 프로젝트 계획</h3><p>이번 프로젝트에서는 4가지의 라우트를 만들겠다.</p>
+<p><code>/</code> 메인 라우트로서, 프로젝트에서 가장 처음 보여줄 페이지이다. <code>Home</code> 컴포넌트를 보여준다.<br><code>/about</code> 이 라우트에서는 <code>About</code> 컴포넌트를 보여준다.<br><code>/post</code> 이 라우트에서는 <code>Posts</code> 컴포넌트를 보여준다.<br><code>/post/:id/</code> 이 라우트에서는 <code>Post</code> 컴포넌트를 보여준다. <code>id</code> 라는 파라미터를 화면에 렌더링한다.<br>추가적으로, <code>Header</code> 라는 컴포넌트를 만들어 이 컴포넌트는 모든 페이지에서 보여주도록 설정 할 것이다.</p>
+<p>그 다음에는 Node.js 환경의 서버를 사용하여 프로젝트를 올려보겠다.</p>
+<h3 id="3-라우팅을-위한-컴포넌트-만들기"><a href="#3-라우팅을-위한-컴포넌트-만들기" class="headerlink" title="3. 라우팅을 위한 컴포넌트 만들기"></a>3. 라우팅을 위한 컴포넌트 만들기</h3><p><strong> 3.1 Header </strong><br>먼저 src 디렉토리 내부에 components 디렉토리를 만들고, 그 안에 Header.js 라는 파일을 만든다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/components/Header.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'./Header.css'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> MenuItem = <span class="function">(<span class="params">&#123;active, children, to&#125;</span>) =&gt;</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"menu-item"</span>&gt;</span>&#123;children&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">const</span> Header = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">        <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"logo"</span>&gt;</span>velopert<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"menu"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">MenuItem</span>&gt;</span>홈<span class="tag">&lt;/<span class="name">MenuItem</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">MenuItem</span>&gt;</span>소개<span class="tag">&lt;/<span class="name">MenuItem</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">MenuItem</span>&gt;</span>포스트<span class="tag">&lt;/<span class="name">MenuItem</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    );</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Header;</div></pre></td></tr></table></figure>
+<p>추후, 활성화된 라우트의 메뉴 아이템일 경우 다른 스타일이 적용되게 설정 할 것이다.</p>
+<p>다음, 그리고 간단하게 스타일링을 해준다.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* src/components/Header.css */</span></div><div class="line"></div><div class="line"><span class="selector-class">.logo</span> &#123;</div><div class="line">    <span class="attribute">height</span>: <span class="number">3.5rem</span>;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#212529</span>;</div><div class="line">    <span class="attribute">width</span>: <span class="number">100vw</span>;</div><div class="line">    <span class="attribute">line-height</span>: <span class="number">3.5rem</span>;</div><div class="line">    <span class="attribute">color</span>: white;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">1.5rem</span>;</div><div class="line">    <span class="attribute">font-weight</span>: bold;</div><div class="line">    <span class="attribute">text-align</span>: center;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.menu</span> &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#343a40</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">3.5rem</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.menu-item</span> &#123;</div><div class="line">    <span class="attribute">display</span>: inline-block;</div><div class="line">    <span class="attribute">color</span>: white;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">1rem</span>;</div><div class="line">    <span class="attribute">line-height</span>: <span class="number">3.5rem</span>;</div><div class="line">    <span class="attribute">width</span>: <span class="number">33.3333%</span>;</div><div class="line">    <span class="attribute">text-align</span>: center;</div><div class="line">    <span class="attribute">cursor</span>: pointer;</div><div class="line">    <span class="attribute">transition</span>: background-color <span class="number">0.3s</span>;</div><div class="line">    <span class="attribute">text-decoration</span>: none;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.menu-item</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#495057</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.menu-item</span><span class="selector-pseudo">:active</span>,</div><div class="line"><span class="selector-class">.menu-item</span><span class="selector-class">.active</span> &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#1862ab</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>이제 App.js 에서 헤더 컴포넌트를 불러와서 렌더링한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/App.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React, &#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> Header <span class="keyword">from</span> <span class="string">'./components/Header'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">                <span class="tag">&lt;<span class="name">Header</span>/&gt;</span></div><div class="line">                &#123;this.props.children&#125;</div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</div></pre></td></tr></table></figure>
+<p>헤더 아래에는 10번째 줄에서 <code>children</code> 이 렌더링 되게 했다. 복습을 해보자면, 이 부분엔 컴포넌트 태그 사이의 내용이 입력된다.<br>예: &lt;컴포넌트&gt;여기 있는 내용&lt;/컴포넌트&gt;.</p>
+<p>나중에, 라우트용 컴포넌트가 저 부분에서 렌더링 되는 것 이다.</p>
+<p><strong> 3.2 BigText 컴포넌트 만들기 </strong><br>이 컴포넌트는 아무 의미없이 대문짝만하게 큰 글씨를 띄워주는 컴포넌트이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/components/BigText.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'./BigText.css'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> BigText = <span class="function">(<span class="params">&#123;children&#125;</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">        <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"big-text"</span>&gt;</span></span></div><div class="line">            &#123;children&#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    );</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> BigText;</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* src/components/BigText.css */</span></div><div class="line"></div><div class="line"><span class="selector-class">.big-text</span>&#123;</div><div class="line">    <span class="attribute">margin-top</span>: <span class="number">3rem</span>;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">7rem</span>;</div><div class="line">    <span class="attribute">text-align</span>: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong> 3.3 Home 컴포넌트 만들기 </strong><br>프로젝트에서 가장 먼저 보여줄 라우트인 <code>/</code> 라우트를 위한 컴포넌트를 만들어보자.<br>이 컴포넌트는 components 디렉토리 말고 containers 디렉토리에 만들어준다. (꼭 그럴 필요는 없지만 이는 일반 컴포넌트들과 라우트용 컴포넌트를 분리하기 위함이다.)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/containers/Home.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> BigText <span class="keyword">from</span> <span class="string">'../components/BigText'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Home = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">        <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">            <span class="tag">&lt;<span class="name">BigText</span>&gt;</span>홈<span class="tag">&lt;/<span class="name">BigText</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    );</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Home;</div></pre></td></tr></table></figure>
+<p><strong> 3.4 About 컴포넌트 만들기 </strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/containers/About.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> BigText <span class="keyword">from</span> <span class="string">'../components/BigText'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> About = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">        <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">           <span class="tag">&lt;<span class="name">BigText</span>&gt;</span>소개<span class="tag">&lt;/<span class="name">BigText</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    );</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> About;</div></pre></td></tr></table></figure></p>
+<p><strong> 3.5 Posts 컴포넌트 만들기 </strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/containers/Posts.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> BigText <span class="keyword">from</span> <span class="string">'../components/BigText'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Posts = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">        <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">            <span class="tag">&lt;<span class="name">BigText</span>&gt;</span>포스트<span class="tag">&lt;/<span class="name">BigText</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    );</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Posts;</div></pre></td></tr></table></figure></p>
+<h3 id="4-라우터-설정"><a href="#4-라우터-설정" class="headerlink" title="4. 라우터 설정"></a>4. 라우터 설정</h3><p>컴포넌트들이 준비되었으니, 라우터 설정을 해보자. index.js 파일을 다음과 같이 수정한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/index.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Router, Route, IndexRoute, browserHistory &#125; <span class="keyword">from</span> <span class="string">'react-router'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span>;</div><div class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./containers/Home'</span>;</div><div class="line"><span class="keyword">import</span> About <span class="keyword">from</span> <span class="string">'./containers/About'</span>;</div><div class="line"><span class="keyword">import</span> Posts <span class="keyword">from</span> <span class="string">'./containers/Posts'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'./index.css'</span>;</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  &lt;Router history=&#123;browserHistory&#125;&gt;</div><div class="line">    &lt;Route path="/" component=&#123;App&#125;&gt;</div><div class="line">      &lt;IndexRoute component=&#123;Home&#125;/&gt;</div><div class="line">      &lt;Route path="about" component=&#123;About&#125;/&gt;</div><div class="line">      &lt;Route path="post" component=&#123;Posts&#125;/&gt;</div><div class="line">    &lt;/Route&gt;</div><div class="line">  &lt;/Router&gt;,</div><div class="line">  document.getElementById('root')</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>3번 줄에서는, react-router 에서 4가지의 객체를 불러왔다.</p>
+<ul>
+<li>Router: 이 컴포넌트는 react-router 의 주요 컴포넌트로서, 라우터의 속성을 정의하고 이 내부에서 라우트 설정을 한다.</li>
+<li>Route: 이 컴포넌트는 우리가 설정한 경로에서 어떤 컴포넌트를 렌더링 할 지 정하는 컴포넌트 이다. 이 라우트 컴포넌트의 자식에 또 다른 Route 컴포넌트를 넣으면 해당 자식 컴포넌트는 부모 라우트의 서브 라우트가 된다.</li>
+<li>IndexRoute: 라우트에서 서브라우트가 주어지지 않았을 때, 즉 특정 라우트의 <code>/</code> 경로로 들어 왔을 때, 이 라우트에서 지정한 컴포넌트를 보여준다.</li>
+<li>browserHistory: HTML5 의 <a href="https://developer.mozilla.org/en-US/docs/Web/API/History" target="_blank" rel="external">History API</a> 를 사용하여 브라우저의 URL 변화를 주시하고, 조작한다.</li>
+</ul>
+<p>13번 줄에서는 Router 컴포넌트를 정의하고 history 값을 browserHistory 로 설정 했다. history 는 브라우저의 주소창이 어떻게 바뀌는지 주시하고 주소를 라우터에서 인식할 수 있도록 location 객체로 파싱을 해준다. history 는 총 3가지가 있는데, 이에 대해선 <a href="https://github.com/ReactTraining/history" target="_blank" rel="external">여기</a>서 더 자세히 알아 볼 수 있다.</p>
+<p>14번 줄에서는 Route 컴포넌트의 path 를 “/“ 로 설정했다. 즉, / 경로로 들어왔을땐 App 컴포넌트를 보여주라고 설정하는 것 이죠.</p>
+<p>그 내부에는 여러개의 Route 들이 자식으로 있는데, 이 자식들은 URL 이 매칭 하는 경우, App 컴포넌트의 자식으로 들어갑니다. 예를 들어서, / 경로의 경우엔 IndexRoute 를 사용하여 Home 컴포넌트를 렌더링한다. /about 경로의 경우엔 About 컴포넌트를 렌더링하죠.</p>
+<p>자, 이제 index.js 파일을 저장하고 브라우저에서 열어보면. 첫 화면에서 홈이 보일 것이다.</p>
+<h3 id="5-헤더-기능-구현"><a href="#5-헤더-기능-구현" class="headerlink" title="5. 헤더 기능 구현"></a>5. 헤더 기능 구현</h3><p>아직 헤더는 폼만 잡고 있고, 클릭해도 아무 기능을 하지 않는다. 이제 기능을 구현해보자. 여기서 버튼을 눌렀을 때, 단순히 <a> 태그를 사용하여 링크를 걸 면 안된다. 작동을 하긴 하겠지만, 페이지를 새로 불러오게 된다.</a></p>
+<p>하지만 리액트 프로젝트의 경우 모든 프로젝트의 클라이언트 정보를 코드를 번들링 할 때 한 파일에 담기 때문에, 주소가 변한다고해서 페이지를 새로 로딩 할 필요가 없다. 따라서, 우리는 Link 라는 컴포넌트를 사용해야한다. 이 컴포넌트는 브라우저의 주소만 바꿔주고 페이지를 새로 로딩하진 않는다.</p>
+<p>그렇게 브라우저의 주소가 바뀌고 나면, Router 컴포넌트가 이를 인식하여 우리가 정한 컴포넌트를 보여주게 될 것이다.</p>
+<p><strong> 5.1 메뉴 아이템 클릭시 페이지 이동 </strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/components/Header.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Link &#125; <span class="keyword">from</span> <span class="string">'react-router'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'./Header.css'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> MenuItem = <span class="function">(<span class="params">&#123;active, children, to&#125;</span>) =&gt;</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&#123;to&#125;</span> <span class="attr">className</span>=<span class="string">"menu-item"</span>&gt;</span></span></div><div class="line">            &#123;children&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">Link</span>&gt;</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">const</span> Header = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">        <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"logo"</span>&gt;</span></div><div class="line">                velopert</div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"menu"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">MenuItem</span> <span class="attr">to</span>=<span class="string">&#123;</span>'/'&#125;&gt;</span>홈<span class="tag">&lt;/<span class="name">MenuItem</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">MenuItem</span> <span class="attr">to</span>=<span class="string">&#123;</span>'/<span class="attr">about</span>'&#125;&gt;</span>소개<span class="tag">&lt;/<span class="name">MenuItem</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">MenuItem</span> <span class="attr">to</span>=<span class="string">&#123;</span>'/<span class="attr">post</span>'&#125;&gt;</span>포스트<span class="tag">&lt;/<span class="name">MenuItem</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    );</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Header;</div></pre></td></tr></table></figure></p>
+<p>MenuItem 컴포넌트에서 기존에 div 태그를 사용 하던 것을 Link 로 변환 하였다. 이 컴포넌트에 className 을 설정하면 그대로 전달이 돼서 해당 클래스를 가진 a 태그로 이뤄진 컴포넌트로 변환해준다.</p>
+<p>이 컴포넌트는 링크가 클릭 되었을 때, 페이지가 전환 되는 것을 막고, Router 에서 정한 history 를 사용하여 브라우저의 주소를 변경한다.</p>
+<p>Link 컴포넌트가 눌렸을 때, 설정 될 라우트 경로는 to 값을 통해 설정한다. 위 코드에서는 MenuItem 에서 to 값을 설정하고 이 props 가 Link 컴포넌트의 값으로 설정되게끔 전달되었다.</p>
+<p>코드를 저장하고, 잘 작동하는지 헤더의 버튼을 눌러보자.</p>
+<p><strong> 5.2 현재 주소에 따라 메뉴 아이템에 다른 효과 주기 </strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/components/Header.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Link &#125; <span class="keyword">from</span> <span class="string">'react-router'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'./Header.css'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> MenuItem = <span class="function">(<span class="params">&#123;active, children, to&#125;</span>) =&gt;</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&#123;to&#125;</span> <span class="attr">className</span>=<span class="string">&#123;</span>`<span class="attr">menu-item</span> $&#123;<span class="attr">active</span> ? '<span class="attr">active</span>'<span class="attr">:</span> ''&#125;`&#125;&gt;</span></span></div><div class="line">            &#123;children&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">Link</span>&gt;</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">const</span> Header = <span class="function">(<span class="params">props, context</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">const</span> &#123; router &#125; = context;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">        <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"logo"</span>&gt;</span></div><div class="line">                velopert</div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"menu"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">MenuItem</span> <span class="attr">to</span>=<span class="string">&#123;</span>'/'&#125; <span class="attr">active</span>=<span class="string">&#123;router.isActive(</span>'/', <span class="attr">true</span>)&#125;&gt;</span>홈<span class="tag">&lt;/<span class="name">MenuItem</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">MenuItem</span> <span class="attr">to</span>=<span class="string">&#123;</span>'/<span class="attr">about</span>'&#125; <span class="attr">active</span>=<span class="string">&#123;router.isActive(</span>'/<span class="attr">about</span>')&#125;&gt;</span>소개<span class="tag">&lt;/<span class="name">MenuItem</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">MenuItem</span> <span class="attr">to</span>=<span class="string">&#123;</span>'/<span class="attr">post</span>'&#125; <span class="attr">active</span>=<span class="string">&#123;router.isActive(</span>'/<span class="attr">post</span>')&#125;&gt;</span>포스트<span class="tag">&lt;/<span class="name">MenuItem</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    );</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Header.contextTypes = &#123;</div><div class="line">    <span class="attr">router</span>: React.PropTypes.object</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Header;</div></pre></td></tr></table></figure></p>
+<p>현재 주소에 따라서 메뉴 아이템을 파란색으로 설정을 하려면, 컴포넌트의 context 객체의 router 에 접근을 해야 하는데, 이를 사용하려면, 27 ~ 29번 줄처럼 contextType 을 지정해주어야 한다.</p>
+<p>context 는 React 프로젝트에서 전역적으로 사용 될 수 있는 객체이다. 컴포넌트마다 props 로 전달하기 힘든 경우에 이 기능이 사용된다.<br>class 형태의 컴포넌트의 경우엔 this.context.router 라고 사용을 하면 되고, 위 처럼 함수형 컴포넌트의 경우엔, 두번째 파라미터로 context 를 전달받아서 사용하면 된다.</p>
+<p>router 객체 내부의 isActive 함수는 현재 브라우저의 경로가 주어진 경로와 매칭이 되는지 확인을 한다. 첫번째 파라미터로는 경로가 들어가고 두번째 파라미터는 주어진 경로가 IndexRoute 인지 설정을 한다. 예를들어서. 만약에 현재 경로가 /about 일 때, <code>isActive(&#39;/&#39;)</code> 가 실행 되면 현재 경로가 / 의 자식 경로이기 때문에 true 를 반환한다. 두번째 파라미터를 설정하여 <code>isActive(&#39;/&#39;, true)</code> 를 실행하면 현재 경로가 정확히 / 일 때만 true 를 반환하고 그 외엔 false 를 반환합니다.</p>
+<p>이를 함수를 사용하여 사용하여 MenuItem 의 active 값을 설정해주고, MenuItem 컴포넌트에서는 active 값이 true 라면 active 라는 클래스를 적용하도록 설정했다.</p>
+<p>이제 활성화된 메뉴아이템은 파란색으로 설정된다.</p>
+<h3 id="6-서브-라우트-설정하기"><a href="#6-서브-라우트-설정하기" class="headerlink" title="6. 서브 라우트 설정하기"></a>6. 서브 라우트 설정하기</h3><p>이제 우리의 4번째 라우트, <code>/post/:id/</code> 를 구현해보겠다.</p>
+<p><strong> 6.1 Post 컴포넌트 만들기 </strong><br>먼저 Post 컴포넌트를 만들어보.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/containers/Post.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> BigText <span class="keyword">from</span> <span class="string">'../components/BigText'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Post = <span class="function">(<span class="params">&#123;params&#125;</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">        <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">            <span class="tag">&lt;<span class="name">BigText</span>&gt;</span>&#123;params.id&#125;<span class="tag">&lt;/<span class="name">BigText</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    );</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Post;</div></pre></td></tr></table></figure>
+<p>라우트에서의 파라미터 값은, 컴포넌트에서 params props 에 접근하여 얻어 낼 수 있다.</p>
+<p><strong> 6.2 Posts 컴포넌트 수정하기 </strong><br>Post 컴포넌트가 Posts 컴포넌트의 내부에서 보여지게 할 계획이다. 마치, App 컴포넌트 내부에서 헤더를 보여주고 그 하단에 Home, About, Posts 컴포넌트를 보여준 것 처럼 말이죠.</p>
+<p>그러려면, Posts 컴포넌트에서 Post 컴포넌트가 보여질 부분에 children 을 렌더링 하면 된다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/containers/Posts.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> BigText <span class="keyword">from</span> <span class="string">'../components/BigText'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Posts = <span class="function">(<span class="params">&#123;children&#125;</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">        <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">            <span class="tag">&lt;<span class="name">BigText</span>&gt;</span>포스트<span class="tag">&lt;/<span class="name">BigText</span>&gt;</span></div><div class="line">            &#123;children&#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    );</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Posts;</div></pre></td></tr></table></figure>
+<p><strong> 6.3 라우터 설정 수정하기 </strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/index.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Router, Route, IndexRoute, browserHistory &#125; <span class="keyword">from</span> <span class="string">'react-router'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span>;</div><div class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./containers/Home'</span>;</div><div class="line"><span class="keyword">import</span> About <span class="keyword">from</span> <span class="string">'./containers/About'</span>;</div><div class="line"><span class="keyword">import</span> Posts <span class="keyword">from</span> <span class="string">'./containers/Posts'</span>;</div><div class="line"><span class="keyword">import</span> Post <span class="keyword">from</span> <span class="string">'./containers/Post'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'./index.css'</span>;</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">    &lt;Router history=&#123;browserHistory&#125;&gt;</div><div class="line">        &lt;Route path="/" component=&#123;App&#125;&gt;</div><div class="line">            &lt;IndexRoute component=&#123;Home&#125; /&gt;</div><div class="line">            &lt;Route path="about" component=&#123;About&#125; /&gt;</div><div class="line">            &lt;Route path="post" component=&#123;Posts&#125;&gt;</div><div class="line">                &lt;Route path=":id" component=&#123;Post&#125; /&gt;</div><div class="line">            &lt;/Route&gt;</div><div class="line">        &lt;/Route&gt;</div><div class="line">    &lt;/Router&gt;,</div><div class="line">    document.getElementById('root')</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<p>라우터를 위와 같이 수정해준다. /post 경로를 위한 Route 컴포넌트 내부에 또 다른 Route 컴포넌트를 작성한다. 여기서 path 을 :id 로 설정을 하면, id 라는 파라미터가 들어가는것이라고 설정을 하는 것 이다.</p>
+<p>지금은 Post 컴포넌트가 Posts 내부에 위치하게 하고 싶기 때문에 이렇게 했지만, 만약에 주소가 /post/:id 일 때 Posts 를 보여주지 않고 Post 만 보여주게 하고싶다면, 이렇게 라우트를 다음과 같이 작성하면 된다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">ReactDOM.render(</div><div class="line">    &lt;Router history=&#123;browserHistory&#125;&gt;</div><div class="line">        &lt;Route path="/" component=&#123;App&#125;&gt;</div><div class="line">            &lt;IndexRoute component=&#123;Home&#125; /&gt;</div><div class="line">            &lt;Route path="about" component=&#123;About&#125; /&gt;</div><div class="line">            &lt;Route path="post" component=&#123;Posts&#125; /&gt;</div><div class="line">            &lt;Route path="post/:id" component=&#123;Post&#125; /&gt;</div><div class="line">        &lt;/Route&gt;</div><div class="line">    &lt;/Router&gt;,</div><div class="line">    document.getElementById('root')</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>여기까지 완성이 되었으면 /post/10 이런식으로 브라우저에서 직접 주소를 입력하여 들어가보자.</p>
+<p><strong> 6.4 PostLinks 컴포넌트 만들기 </strong><br>마지막으로, 포스트의 링크들을 보여주는 컴포넌트를 만들어서 Posts 컴포넌트에서 렌더링을 해보겠다.</p>
+<p>먼저 컴포넌트파일을 만든다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/components/PostLinks.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Link &#125; <span class="keyword">from</span> <span class="string">'react-router'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'./PostLinks.css'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> PostLinks = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">        <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"post-links"</span>&gt;</span></span></div><div class="line">            <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">"/post/1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">"/post/2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">"/post/3"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">"/post/4"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">Link</span>&gt;</span> </div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    );</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> PostLinks;</div></pre></td></tr></table></figure>
+<p>간단하게 스타일링도 해줍시다</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* src/components/PostLinks.css */</span></div><div class="line"></div><div class="line"><span class="selector-class">.post-links</span> <span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">display</span>: block;</div><div class="line">    <span class="attribute">text-align</span>: center;</div><div class="line">    <span class="attribute">text-decoration</span>: none;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#495057</span>;</div><div class="line">    <span class="attribute">color</span>: white;</div><div class="line">    <span class="attribute">padding</span>: <span class="number">0.5rem</span>;</div><div class="line">    <span class="attribute">transition</span>: background .<span class="number">3s</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.post-links</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#868e96</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.post-links</span> <span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#343a40</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>이제 Posts 컴포넌트에서 렌더링해줍니다</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/containers/Posts.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> BigText <span class="keyword">from</span> <span class="string">'../components/BigText'</span>;</div><div class="line"><span class="keyword">import</span> PostLinks <span class="keyword">from</span> <span class="string">'../components/PostLinks'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Posts = <span class="function">(<span class="params">&#123;children&#125;</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">        <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">            <span class="tag">&lt;<span class="name">BigText</span>&gt;</span>포스트<span class="tag">&lt;/<span class="name">BigText</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">PostLinks</span> /&gt;</span></div><div class="line">            &#123;children&#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        </div><div class="line">    );</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Posts;</div></pre></td></tr></table></figure>
+<h3 id="7-서버에-올리기"><a href="#7-서버에-올리기" class="headerlink" title="7. 서버에 올리기"></a>7. 서버에 올리기</h3><p>이제 Node.js 의 Express 프레임워크를 사용하여 이 프로젝트를 서버에 올려보겠다. 이 포스트에서는 여러분이 Express 에 대한 기본지식이 있다는 것을 전제로 하고 진행한다. (모르셔도 그대로 따라 할 수는 있으나, 이해를 하는게 조금 어려울 수도 있다)</p>
+<p>현재 프로젝트 경로에서 express 를 설치하자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save express</div></pre></td></tr></table></figure>
+<p>이 포스트에서는 Node 6.9.2 버전이 사용된다. 6 미만 버전을 사용하는 경우 업데이트 해야 정상적으로 작동한다.<br>방금 완성한 리액트 프로젝트를 빌드한다. 이 과정은 파일 최적화 과정을 거치기 때문에 1~2분 정도 소요 된다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm run build</div></pre></td></tr></table></figure>
+<p>빌드가 완료되었다면 서버파일을 작성해보자. 서버는 server 디렉토리를 만들어서 그 안에 작성해보자.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server/index.js</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"></div><div class="line">app.use(<span class="string">'/'</span>, express.static(path.resolve(__dirname, <span class="string">'../build'</span>)));</div><div class="line"></div><div class="line">app.listen(<span class="number">4000</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Example app listening on port 4000!'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node server</div></pre></td></tr></table></figure>
+<p>이제 브라우저로 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 에 들어가서 테스팅을해보자.</p>
+<p>작동은 잘 하는데, F5 를 눌르면 오류가 난다.</p>
+<p>이렇게 라우팅이 잘 되다가 URL 로 직접 들어가면 오류가 발생하는 이유는, 처음 / 경로로 들어갔을때, 서버에서 리액트 프로젝트와 html 파일을 제공해주고 그 내부에서 라우팅을 할 때는 페이지를 새로 불러오지 않고 클라이언트 내부에서 자체적으로 라우팅을 하기 때문에 정상적으로 작동하지만 새로고침을 하거나 URL 로 직접 들어가면 서버 내에서 해당 라우트를 찾는데, 그것을 위해 우리가 express 에서 따로 준비한게 없어서 이렇게 오류가 나는 것 이다.</p>
+<p>이를 해결하기 위해선 코드를 다음과 같이 모든 경로로 들어왔을때 리액트 index.html 를 보여주게 하면 된다. 주의하실 점은, 여기서 리액트 빌드 파일이 /static 경로에 위치해 있기 때문에 static 경로의 경우는 예외로 처리해야한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server/index.js</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"></div><div class="line">app.use(<span class="string">'/'</span>, express.static(path.resolve(__dirname, <span class="string">'../build'</span>)));</div><div class="line">app.get(<span class="string">'*'</span>, (req, res, next) =&gt; &#123;</div><div class="line">    <span class="keyword">if</span>(req.path.split(<span class="string">'/'</span>)[<span class="number">1</span>] === <span class="string">'static'</span>) <span class="keyword">return</span> next();</div><div class="line">    res.sendFile(path.resolve(__dirname, <span class="string">'../build/index.html'</span>));</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">4000</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Example app listening on port 4000!'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>이렇게하고 서버를 재시작하면 URL로 직접 들어가도 정상적으로 작동한다.</p>
+<h3 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h3><ul>
+<li><a href="https://velopert.com/2937" target="_blank" rel="external">https://velopert.com/2937</a></li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://woonyzzang.github.com/2017/10/06/reactjs-router-v3/" data-id="cjgjhsiyt006uq8f9b3uwkea1" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/woonyzzang/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="cloud" href="http://j-portfolio.herokuapp.com/" target="_blank">
+                        <i class="icon fa fa-cloud"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="jsfiddle" href="https://jsfiddle.net/user/woonyzzang/fiddles/" target="_blank">
+                        <i class="icon fa fa-jsfiddle"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    <!-- github card -->
+    
+    <div class="github-card" data-github="woonyzzang" data-width="100%" data-height="150" data-theme="default"></div>
+    
+    <script src="/libs/github-cards/widget.min.js"></script>
+    <!-- //github card -->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/11/10/reactjs-functional-component/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            React.js Functional Component
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/10/05/reactjs-router/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">React.js Router [Outdated]</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/ionic/">ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/CSS3/">CSS3</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/">Etc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Log/">Log</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a><span class="category-list-count">60</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/React-js/">React.js</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Tip/">Tip</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/jQuery/">jQuery</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Markdown/">Markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Moblie/">Moblie</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Ubuntu/">Ubuntu</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/ASP/">ASP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Fiddler/">Fiddler</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Openssl/">Openssl</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular-v1/" style="font-size: 11.11px;">angular v1</a> <a href="/tags/asp/" style="font-size: 12.22px;">asp</a> <a href="/tags/backbone/" style="font-size: 15.56px;">backbone</a> <a href="/tags/css3/" style="font-size: 13.33px;">css3</a> <a href="/tags/d3/" style="font-size: 16.67px;">d3</a> <a href="/tags/es6/" style="font-size: 13.33px;">es6</a> <a href="/tags/fiddler/" style="font-size: 11.11px;">fiddler</a> <a href="/tags/ionic-v1/" style="font-size: 14.44px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/jquery/" style="font-size: 11.11px;">jquery</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/log/" style="font-size: 11.11px;">log</a> <a href="/tags/mac/" style="font-size: 11.11px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 17.78px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/react/" style="font-size: 18.89px;">react</a> <a href="/tags/require/" style="font-size: 11.11px;">require</a> <a href="/tags/server/" style="font-size: 15.56px;">server</a> <a href="/tags/sublimeText/" style="font-size: 12.22px;">sublimeText</a> <a href="/tags/tip/" style="font-size: 12.22px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 13.33px;">ubuntu</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/webpack/" style="font-size: 12.22px;">webpack</a> <a href="/tags/webpack-v2/" style="font-size: 11.11px;">webpack v2</a> <a href="/tags/webstorm/" style="font-size: 15.56px;">webstorm</a> <a href="/tags/windows/" style="font-size: 14.44px;">windows</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/cms/">CMS Theme</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/listmap/listmap.xml">Markup Listmap</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/generatorCSS3/">GeneratorCSS3</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/html5_OR/">HTML5 Open Reference</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/prototype/">Prototype</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/designDraft/">Design Draft Gallery</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://j-portfolio.herokuapp.com/dev/responsiveDesignView/">Responsive Design View</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 woonyzzang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://woonyzzang.github.com/2017/10/06/reactjs-router-v3/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
