@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     
     <title>HTTPS OpenSSL 인증서 테스트 구현 | J Dev</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="server" />
+        <meta name="keywords" content="server">
     
     <meta name="description" content="HTTPS 서버 구축시 인증서 테스트 구현HTTS는 HTTP 보안 프로토콜이다. http로 전송되는 데이터를 암호화해서 보안을 위해서 최근에는 로그인이나 API 등 보안에 민감한 요청은 https를 사용한다. https에서 s는 secure socket을 사용을 의미한다. https는 인증서를 등록해서 사용하는데 최신 브라우저에서는 https로 접근하면 보">
 <meta name="keywords" content="server">
@@ -21,12 +21,12 @@
 <meta name="twitter:title" content="HTTPS OpenSSL 인증서 테스트 구현">
 <meta name="twitter:description" content="HTTPS 서버 구축시 인증서 테스트 구현HTTS는 HTTP 보안 프로토콜이다. http로 전송되는 데이터를 암호화해서 보안을 위해서 최근에는 로그인이나 API 등 보안에 민감한 요청은 https를 사용한다. https에서 s는 secure socket을 사용을 의미한다. https는 인증서를 등록해서 사용하는데 최신 브라우저에서는 https로 접근하면 보">
     
-    <link rel="canonical" href="http://woonyzzang.github.com/2017/03/23/https-openssl/"/>
+    <link rel="canonical" href="http://woonyzzang.github.com/2017/03/23/https-openssl/">
 
     
 
     
-        <link rel="icon" href="/images/favicon.png" />
+        <link rel="icon" href="/images/favicon.png">
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -44,7 +44,7 @@
     
 
 </head>
-
+</html>
 <body>
     <div id="wrap">
         <header id="header">
@@ -66,7 +66,7 @@
                     <div class="nav-container-inner">
                         <ul id="main-nav">
                             
-                                <li class="main-nav-list-item" >
+                                <li class="main-nav-list-item">
                                     <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
@@ -77,14 +77,14 @@
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <input type="text" class="ins-search-input" placeholder="Type something...">
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -129,7 +129,7 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-https-openssl" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-https-openssl" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
@@ -154,21 +154,21 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h3 id="HTTPS-서버-구축시-인증서-테스트-구현"><a href="#HTTPS-서버-구축시-인증서-테스트-구현" class="headerlink" title="HTTPS 서버 구축시 인증서 테스트 구현"></a>HTTPS 서버 구축시 인증서 테스트 구현</h3><p><a href="https://en.wikipedia.org/wiki/HTTPS" target="_blank" rel="external">HTTS</a>는 HTTP 보안 프로토콜이다. http로 전송되는 데이터를 암호화해서 보안을 위해서 최근에는 로그인이나 API 등 보안에 민감한 요청은 https를 사용한다. https에서 s는 secure socket을 사용을 의미한다. https는 인증서를 등록해서 사용하는데 최신 브라우저에서는 https로 접근하면 보안 프로토콜을 사용한다는 표시를 한다거나 인증서 확인을하는 작업등을 한다.<br>이런 이유 때문에 클라이언트 프로그램이 https로 요청하면 인증처리하는 과정을 거쳐야하기 때문에 일반 http 요청과 다른 과정이 필요하다. 개발할 때 https를 테스트하기 위해서 https에 사용되는 인증서를 구입해서 개발할 수는 없다. https에 사용하기 위해서 인증서를 만들더라도 https는 하나의 도메인만 적용되고 그 가격도 너무 고가이기 때문에 개발용 서버에 https 인증서를 구입하는 것은 효율적이지 못하기 때문이다. 그럼 어떻게 개발용으로 https 서버를 구현할 수 있을까? 다행히 OpenSSL을 사용하면 자체 인증서를 만들 수 있다. 하지만 공인으로 등록된 인증서가 아니기 때문에 OpenSSL로 만든 인증서는 실제 서비스를 하는데는 무리가 있다. 하지만 개발용으로는 충분히 사용 가능하다.</p>
+            <h3 id="HTTPS-서버-구축시-인증서-테스트-구현"><a href="#HTTPS-서버-구축시-인증서-테스트-구현" class="headerlink" title="HTTPS 서버 구축시 인증서 테스트 구현"></a>HTTPS 서버 구축시 인증서 테스트 구현</h3><p><a href="https://en.wikipedia.org/wiki/HTTPS" target="_blank" rel="noopener">HTTS</a>는 HTTP 보안 프로토콜이다. http로 전송되는 데이터를 암호화해서 보안을 위해서 최근에는 로그인이나 API 등 보안에 민감한 요청은 https를 사용한다. https에서 s는 secure socket을 사용을 의미한다. https는 인증서를 등록해서 사용하는데 최신 브라우저에서는 https로 접근하면 보안 프로토콜을 사용한다는 표시를 한다거나 인증서 확인을하는 작업등을 한다.<br>이런 이유 때문에 클라이언트 프로그램이 https로 요청하면 인증처리하는 과정을 거쳐야하기 때문에 일반 http 요청과 다른 과정이 필요하다. 개발할 때 https를 테스트하기 위해서 https에 사용되는 인증서를 구입해서 개발할 수는 없다. https에 사용하기 위해서 인증서를 만들더라도 https는 하나의 도메인만 적용되고 그 가격도 너무 고가이기 때문에 개발용 서버에 https 인증서를 구입하는 것은 효율적이지 못하기 때문이다. 그럼 어떻게 개발용으로 https 서버를 구현할 수 있을까? 다행히 OpenSSL을 사용하면 자체 인증서를 만들 수 있다. 하지만 공인으로 등록된 인증서가 아니기 때문에 OpenSSL로 만든 인증서는 실제 서비스를 하는데는 무리가 있다. 하지만 개발용으로는 충분히 사용 가능하다.</p>
 <p>아래에 OpenSSL 바이너리형은 윈도우 전용이며, OS 환경에 맞는 버전을 다운로드 받으면 된다.</p>
-<p>OpenSSL 바이너리형: <a href="http://code.google.com/p/openssl-for-windows/downloads/list" target="_blank" rel="external">http://code.google.com/p/openssl-for-windows/downloads/list</a><br>OpenSSL 설치형: <a href="https://www.openssl.org/" target="_blank" rel="external">https://www.openssl.org/</a></p>
+<p>OpenSSL 바이너리형: <a href="http://code.google.com/p/openssl-for-windows/downloads/list" target="_blank" rel="noopener">http://code.google.com/p/openssl-for-windows/downloads/list</a><br>OpenSSL 설치형: <a href="https://www.openssl.org/" target="_blank" rel="noopener">https://www.openssl.org/</a></p>
 <p><strong> OpenSSL 사용법 </strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 다운받은 OpenSSL 압축을 해제 하고 bin 디렉토리에서 명령어를 입력한다.</div><div class="line"> $ openssl-0.9.8k_X64&gt;bin&gt; &#123;&#123;명령어 실행&#125;&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 다운받은 OpenSSL 압축을 해제 하고 bin 디렉토리에서 명령어를 입력한다.</span><br><span class="line"> $ openssl-0.9.8k_X64&gt;bin&gt; &#123;&#123;명령어 실행&#125;&#125;</span><br></pre></td></tr></table></figure>
 <p><strong> 개인키 발급 </strong></p>
 <p>우리가 첫번째 해야할 일은 개인키를 발급하는 것이다. OpenSSL에서 genrsa는 키를 RSA 알고리즘으로 만들겠다는 말이고 1024는 RSA 알고리즘을 1024로 만들겠다는 말이다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ openssl genrsa 1024 &gt; key.pem</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openssl genrsa 1024 &gt; key.pem</span><br></pre></td></tr></table></figure>
 <p>이렇게 만들어진 파일을 열어보면 RSA로 PRIVATE KEY로 만들어진 것을 확인할 수 있다.</p>
 <p><strong> Cert 인증서 파일 생성하기 </strong></p>
 <p>다음은 개인키를 가지고 디지털 인증서를 만들자.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ openssl req -x509 -new -key key.pem &gt; cert.pem</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openssl req -x509 -new -key key.pem &gt; cert.pem</span><br></pre></td></tr></table></figure>
 <p>인증서를 만들기 위해서는 몇가지 기입해야할 정보가 있다. 공인 인증기관에서 만드는 곳에서도 이와 동일한 항목들을 받아서 만들어지는데 OpenSSL로 인증서를 만드는 기관은 바로 자신이므로 항목에 입력을하면 디지털 인증서가 만들어진다. 물론 공인된 인증서는 아니다.</p>
 <h3 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h3><ul>
-<li><a href="http://blog.saltfactory.net/implements-nodejs-based-https-server/" target="_blank" rel="external">http://blog.saltfactory.net/implements-nodejs-based-https-server/</a></li>
+<li><a href="http://blog.saltfactory.net/implements-nodejs-based-https-server/" target="_blank" rel="noopener">http://blog.saltfactory.net/implements-nodejs-based-https-server/</a></li>
 </ul>
 
         </div>
@@ -177,7 +177,7 @@
 
 
 
-    <a data-url="http://woonyzzang.github.com/2017/03/23/https-openssl/" data-id="cjordj85a0024kaf90obqtc7b" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://woonyzzang.github.com/2017/03/23/https-openssl/" data-id="cjovh0c190023oif9772yufon" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -323,7 +323,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/ionic/">ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/CSS3/">CSS3</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/">Etc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Log/">Log</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a><span class="category-list-count">60</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/React-js/">React.js</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Tip/">Tip</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/jQuery/">jQuery</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Markdown/">Markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Moblie/">Moblie</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Ubuntu/">Ubuntu</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/ASP/">ASP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Fiddler/">Fiddler</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Openssl/">Openssl</a><span class="category-list-count">1</span></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/ionic/">ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/CSS3/">CSS3</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/">Etc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Log/">Log</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a><span class="category-list-count">60</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/React-js/">React.js</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Tip/">Tip</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/jQuery/">jQuery</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Markdown/">Markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Moblie/">Moblie</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Ubuntu/">Ubuntu</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/ASP/">ASP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Fiddler/">Fiddler</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Openssl/">Openssl</a><span class="category-list-count">1</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -333,7 +333,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">19</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">19</span></li></ul>
         </div>
     </div>
 
@@ -343,7 +343,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/angular-v1/" style="font-size: 11.11px;">angular v1</a> <a href="/tags/asp/" style="font-size: 12.22px;">asp</a> <a href="/tags/backbone/" style="font-size: 15.56px;">backbone</a> <a href="/tags/css3/" style="font-size: 14.44px;">css3</a> <a href="/tags/d3/" style="font-size: 16.67px;">d3</a> <a href="/tags/es6/" style="font-size: 13.33px;">es6</a> <a href="/tags/fiddler/" style="font-size: 11.11px;">fiddler</a> <a href="/tags/ionic-v1/" style="font-size: 14.44px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/jquery/" style="font-size: 11.11px;">jquery</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/log/" style="font-size: 11.11px;">log</a> <a href="/tags/mac/" style="font-size: 11.11px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 17.78px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/react/" style="font-size: 18.89px;">react</a> <a href="/tags/require/" style="font-size: 11.11px;">require</a> <a href="/tags/server/" style="font-size: 15.56px;">server</a> <a href="/tags/sublimeText/" style="font-size: 12.22px;">sublimeText</a> <a href="/tags/tip/" style="font-size: 12.22px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 13.33px;">ubuntu</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/webpack/" style="font-size: 12.22px;">webpack</a> <a href="/tags/webpack-v2/" style="font-size: 11.11px;">webpack v2</a> <a href="/tags/webstorm/" style="font-size: 15.56px;">webstorm</a> <a href="/tags/windows/" style="font-size: 14.44px;">windows</a>
+            <a href="/tags/angular-v1/" style="font-size: 11.11px;">angular v1</a> <a href="/tags/asp/" style="font-size: 12.22px;">asp</a> <a href="/tags/backbone/" style="font-size: 15.56px;">backbone</a> <a href="/tags/css3/" style="font-size: 15.56px;">css3</a> <a href="/tags/d3/" style="font-size: 16.67px;">d3</a> <a href="/tags/es6/" style="font-size: 13.33px;">es6</a> <a href="/tags/fiddler/" style="font-size: 11.11px;">fiddler</a> <a href="/tags/ionic-v1/" style="font-size: 14.44px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/jquery/" style="font-size: 11.11px;">jquery</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/log/" style="font-size: 11.11px;">log</a> <a href="/tags/mac/" style="font-size: 11.11px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 17.78px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/react/" style="font-size: 18.89px;">react</a> <a href="/tags/require/" style="font-size: 11.11px;">require</a> <a href="/tags/server/" style="font-size: 15.56px;">server</a> <a href="/tags/sublimeText/" style="font-size: 12.22px;">sublimeText</a> <a href="/tags/tip/" style="font-size: 12.22px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 13.33px;">ubuntu</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/webpack/" style="font-size: 12.22px;">webpack</a> <a href="/tags/webpack-v2/" style="font-size: 11.11px;">webpack v2</a> <a href="/tags/webstorm/" style="font-size: 15.56px;">webstorm</a> <a href="/tags/windows/" style="font-size: 14.44px;">windows</a>
         </div>
     </div>
 

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     
     <title>Mobile Web iPhone Hover Click | J Dev</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="mobile" />
+        <meta name="keywords" content="mobile">
     
     <meta name="description" content="iPhone Safari 에서 클릭을 두 번 해야만 동작 이슈먼저 자세한 증상 및 원인과 해결방법은 아래와 같다. 증상 : 클릭시 첫번째 클릭은 동작안함(두번째부터 동작함)원인 : css의 허위클래스 :hover 선언시 문제발생으로 마우스 오버시 클릭하면 이벤트가 동작안함디바이스 : 아이폰 safari 브라우저  왜 두 번 클릭해야 하는 현상이 생기는 것인">
 <meta name="keywords" content="mobile">
@@ -21,12 +21,12 @@
 <meta name="twitter:title" content="Mobile Web iPhone Hover Click">
 <meta name="twitter:description" content="iPhone Safari 에서 클릭을 두 번 해야만 동작 이슈먼저 자세한 증상 및 원인과 해결방법은 아래와 같다. 증상 : 클릭시 첫번째 클릭은 동작안함(두번째부터 동작함)원인 : css의 허위클래스 :hover 선언시 문제발생으로 마우스 오버시 클릭하면 이벤트가 동작안함디바이스 : 아이폰 safari 브라우저  왜 두 번 클릭해야 하는 현상이 생기는 것인">
     
-    <link rel="canonical" href="http://woonyzzang.github.com/2018/04/28/mobile-web-iphone-hover-click/"/>
+    <link rel="canonical" href="http://woonyzzang.github.com/2018/04/28/mobile-web-iphone-hover-click/">
 
     
 
     
-        <link rel="icon" href="/images/favicon.png" />
+        <link rel="icon" href="/images/favicon.png">
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -44,7 +44,7 @@
     
 
 </head>
-
+</html>
 <body>
     <div id="wrap">
         <header id="header">
@@ -66,7 +66,7 @@
                     <div class="nav-container-inner">
                         <ul id="main-nav">
                             
-                                <li class="main-nav-list-item" >
+                                <li class="main-nav-list-item">
                                     <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
@@ -77,14 +77,14 @@
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <input type="text" class="ins-search-input" placeholder="Type something...">
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -129,7 +129,7 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-mobile-web-iphone-hover-click" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-mobile-web-iphone-hover-click" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
@@ -157,11 +157,11 @@
             <h3 id="iPhone-Safari-에서-클릭을-두-번-해야만-동작-이슈"><a href="#iPhone-Safari-에서-클릭을-두-번-해야만-동작-이슈" class="headerlink" title="iPhone Safari 에서 클릭을 두 번 해야만 동작 이슈"></a>iPhone Safari 에서 클릭을 두 번 해야만 동작 이슈</h3><p>먼저 자세한 증상 및 원인과 해결방법은 아래와 같다.</p>
 <p>증상 : 클릭시 첫번째 클릭은 동작안함(두번째부터 동작함)<br>원인 : css의 허위클래스 :hover 선언시 문제발생으로 마우스 오버시 클릭하면 이벤트가 동작안함<br>디바이스 : 아이폰 safari 브라우저</p>
 <p><strong> 왜 두 번 클릭해야 하는 현상이 생기는 것인가? </strong><br>왜 두 번 클릭해야 하나?<br>먼저, hover 효과가 적용된 엘리먼트에서 두 번 클릭이 필요한 이유에 대해 자세히 알아보자.<br>모바일 사파리에서 터치를 시도하면 아래와 같은 이벤트가 순서대로 발생한다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touchstart - touchend - mouseover - mousemove - mousedown - mouseup - click</div></pre></td></tr></table></figure>
-<p>마우스가 존재하진 않지만, 내부적으로는 터치 이벤트 뿐만 아니라 마우스 이벤트도 발생하는 것을 볼 수 있다. 중요한 건, mouseover 시점에서 화면이 변경될 경우, 이벤트가 멈춘다는 것이다.<br>(이벤트 발생 프로세스의 자세한 내용은 <a href="https://developer.apple.com/safari/resources/#documentation/AppleApplications/Reference/SafariWebContent/HandlingEvents/HandlingEvents.html" target="_blank" rel="external">Safari Developer Library의 Handling Events 챕터를 참고</a>.)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touchstart - touchend - mouseover - mousemove - mousedown - mouseup - click</span><br></pre></td></tr></table></figure>
+<p>마우스가 존재하진 않지만, 내부적으로는 터치 이벤트 뿐만 아니라 마우스 이벤트도 발생하는 것을 볼 수 있다. 중요한 건, mouseover 시점에서 화면이 변경될 경우, 이벤트가 멈춘다는 것이다.<br>(이벤트 발생 프로세스의 자세한 내용은 <a href="https://developer.apple.com/safari/resources/#documentation/AppleApplications/Reference/SafariWebContent/HandlingEvents/HandlingEvents.html" target="_blank" rel="noopener">Safari Developer Library의 Handling Events 챕터를 참고</a>.)</p>
 <p>위 문서에는 <code>화면이 변경(if the contents of page changes)</code>되는 것에 대한 명확한 정의는 없다.<br>테스트 해본 결과, ‘화면이 변경’된다는 것은 정확하게는 ‘레이아웃이 변경(reflow)’되는 것에 가까운 것 같다.<br>백그라운드가 변경된다거나, 레이아웃에 영향을 끼치지 않는 정도의 margin/padding이 변경되는 경우(repaint)에는 이벤트가 종료되지 않는다.</p>
 <p>따라서, 두 번 클릭해야 실행되는 문제를 해결하기 위해서는, 터치 인터페이스에서는 mouseover 이벤트가 발생했을 때 화면 변경이 되지 않도록 해야 한다.</p>
-<p><strong> 마우스 이벤트를 터치 인터페이스로 바꾸면 어떨까? </strong><br>마우스 이벤트와 상응하는 이벤트를 터치 이벤트와 매칭시켜주면 어떨까?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mouseover -&gt; touchstart</div><div class="line">mousemove -&gt; touchmove</div><div class="line">mousedown -&gt; touchend</div><div class="line">mouseup -&gt; ?  </div><div class="line">mouseout -&gt; ?</div></pre></td></tr></table></figure></p>
+<p><strong> 마우스 이벤트를 터치 인터페이스로 바꾸면 어떨까? </strong><br>마우스 이벤트와 상응하는 이벤트를 터치 이벤트와 매칭시켜주면 어떨까?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mouseover -&gt; touchstart</span><br><span class="line">mousemove -&gt; touchmove</span><br><span class="line">mousedown -&gt; touchend</span><br><span class="line">mouseup -&gt; ?  </span><br><span class="line">mouseout -&gt; ?</span><br></pre></td></tr></table></figure></p>
 <p>터치 이벤트와 정확하게 매칭되지도 않을 뿐더러, 몇몇 모듈에 테스트해본 결과 기대했던 대로 동작하지도 않았다.</p>
 <p><strong> 터치 디바이스일 경우엔, mouse 이벤트를 모두 무시하면 어떨까? </strong><br>현재 서비스에서는 모든 이벤트를 특정 라이브러리를 통해서 바인딩하고 있다. 이벤트를 바인딩하는 해당 메서드를 오버라이드해서, 터치 디바이스에서 <code>mouse</code>를 포함한 이벤트를 바인딩하려는 경우 모두 무시하면 어떨까?<br>대부분의 문제가 해결됐다. 다만, click이 아닌 mousedown을 사용하는 몇몇 컴포넌트(drag/drop 같은)는 전혀 작동하질 않는다.</p>
 <p>일단은 해결책 중의 하나가 될 수 있겠지만, 의도하지 않은 부분까지도 전혀 작동되지 않는 건 문제가 있다.<br>화이트 리스트 방식의 적용이 필요하다.</p>
@@ -185,12 +185,12 @@
 <li>css로 hover가 적용된 엘리먼트에 해당 클래스를 추가한다.</li>
 </ul>
 <p><strong> 해결방법2 </strong><br>해결방법은 간단하다. 모바일 환경인 경우 css의 <code>:hover</code>가 동작하지 않도록 설정하는 방법이다. 이 경우 미디어 쿼리를 사용할 수 있을 것이다. 몇 가지 해결방법들에 대하여 알아보자.</p>
-<p><strong> 1. 모바일인 경우 touch와 같은 클래스 추가하여 해결하기 </strong><br>hover 이벤트를 막는 방법으로 모바일 환경인 경우 이를 인지할 수 있는 클래스를 선언하여 <code>:hover</code>인 경우 아무 동작이 없도록 하는 방법이 있다. 예를들어 모바일 환경이면 스크립트를 사용하여 body 태그에 touch 라는 클래스를 추가할 수도 있다.<br>아니면 미디어쿼리(media-query)를 사용해서 모바일 환경에서는 마우스 오버 스타일을 동작하지 않도록 코드를 추가한다.<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> only screen and (min-width: <span class="number">768px</span>) &#123;</div><div class="line">    <span class="selector-tag">button</span> &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><strong> 2. :hover는 반드시 mobile이 아닌 경우에만 동작하도록 하기 </strong><br>이 역시 데스크탑에서만 가능한 미디어쿼리를 적용할 수 있다. 마우스 오버의 스타일 정의는 오직 모바일이 아닌 경우만 가능하도록 한다.<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> only screen and (max-width: <span class="number">768px</span>) &#123;</div><div class="line">    <span class="selector-tag">button</span><span class="selector-pseudo">:hover</span> &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong> 1. 모바일인 경우 touch와 같은 클래스 추가하여 해결하기 </strong><br>hover 이벤트를 막는 방법으로 모바일 환경인 경우 이를 인지할 수 있는 클래스를 선언하여 <code>:hover</code>인 경우 아무 동작이 없도록 하는 방법이 있다. 예를들어 모바일 환경이면 스크립트를 사용하여 body 태그에 touch 라는 클래스를 추가할 수도 있다.<br>아니면 미디어쿼리(media-query)를 사용해서 모바일 환경에서는 마우스 오버 스타일을 동작하지 않도록 코드를 추가한다.<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> only screen and (min-width: <span class="number">768px</span>) &#123;</span><br><span class="line">    <span class="selector-tag">button</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong> 2. :hover는 반드시 mobile이 아닌 경우에만 동작하도록 하기 </strong><br>이 역시 데스크탑에서만 가능한 미디어쿼리를 적용할 수 있다. 마우스 오버의 스타일 정의는 오직 모바일이 아닌 경우만 가능하도록 한다.<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> only screen and (max-width: <span class="number">768px</span>) &#123;</span><br><span class="line">    <span class="selector-tag">button</span><span class="selector-pseudo">:hover</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong> 3. 모바일 전용 페이지인 경우 모든 hover 제거하기 </strong><br>만약 반응형이 아닌 모바일 페이지라면 <code>:hover</code>를 사용할 필요가 없을 것이다. 이런 이유로 모바일 전용 페이지의 마우스 오버 스타일코드를 제거한다.</p>
 <h3 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h3><ul>
-<li><a href="https://webisfree.com/2017-11-02/safari-mobile%EC%97%90%EC%84%9C-%ED%81%B4%EB%A6%AD%EC%9D%84-%EB%91%90-%EB%B2%88-%ED%95%B4%EC%95%BC%EB%A7%8C-%EB%8F%99%EC%9E%91%ED%95%98%EB%8A%94-%EB%AC%B8%EC%A0%9C" target="_blank" rel="external">https://webisfree.com/2017-11-02/safari-mobile%EC%97%90%EC%84%9C-%ED%81%B4%EB%A6%AD%EC%9D%84-%EB%91%90-%EB%B2%88-%ED%95%B4%EC%95%BC%EB%A7%8C-%EB%8F%99%EC%9E%91%ED%95%98%EB%8A%94-%EB%AC%B8%EC%A0%9C</a></li>
-<li><a href="http://ohgyun.com/350" target="_blank" rel="external">http://ohgyun.com/350</a></li>
+<li><a href="https://webisfree.com/2017-11-02/safari-mobile%EC%97%90%EC%84%9C-%ED%81%B4%EB%A6%AD%EC%9D%84-%EB%91%90-%EB%B2%88-%ED%95%B4%EC%95%BC%EB%A7%8C-%EB%8F%99%EC%9E%91%ED%95%98%EB%8A%94-%EB%AC%B8%EC%A0%9C" target="_blank" rel="noopener">https://webisfree.com/2017-11-02/safari-mobile%EC%97%90%EC%84%9C-%ED%81%B4%EB%A6%AD%EC%9D%84-%EB%91%90-%EB%B2%88-%ED%95%B4%EC%95%BC%EB%A7%8C-%EB%8F%99%EC%9E%91%ED%95%98%EB%8A%94-%EB%AC%B8%EC%A0%9C</a></li>
+<li><a href="http://ohgyun.com/350" target="_blank" rel="noopener">http://ohgyun.com/350</a></li>
 </ul>
 
         </div>
@@ -199,7 +199,7 @@
 
 
 
-    <a data-url="http://woonyzzang.github.com/2018/04/28/mobile-web-iphone-hover-click/" data-id="cjordj86n004rkaf9c78jd8fb" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://woonyzzang.github.com/2018/04/28/mobile-web-iphone-hover-click/" data-id="cjovh0c6c00ayoif9qjqyvr2p" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -318,11 +318,11 @@
         
 <nav id="article-nav">
     
-        <a href="/2018/11/22/css3-skeleton-screen/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2018/11/22/css3-custom-properties/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
-            CSS3 Skeleton Screen
+            CSS3 Custom Properties
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
@@ -345,7 +345,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/ionic/">ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/CSS3/">CSS3</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/">Etc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Log/">Log</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a><span class="category-list-count">60</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/React-js/">React.js</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Tip/">Tip</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/jQuery/">jQuery</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Markdown/">Markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Moblie/">Moblie</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Ubuntu/">Ubuntu</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/ASP/">ASP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Fiddler/">Fiddler</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Openssl/">Openssl</a><span class="category-list-count">1</span></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/ionic/">ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/CSS3/">CSS3</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/">Etc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Log/">Log</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a><span class="category-list-count">60</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/React-js/">React.js</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Tip/">Tip</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/jQuery/">jQuery</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Markdown/">Markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Moblie/">Moblie</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Ubuntu/">Ubuntu</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/ASP/">ASP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Fiddler/">Fiddler</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Openssl/">Openssl</a><span class="category-list-count">1</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -355,7 +355,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">19</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">19</span></li></ul>
         </div>
     </div>
 
@@ -365,7 +365,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/angular-v1/" style="font-size: 11.11px;">angular v1</a> <a href="/tags/asp/" style="font-size: 12.22px;">asp</a> <a href="/tags/backbone/" style="font-size: 15.56px;">backbone</a> <a href="/tags/css3/" style="font-size: 14.44px;">css3</a> <a href="/tags/d3/" style="font-size: 16.67px;">d3</a> <a href="/tags/es6/" style="font-size: 13.33px;">es6</a> <a href="/tags/fiddler/" style="font-size: 11.11px;">fiddler</a> <a href="/tags/ionic-v1/" style="font-size: 14.44px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/jquery/" style="font-size: 11.11px;">jquery</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/log/" style="font-size: 11.11px;">log</a> <a href="/tags/mac/" style="font-size: 11.11px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 17.78px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/react/" style="font-size: 18.89px;">react</a> <a href="/tags/require/" style="font-size: 11.11px;">require</a> <a href="/tags/server/" style="font-size: 15.56px;">server</a> <a href="/tags/sublimeText/" style="font-size: 12.22px;">sublimeText</a> <a href="/tags/tip/" style="font-size: 12.22px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 13.33px;">ubuntu</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/webpack/" style="font-size: 12.22px;">webpack</a> <a href="/tags/webpack-v2/" style="font-size: 11.11px;">webpack v2</a> <a href="/tags/webstorm/" style="font-size: 15.56px;">webstorm</a> <a href="/tags/windows/" style="font-size: 14.44px;">windows</a>
+            <a href="/tags/angular-v1/" style="font-size: 11.11px;">angular v1</a> <a href="/tags/asp/" style="font-size: 12.22px;">asp</a> <a href="/tags/backbone/" style="font-size: 15.56px;">backbone</a> <a href="/tags/css3/" style="font-size: 15.56px;">css3</a> <a href="/tags/d3/" style="font-size: 16.67px;">d3</a> <a href="/tags/es6/" style="font-size: 13.33px;">es6</a> <a href="/tags/fiddler/" style="font-size: 11.11px;">fiddler</a> <a href="/tags/ionic-v1/" style="font-size: 14.44px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/jquery/" style="font-size: 11.11px;">jquery</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/log/" style="font-size: 11.11px;">log</a> <a href="/tags/mac/" style="font-size: 11.11px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 17.78px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/react/" style="font-size: 18.89px;">react</a> <a href="/tags/require/" style="font-size: 11.11px;">require</a> <a href="/tags/server/" style="font-size: 15.56px;">server</a> <a href="/tags/sublimeText/" style="font-size: 12.22px;">sublimeText</a> <a href="/tags/tip/" style="font-size: 12.22px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 13.33px;">ubuntu</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/webpack/" style="font-size: 12.22px;">webpack</a> <a href="/tags/webpack-v2/" style="font-size: 11.11px;">webpack v2</a> <a href="/tags/webstorm/" style="font-size: 15.56px;">webstorm</a> <a href="/tags/windows/" style="font-size: 14.44px;">windows</a>
         </div>
     </div>
 

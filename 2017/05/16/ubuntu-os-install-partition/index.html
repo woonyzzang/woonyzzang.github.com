@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     
     <title>Ubuntu OS Install Partition | J Dev</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="ubuntu" />
+        <meta name="keywords" content="ubuntu">
     
     <meta name="description" content="효과적인 우분투의 파티션 구성우분투를 처음 설치하는 분들은 이런저런 고민이 많을 것이다. 처음보는 생소한 단어나 용어들의 어려움이 있을 것이다. 그 중 대표적인 것 하나가 바로 우분투 설치시 파티션의 구성 및 설정들의 대한 부분이다.이번엔 우분투에서 효과적으로 파티션을 구성하는 방법에 대해 알아보도록 하겠다.  한 개의 하드디스크에 우분투만 사용할 경우 이">
 <meta name="keywords" content="ubuntu">
@@ -23,12 +23,12 @@
 <meta name="twitter:description" content="효과적인 우분투의 파티션 구성우분투를 처음 설치하는 분들은 이런저런 고민이 많을 것이다. 처음보는 생소한 단어나 용어들의 어려움이 있을 것이다. 그 중 대표적인 것 하나가 바로 우분투 설치시 파티션의 구성 및 설정들의 대한 부분이다.이번엔 우분투에서 효과적으로 파티션을 구성하는 방법에 대해 알아보도록 하겠다.  한 개의 하드디스크에 우분투만 사용할 경우 이">
 <meta name="twitter:image" content="http://woonyzzang.github.com/2017/05/16/ubuntu-os-install-partition/ubuntu-os-partition1.png">
     
-    <link rel="canonical" href="http://woonyzzang.github.com/2017/05/16/ubuntu-os-install-partition/"/>
+    <link rel="canonical" href="http://woonyzzang.github.com/2017/05/16/ubuntu-os-install-partition/">
 
     
 
     
-        <link rel="icon" href="/images/favicon.png" />
+        <link rel="icon" href="/images/favicon.png">
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -46,7 +46,7 @@
     
 
 </head>
-
+</html>
 <body>
     <div id="wrap">
         <header id="header">
@@ -68,7 +68,7 @@
                     <div class="nav-container-inner">
                         <ul id="main-nav">
                             
-                                <li class="main-nav-list-item" >
+                                <li class="main-nav-list-item">
                                     <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
@@ -79,14 +79,14 @@
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <input type="text" class="ins-search-input" placeholder="Type something...">
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -131,7 +131,7 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-ubuntu-os-install-partition" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-ubuntu-os-install-partition" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
@@ -167,10 +167,10 @@
 <p>이런 경우에는 파티션을 ‘NTFS(윈도우 설치), /(리눅스 설치), 스왑 영역, FAT32(이후 NTFS로 변경 후 백업 공간)’으로 만드는 것을 추천한다.<br>‘/home’파티션을 따로 만들지 않는 것은 윈도우와 공유 할 파티션이 필요하기 때문에 이것을 NTFS파티션으로 대체하는 것이다.</p>
 <p>용량은 사용하는 패턴에 따라 다르겠지만, ‘NTFS(윈도우 설치) = 50GB’, ‘/ = 30GB’, ‘스왑 영역 = 2GB’, ‘FAT32 = 48GB’정도로 잡는 것을 권장한다.</p>
 <p>‘/‘파티션의 용량을 위의 경우보다 크게 잡은 까닭은 ‘/home’파티션을 따로 만들지 않을 경우 저절로 ‘/‘파티션 밑에 생성되기 때문이다. 적어도 몇가지 프로그램을 설치하고 여유있게 사용하기 위해선 30GB정도는 필요하다.<br>‘FAT32’는 이후에 NTFS로 포맷하여 두가지 OS에서 모두 이용할 수 있도록 한다.<br><img src="./ubuntu-os-partition2.png" alt="한 개의 하드디스크에 우분투와 윈도우를 사용할 경우의 파티션 분할" title="우분투 OS 파티션2"></p>
-<p><strong> 두 개의 하드디스크에 우분투와 윈도우를 사용할 경우 </strong><br>우선 한가지 알아둬야 할 점은, 우분투에서는 첫번째 하드디스크를 ‘sda’, 두번째 하드디스크를 ‘sdb’라고 인식한다. 그리고 뒤에 번호가 붙으면서 해당 파티션의 이름이 정해지는 것이다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 멀티 하드디스크 예)</div><div class="line"></div><div class="line">첫번째 하드디스크(320GB): &apos;/(100GB), 스왑 영역(4GB), 저장공간1(EXT4, 216GB)&apos; // 우분투</div><div class="line">두번째 하드디스크(500GB): &apos;시스템 예약(105MB), NTFS(윈도우 설치, 200GB), 저장공간2(NTFS, 200GB), 저장공간3(NTFS, 100GB)&apos; // 윈도우</div></pre></td></tr></table></figure></p>
+<p><strong> 두 개의 하드디스크에 우분투와 윈도우를 사용할 경우 </strong><br>우선 한가지 알아둬야 할 점은, 우분투에서는 첫번째 하드디스크를 ‘sda’, 두번째 하드디스크를 ‘sdb’라고 인식한다. 그리고 뒤에 번호가 붙으면서 해당 파티션의 이름이 정해지는 것이다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 멀티 하드디스크 예)</span><br><span class="line"></span><br><span class="line">첫번째 하드디스크(320GB): &apos;/(100GB), 스왑 영역(4GB), 저장공간1(EXT4, 216GB)&apos; // 우분투</span><br><span class="line">두번째 하드디스크(500GB): &apos;시스템 예약(105MB), NTFS(윈도우 설치, 200GB), 저장공간2(NTFS, 200GB), 저장공간3(NTFS, 100GB)&apos; // 윈도우</span><br></pre></td></tr></table></figure></p>
 <p>우분투가 sda1(첫번째 하드디스크의 첫번째 파티션)에 설치되는 바람에 위에 언급했듯이 부트로더 문제로 윈도 설치가 제대로 되지 않는 현상이 생긴 경우라면 바로 첫번째 하드디스크를 제거한 후 두번째 하드디스크에 윈도를 설치한다. 즉, 본체에서 첫번째 하드디스크를 제거한 후 두번째 하드디스크밖에 없다고 인식한 상태에서 윈도를 설치하는 것이다.<br>이 경우 윈도 설치가 끝나고 첫번째 하드디스크를 다시 연결하면 GRUB가 저절로 윈도 파티션을 인식해서 이용할 수 있다. GRUB나 부트로더에 대한 접근이 어려운 사용자들에게 좋은 방법이 아닐까 생각된다.</p>
 <p>두 개의 하드디스크를 사용하는 분들은 파티션 나누는데 워낙 자유롭기 때문에 별도의 예를 생략하고 위의 두 경우를 예로 설치하는 것이 좋겠다.</p>
-<h3 id="우분투-파티션-구성후-OS-설치하는-방법"><a href="#우분투-파티션-구성후-OS-설치하는-방법" class="headerlink" title="우분투 파티션 구성후 OS 설치하는 방법"></a>우분투 파티션 구성후 OS 설치하는 방법</h3><p>모든 경우에 맞는 파티션을 나누는 방법을 설명하기엔 다소 한계가 있으니 ‘한 개의 하드디스크에 우분투만 사용할 경우’를 예를 들어 설명한다.<br><a href="http://woonyzzang.github.io/2017/05/16/ubuntu-os-install/" target="_blank" rel="external">우분투 OS 설치 참조</a></p>
+<h3 id="우분투-파티션-구성후-OS-설치하는-방법"><a href="#우분투-파티션-구성후-OS-설치하는-방법" class="headerlink" title="우분투 파티션 구성후 OS 설치하는 방법"></a>우분투 파티션 구성후 OS 설치하는 방법</h3><p>모든 경우에 맞는 파티션을 나누는 방법을 설명하기엔 다소 한계가 있으니 ‘한 개의 하드디스크에 우분투만 사용할 경우’를 예를 들어 설명한다.<br><a href="http://woonyzzang.github.io/2017/05/16/ubuntu-os-install/" target="_blank" rel="noopener">우분투 OS 설치 참조</a></p>
 <p><img src="./ubuntu-os-install-partition1.png" alt="우분투 OS 파티션 분할 설치 과정1" title="우분투 OS 파티션 분할 설치 과정1"><br>우선 우분투 설치 진행 도중 <code>기타</code>를 선택한다.</p>
 <p><img src="./ubuntu-os-install-partition2.png" alt="우분투 OS 파티션 분할 설치 과정2" title="우분투 OS 파티션 분할 설치 과정2"><br>아무것도 설치되지 않은 하드디스크의 경우 위와 같이 ‘/dev/sda’만 표시된다.<br>‘새 파티션 테이블’을 클릭한다.</p>
 <p><img src="./ubuntu-os-install-partition3.png" alt="우분투 OS 파티션 분할 설치 과정3" title="우분투 OS 파티션 분할 설치 과정3"><br>‘계속’을 클릭한다.</p>
@@ -180,7 +180,7 @@
 <p><img src="./ubuntu-os-install-partition7.png" alt="우분투 OS 파티션 분할 설치 과정7" title="우분투 OS 파티션 분할 설치 과정7"><br>다시 ‘추가’를 클릭하고 ‘논리 파티션’, 남은 용량을 모두 정한 뒤, 용도를 ‘EXT4 저널링 파일 시스템’, 마운트 위치를 ‘/home’으로 선택하고 확인을 누른다.</p>
 <p><img src="./ubuntu-os-install-partition8.png" alt="우분투 OS 파티션 분할 설치 과정8" title="우분투 OS 파티션 분할 설치 과정8"><br>이제 위와 같이 설정했다면 위와 같이 표시되는데 ‘지금 설치’를 클릭해서 OS 설치를 진행하면 된다.</p>
 <h3 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h3><ul>
-<li><a href="http://deviantcj.tistory.com/434" target="_blank" rel="external">http://deviantcj.tistory.com/434</a></li>
+<li><a href="http://deviantcj.tistory.com/434" target="_blank" rel="noopener">http://deviantcj.tistory.com/434</a></li>
 </ul>
 
         </div>
@@ -189,7 +189,7 @@
 
 
 
-    <a data-url="http://woonyzzang.github.com/2017/05/16/ubuntu-os-install-partition/" data-id="cjordj87f006fkaf9sfdkx2rz" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://woonyzzang.github.com/2017/05/16/ubuntu-os-install-partition/" data-id="cjovh0c7d00ctoif9s9qe67ol" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -335,7 +335,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/ionic/">ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/CSS3/">CSS3</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/">Etc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Log/">Log</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a><span class="category-list-count">60</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/React-js/">React.js</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Tip/">Tip</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/jQuery/">jQuery</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Markdown/">Markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Moblie/">Moblie</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Ubuntu/">Ubuntu</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/ASP/">ASP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Fiddler/">Fiddler</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Openssl/">Openssl</a><span class="category-list-count">1</span></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/ionic/">ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/CSS3/">CSS3</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/">Etc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Etc/Log/">Log</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a><span class="category-list-count">60</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Javascript-js/">Javascript.js</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/React-js/">React.js</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/Tip/">Tip</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/jQuery/">jQuery</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Markdown/">Markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Moblie/">Moblie</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Ubuntu/">Ubuntu</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/ASP/">ASP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Fiddler/">Fiddler</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Openssl/">Openssl</a><span class="category-list-count">1</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -345,7 +345,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">19</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">19</span></li></ul>
         </div>
     </div>
 
@@ -355,7 +355,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/angular-v1/" style="font-size: 11.11px;">angular v1</a> <a href="/tags/asp/" style="font-size: 12.22px;">asp</a> <a href="/tags/backbone/" style="font-size: 15.56px;">backbone</a> <a href="/tags/css3/" style="font-size: 14.44px;">css3</a> <a href="/tags/d3/" style="font-size: 16.67px;">d3</a> <a href="/tags/es6/" style="font-size: 13.33px;">es6</a> <a href="/tags/fiddler/" style="font-size: 11.11px;">fiddler</a> <a href="/tags/ionic-v1/" style="font-size: 14.44px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/jquery/" style="font-size: 11.11px;">jquery</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/log/" style="font-size: 11.11px;">log</a> <a href="/tags/mac/" style="font-size: 11.11px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 17.78px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/react/" style="font-size: 18.89px;">react</a> <a href="/tags/require/" style="font-size: 11.11px;">require</a> <a href="/tags/server/" style="font-size: 15.56px;">server</a> <a href="/tags/sublimeText/" style="font-size: 12.22px;">sublimeText</a> <a href="/tags/tip/" style="font-size: 12.22px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 13.33px;">ubuntu</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/webpack/" style="font-size: 12.22px;">webpack</a> <a href="/tags/webpack-v2/" style="font-size: 11.11px;">webpack v2</a> <a href="/tags/webstorm/" style="font-size: 15.56px;">webstorm</a> <a href="/tags/windows/" style="font-size: 14.44px;">windows</a>
+            <a href="/tags/angular-v1/" style="font-size: 11.11px;">angular v1</a> <a href="/tags/asp/" style="font-size: 12.22px;">asp</a> <a href="/tags/backbone/" style="font-size: 15.56px;">backbone</a> <a href="/tags/css3/" style="font-size: 15.56px;">css3</a> <a href="/tags/d3/" style="font-size: 16.67px;">d3</a> <a href="/tags/es6/" style="font-size: 13.33px;">es6</a> <a href="/tags/fiddler/" style="font-size: 11.11px;">fiddler</a> <a href="/tags/ionic-v1/" style="font-size: 14.44px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/jquery/" style="font-size: 11.11px;">jquery</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/log/" style="font-size: 11.11px;">log</a> <a href="/tags/mac/" style="font-size: 11.11px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 17.78px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/react/" style="font-size: 18.89px;">react</a> <a href="/tags/require/" style="font-size: 11.11px;">require</a> <a href="/tags/server/" style="font-size: 15.56px;">server</a> <a href="/tags/sublimeText/" style="font-size: 12.22px;">sublimeText</a> <a href="/tags/tip/" style="font-size: 12.22px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 13.33px;">ubuntu</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/webpack/" style="font-size: 12.22px;">webpack</a> <a href="/tags/webpack-v2/" style="font-size: 11.11px;">webpack v2</a> <a href="/tags/webstorm/" style="font-size: 15.56px;">webstorm</a> <a href="/tags/windows/" style="font-size: 14.44px;">windows</a>
         </div>
     </div>
 
