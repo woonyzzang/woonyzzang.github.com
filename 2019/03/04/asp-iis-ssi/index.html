@@ -8,19 +8,19 @@
     
         <meta name="keywords" content="server,asp">
     
-    <meta name="description" content="IIS7 에서 SSI(server side include) 사용하기SSI란? Server Side Include의 약어로, 웹서버에서 직접 제공하는 서버사이드 스크립트 언어다. IIS 7 기본 셋팅에서는 include 를 해도 인클루드 기능이 적용이 되지 않는다.. 1&amp;lt;!--#include file=&quot;/inc/xxx.xxx&quot;--&amp;gt; IIS7 에서">
+    <meta name="description" content="IIS7 에서 SSI(server side include) 사용하기SSI란? Server Side Include의 약어로, 웹서버에서 직접 제공하는 서버사이드 스크립트 언어다. IIS 7 기본 셋팅에서는 include 를 해도 인클루드 기능이 적용이 되지 않는다. 1&amp;lt;!--#include file=&quot;/inc/xxx.xxx&quot;--&amp;gt; IIS7 에서 S">
 <meta name="keywords" content="server,asp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ASP IIS Server Side Include">
 <meta property="og:url" content="http://woonyzzang.github.com/2019/03/04/asp-iis-ssi/index.html">
 <meta property="og:site_name" content="J Dev">
-<meta property="og:description" content="IIS7 에서 SSI(server side include) 사용하기SSI란? Server Side Include의 약어로, 웹서버에서 직접 제공하는 서버사이드 스크립트 언어다. IIS 7 기본 셋팅에서는 include 를 해도 인클루드 기능이 적용이 되지 않는다.. 1&amp;lt;!--#include file=&quot;/inc/xxx.xxx&quot;--&amp;gt; IIS7 에서">
+<meta property="og:description" content="IIS7 에서 SSI(server side include) 사용하기SSI란? Server Side Include의 약어로, 웹서버에서 직접 제공하는 서버사이드 스크립트 언어다. IIS 7 기본 셋팅에서는 include 를 해도 인클루드 기능이 적용이 되지 않는다. 1&amp;lt;!--#include file=&quot;/inc/xxx.xxx&quot;--&amp;gt; IIS7 에서 S">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://woonyzzang.github.com/2019/03/04/asp-iis-ssi/asp-iis-ssi_1.png">
-<meta property="og:updated_time" content="2019-03-04T14:17:48.649Z">
+<meta property="og:updated_time" content="2019-03-04T14:20:59.357Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ASP IIS Server Side Include">
-<meta name="twitter:description" content="IIS7 에서 SSI(server side include) 사용하기SSI란? Server Side Include의 약어로, 웹서버에서 직접 제공하는 서버사이드 스크립트 언어다. IIS 7 기본 셋팅에서는 include 를 해도 인클루드 기능이 적용이 되지 않는다.. 1&amp;lt;!--#include file=&quot;/inc/xxx.xxx&quot;--&amp;gt; IIS7 에서">
+<meta name="twitter:description" content="IIS7 에서 SSI(server side include) 사용하기SSI란? Server Side Include의 약어로, 웹서버에서 직접 제공하는 서버사이드 스크립트 언어다. IIS 7 기본 셋팅에서는 include 를 해도 인클루드 기능이 적용이 되지 않는다. 1&amp;lt;!--#include file=&quot;/inc/xxx.xxx&quot;--&amp;gt; IIS7 에서 S">
 <meta name="twitter:image" content="http://woonyzzang.github.com/2019/03/04/asp-iis-ssi/asp-iis-ssi_1.png">
     
     <link rel="canonical" href="http://woonyzzang.github.com/2019/03/04/asp-iis-ssi/">
@@ -157,11 +157,11 @@
         
         <div class="article-entry" itemprop="articleBody">
             <h3 id="IIS7-에서-SSI-server-side-include-사용하기"><a href="#IIS7-에서-SSI-server-side-include-사용하기" class="headerlink" title="IIS7 에서 SSI(server side include) 사용하기"></a>IIS7 에서 SSI(server side include) 사용하기</h3><p>SSI란? Server Side Include의 약어로, 웹서버에서 직접 제공하는 서버사이드 스크립트 언어다.</p>
-<p>IIS 7 기본 셋팅에서는 include 를 해도 인클루드 기능이 적용이 되지 않는다..</p>
+<p>IIS 7 기본 셋팅에서는 include 를 해도 인클루드 기능이 적용이 되지 않는다.</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--#include file="/inc/xxx.xxx"--&gt;</span></span><br></pre></td></tr></table></figure>
 <p>IIS7 에서 SSI를 적용하려면 다음과 같다.</p>
 <ol>
-<li>IIS 추가 역할을 설치해야 한다.</li>
+<li>IIS 역할 서비스 추가 &gt; 응용 프로그램 개발 &gt; SSI(Server Side Include)의 기능을 설치해야 한다.</li>
 </ol>
 <p><img src="./asp-iis-ssi_1.png" alt="IIS SSI 기능 활성화" title="IIS SSI 기능 활성화"></p>
 <ol start="2">
