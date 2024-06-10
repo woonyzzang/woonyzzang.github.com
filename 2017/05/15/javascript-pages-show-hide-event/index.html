@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Javascript PagesShow PagesHide Event | J Dev</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="mobile,js">
+    
+    <meta name="description" content="JavaScript pageshow 이벤트, pagehide 이벤트네트워크 연결 속도가 느리고 연결 비용이 높은 모바일 환경에서는 pageshow 이벤트와 pagehide 이벤트가 중요하다. PC와는 다르게 모바일 브라우저에서는 이 이벤트가 페이지 캐시를 모두 지원하기 때문에 특별히 활용도가 높다. pageshow 이벤트와 pagehide 이벤트는 wind">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript PagesShow PagesHide Event">
+<meta property="og:url" content="https://woonyzzang.github.com/2017/05/15/javascript-pages-show-hide-event/index.html">
+<meta property="og:site_name" content="J Dev">
+<meta property="og:description" content="JavaScript pageshow 이벤트, pagehide 이벤트네트워크 연결 속도가 느리고 연결 비용이 높은 모바일 환경에서는 pageshow 이벤트와 pagehide 이벤트가 중요하다. PC와는 다르게 모바일 브라우저에서는 이 이벤트가 페이지 캐시를 모두 지원하기 때문에 특별히 활용도가 높다. pageshow 이벤트와 pagehide 이벤트는 wind">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2017-05-15T11:36:45.000Z">
+<meta property="article:modified_time" content="2024-06-10T05:06:39.246Z">
+<meta property="article:author" content="woonyzzang">
+<meta property="article:tag" content="mobile">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+    
+
+    
+    <link rel="canonical" href="https://woonyzzang.github.com/2017/05/15/javascript-pages-show-hide-event/"/>
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.png">
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/rss2.xml" title="J Dev" type="application/rss+xml">
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">홈</a>
+                                </li>
+                            
+                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/">App</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/Hybrid/">Hybrid</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/IOS/">IOS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/Ionic/">Ionic</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/">Backend</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Net-Core/">.Net Core</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Node/">Node</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Nuxt/">Nuxt</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/PHP/">PHP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Python/">Python</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Wasm/">Wasm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Zendesk/">Zendesk</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/">Editor</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/SublimeText/">SublimeText</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/VSCode/">VSCode</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Webstorm/">Webstorm</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/">Frontend</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/CSS/">CSS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/HTML/">HTML</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Library/">Library</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Module/">Module</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/SPA/">SPA</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/">OS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Mac/">Mac</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Windows/">Windows</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/AWS/">AWS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Azure/">Azure</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Docker/">Docker</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Gitlab/">Gitlab</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/IIS/">IIS</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/">Tools</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/APMSETUP/">APMSETUP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Fiddler/">Fiddler</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Git/">Git</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/OpenSSl/">OpenSSl</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Teams/">Teams</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/VMware/">VMware</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/">Web</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Architecture/">Architecture</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Descktop/">Descktop</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Log/">Log</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Mobile/">Mobile</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Others/">Others</a></li></ul></li></ul>
+                                
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="찾고자 하는 포스트를 검색하세요." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: '페이지',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Frontend/">Frontend</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Frontend/Javascript/">Javascript</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-javascript-pages-show-hide-event" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Javascript PagesShow PagesHide Event
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2017/05/15/javascript-pages-show-hide-event/" class="article-date">
+       <time datetime="2017-05-15T11:36:45.000Z" itemprop="datePublished">2017-05-15</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2017/05/15/javascript-pages-show-hide-event/" class="article-date">
+     <time datetime="2024-06-10T05:06:39.246Z" itemprop="dateModified">2024-06-10</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/js/" rel="tag">js</a>, <a class="tag-link-link" href="/tags/mobile/" rel="tag">mobile</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <h3 id="JavaScript-pageshow-이벤트-pagehide-이벤트"><a href="#JavaScript-pageshow-이벤트-pagehide-이벤트" class="headerlink" title="JavaScript pageshow 이벤트, pagehide 이벤트"></a>JavaScript pageshow 이벤트, pagehide 이벤트</h3><p>네트워크 연결 속도가 느리고 연결 비용이 높은 모바일 환경에서는 pageshow 이벤트와 pagehide 이벤트가 중요하다. PC와는 다르게 모바일 브라우저에서는 이 이벤트가 페이지 캐시를 모두 지원하기 때문에 특별히 활용도가 높다.</p>
+<p>pageshow 이벤트와 pagehide 이벤트는 window 객체의 이벤트로서 lod 이벤트, unload 이벤트와 유사하게 동작하며, iOS 4.0 이상의 사파리와 안드로이드 2.2 이상의 기본 브라우저에서만 발생한다.</p>
+<p><strong>pageshow 이벤트</strong></p>
+<p>pageshow 이벤트는 load 이벤트 다음에 발생하는 이벤트로, 페이지가 열릴 때 마다 항상 발생한다. 단 페이지가 캐싱됐을 때는 load 이벤트가 발생하지 않고 pageshow 이벤트만 발생한다. 페이지가 캐싱됐을 때는 pageshow 이벤트의 persisted 속성값이 true로 반환된다. 반명 페이지가 캐싱되지 않았을 때는 load 이벤트가 발생하고 persisted 속성값이 false로 반환된다.</p>
+<p><strong>페이지 캐싱</strong></p>
+<p>브라우저가 모바일 기기의 브라우저 세션에 대해 자바스크립트를 포함한 전체 웹 페이지를 메모리에 캐싱하는 것을 말한다. 페이지 캐싱을 사용하면 브라우저의 뒤로 이동 버튼과 앞으로 이동 버튼으로 페이지를 이동할때 페이지를 다시 로딩하지 않고 캐싱된 페이지를 빠르게 보여준다. 그렇기 때문에 네트워크 상황이 좋지 않은 모바일 환경에서는 페이지 캐싱을 중요하게 여긴다.</p>
+<p><strong>pagehide 이벤트</strong></p>
+<p>pagehide 이벤트는 unload 이벤트처럼 페이지가 언로드(unload)될 때 발생한다. pageshow 이벤트와 마찬가지로 캐싱된 페이지에서는 unload 이벤트는 발생하지 않지만 pagehide 이벤트는 발생한다.</p>
+<p><strong>기기별 이벤트 특징</strong></p>
+<p>pageshow 이벤트와 pagehide 이벤트는 운영체제와 단말기에 따라 발생하는 시점이 다르고, 상태에 따라 페이지 캐싱 여부가 달라진다.</p>
+<table>
+<thead>
+<tr>
+<th>상황</th>
+<th align="center">아이폰에서의<br>이벤트 발생여부<br>(iOS 4.x ~ 7.x)</th>
+<th align="center">아이패드에서의<br>이벤트 발생 여부<br>(iOS 4.x ~ 7.x)</th>
+<th align="center">안드로이드에서의<br>이벤트 발생 여부<br>(안드로이드 2.x ~ 4.x)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>브라우저에서 새창을 열 경우</td>
+<td align="center">이벤트 발생</td>
+<td align="center">이벤트 발생 안함</td>
+<td align="center">이벤트 발생 안함</td>
+</tr>
+<tr>
+<td>브라우저 탭을 이동한 경우</td>
+<td align="center">이벤트 발생</td>
+<td align="center">이벤트 발생 안함</td>
+<td align="center">이벤트 발생 안함</td>
+</tr>
+<tr>
+<td>홈 버튼을 누른 후 브라우저를<br>다시 실행 한 경우</td>
+<td align="center">이벤트 발생</td>
+<td align="center">이벤트 발생</td>
+<td align="center">이벤트 발생 안함</td>
+</tr>
+<tr>
+<td>전원 버튼을 눌러 잠긴 상태에서<br>잠금을 해제한 경우</td>
+<td align="center">이벤트 발생</td>
+<td align="center">이벤트 발생</td>
+<td align="center">이벤트 발생 안함</td>
+</tr>
+</tbody></table>
+<p>브라우저 탭을 전환하거나 새 창을 여는 경우를 제외하고, iOS 환경에서는 대상 브라우저 페이지가 비활성화되고 다시 활성화됐을 때 모두 pageshow 이벤트와 pagehide 이벤트가 발생환다. 반면 안드로이드 환경에서는 현재 보고 있는 브라우저에 외부 영향이 있을 경우에는 모두 이벤트가 발생하지 않는다.</p>
+<p><strong>페이지 캐싱이 되지 않는 경우</strong></p>
+<p>모바일 웹에서는 기본적으로 페이지 캐싱을 사용한다. 하지만 브라우저의 특정 기능 사용으로 웹 페이지가 캐싱되되 않는 경우가 있다. 그 경우는 다음과 같다.</p>
+<ul>
+<li>onunload 이벤트 핸들러나 onbeforeunload 이벤트 핸들러를 사용한 경우</li>
+<li>“cache-control:no-store”가 HTTP 헤더에 설정된 경우</li>
+<li>페이지가 완전히 로딩되기 전에 페이지를 이동한 경우</li>
+<li>iFrame을 사용한 경우</li>
+<li>navigation.geolocation을 사용한 경우</li>
+</ul>
+<p><strong>모바일 브라우저의 전체 화면 사용하기</strong></p>
+<p>주소창을 감추고 브라우저의 전체 화면에 콘텐츠를 보여주는 UI를 구현할 때는 일반적으로 scrollTop() 메서드를 이용한다. scrollTop() 메서드로 문서의 처음으로 이동하면 모바일 브라우저의 주소창이 사라진다. 주소창을 사라지게 한 상태에서 브라우저의 크기를 확인하면 화면 전체의 크기를 구할 수 있다. 하지만 scrollTop() 메서드는 브라우저의 높이보다 문서(document)의 높이가 더 큰 상태에서 호출돼야 한다. 브라우저의 높이보다 문서의 높이가 작다면 scrollTop() 메서드를 호출해도 주소창이 사라지지 않는다.</p>
+<p>콘텐츠의 양에 따라 문서의 높이가 브라우저보다 작을 수 있기 때문에 UI를 구현할 때는 scrollTop() 메서드를 호출하지 전에 브라우저 높이보다 큰 DIV 요소를 임시로 넣는 방법을 사용한다. 다음은 DIV 요소를 만들어 문서에 추가한 다음 요소의 높이가 브라우저의 높이보다 200px 더 크게 스타일을 적용하는 코드다. 브라우저의 높이는 window.innerHeight 속성으로 구할 수 있다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">_fullSizeCheckElement</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_fullSizeCheckElement</span> = <span class="variable language_">document</span>.<span class="title function_">createElemet</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>( <span class="variable language_">this</span>.<span class="property">_fullSizeCheckElement</span> );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">_fullSizeCheckElement</span>.<span class="property">style</span>.<span class="property">cssText</span> = <span class="string">&#x27;&#x27;</span><span class="attr">position</span>:absolute;<span class="attr">top</span>:0px;<span class="attr">width</span>:100p%;<span class="attr">height</span>:<span class="string">&#x27; + parseInt(window.innerHeight + 200, 10) + &#x27;</span>px;<span class="string">&#x27;;</span></span><br></pre></td></tr></table></figure>
+<p>임시 div 요소를 추가 했다면 주소창을 사라지게 한다. 브라우저에서 지원하는 API에는 주소창을 사라지게 하는 API가 없지만 자바스크립트의 scrollTop() 함수를 사용하면 모바일 웹 브라우저의 주소창을 사라지게 할 수 있다. 다음과 같이 문서의 위쪽에서 1px 위치로 이동하게 하면 주소창이 사라지면서 전체 화면이 나타난다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">scrollTop</span>(<span class="number">0</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>단, iOS 7의 사파리에서는 scrollTop() 함수를 사용해도 주소창이 사라지지 않는다. 이는 오류가 아닌 iOS 7의 특성이라고 볼 수 있다.</p>
+<p>주소창이 사라졌다면 브라우저의 높이와 너비를 구할 차례다.<br>브라우저의 너비와 높이는 window.innerWidth 속성과 window.innerHeight 속성으로 구할 수 있다. 주소창이 없는 상태에서 브라우저의 너비와 높이를 구한 다음에는 임시 div 요소의 높이를 0px로 바꾼다. 임시 div 요소의 목적이 브라우저의 주소창을 사라지게 하는 것이었으므로 더는 화면에 보일 필요가 없기 때문이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> htSize = &#123;</span><br><span class="line">    <span class="attr">width</span>: <span class="variable language_">window</span>.<span class="property">innerWidth</span>,</span><br><span class="line">    <span class="attr">height</span>: <span class="variable language_">window</span>.<span class="property">innerHeight</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">_fullSizeCheckElement</span>.<span class="property">style</span>.<span class="property">height</span> = <span class="string">&#x27;0px&#x27;</span>;</span><br></pre></td></tr></table></figure>
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://woonyzzang.github.com/2017/05/15/javascript-pages-show-hide-event/" data-id="clx8j471k007wfr9k58wp5ybc" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "woonyzzang"
+        },
+        "headline": "Javascript PagesShow PagesHide Event",
+        "image": "https://woonyzzang.github.com",
+        "keywords": "mobile js",
+        "genre": "Frontend Javascript",
+        "datePublished": "2017-05-15",
+        "dateCreated": "2017-05-15",
+        "dateModified": "2024-06-10",
+        "url": "https://woonyzzang.github.com/2017/05/15/javascript-pages-show-hide-event/",
+        "description": "JavaScript pageshow 이벤트, pagehide 이벤트네트워크 연결 속도가 느리고 연결 비용이 높은 모바일 환경에서는 pageshow 이벤트와 pagehide 이벤트가 중요하다. PC와는 다르게 모바일 브라우저에서는 이 이벤트가 페이지 캐시를 모두 지원하기 때문에 특별히 활용도가 높다.
+pageshow 이벤트와 pagehide 이벤트는 wind",
+        "wordCount": 682
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>팔로우:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/woonyzzang/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="cloud" href="https://altima-j-project-19b8286c.koyeb.app/" target="_blank">
+                        <i class="icon fa fa-cloud"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="jsfiddle" href="https://jsfiddle.net/user/woonyzzang/fiddles/" target="_blank">
+                        <i class="icon fa fa-jsfiddle"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    <!-- github card -->
+    
+    <div class="github-card" data-github="woonyzzang" data-width="100%" data-height="150" data-theme="default"></div>
+    
+    
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+
+    <!-- //github card -->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/05/15/javascript-effective-animation/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">신규</strong>
+        <p class="article-nav-title">
+        
+            Javascript Effective Animation
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/05/15/javascript-mobile-browser-different-event/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">이전</strong>
+        <p class="article-nav-title">Javascript Mobile Browser Different Event</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">카테고리</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/Hybrid/">Hybrid</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/IOS/">IOS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/Ionic/">Ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Net-Core/">.Net Core</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Node/">Node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Nuxt/">Nuxt</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/PHP/">PHP</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/PHP/Wordpress/">Wordpress</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Python/">Python</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Python/PyScript/">PyScript</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Wasm/">Wasm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Zendesk/">Zendesk</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/VSCode/">VSCode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">70</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/CSS/">CSS</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Javascript/">Javascript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/">Library</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/jQuery/">jQuery</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/">Module</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/Webpack/">Webpack</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/">SPA</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/JWT/">JWT</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/React-js/">React.js</a><span class="category-list-count">16</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/">Linux</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/CentOS/">CentOS</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/Vim/">Vim</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/AWS/">AWS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Azure/">Azure</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Docker/">Docker</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Gitlab/">Gitlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/IIS/">IIS</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Fiddler/">Fiddler</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Git/">Git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/OpenSSl/">OpenSSl</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Teams/">Teams</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/VMware/">VMware</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">16</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Architecture/">Architecture</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Descktop/">Descktop</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Log/">Log</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Mobile/">Mobile</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Others/">Others</a><span class="category-list-count">5</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">아카이브</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">5월 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">3월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">2월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">1월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">12월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">10월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">9월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">8월 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">4월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">1월 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">6월 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">3월 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">2월 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">3월 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">12월 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">8월 2019</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">3월 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">4월 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">10월 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8월 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">7월 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">6월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5월 2017</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">4월 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">3월 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2월 2017</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">태그 클라우드</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular-v1/" style="font-size: 10.77px;">angular v1</a> <a href="/tags/apmsetup/" style="font-size: 10px;">apmsetup</a> <a href="/tags/architecture/" style="font-size: 12.31px;">architecture</a> <a href="/tags/asp/" style="font-size: 12.31px;">asp</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/azure/" style="font-size: 16.92px;">azure</a> <a href="/tags/backbone/" style="font-size: 13.85px;">backbone</a> <a href="/tags/blazor/" style="font-size: 10px;">blazor</a> <a href="/tags/bundler/" style="font-size: 11.54px;">bundler</a> <a href="/tags/centos/" style="font-size: 15.38px;">centos</a> <a href="/tags/chrome/" style="font-size: 11.54px;">chrome</a> <a href="/tags/css/" style="font-size: 13.85px;">css</a> <a href="/tags/css3/" style="font-size: 13.85px;">css3</a> <a href="/tags/d3/" style="font-size: 16.15px;">d3</a> <a href="/tags/ddd/" style="font-size: 10px;">ddd</a> <a href="/tags/descktop/" style="font-size: 10.77px;">descktop</a> <a href="/tags/devops/" style="font-size: 14.62px;">devops</a> <a href="/tags/docker/" style="font-size: 14.62px;">docker</a> <a href="/tags/es6/" style="font-size: 12.31px;">es6</a> <a href="/tags/fiddler/" style="font-size: 10.77px;">fiddler</a> <a href="/tags/git/" style="font-size: 12.31px;">git</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/hybridApp/" style="font-size: 10.77px;">hybridApp</a> <a href="/tags/ionic-v1/" style="font-size: 13.08px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/jira/" style="font-size: 10px;">jira</a> <a href="/tags/jquery/" style="font-size: 10.77px;">jquery</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/jwt/" style="font-size: 10px;">jwt</a> <a href="/tags/linux/" style="font-size: 19.23px;">linux</a> <a href="/tags/loader/" style="font-size: 10.77px;">loader</a> <a href="/tags/log/" style="font-size: 10.77px;">log</a> <a href="/tags/mac/" style="font-size: 13.08px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 17.69px;">mobile</a> <a href="/tags/mvc/" style="font-size: 10px;">mvc</a> <a href="/tags/mvvm/" style="font-size: 10px;">mvvm</a> <a href="/tags/node/" style="font-size: 10.77px;">node</a> <a href="/tags/nuxt2/" style="font-size: 10px;">nuxt2</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/others/" style="font-size: 13.08px;">others</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/pr/" style="font-size: 10px;">pr</a> <a href="/tags/react/" style="font-size: 18.46px;">react</a> <a href="/tags/requirejs/" style="font-size: 10.77px;">requirejs</a> <a href="/tags/server/" style="font-size: 14.62px;">server</a> <a href="/tags/simulator/" style="font-size: 10px;">simulator</a> <a href="/tags/spa/" style="font-size: 13.85px;">spa</a> <a href="/tags/storybook/" style="font-size: 12.31px;">storybook</a> <a href="/tags/sublimeText/" style="font-size: 11.54px;">sublimeText</a> <a href="/tags/teams/" style="font-size: 10px;">teams</a> <a href="/tags/test/" style="font-size: 12.31px;">test</a> <a href="/tags/tip/" style="font-size: 10.77px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 12.31px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/visualsvn/" style="font-size: 10px;">visualsvn</a> <a href="/tags/vmware/" style="font-size: 10.77px;">vmware</a> <a href="/tags/vscode/" style="font-size: 11.54px;">vscode</a> <a href="/tags/wasm/" style="font-size: 10.77px;">wasm</a> <a href="/tags/webpack/" style="font-size: 11.54px;">webpack</a> <a href="/tags/webstorm/" style="font-size: 13.85px;">webstorm</a> <a href="/tags/windows/" style="font-size: 17.69px;">windows</a> <a href="/tags/wordpress/" style="font-size: 10px;">wordpress</a> <a href="/tags/zendesk/" style="font-size: 12.31px;">zendesk</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">링크</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://j-portfolio.herokuapp.com/dev/cms/">CMS Theme</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://j-portfolio.herokuapp.com/dev/listmap/listmap.xml">Markup Listmap</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-generator-css3">J Generator CSS3</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-html5-reference">J HTML5 Open Reference</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-prototype">J Prototype</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-draft-design">J Draft Design Gallery</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-responsive-design-view">J Responsive Design View</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-memo">J Memo</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-hiworks-mail-notifier">J Hiworks Notifier</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-core-module">J Core Module</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-core-editor">J Core Editor</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-cheat-sheet-api">J Cheat Sheet API</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2024 woonyzzang</p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://woonyzzang.github.com/2017/05/15/javascript-pages-show-hide-event/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

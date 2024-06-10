@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>SublimeText Packages | J Dev</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="sublimeText">
+    
+    <meta name="description" content="Sublime Text 패키지 활용서브라임 텍스트에 패키지들를 활용 하려면 패키지 컨트롤이 미리 설치 되어 있어야 한다. 패키지 컨트롤이 설치 안되어 있다면 아래 링크의 내용을 참조하면 된다.서브라임 패키지 컨트롤 설치 방법 Emmet 에멧(Emmet)은 간단한 글자 입력으로 복잡한 코드를 완성할 수 있는 플러그인 이다. 이전의 젠 코딩(Zen Coding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SublimeText Packages">
+<meta property="og:url" content="https://woonyzzang.github.com/2017/05/14/sublimetext-packages/index.html">
+<meta property="og:site_name" content="J Dev">
+<meta property="og:description" content="Sublime Text 패키지 활용서브라임 텍스트에 패키지들를 활용 하려면 패키지 컨트롤이 미리 설치 되어 있어야 한다. 패키지 컨트롤이 설치 안되어 있다면 아래 링크의 내용을 참조하면 된다.서브라임 패키지 컨트롤 설치 방법 Emmet 에멧(Emmet)은 간단한 글자 입력으로 복잡한 코드를 완성할 수 있는 플러그인 이다. 이전의 젠 코딩(Zen Coding">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2017-05-14T14:18:00.000Z">
+<meta property="article:modified_time" content="2024-06-07T09:27:28.376Z">
+<meta property="article:author" content="woonyzzang">
+<meta property="article:tag" content="sublimeText">
+<meta name="twitter:card" content="summary">
+    
+
+    
+    <link rel="canonical" href="https://woonyzzang.github.com/2017/05/14/sublimetext-packages/"/>
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.png">
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/rss2.xml" title="J Dev" type="application/rss+xml">
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">홈</a>
+                                </li>
+                            
+                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/">App</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/Hybrid/">Hybrid</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/IOS/">IOS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/Ionic/">Ionic</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/">Backend</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Net-Core/">.Net Core</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Node/">Node</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Nuxt/">Nuxt</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/PHP/">PHP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Python/">Python</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Wasm/">Wasm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Zendesk/">Zendesk</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/">Editor</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/SublimeText/">SublimeText</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/VSCode/">VSCode</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Webstorm/">Webstorm</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/">Frontend</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/CSS/">CSS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/HTML/">HTML</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Library/">Library</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Module/">Module</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/SPA/">SPA</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/">OS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Mac/">Mac</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Windows/">Windows</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/AWS/">AWS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Azure/">Azure</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Docker/">Docker</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Gitlab/">Gitlab</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/IIS/">IIS</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/">Tools</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/APMSETUP/">APMSETUP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Fiddler/">Fiddler</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Git/">Git</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/OpenSSl/">OpenSSl</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Teams/">Teams</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/VMware/">VMware</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/">Web</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Architecture/">Architecture</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Descktop/">Descktop</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Log/">Log</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Mobile/">Mobile</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Others/">Others</a></li></ul></li></ul>
+                                
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="찾고자 하는 포스트를 검색하세요." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: '페이지',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Editor/">Editor</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Editor/SublimeText/">SublimeText</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-sublimetext-packages" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        SublimeText Packages
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2017/05/14/sublimetext-packages/" class="article-date">
+       <time datetime="2017-05-14T14:18:00.000Z" itemprop="datePublished">2017-05-14</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2017/05/14/sublimetext-packages/" class="article-date">
+     <time datetime="2024-06-07T09:27:28.376Z" itemprop="dateModified">2024-06-07</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/sublimeText/" rel="tag">sublimeText</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <h3 id="Sublime-Text-패키지-활용"><a href="#Sublime-Text-패키지-활용" class="headerlink" title="Sublime Text 패키지 활용"></a>Sublime Text 패키지 활용</h3><p>서브라임 텍스트에 패키지들를 활용 하려면 패키지 컨트롤이 미리 설치 되어 있어야 한다. 패키지 컨트롤이 설치 안되어 있다면 아래 링크의 내용을 참조하면 된다.<br><a target="_blank" rel="noopener" href="http://woonyzzang.github.io/2017/05/12/sublimetext-package-control/">서브라임 패키지 컨트롤 설치 방법</a></p>
+<p><strong>Emmet</strong></p>
+<p>에멧(Emmet)은 간단한 글자 입력으로 복잡한 코드를 완성할 수 있는 플러그인 이다. 이전의 젠 코딩(Zen Coding)이었던 것이 Emmet으로 이름이 바뀌면서 기능도 더 좋아졌다.</p>
+<p><strong>FTPSync(FTP 연결하기)</strong></p>
+<p>기본적으로 서브라임 텍스트에는 호스팅 서버와 연결해 작업할 수 있는 환경이 구비되어 있지 않다. 하지만 관련 플러그인을 설치하고 설정만 해주면 서버와 연결해서 작업 할 수 있다. FTP의 경우 무료 플러그인이 있고 SFTP는 유료 플러그인이 있다.</p>
+<p><strong>SideBarEnhancements(사이드바 기능 향상)</strong></p>
+<p>기본적으로 서브라임 텍스트에는 사이드바의 폴더나 파일을 대상으로 마우스 오른쪽 버튼을 클릭했을 때 나오는 메뉴가 별로 없다. Sidebar로 검색하면 처음에 나타나고, 설치하면 바로 사용할 수 있다.</p>
+<p><strong>Color Picker(컬러 피커)</strong></p>
+<p>패키지 설치에서 Color Picker로 검색해 설치한 후 CSS 파일을 열고 <code>Ctrl + Shift + C</code> 를 누르면 컬러피커가 나타난다. 컬러피커는 CSS 파일뿐 아니라 다른 파일에서도 열린다. 이미 컬러 피커가 열린 상태에서는 서브라임 텍스트에서 파일을 열거나 클릭할 수 없으므로 색상 코드를 입력할 곳을 미리 지정한 다음 열어야 한다.</p>
+<p><strong>Minifier(축약 코드)</strong></p>
+<p>파일의 용량을 줄이기 위해 코드의 공백을 모두 제거하고 한줄로 만드는 패키지 이다.<br>메뉴에서 Toos Minifier를 선택하면 축약형으로 변경 가능 하다. 자바스크립트에서도 사용할 수 있고 용량이 큰 경우 다소 시간이 걸리기도 한다. Minifier의 반대 기능을 하는 패키지는 Prettify 이다.</p>
+<p><strong>HTML&#x2F;CSS&#x2F;JS Prettify</strong></p>
+<p>패키지 설치에서 위 제목과 같은 검색어로 검색한 후 설치한다.<br>이전에 Minifier로 축약한 파일을 대상으로 <code>Ctrl + Shift + H</code> 를 누르면 예쁘게(Prettify) 볼수 있게 코드가 바뀐다.</p>
+<p><strong>BracketHighlighter</strong></p>
+<p>기본적으로 서브라임 텍스트에서는 서로 일치하는 태그나 따옴표, 괄호를 구분하기가 어렵다. 하지만 BracketHighlighter 패키지를 설치하면 이를 쉽게 구분할 수 있다.</p>
+<p><strong>AutoPrefix</strong></p>
+<p>CSS3 속성은 아직 웹 표준으로 승인되지 않은 것이 많아서 브라우저별 접두어를 붙여서 사용해야 하는데 모든 브라우저의 접두어를 일일이 복사해 사용하기는 번거롭다. AutoPrefix 패키지는 바로 이러한 문제를 해결해 준다.</p>
+<p><strong>Canluse</strong></p>
+<p>패키지 설치에서 CanIuse로 검색해서 설치하면 사용법과 단축키가 나온다. CSS 속성에 커서를 배치한 다음 단축키인 <code>Ctrl + Alt + F</code> 를 누르면 웹 브라우저에서 아래의 사이트로 이동하며 웹표준이 현재 어떤 상태인지 알 수 있다.</p>
+<p><strong>CSSComb</strong></p>
+<p>CSSComb는 스타일시트를 보기 좋게 정리해주는 패키지 이다.<br>패키지 설치에서 CSSComb으로 검색해 설치하고 스타일시트 화면에서 <code>Ctrl + Shift + C</code> 를 누르면 자동으로 정리(스타일 순서)해 준다. 그룹이나 팀 단위로 프로젝트를 진행할 시 활용할 만한 패키지이다.</p>
+<p><strong>Sublime Alignment</strong></p>
+<p>Sublime Alignment는 코드를 &#x3D; 기호나 : 기호를 기준으로 보기 좋게 좌우로 나누어 정렬해주는 패키지 이다.<br>패키지 설치에서 Sublime Alignment으로 검색해 설치한 후 정리하고자 하는 코드를 블록으로 설정한 다음 <code>Ctrl + Alt + A(맥에서는 Cmd + Ctrl + A)</code>를 누르면 코드가 정리되며, CSS의 경우 세미클론을 기준으로 좌우로 정렬된다.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;keys&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;ctrl+alt+a&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span> <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;alignment&quot;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>이 패키지는 별도의 메뉴를 제공하지 않아 단축키를 사용해야 하는데 다양한 패키지를 설치해서 사용하다 보면 단축키가 중복될 가능성도 있으므로 패키지가 작동하지 않을 경우 사용자 키 바인딩 파일을 열고 위 코드를 추가한 다음 편집기를 재시작해야 한다.</p>
+<p><strong>Trimmer</strong><br>불필요한 공백을(Trailing Whitespace)를 제거하는 패키지 이다.<br>패키지 설치에서 Trimmer로 검색해 설치하고 줄 끝에 공백이 있는 경우 <code>Ctrl + Alt + S(맥에서는 Ctrl + S)</code>를 누르면 줄 끝 공백이 제거된다. 마찬가지로 단축키가 중복될 경우 아래의 코드를 사용자 키 바인딩에 추가해야 한다.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;keys&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;ctrl+alt+s&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span> <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;trimmer&quot;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>이러한 패키지별 단축키는 메뉴에서 Preferences -&gt; Package Settings 에 설치된 패키지 목록이 있으니 해당 패키지에 마우스를 올리고 Key Bindings - Default를 선택하면 나타난다.</p>
+<p><strong>HyperlinkHelper</strong></p>
+<p>도메인에 URL 링크를 자동으로 만들어주는 패키지 이다.<br>도메인과 도메인 접미어를 입력한 뒤 <code>Ctrl + Shift + Alt + L(맥에서는 Cmd + Shift + Ctrl + L)</code>을 누르면 잠시 후에 a 태그와 href, title 속성이 자동으로 만들어진다. href와 title은 구글 검색을 통해 채워지기 때문에 해당 URL이 구글 검색 엔진에 등록된 상태여야 한다.</p>
+<p><strong>Fetch(파일 가져오기)</strong></p>
+<p>파일이나 압축 파일을 가져와 원하는 폴더에 설치할 수 있는 패키지 이다. 패키지 설치에서 Fetch로 검색하면 Nettus + fetch가 나타난다. 이 패키지를 선택하고 엔터 키를 눌러 설치한<br><code>Ctrl + Shift + P</code>를 눌러서 커맨트 팔레트에서 fetch로 검색한 후 Fetch: Manage를 선택하고 엔터 키를 누르면 Fetch 설정 파일이 열린다.</p>
+<p><strong>SublimeLinter</strong></p>
+<p>SublimeLinter 패키지는 코드 작성 시 에러를 즉시 감지해서 알려주는 패키지 이다. 서브라임 텍스트3에서는 API가 달라지면서 서브라임 텍스트2와 달리 사용 언어별로 플러그인을 별로도 설치해야 한다.</p>
+<p><strong>PackageResourceViwer( 패키지 리소스 보기)</strong></p>
+<p>서브라임 텍스트 3의 패키지는 압축돼 있는 경우가 많아서 파일 내용을 보거나 편집 할 수가 없는데, 이 플러그인을 설치하면 파일 내용을 보거나 편집할 수 있다.</p>
+<p><strong>서브라임 텍스트에서 커맨드 라인 열기</strong></p>
+<p>먼제 패키지 설치에서 Terminal로 검색해 설치한 다음 편집기에서 파일을 열고 <code>Ctrl + Shift + T(맥에서는 Cmd + Shift + T)</code>를 누르면 커맨드 라인이 열린다. 한가지 주의할 점은 동일한 단축키가 이미 서브라임 텍스트에서 사용하고 있어서 닫힌 파일 열기 기능이 작동되지 않는다는 것이다. 따라서 다른 키로 변경하는 것이 좋다.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;keys&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;ctrl+alt+k&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;open_terminal&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;parameters&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;-T&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Custom Window Title&quot;</span><span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;keys&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;ctrl+alt+t&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span> <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;reopen_last_file&quot;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>SublimeREPL</strong></p>
+<p>이 패키지는 서브라임 텍스트 편집기 내부에서 커맨드 라인 기능을 사용할 수 있게 만들어 준다.</p>
+<p><strong>Goto Documentation</strong></p>
+<p>커서가 위치한 단어의 문서 사이트로 이동하는 패키지 이다.<br>다음과 같이 중복되지 않게 원하는 단축키를 추가한다.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;keys&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;ctrl+shift+h&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span> <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;goto_documentation&quot;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>JavaScript &amp; NodeJs Snippet</strong></p>
+<p>자바스크립트와 Node.js의 코드 조각 패키지 이다.</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://woonyzzang.github.com/2017/05/14/sublimetext-packages/" data-id="clx8j475f00rcfr9k5idfepcv" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "woonyzzang"
+        },
+        "headline": "SublimeText Packages",
+        "image": "https://woonyzzang.github.com",
+        "keywords": "sublimeText",
+        "genre": "Editor SublimeText",
+        "datePublished": "2017-05-14",
+        "dateCreated": "2017-05-14",
+        "dateModified": "2024-06-07",
+        "url": "https://woonyzzang.github.com/2017/05/14/sublimetext-packages/",
+        "description": "Sublime Text 패키지 활용서브라임 텍스트에 패키지들를 활용 하려면 패키지 컨트롤이 미리 설치 되어 있어야 한다. 패키지 컨트롤이 설치 안되어 있다면 아래 링크의 내용을 참조하면 된다.서브라임 패키지 컨트롤 설치 방법
+Emmet
+에멧(Emmet)은 간단한 글자 입력으로 복잡한 코드를 완성할 수 있는 플러그인 이다. 이전의 젠 코딩(Zen Coding",
+        "wordCount": 854
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>팔로우:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/woonyzzang/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="cloud" href="https://altima-j-project-19b8286c.koyeb.app/" target="_blank">
+                        <i class="icon fa fa-cloud"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="jsfiddle" href="https://jsfiddle.net/user/woonyzzang/fiddles/" target="_blank">
+                        <i class="icon fa fa-jsfiddle"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    <!-- github card -->
+    
+    <div class="github-card" data-github="woonyzzang" data-width="100%" data-height="150" data-theme="default"></div>
+    
+    
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+
+    <!-- //github card -->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/05/15/javascript-event-bubbling-capture/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">신규</strong>
+        <p class="article-nav-title">
+        
+            Javascript Event Bubbling 및 capture
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/05/14/sublimetext-setting/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">이전</strong>
+        <p class="article-nav-title">SublimeText Setting</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">카테고리</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/Hybrid/">Hybrid</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/IOS/">IOS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/Ionic/">Ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Net-Core/">.Net Core</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Node/">Node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Nuxt/">Nuxt</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/PHP/">PHP</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/PHP/Wordpress/">Wordpress</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Python/">Python</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Python/PyScript/">PyScript</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Wasm/">Wasm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Zendesk/">Zendesk</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/VSCode/">VSCode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">70</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/CSS/">CSS</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Javascript/">Javascript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/">Library</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/jQuery/">jQuery</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/">Module</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/Webpack/">Webpack</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/">SPA</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/JWT/">JWT</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/React-js/">React.js</a><span class="category-list-count">16</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/">Linux</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/CentOS/">CentOS</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/Vim/">Vim</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/AWS/">AWS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Azure/">Azure</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Docker/">Docker</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Gitlab/">Gitlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/IIS/">IIS</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Fiddler/">Fiddler</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Git/">Git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/OpenSSl/">OpenSSl</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Teams/">Teams</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/VMware/">VMware</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">16</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Architecture/">Architecture</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Descktop/">Descktop</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Log/">Log</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Mobile/">Mobile</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Others/">Others</a><span class="category-list-count">5</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">아카이브</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">5월 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">3월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">2월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">1월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">12월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">10월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">9월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">8월 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">4월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">1월 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">6월 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">3월 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">2월 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">3월 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">12월 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">8월 2019</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">3월 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">4월 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">10월 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8월 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">7월 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">6월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5월 2017</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">4월 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">3월 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2월 2017</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">태그 클라우드</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular-v1/" style="font-size: 10.77px;">angular v1</a> <a href="/tags/apmsetup/" style="font-size: 10px;">apmsetup</a> <a href="/tags/architecture/" style="font-size: 12.31px;">architecture</a> <a href="/tags/asp/" style="font-size: 12.31px;">asp</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/azure/" style="font-size: 16.92px;">azure</a> <a href="/tags/backbone/" style="font-size: 13.85px;">backbone</a> <a href="/tags/blazor/" style="font-size: 10px;">blazor</a> <a href="/tags/bundler/" style="font-size: 11.54px;">bundler</a> <a href="/tags/centos/" style="font-size: 15.38px;">centos</a> <a href="/tags/chrome/" style="font-size: 11.54px;">chrome</a> <a href="/tags/css/" style="font-size: 13.85px;">css</a> <a href="/tags/css3/" style="font-size: 13.85px;">css3</a> <a href="/tags/d3/" style="font-size: 16.15px;">d3</a> <a href="/tags/ddd/" style="font-size: 10px;">ddd</a> <a href="/tags/descktop/" style="font-size: 10.77px;">descktop</a> <a href="/tags/devops/" style="font-size: 14.62px;">devops</a> <a href="/tags/docker/" style="font-size: 14.62px;">docker</a> <a href="/tags/es6/" style="font-size: 12.31px;">es6</a> <a href="/tags/fiddler/" style="font-size: 10.77px;">fiddler</a> <a href="/tags/git/" style="font-size: 12.31px;">git</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/hybridApp/" style="font-size: 10.77px;">hybridApp</a> <a href="/tags/ionic-v1/" style="font-size: 13.08px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/jira/" style="font-size: 10px;">jira</a> <a href="/tags/jquery/" style="font-size: 10.77px;">jquery</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/jwt/" style="font-size: 10px;">jwt</a> <a href="/tags/linux/" style="font-size: 19.23px;">linux</a> <a href="/tags/loader/" style="font-size: 10.77px;">loader</a> <a href="/tags/log/" style="font-size: 10.77px;">log</a> <a href="/tags/mac/" style="font-size: 13.08px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 17.69px;">mobile</a> <a href="/tags/mvc/" style="font-size: 10px;">mvc</a> <a href="/tags/mvvm/" style="font-size: 10px;">mvvm</a> <a href="/tags/node/" style="font-size: 10.77px;">node</a> <a href="/tags/nuxt2/" style="font-size: 10px;">nuxt2</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/others/" style="font-size: 13.08px;">others</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/pr/" style="font-size: 10px;">pr</a> <a href="/tags/react/" style="font-size: 18.46px;">react</a> <a href="/tags/requirejs/" style="font-size: 10.77px;">requirejs</a> <a href="/tags/server/" style="font-size: 14.62px;">server</a> <a href="/tags/simulator/" style="font-size: 10px;">simulator</a> <a href="/tags/spa/" style="font-size: 13.85px;">spa</a> <a href="/tags/storybook/" style="font-size: 12.31px;">storybook</a> <a href="/tags/sublimeText/" style="font-size: 11.54px;">sublimeText</a> <a href="/tags/teams/" style="font-size: 10px;">teams</a> <a href="/tags/test/" style="font-size: 12.31px;">test</a> <a href="/tags/tip/" style="font-size: 10.77px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 12.31px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/visualsvn/" style="font-size: 10px;">visualsvn</a> <a href="/tags/vmware/" style="font-size: 10.77px;">vmware</a> <a href="/tags/vscode/" style="font-size: 11.54px;">vscode</a> <a href="/tags/wasm/" style="font-size: 10.77px;">wasm</a> <a href="/tags/webpack/" style="font-size: 11.54px;">webpack</a> <a href="/tags/webstorm/" style="font-size: 13.85px;">webstorm</a> <a href="/tags/windows/" style="font-size: 17.69px;">windows</a> <a href="/tags/wordpress/" style="font-size: 10px;">wordpress</a> <a href="/tags/zendesk/" style="font-size: 12.31px;">zendesk</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">링크</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://j-portfolio.herokuapp.com/dev/cms/">CMS Theme</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://j-portfolio.herokuapp.com/dev/listmap/listmap.xml">Markup Listmap</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-generator-css3">J Generator CSS3</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-html5-reference">J HTML5 Open Reference</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-prototype">J Prototype</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-draft-design">J Draft Design Gallery</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-responsive-design-view">J Responsive Design View</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-memo">J Memo</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-hiworks-mail-notifier">J Hiworks Notifier</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-core-module">J Core Module</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-core-editor">J Core Editor</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-cheat-sheet-api">J Cheat Sheet API</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2024 woonyzzang</p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://woonyzzang.github.com/2017/05/14/sublimetext-packages/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>jQuery Performance | J Dev</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="jquery">
+    
+    <meta name="description" content="jQuery 성능 향상하기 (performance)jQuery는 라이브러리이기 때문에 순수 자바스크립트보다 당연히 성능이 느릴 수 밖에 없다. 안 그래도 느린데 잘못된 방법으로 코딩을 하면 상황을 더 악화시킬 수 있다. 그래서 흔히들 하는 실수와 그에 대한 대처 방법을 소개 한다. 변수 저장우선 첫 번째로 가장 간단한 건데 많이 놓치고 있는 부분이 있다.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery Performance">
+<meta property="og:url" content="https://woonyzzang.github.com/2018/04/28/jquery-performance/index.html">
+<meta property="og:site_name" content="J Dev">
+<meta property="og:description" content="jQuery 성능 향상하기 (performance)jQuery는 라이브러리이기 때문에 순수 자바스크립트보다 당연히 성능이 느릴 수 밖에 없다. 안 그래도 느린데 잘못된 방법으로 코딩을 하면 상황을 더 악화시킬 수 있다. 그래서 흔히들 하는 실수와 그에 대한 대처 방법을 소개 한다. 변수 저장우선 첫 번째로 가장 간단한 건데 많이 놓치고 있는 부분이 있다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2018-04-28T12:07:55.000Z">
+<meta property="article:modified_time" content="2024-06-07T09:27:28.339Z">
+<meta property="article:author" content="woonyzzang">
+<meta property="article:tag" content="jquery">
+<meta name="twitter:card" content="summary">
+    
+
+    
+    <link rel="canonical" href="https://woonyzzang.github.com/2018/04/28/jquery-performance/"/>
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.png">
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/rss2.xml" title="J Dev" type="application/rss+xml">
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">홈</a>
+                                </li>
+                            
+                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/">App</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/Hybrid/">Hybrid</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/IOS/">IOS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/Ionic/">Ionic</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/">Backend</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Net-Core/">.Net Core</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Node/">Node</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Nuxt/">Nuxt</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/PHP/">PHP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Python/">Python</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Wasm/">Wasm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Zendesk/">Zendesk</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/">Editor</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/SublimeText/">SublimeText</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/VSCode/">VSCode</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Webstorm/">Webstorm</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/">Frontend</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/CSS/">CSS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/HTML/">HTML</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Library/">Library</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Module/">Module</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/SPA/">SPA</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/">OS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Mac/">Mac</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Windows/">Windows</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/AWS/">AWS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Azure/">Azure</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Docker/">Docker</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Gitlab/">Gitlab</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/IIS/">IIS</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/">Tools</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/APMSETUP/">APMSETUP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Fiddler/">Fiddler</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Git/">Git</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/OpenSSl/">OpenSSl</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Teams/">Teams</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/VMware/">VMware</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/">Web</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Architecture/">Architecture</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Descktop/">Descktop</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Log/">Log</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Mobile/">Mobile</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Others/">Others</a></li></ul></li></ul>
+                                
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="찾고자 하는 포스트를 검색하세요." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: '페이지',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Frontend/">Frontend</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Frontend/Library/">Library</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Frontend/Library/jQuery/">jQuery</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-jquery-performance" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        jQuery Performance
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2018/04/28/jquery-performance/" class="article-date">
+       <time datetime="2018-04-28T12:07:55.000Z" itemprop="datePublished">2018-04-28</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2018/04/28/jquery-performance/" class="article-date">
+     <time datetime="2024-06-07T09:27:28.339Z" itemprop="dateModified">2024-06-07</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/jquery/" rel="tag">jquery</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <h3 id="jQuery-성능-향상하기-performance"><a href="#jQuery-성능-향상하기-performance" class="headerlink" title="jQuery 성능 향상하기 (performance)"></a>jQuery 성능 향상하기 (performance)</h3><p>jQuery는 라이브러리이기 때문에 순수 자바스크립트보다 당연히 성능이 느릴 수 밖에 없다. 안 그래도 느린데 잘못된 방법으로 코딩을 하면 상황을 더 악화시킬 수 있다. 그래서 흔히들 하는 실수와 그에 대한 대처 방법을 소개 한다.</p>
+<p><strong>변수 저장</strong><br>우선 첫 번째로 가장 간단한 건데 많이 놓치고 있는 부분이 있다. 제이쿼리로 찾은 객체를 변수에 저장하지 않는 것이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;#zero&#x27;</span>).<span class="title function_">text</span>(<span class="string">&#x27;저장하지 않으면 매번 함수가 실행됩니다&#x27;</span>);</span><br><span class="line">$(<span class="string">&#x27;#zero&#x27;</span>).<span class="title function_">append</span>(<span class="string">&#x27;&lt;button /&gt;&#x27;</span>);</span><br><span class="line">$(<span class="string">&#x27;#zero&#x27;</span>).<span class="title function_">css</span>(<span class="string">&#x27;color&#x27;</span>, <span class="string">&#x27;#fff&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>위와 같이 <code>$(&#39;#zero&#39;)</code>를 여러 번 쓰는 것을 많이 봤을 것이다. 하지만 흔히 놓치는 사실이 <code>$()</code>는 함수라는 겁니다. 위의 코드는 매번 함수를 실행하게 된다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> $zero = $(<span class="string">&#x27;#zero&#x27;</span>);</span><br><span class="line"></span><br><span class="line">$zero.<span class="title function_">text</span>(<span class="string">&#x27;이렇게 저장하면 한 번만 실행됩니다&#x27;</span>);</span><br><span class="line">$zero.<span class="title function_">append</span>(<span class="string">&#x27;&lt;button /&gt;&#x27;</span>);</span><br><span class="line">$zero.<span class="title function_">css</span>(<span class="string">&#x27;color&#x27;</span>, <span class="string">&#x27;#fff&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>변수에 재사용하게될 셀렉터를 저장하게 되면 단 한 번만 호출을 하게 되기에 성능에 좋다.</p>
+<p><strong>DocumentFragment 사용</strong><br>jQuery가 왜 이렇게 느릴까란 질문에 꼭 나오는 부분이다. 수십, 수백 개의 태그를 동적으로 추가하는 데 documentFragement를 사용하지 않고 그냥 append 했기 때문에 나타나는 현상이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> $zero = $(<span class="string">&#x27;#zero&#x27;</span>);</span><br><span class="line"></span><br><span class="line">[<span class="string">&#x27;Aero&#x27;</span>, <span class="string">&#x27;Bero&#x27;</span>, <span class="string">&#x27;Cero&#x27;</span>, <span class="string">&#x27;Dero&#x27;</span>, ... , <span class="string">&#x27;Zero&#x27;</span>].<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">item</span>) &#123;</span><br><span class="line">    $zero.<span class="title function_">append</span>(<span class="string">&#x27;&lt;strong&gt;&#x27;</span> + item + <span class="string">&#x27;&lt;/strong&gt;&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>위와 같이 간단하게 할 수도 있지만 기존에 있는 태그에 append하는 것은 성능에 매우 부담이 가게된다. 또 26번 반복하기 때문에 브라우저는 26번이나 페이지를 새로 그려야 한다. 만약 반복문의 개수가 수백 수천개라고 생각해보면 더 성능이 느려질 것이다. 이럴때는 documentFragement을 활용하면 성능에 도움이 된다</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> $frag = $(<span class="variable language_">document</span>.<span class="title function_">createDocumentFragment</span>());</span><br><span class="line"></span><br><span class="line">[<span class="string">&#x27;Aero&#x27;</span>, <span class="string">&#x27;Bero&#x27;</span>, <span class="string">&#x27;Cero&#x27;</span>, <span class="string">&#x27;Dero&#x27;</span>, ... , <span class="string">&#x27;Zero&#x27;</span>].<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">item</span>) &#123;</span><br><span class="line">    $frag.<span class="title function_">append</span>(<span class="string">&#x27;&lt;strong&gt;&#x27;</span> + item + <span class="string">&#x27;&lt;/strong&gt;&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="string">&#x27;#zero&#x27;</span>).<span class="title function_">append</span>($frag);</span><br></pre></td></tr></table></figure>
+<p>$frag에 append하는 것은 가상의 메모리 공간에서 일어나는 일이기 때문에 브라우저와는 상관이 없다. 위에 코드는 마지막에 그 $frag를 원래 태그에 한 번에 append해주는 것이다. 이렇게 하면 단 한번만 브라우저에 태그가 추가되어 브라우저가 페이지를 새로 그리는 횟수도 한 번만 그리 된다.</p>
+<p>다른 방법도 있다. 바로 detach 메소드를 사용하는 것이다.<br><code>detach()</code> 메서드는 노드를 DOM에서 제거 하면서 캐싱한다. (캐싱될때 노드의 정보는 jQuery 데이터 형태로 이전에 등록되었던 이벤트, 정보들도 함께 캐싱하게 된다.) DOM에서 제거했다가 추후에 다시 삽입하는 형태로 사용 가능하다. 캐싱된 노드를 다시 DOM에 삽입 후, 이벤트를 다시 등록해 줄 필요가 없다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> $zero = $(<span class="string">&#x27;#zero&#x27;</span>).<span class="title function_">detach</span>();</span><br><span class="line"></span><br><span class="line">[<span class="string">&#x27;Aero&#x27;</span>, <span class="string">&#x27;Bero&#x27;</span>, <span class="string">&#x27;Cero&#x27;</span>, <span class="string">&#x27;Dero&#x27;</span>, ... , <span class="string">&#x27;Zero&#x27;</span>].<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">item</span>) &#123;</span><br><span class="line">    $zero.<span class="title function_">append</span>(<span class="string">&#x27;&lt;strong&gt;&#x27;</span> + item + <span class="string">&#x27;&lt;/strong&gt;&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">$zero.<span class="title function_">appendTo</span>($zeroParent);</span><br></pre></td></tr></table></figure>
+<p>detach 메소드를 사용하는 순간 원래 있던 #zero 태그는 브라우저에서 떨어져서 메모리 속으로 들어간다. 메모리 상에서 append를 해준 후 마지막에 다시 원래 태그의 부모의 자식으로 추가하는 것이다.</p>
+<p><strong>선택자 최적화</strong><br>jQuery 선택자를 사용하는 데 있어 많은 실수를 하곤 한다. 선택자는 원하는 태그를 선택할 수 있을 정도로만 최소화해서 사용해야 한다. 예를 들면 <code>$(&#39;div#zero&#39;)</code>는 간단히 <code>$(&#39;#zero&#39;)</code>로 표현할 수 있다. 어차피 id는 유니크한 단 하나의 태그만 가리키기 때문이다.<br>또한 id나 class를 사용하는 게 좋은데 <code>$(&#39;div p a&#39;)</code>보다는 <code>$(&#39;#zero p a&#39;)</code>가 훨씬 성능이 좋다. 찾길 원하는 태그가 있다면 id나 class를 붙여서 사용하는걸 권장한다.<br>그리고 제이쿼리에서 지원하는 선택자들 <code>:input</code>, <code>:even</code>, <code>:odd</code> 등등은 최대한 피하는 게 좋다. 순수 자바스크립트에서 지원하지 않는 만큼, 제이쿼리가 직접 구현해야 하는데 이 과정에서 성능이 저하될 수 있기 때문이다.</p>
+<h3 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.zerocho.com/category/jQuery/post/57c3a8821efc521700a70918">https://www.zerocho.com/category/jQuery/post/57c3a8821efc521700a70918</a></li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://woonyzzang.github.com/2018/04/28/jquery-performance/" data-id="clx8j471q008ifr9k8in04h21" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "woonyzzang"
+        },
+        "headline": "jQuery Performance",
+        "image": "https://woonyzzang.github.com",
+        "keywords": "jquery",
+        "genre": "Frontend Library jQuery",
+        "datePublished": "2018-04-28",
+        "dateCreated": "2018-04-28",
+        "dateModified": "2024-06-07",
+        "url": "https://woonyzzang.github.com/2018/04/28/jquery-performance/",
+        "description": "jQuery 성능 향상하기 (performance)jQuery는 라이브러리이기 때문에 순수 자바스크립트보다 당연히 성능이 느릴 수 밖에 없다. 안 그래도 느린데 잘못된 방법으로 코딩을 하면 상황을 더 악화시킬 수 있다. 그래서 흔히들 하는 실수와 그에 대한 대처 방법을 소개 한다.
+변수 저장우선 첫 번째로 가장 간단한 건데 많이 놓치고 있는 부분이 있다. ",
+        "wordCount": 577
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>팔로우:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/woonyzzang/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="cloud" href="https://altima-j-project-19b8286c.koyeb.app/" target="_blank">
+                        <i class="icon fa fa-cloud"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="jsfiddle" href="https://jsfiddle.net/user/woonyzzang/fiddles/" target="_blank">
+                        <i class="icon fa fa-jsfiddle"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    <!-- github card -->
+    
+    <div class="github-card" data-github="woonyzzang" data-width="100%" data-height="150" data-theme="default"></div>
+    
+    
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+
+    <!-- //github card -->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/04/28/mobile-web-iphone-hover-click/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">신규</strong>
+        <p class="article-nav-title">
+        
+            Mobile Web iPhone Hover Click
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/11/10/ubuntu-os-playonlinux/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">이전</strong>
+        <p class="article-nav-title">Ubuntu OS Playonlinux</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">카테고리</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/Hybrid/">Hybrid</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/IOS/">IOS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/Ionic/">Ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Net-Core/">.Net Core</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Node/">Node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Nuxt/">Nuxt</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/PHP/">PHP</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/PHP/Wordpress/">Wordpress</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Python/">Python</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Python/PyScript/">PyScript</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Wasm/">Wasm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Zendesk/">Zendesk</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/VSCode/">VSCode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">70</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/CSS/">CSS</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Javascript/">Javascript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/">Library</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/jQuery/">jQuery</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/">Module</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/Webpack/">Webpack</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/">SPA</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/JWT/">JWT</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/React-js/">React.js</a><span class="category-list-count">16</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/">Linux</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/CentOS/">CentOS</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/Vim/">Vim</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/AWS/">AWS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Azure/">Azure</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Docker/">Docker</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Gitlab/">Gitlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/IIS/">IIS</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Fiddler/">Fiddler</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Git/">Git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/OpenSSl/">OpenSSl</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Teams/">Teams</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/VMware/">VMware</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">16</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Architecture/">Architecture</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Descktop/">Descktop</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Log/">Log</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Mobile/">Mobile</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Others/">Others</a><span class="category-list-count">5</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">아카이브</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">5월 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">3월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">2월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">1월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">12월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">10월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">9월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">8월 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">4월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">1월 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">6월 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">3월 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">2월 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">3월 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">12월 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">8월 2019</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">3월 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">4월 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">10월 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8월 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">7월 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">6월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5월 2017</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">4월 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">3월 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2월 2017</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">태그 클라우드</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular-v1/" style="font-size: 10.77px;">angular v1</a> <a href="/tags/apmsetup/" style="font-size: 10px;">apmsetup</a> <a href="/tags/architecture/" style="font-size: 12.31px;">architecture</a> <a href="/tags/asp/" style="font-size: 12.31px;">asp</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/azure/" style="font-size: 16.92px;">azure</a> <a href="/tags/backbone/" style="font-size: 13.85px;">backbone</a> <a href="/tags/blazor/" style="font-size: 10px;">blazor</a> <a href="/tags/bundler/" style="font-size: 11.54px;">bundler</a> <a href="/tags/centos/" style="font-size: 15.38px;">centos</a> <a href="/tags/chrome/" style="font-size: 11.54px;">chrome</a> <a href="/tags/css/" style="font-size: 13.85px;">css</a> <a href="/tags/css3/" style="font-size: 13.85px;">css3</a> <a href="/tags/d3/" style="font-size: 16.15px;">d3</a> <a href="/tags/ddd/" style="font-size: 10px;">ddd</a> <a href="/tags/descktop/" style="font-size: 10.77px;">descktop</a> <a href="/tags/devops/" style="font-size: 14.62px;">devops</a> <a href="/tags/docker/" style="font-size: 14.62px;">docker</a> <a href="/tags/es6/" style="font-size: 12.31px;">es6</a> <a href="/tags/fiddler/" style="font-size: 10.77px;">fiddler</a> <a href="/tags/git/" style="font-size: 12.31px;">git</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/hybridApp/" style="font-size: 10.77px;">hybridApp</a> <a href="/tags/ionic-v1/" style="font-size: 13.08px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/jira/" style="font-size: 10px;">jira</a> <a href="/tags/jquery/" style="font-size: 10.77px;">jquery</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/jwt/" style="font-size: 10px;">jwt</a> <a href="/tags/linux/" style="font-size: 19.23px;">linux</a> <a href="/tags/loader/" style="font-size: 10.77px;">loader</a> <a href="/tags/log/" style="font-size: 10.77px;">log</a> <a href="/tags/mac/" style="font-size: 13.08px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 17.69px;">mobile</a> <a href="/tags/mvc/" style="font-size: 10px;">mvc</a> <a href="/tags/mvvm/" style="font-size: 10px;">mvvm</a> <a href="/tags/node/" style="font-size: 10.77px;">node</a> <a href="/tags/nuxt2/" style="font-size: 10px;">nuxt2</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/others/" style="font-size: 13.08px;">others</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/pr/" style="font-size: 10px;">pr</a> <a href="/tags/react/" style="font-size: 18.46px;">react</a> <a href="/tags/requirejs/" style="font-size: 10.77px;">requirejs</a> <a href="/tags/server/" style="font-size: 14.62px;">server</a> <a href="/tags/simulator/" style="font-size: 10px;">simulator</a> <a href="/tags/spa/" style="font-size: 13.85px;">spa</a> <a href="/tags/storybook/" style="font-size: 12.31px;">storybook</a> <a href="/tags/sublimeText/" style="font-size: 11.54px;">sublimeText</a> <a href="/tags/teams/" style="font-size: 10px;">teams</a> <a href="/tags/test/" style="font-size: 12.31px;">test</a> <a href="/tags/tip/" style="font-size: 10.77px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 12.31px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/visualsvn/" style="font-size: 10px;">visualsvn</a> <a href="/tags/vmware/" style="font-size: 10.77px;">vmware</a> <a href="/tags/vscode/" style="font-size: 11.54px;">vscode</a> <a href="/tags/wasm/" style="font-size: 10.77px;">wasm</a> <a href="/tags/webpack/" style="font-size: 11.54px;">webpack</a> <a href="/tags/webstorm/" style="font-size: 13.85px;">webstorm</a> <a href="/tags/windows/" style="font-size: 17.69px;">windows</a> <a href="/tags/wordpress/" style="font-size: 10px;">wordpress</a> <a href="/tags/zendesk/" style="font-size: 12.31px;">zendesk</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">링크</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://j-portfolio.herokuapp.com/dev/cms/">CMS Theme</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://j-portfolio.herokuapp.com/dev/listmap/listmap.xml">Markup Listmap</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-generator-css3">J Generator CSS3</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-html5-reference">J HTML5 Open Reference</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-prototype">J Prototype</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-draft-design">J Draft Design Gallery</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-responsive-design-view">J Responsive Design View</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-memo">J Memo</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-hiworks-mail-notifier">J Hiworks Notifier</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-core-module">J Core Module</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-core-editor">J Core Editor</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-cheat-sheet-api">J Cheat Sheet API</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2024 woonyzzang</p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://woonyzzang.github.com/2018/04/28/jquery-performance/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

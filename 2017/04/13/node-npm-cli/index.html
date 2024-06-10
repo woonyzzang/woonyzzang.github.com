@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Node.js NPM CLI | J Dev</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="node">
+    
+    <meta name="description" content="NPM(Node Package Manager) CLI 명령어npm(Node Package Manager)은 두가지의 주요 기능을 지니고 있다.  NPMSearch 에서 탐색 가능한 Node.js 패키지&#x2F;모듈 저장소 Node.js 패키지 설치 및 버전 &#x2F; 호환성 관리를 할 수 있는 커맨드라인 유틸리티  npm 명령어는 명령 프롬프트에 입력하">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js NPM CLI">
+<meta property="og:url" content="https://woonyzzang.github.com/2017/04/13/node-npm-cli/index.html">
+<meta property="og:site_name" content="J Dev">
+<meta property="og:description" content="NPM(Node Package Manager) CLI 명령어npm(Node Package Manager)은 두가지의 주요 기능을 지니고 있다.  NPMSearch 에서 탐색 가능한 Node.js 패키지&#x2F;모듈 저장소 Node.js 패키지 설치 및 버전 &#x2F; 호환성 관리를 할 수 있는 커맨드라인 유틸리티  npm 명령어는 명령 프롬프트에 입력하">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2017-04-13T14:39:15.000Z">
+<meta property="article:modified_time" content="2024-06-07T09:27:28.346Z">
+<meta property="article:author" content="woonyzzang">
+<meta property="article:tag" content="node">
+<meta name="twitter:card" content="summary">
+    
+
+    
+    <link rel="canonical" href="https://woonyzzang.github.com/2017/04/13/node-npm-cli/"/>
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.png">
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/rss2.xml" title="J Dev" type="application/rss+xml">
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">홈</a>
+                                </li>
+                            
+                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/">App</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/Hybrid/">Hybrid</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/IOS/">IOS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/Ionic/">Ionic</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/">Backend</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Net-Core/">.Net Core</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Node/">Node</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Nuxt/">Nuxt</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/PHP/">PHP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Python/">Python</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Wasm/">Wasm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Zendesk/">Zendesk</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/">Editor</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/SublimeText/">SublimeText</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/VSCode/">VSCode</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Webstorm/">Webstorm</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/">Frontend</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/CSS/">CSS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/HTML/">HTML</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Library/">Library</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Module/">Module</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/SPA/">SPA</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/">OS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Mac/">Mac</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Windows/">Windows</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/AWS/">AWS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Azure/">Azure</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Docker/">Docker</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Gitlab/">Gitlab</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/IIS/">IIS</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/">Tools</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/APMSETUP/">APMSETUP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Fiddler/">Fiddler</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Git/">Git</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/OpenSSl/">OpenSSl</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Teams/">Teams</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/VMware/">VMware</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/">Web</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Architecture/">Architecture</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Descktop/">Descktop</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Log/">Log</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Mobile/">Mobile</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Others/">Others</a></li></ul></li></ul>
+                                
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="찾고자 하는 포스트를 검색하세요." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: '페이지',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Backend/">Backend</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Backend/Node/">Node</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-node-npm-cli" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Node.js NPM CLI
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2017/04/13/node-npm-cli/" class="article-date">
+       <time datetime="2017-04-13T14:39:15.000Z" itemprop="datePublished">2017-04-13</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2017/04/13/node-npm-cli/" class="article-date">
+     <time datetime="2024-06-07T09:27:28.346Z" itemprop="dateModified">2024-06-07</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/node/" rel="tag">node</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <h3 id="NPM-Node-Package-Manager-CLI-명령어"><a href="#NPM-Node-Package-Manager-CLI-명령어" class="headerlink" title="NPM(Node Package Manager) CLI 명령어"></a>NPM(Node Package Manager) CLI 명령어</h3><p>npm(Node Package Manager)은 두가지의 주요 기능을 지니고 있다.</p>
+<ul>
+<li>NPMSearch 에서 탐색 가능한 Node.js 패키지&#x2F;모듈 저장소</li>
+<li>Node.js 패키지 설치 및 버전 &#x2F; 호환성 관리를 할 수 있는 커맨드라인 유틸리티</li>
+</ul>
+<p>npm 명령어는 명령 프롬프트에 입력하는 커맨드라인 명령어로, 다양한 명령어가 많지만, 그중에서도 자주 쓰이는 것들에 대해 추스려 정리한다.</p>
+<p><strong>npm 기본 명령어</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm -v 혹은 npm --version <span class="comment"># npm 버전확인(npm이 제대로 설치되있는지 확인시 사용가능)</span></span><br><span class="line">$ npm i npm -g <span class="comment"># npm 구버전 최신버전으로 업데이트</span></span><br><span class="line">$ npm <span class="built_in">help</span> 혹은 npm -h <span class="comment"># npm 명령어에 대한 설명</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>npm 설치 관련 명령어</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ npm init <span class="comment"># package.json 파일 생성(새로운 프로젝트나 패키지를 만들 때 사용)</span></span><br><span class="line">$ npm i 혹은 install -g &#123;&#123;package module&#125;&#125; <span class="comment"># 전역 패키지 설치</span></span><br><span class="line">$ npm i 혹은 install &#123;&#123;package module&#125;&#125; <span class="comment"># 프로젝트내에 패키지 설치</span></span><br><span class="line">$ npm i 혹은 install &#123;&#123;package module&#125;&#125; --save 혹은 -S <span class="comment"># package.json 파일에 dependencies로 패키지 설치(필수 패키지일 경우)</span></span><br><span class="line">$ npm i 혹은 install &#123;&#123;package module&#125;&#125; --save-dev 혹은 -D <span class="comment"># package.json 파일에 devDependencies로 패키지 설치(개발용 패키지일 경우)</span></span><br><span class="line">$ npm un 혹은 uninstall &#123;&#123;package module&#125;&#125; <span class="comment"># 패키지 삭제 </span></span><br><span class="line">$ npm update &#123;&#123;package module&#125;&#125; <span class="comment"># 설치한 패키지 업데이트</span></span><br><span class="line">$ npm dedupe <span class="comment"># 중복된 패키지들 정리(가끔 사용하면 용량을 줄일수 있다)</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>npm 조회 관련 명령어</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ npm root <span class="comment"># node_modules의 위치</span></span><br><span class="line">$ npm outdated <span class="comment"># 오래된 패키지가 있는지 알려줌(오래되었고 package.json에 적어둔 버전 범위와 일치하면 빨간색으로, 오래되었지만 버전 범위와 일치하지 않으면 노란색으로 표시)</span></span><br><span class="line">$ npm list 혹은 npm <span class="built_in">ls</span> <span class="comment"># 설치한 패키지 목록 조회</span></span><br><span class="line">$ npm <span class="built_in">ls</span> -g --depth=0 <span class="comment"># 설치한 전역 패키지 상위 뎁스 목록 조회</span></span><br><span class="line">$ npm search &#123;&#123;package module&#125;&#125; <span class="comment"># 패키지 검색(처음 이용 할 때 메모리를 굉장히 많이 잡아 먹는다. 클라우드 IDE를 사용하거나 서버에 램이 1G 정도라면 매우 오래걸리거나 에러가 난다. 그럴경우 https://npmsearch.com/ 에서 검색을 하면 된다.)</span></span><br><span class="line">$ npm owner <span class="comment"># 패키지의 작성자 확인</span></span><br><span class="line">$ npm bugs <span class="comment"># 버그가 발생했을 때 어떻게 패키지의 작성자 에게 연락을 취할지 알려준다.(주로 Github의 issues 탭을 연다.)</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>npm 실행 관련 명령어</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm start <span class="comment"># package.json의 scripts에 있는 start 명령어를 실행(만약 start 명령어를 따로 설정하지 않았다면 node server.js가 실행된다)</span></span><br><span class="line">$ npm stop <span class="comment"># npm start 했던 것을 멈춤</span></span><br><span class="line">$ npm restart <span class="comment"># npm stop 후에 다시 npm start</span></span><br><span class="line">$ npm <span class="built_in">test</span>는 <span class="comment"># package.json의 scripts에 있는 test 명령어를 실행합니다.</span></span><br><span class="line">$ npm run <span class="comment"># 그 이외의 scripts를 실행(예를 들어 scripts에 build 명령어가 있다하면, npm run build 명령어를 실행하면 된다)</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>npm 설정 관련 명령어</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm cache <span class="comment"># npm 내의 cache를 보여준다.(만약 npm에 문제가 생기거나 하면 제일 먼저 하는 게 npm cache clean으로 cache를 삭제할 수 있다)</span></span><br><span class="line">$ npm rebuild <span class="comment"># npm을 다시 설치(에러가 발생했을 시 주로 npm cache clean을 한 후 이 명령어를 쳐서 재설치할 수 있다)</span></span><br><span class="line">$ npm config <span class="comment"># npm의 설정을 조작(npm config list 하면 현재 설정들을 볼 수 있고, npm set [이름] [값], npm get [이름]으로 속성을 설정하거나 조회할 수 있다)</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>npm 로그인 관련 명령어</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm adduser 혹은 npm login <span class="comment"># npm에 회원가입할 시 사용.(로그인도 가능하다.)</span></span><br><span class="line">$ npm <span class="built_in">logout</span> <span class="comment"># logout할 때 사용.</span></span><br><span class="line">$ npm <span class="built_in">whoami</span> <span class="comment"># 로그인한 상태라면 자신의 아이디를 알려준다.</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>npm 출시 관련 명령어</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ npm registry <span class="comment"># 출시된 패키지들에서 중복된 이름이 있는지 확인</span></span><br><span class="line">$ npm publish <span class="comment"># 패키지를 직접 출시하거나 버전 업그레이드를 할 때 사용(.gitignore 또는 .npmignore 파일에 적혀있지 않은 파일들은 npm 저장소에 업로드되어 출시된다. 단, 이 명령어를 사용하려면 npm에 로그인한 상태여야 한다. 그리고 패키지의 이름은 선점하는 사람이 계속 쓰기 때문에 이름을 선점하는 것도 중요하다.)</span></span><br><span class="line">$ npm deprecate <span class="comment"># 이미 출시한 패키지를 사용하지 않도록 권고(자신이 어떤 버전을 출시했는데 치명적인 버그가 있다면 이 명령어를 사용해서 다른 사람들에게 사용하지 말도록 알려줄 수 때 사용.)</span></span><br><span class="line">$ npm unpublish <span class="comment"># 출시한 패키지를 다시 삭제(deprecate를 쓰는 게 나을 수 있는게 이미 자신의 패키지를 다운로드한 사람들에게 피해를 입힐 수 있다)</span></span><br><span class="line">$ npm star <span class="comment"># 자신이 좋아하는 패키지를 표시하는 기능(star이 많을 수록 인기 패키지이기도 하다.)</span></span><br><span class="line"><span class="comment"># npm starts # 특정 사람이 star한 패키지 목록 확인</span></span><br><span class="line">$ npm version <span class="comment"># 버전 업데이트를 할 때 사용</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.zerocho.com/category/NodeJS/post/58285e4840a6d700184ebd87">https://www.zerocho.com/category/NodeJS/post/58285e4840a6d700184ebd87</a></li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://woonyzzang.github.com/2017/04/13/node-npm-cli/" data-id="clx8j472b009nfr9k8o57axie" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "woonyzzang"
+        },
+        "headline": "Node.js NPM CLI",
+        "image": "https://woonyzzang.github.com",
+        "keywords": "node",
+        "genre": "Backend Node",
+        "datePublished": "2017-04-13",
+        "dateCreated": "2017-04-13",
+        "dateModified": "2024-06-07",
+        "url": "https://woonyzzang.github.com/2017/04/13/node-npm-cli/",
+        "description": "NPM(Node Package Manager) CLI 명령어npm(Node Package Manager)은 두가지의 주요 기능을 지니고 있다.
+
+NPMSearch 에서 탐색 가능한 Node.js 패키지&#x2F;모듈 저장소
+Node.js 패키지 설치 및 버전 &#x2F; 호환성 관리를 할 수 있는 커맨드라인 유틸리티
+
+npm 명령어는 명령 프롬프트에 입력하",
+        "wordCount": 729
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>팔로우:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/woonyzzang/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="cloud" href="https://altima-j-project-19b8286c.koyeb.app/" target="_blank">
+                        <i class="icon fa fa-cloud"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="jsfiddle" href="https://jsfiddle.net/user/woonyzzang/fiddles/" target="_blank">
+                        <i class="icon fa fa-jsfiddle"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    <!-- github card -->
+    
+    <div class="github-card" data-github="woonyzzang" data-width="100%" data-height="150" data-theme="default"></div>
+    
+    
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+
+    <!-- //github card -->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/04/18/javascript-es6-syntax/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">신규</strong>
+        <p class="article-nav-title">
+        
+            EcmaScript2015 Syntax
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/04/12/mac-bootcamp/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">이전</strong>
+        <p class="article-nav-title">Mac Bootcamp 설치하기</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">카테고리</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/Hybrid/">Hybrid</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/IOS/">IOS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/Ionic/">Ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Net-Core/">.Net Core</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Node/">Node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Nuxt/">Nuxt</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/PHP/">PHP</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/PHP/Wordpress/">Wordpress</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Python/">Python</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Python/PyScript/">PyScript</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Wasm/">Wasm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Zendesk/">Zendesk</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/VSCode/">VSCode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">70</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/CSS/">CSS</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Javascript/">Javascript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/">Library</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/jQuery/">jQuery</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/">Module</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/Webpack/">Webpack</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/">SPA</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/JWT/">JWT</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/React-js/">React.js</a><span class="category-list-count">16</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/">Linux</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/CentOS/">CentOS</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/Vim/">Vim</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/AWS/">AWS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Azure/">Azure</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Docker/">Docker</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Gitlab/">Gitlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/IIS/">IIS</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Fiddler/">Fiddler</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Git/">Git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/OpenSSl/">OpenSSl</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Teams/">Teams</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/VMware/">VMware</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">16</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Architecture/">Architecture</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Descktop/">Descktop</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Log/">Log</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Mobile/">Mobile</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Others/">Others</a><span class="category-list-count">5</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">아카이브</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">5월 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">3월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">2월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">1월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">12월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">10월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">9월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">8월 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">4월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">1월 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">6월 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">3월 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">2월 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">3월 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">12월 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">8월 2019</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">3월 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">4월 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">10월 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8월 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">7월 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">6월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5월 2017</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">4월 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">3월 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2월 2017</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">태그 클라우드</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular-v1/" style="font-size: 10.77px;">angular v1</a> <a href="/tags/apmsetup/" style="font-size: 10px;">apmsetup</a> <a href="/tags/architecture/" style="font-size: 12.31px;">architecture</a> <a href="/tags/asp/" style="font-size: 12.31px;">asp</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/azure/" style="font-size: 16.92px;">azure</a> <a href="/tags/backbone/" style="font-size: 13.85px;">backbone</a> <a href="/tags/blazor/" style="font-size: 10px;">blazor</a> <a href="/tags/bundler/" style="font-size: 11.54px;">bundler</a> <a href="/tags/centos/" style="font-size: 15.38px;">centos</a> <a href="/tags/chrome/" style="font-size: 11.54px;">chrome</a> <a href="/tags/css/" style="font-size: 13.85px;">css</a> <a href="/tags/css3/" style="font-size: 13.85px;">css3</a> <a href="/tags/d3/" style="font-size: 16.15px;">d3</a> <a href="/tags/ddd/" style="font-size: 10px;">ddd</a> <a href="/tags/descktop/" style="font-size: 10.77px;">descktop</a> <a href="/tags/devops/" style="font-size: 14.62px;">devops</a> <a href="/tags/docker/" style="font-size: 14.62px;">docker</a> <a href="/tags/es6/" style="font-size: 12.31px;">es6</a> <a href="/tags/fiddler/" style="font-size: 10.77px;">fiddler</a> <a href="/tags/git/" style="font-size: 12.31px;">git</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/hybridApp/" style="font-size: 10.77px;">hybridApp</a> <a href="/tags/ionic-v1/" style="font-size: 13.08px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/jira/" style="font-size: 10px;">jira</a> <a href="/tags/jquery/" style="font-size: 10.77px;">jquery</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/jwt/" style="font-size: 10px;">jwt</a> <a href="/tags/linux/" style="font-size: 19.23px;">linux</a> <a href="/tags/loader/" style="font-size: 10.77px;">loader</a> <a href="/tags/log/" style="font-size: 10.77px;">log</a> <a href="/tags/mac/" style="font-size: 13.08px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 17.69px;">mobile</a> <a href="/tags/mvc/" style="font-size: 10px;">mvc</a> <a href="/tags/mvvm/" style="font-size: 10px;">mvvm</a> <a href="/tags/node/" style="font-size: 10.77px;">node</a> <a href="/tags/nuxt2/" style="font-size: 10px;">nuxt2</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/others/" style="font-size: 13.08px;">others</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/pr/" style="font-size: 10px;">pr</a> <a href="/tags/react/" style="font-size: 18.46px;">react</a> <a href="/tags/requirejs/" style="font-size: 10.77px;">requirejs</a> <a href="/tags/server/" style="font-size: 14.62px;">server</a> <a href="/tags/simulator/" style="font-size: 10px;">simulator</a> <a href="/tags/spa/" style="font-size: 13.85px;">spa</a> <a href="/tags/storybook/" style="font-size: 12.31px;">storybook</a> <a href="/tags/sublimeText/" style="font-size: 11.54px;">sublimeText</a> <a href="/tags/teams/" style="font-size: 10px;">teams</a> <a href="/tags/test/" style="font-size: 12.31px;">test</a> <a href="/tags/tip/" style="font-size: 10.77px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 12.31px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/visualsvn/" style="font-size: 10px;">visualsvn</a> <a href="/tags/vmware/" style="font-size: 10.77px;">vmware</a> <a href="/tags/vscode/" style="font-size: 11.54px;">vscode</a> <a href="/tags/wasm/" style="font-size: 10.77px;">wasm</a> <a href="/tags/webpack/" style="font-size: 11.54px;">webpack</a> <a href="/tags/webstorm/" style="font-size: 13.85px;">webstorm</a> <a href="/tags/windows/" style="font-size: 17.69px;">windows</a> <a href="/tags/wordpress/" style="font-size: 10px;">wordpress</a> <a href="/tags/zendesk/" style="font-size: 12.31px;">zendesk</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">링크</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://j-portfolio.herokuapp.com/dev/cms/">CMS Theme</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://j-portfolio.herokuapp.com/dev/listmap/listmap.xml">Markup Listmap</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-generator-css3">J Generator CSS3</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-html5-reference">J HTML5 Open Reference</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-prototype">J Prototype</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-draft-design">J Draft Design Gallery</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-responsive-design-view">J Responsive Design View</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-memo">J Memo</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-hiworks-mail-notifier">J Hiworks Notifier</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-core-module">J Core Module</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-core-editor">J Core Editor</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-cheat-sheet-api">J Cheat Sheet API</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2024 woonyzzang</p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://woonyzzang.github.com/2017/04/13/node-npm-cli/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

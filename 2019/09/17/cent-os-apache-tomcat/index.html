@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Cent OS Apache와 Tomcat 연동 | J Dev</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="linux,centos">
+    
+    <meta name="description" content="Apache와 Tomcat 연동Tomcat도 단독으로 서비스를 할 수 있으나 보편적으로 Apache와 연동하여 사용하는 경우가 많습니다. 그 이유는 아래와 같습니다.  정적컨텐츠의 서비스 속도(이미지 동영상의 경우 Apache가 빠름) 여러 대의 Apache와 Tomcat서버의 클러스터링 구성 Apache 웹서버의 다양한 모듈 확장 보안 강화  연동 방식은">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cent OS Apache와 Tomcat 연동">
+<meta property="og:url" content="https://woonyzzang.github.com/2019/09/17/cent-os-apache-tomcat/index.html">
+<meta property="og:site_name" content="J Dev">
+<meta property="og:description" content="Apache와 Tomcat 연동Tomcat도 단독으로 서비스를 할 수 있으나 보편적으로 Apache와 연동하여 사용하는 경우가 많습니다. 그 이유는 아래와 같습니다.  정적컨텐츠의 서비스 속도(이미지 동영상의 경우 Apache가 빠름) 여러 대의 Apache와 Tomcat서버의 클러스터링 구성 Apache 웹서버의 다양한 모듈 확장 보안 강화  연동 방식은">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://woonyzzang.github.com/images/cent-os-apache-tomcat/cent-os-apache-tomcat_1.png">
+<meta property="article:published_time" content="2019-09-16T16:08:39.000Z">
+<meta property="article:modified_time" content="2024-06-07T09:27:28.270Z">
+<meta property="article:author" content="woonyzzang">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="centos">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://woonyzzang.github.com/images/cent-os-apache-tomcat/cent-os-apache-tomcat_1.png">
+    
+
+    
+    <link rel="canonical" href="https://woonyzzang.github.com/2019/09/17/cent-os-apache-tomcat/"/>
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.png">
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/rss2.xml" title="J Dev" type="application/rss+xml">
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">홈</a>
+                                </li>
+                            
+                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/">App</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/Hybrid/">Hybrid</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/IOS/">IOS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/Ionic/">Ionic</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/">Backend</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Net-Core/">.Net Core</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Node/">Node</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Nuxt/">Nuxt</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/PHP/">PHP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Python/">Python</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Wasm/">Wasm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Zendesk/">Zendesk</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/">Editor</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/SublimeText/">SublimeText</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/VSCode/">VSCode</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Webstorm/">Webstorm</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/">Frontend</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/CSS/">CSS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/HTML/">HTML</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Library/">Library</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Module/">Module</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/SPA/">SPA</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/">OS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Mac/">Mac</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Windows/">Windows</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/AWS/">AWS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Azure/">Azure</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Docker/">Docker</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Gitlab/">Gitlab</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/IIS/">IIS</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/">Tools</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/APMSETUP/">APMSETUP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Fiddler/">Fiddler</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Git/">Git</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/OpenSSl/">OpenSSl</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Teams/">Teams</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/VMware/">VMware</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/">Web</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Architecture/">Architecture</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Descktop/">Descktop</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Log/">Log</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Mobile/">Mobile</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Others/">Others</a></li></ul></li></ul>
+                                
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="찾고자 하는 포스트를 검색하세요." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: '페이지',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/OS/">OS</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/OS/Linux/">Linux</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/OS/Linux/CentOS/">CentOS</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-cent-os-apache-tomcat" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Cent OS Apache와 Tomcat 연동
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2019/09/17/cent-os-apache-tomcat/" class="article-date">
+       <time datetime="2019-09-16T16:08:39.000Z" itemprop="datePublished">2019-09-17</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2019/09/17/cent-os-apache-tomcat/" class="article-date">
+     <time datetime="2024-06-07T09:27:28.270Z" itemprop="dateModified">2024-06-07</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/centos/" rel="tag">centos</a>, <a class="tag-link-link" href="/tags/linux/" rel="tag">linux</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <h3 id="Apache와-Tomcat-연동"><a href="#Apache와-Tomcat-연동" class="headerlink" title="Apache와 Tomcat 연동"></a>Apache와 Tomcat 연동</h3><p>Tomcat도 단독으로 서비스를 할 수 있으나 보편적으로 Apache와 연동하여 사용하는 경우가 많습니다. 그 이유는 아래와 같습니다.</p>
+<ul>
+<li>정적컨텐츠의 서비스 속도(이미지 동영상의 경우 Apache가 빠름)</li>
+<li>여러 대의 Apache와 Tomcat서버의 클러스터링 구성</li>
+<li>Apache 웹서버의 다양한 모듈 확장</li>
+<li>보안 강화</li>
+</ul>
+<p>연동 방식은 <code>mod_jk</code>, <code>mod_proxy</code>, <code>mod_prox_ajp</code> 세가지 방식이 존재한다고 합니다만, 이중에서 mod_jk 방식을 살펴 보겠습니다.대체적으로 보통 mod_jk로 연동하는 경우가 많고, 나머지 2가지에 비해 URL 또는 컨텐츠별 설정이 쉽다고 합니다.</p>
+<h3 id="1-mod-jk설치"><a href="#1-mod-jk설치" class="headerlink" title="1. mod_jk설치"></a>1. mod_jk설치</h3><ul>
+<li>mod_jk를 설치 하려면 gcc, gcc-c++, httpd-devel 세가지 패키지가 설치되어 있어야 합니다.</li>
+<li>아래 명령어를 입력하여 3가지 패키지를 모두 설치합니다.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install gcc gcc-c++ httpd-devel</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://tomcat.apache.org/download-connectors.cgi">http://tomcat.apache.org/download-connectors.cgi</a> 링크 위치 주소로 방문하여 최신 다운로드 파일 링크를 확인 합니다.</p>
+<p><img src="/images/cent-os-apache-tomcat/cent-os-apache-tomcat_1.png" alt="Cent OS Apache Tomcat 연동1" title="Cent OS Apache Tomcat 연동1"></p>
+<ul>
+<li>화면 중간에 보시면 tar.gz파일의 링크가 있습니다. 우클릭하여 <code>링크 주소 복사</code> 를 통해 링크를 카피합니다.</li>
+<li>다운로드 받을 디렉토리 위치로 이동한 후 파일을 아래의 명령어로 다운로드 받습니다.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ wget -c &#123;&#123;링크카피주소&#125;&#125;</span><br><span class="line"></span><br><span class="line">$ wgwt -c http://mirror.navercorp.com/apache/tomcat/tomcat-connectors/jk/tomcat-connectors-1.2.46-src.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/cent-os-apache-tomcat/cent-os-apache-tomcat_2.png" alt="Cent OS Apache Tomcat 연동2" title="Cent OS Apache Tomcat 연동2"></p>
+<ul>
+<li>다운로드 받은 파일의 확장자가 tar.gz입니다. 이는 압축파일이며, 압축파일을 해제하기 위해 아래의 명령어를 실행합니다.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tar zxvf tomcat-connector*</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>압축이 풀리며 디렉토리가 생성된 것을 확인할 수 있습니다.</li>
+</ul>
+<p><img src="/images/cent-os-apache-tomcat/cent-os-apache-tomcat_3.png" alt="Cent OS Apache Tomcat 연동3" title="Cent OS Apache Tomcat 연동3"></p>
+<ul>
+<li>생성된 디렉토리 안에 native디렉토리로 들어갑니다.</li>
+</ul>
+<p><img src="/images/cent-os-apache-tomcat/cent-os-apache-tomcat_4.png" alt="Cent OS Apache Tomcat 연동4" title="Cent OS Apache Tomcat 연동4"></p>
+<ul>
+<li>Makefile을 생성하기 위해 아래 명령어를 실행합니다.</li>
+<li>옵션 내용은 Apache확장기능 설치를 도와주는 유틸리티의 경로입니다.</li>
+<li>기본 설치 경로는 <code>/usr/bin</code> 입니다.</li>
+<li>혹, 경로에 찾을수 없다는 에러가 발생하신다면 <code>/usr/sbin</code> 의 경로도 한번 살펴보시기 바랍니다.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./configure --with-apxs=/usr/bin/apxs</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/cent-os-apache-tomcat/cent-os-apache-tomcat_5.png" alt="Cent OS Apache Tomcat 연동5" title="Cent OS Apache Tomcat 연동5"></p>
+<ul>
+<li>make명령어로 컴파일을 실행합니다.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>컴파일 완료후 install 합니다.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make install</span><br></pre></td></tr></table></figure>
+
+<p>참고로 다음과 같은 명령어를 사용해서 컴파일과 install 을 동시에 실행할 수도 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>install 후 <code>/etc/httpd/modules/</code> 경로의 파일 안에 <code>mod_jk.so</code> 파일이 생성되어있음을 확인할 수 있습니다.</li>
+</ul>
+<p><img src="/images/cent-os-apache-tomcat/cent-os-apache-tomcat_6.png" alt="Cent OS Apache Tomcat 연동6" title="Cent OS Apache Tomcat 연동6"></p>
+<ul>
+<li>Selinux의 보안관련 설정을 변경해주어야 하는데요, 아래의 명령어를 실행합니다.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">chcon</span> -u system_u -r object_r -t httpd_modules_t /etc/httpd/modules/mod_jk.so</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Apache-설정"><a href="#2-Apache-설정" class="headerlink" title="2. Apache 설정"></a>2. Apache 설정</h3><ul>
+<li>Apache의 설정은 <code>/etc/httpd/conf/httpd.conf</code> 파일인데 vi 에디터로 오픈합니다.</li>
+<li>vi에디터 창에서 <code>/</code> 를 누르고 LoadModule 단어를 검색 키워드로 찾아(엔터후 n버튼을 누르면 다음찾기가 됩니다.) 그 아래쪽에 다음의 내용을 추가합니다.</li>
+</ul>
+<p><strong>httpd.conf 파일</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Dynamic Shared Object (DSO) Support</span><br><span class="line">#</span><br><span class="line"># To be able to use the functionality of a module which was built as a DSO you</span><br><span class="line"># have to place corresponding `LoadModule&#x27; lines at this location so the</span><br><span class="line"># directives contained in it are actually available _before_ they are used.</span><br><span class="line"># Statically compiled modules (those listed by `httpd -l&#x27;) do not need</span><br><span class="line"># to be loaded here.</span><br><span class="line">#</span><br><span class="line"># Example:</span><br><span class="line"># LoadModule foo_module modules/mod_foo.so</span><br><span class="line">#</span><br><span class="line">Include conf.modules.d/*.conf</span><br><span class="line"></span><br><span class="line">LoadModule jk_module modules/mod_jk.so // 추가</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Apache의 가상 호스트 <code>/etc/httpd/conf/extra/httpd-vhosts.conf</code> 파일도 아래 코드를 추가 합니다.</li>
+<li>httpd-vhosts.conf 파일은 httpd.conf 에 가상호스트 include 설정이 되어 있어야 합니다.</li>
+</ul>
+<p><strong>httpd-vhosts.conf 파일</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerName localhost</span><br><span class="line"></span><br><span class="line">    # 확장자 jsp, json, xml, do를 가진 경로는 woker worker1 으로 연결하는 구문입니다.     </span><br><span class="line">    JkMount /*.jsp worker1</span><br><span class="line">    JkMount /*.do worker1</span><br><span class="line">    JkMount /*.json worker1</span><br><span class="line">    JkMount /*.xml worker1    </span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/cent-os-apache-tomcat/cent-os-apache-tomcat_7.png" alt="Cent OS Apache Tomcat 연동7" title="Cent OS Apache Tomcat 연동7"></p>
+<ul>
+<li>화면에 보시면 conf.modules.d 경로가 include가 된 것을 볼 수 있습니다.</li>
+<li><code>/etc/httpd/conf.modules.d</code> 경로에 진입하여 <code>vi mod_jk.conf</code> 를 실행하여 새로운 설정파일을 오픈 합니다.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/httpd/conf.modules.d/mod_jk.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;IfModule mod_jk.c&gt;</span><br><span class="line">    # 워커 설정파일 위치</span><br><span class="line">    JkWorkersFile conf/workers_jk.properties</span><br><span class="line">    # 공유 메모리파일 위치 반드시 Selinux 보안때문에 run에 위치 필수     </span><br><span class="line">    JkShmFile run/mod_jk.shm     </span><br><span class="line">    # log 위치     </span><br><span class="line">    JkLogFile logs/mod_jk.log     </span><br><span class="line">    # 로그레벨 설정     </span><br><span class="line">    JkLogLevel info     </span><br><span class="line">    # 로그 포맷에 사용할 시간 형식을 지정한다.     </span><br><span class="line">    JkLogStampFormat &quot;[%y %m %d %H:%M:%S]&quot; </span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/cent-os-apache-tomcat/cent-os-apache-tomcat_8.png" alt="Cent OS Apache Tomcat 연동8" title="Cent OS Apache Tomcat 연동8"></p>
+<ul>
+<li>vi 에디터에서 <code>:wq</code> 로 저장하고 빠져 나옵니다.</li>
+<li>이제 mod_jk.conf 파일에서 설정한 워커 설정 파일을 만들 차례 입니다.</li>
+<li>설정한 경로가 &#x2F;etc&#x2F;httpd&#x2F;conf&#x2F;workers_jk.properties 입니다.</li>
+<li>vi 로 해당경로 를 오픈하여 파일을 생성합니다.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/httpd/conf/workers_jk.properties</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">worker.list</span>=<span class="string">worker1</span></span><br><span class="line"></span><br><span class="line"><span class="attr">worker.tomcat.port</span>=<span class="string">8009 </span></span><br><span class="line"><span class="attr">worker.tomcat.host</span>=<span class="string">localhost </span></span><br><span class="line"><span class="attr">worker.tomcat.type</span>=<span class="string">ajp13 </span></span><br><span class="line"><span class="attr">worker.tomcat.lbfactor</span>=<span class="string">1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>port를 8009로 설정함은 tomcat의 server.xml설정에 기인합니다. 확인은 아래에서 가능합니다.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /usr/share/tomcat/conf/server.xml</span><br></pre></td></tr></table></figure>
+
+<p>tomcat 은 기본 URIEncoding 이 ISO-8859-1 이므로 한글이 깨지므로 모든 커넥터 설정에 <code>URIEncoding=&quot;UTF-8&quot;</code> 을 추가해야 합니다.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">&quot;8009&quot;</span> <span class="attr">protocol</span>=<span class="string">&quot;AJP/1.3&quot;</span> <span class="attr">redirectPort</span>=<span class="string">&quot;8443&quot;</span> <span class="attr">URIEncoding</span>=<span class="string">&quot;UTF-8&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/cent-os-apache-tomcat/cent-os-apache-tomcat_9.png" alt="Cent OS Apache Tomcat 연동9" title="Cent OS Apache Tomcat 연동9"></p>
+<ul>
+<li><code>/etc/httpd/conf/extra/httpd-vhosts.conf</code> 파일을 열어 Apache와 Tomcat Document 위치를 맞추어줍니다.</li>
+<li>이부분을 맞추어 주지 않으면 jsp 파일은 보이지만 이미지와 CSS가 로드 되지 않습니다.</li>
+<li>httpd-vhosts.conf 파일을 오픈하여 DocumentRoot 구문에 Tomcat의 문서 경로로 변경해줍니다.</li>
+<li><strong>&#x2F;usr&#x2F;share&#x2F;tomcat&#x2F;webapps&#x2F;ROOT</strong> 입니다.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/httpd/conf/extra/httpd-vhosts.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerAdmin seungwoon@gmail.com</span><br><span class="line">    DocumentRoot /usr/share/tomcat/webapps/ # // 추가</span><br><span class="line">    ServerName localhost</span><br><span class="line"></span><br><span class="line">    # // 추가</span><br><span class="line">    &lt;Directory &quot;/usr/share/tomcat/webapps/ROOT/&quot;&gt;</span><br><span class="line">        AllowOverride none</span><br><span class="line">        Require all granted</span><br><span class="line">    &lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">    # 확장자 jsp, json, xml, do를 가진 경로는 woker tomcat으로 연결하는 구문입니다.</span><br><span class="line">    JkMount /*.jsp worker1</span><br><span class="line">    JkMount /*.do worker1</span><br><span class="line">    JkMount /*.xml worker1</span><br><span class="line">    JkMount /*.json worker1</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>/etc/httpd/conf/httpd.conf</code> 파일을 열어 기본 인덱스 설정에 <code>index.jsp</code> 를 추가 합니다.</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># DirectoryIndex: sets the file that Apache will serve if a directory</span><br><span class="line"># is requested.</span><br><span class="line"># // 변경 전</span><br><span class="line">&lt;IfModule dir_module&gt;</span><br><span class="line">    DirectoryIndex index.html</span><br><span class="line">&lt;/IfModule&gt;</span><br><span class="line"></span><br><span class="line"># 변경 후</span><br><span class="line">&lt;IfModule dir_module&gt;</span><br><span class="line">    DirectoryIndex index.html index.jsp</span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>마지막으로 아랫부분의 SELinux 설정을 해줍니다.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">chcon</span> -R --<span class="built_in">type</span>=httpd_sys_rw_content_t /usr/share/tomcat/webapps/ROOT</span><br></pre></td></tr></table></figure>
+
+<p>만약 위 명령어 실행 시 에러가 발생하면  <code>setenforce 0</code> 명령어로 SELinux 임시 해제 후 SELinux 설정을 한 후 <code>setenforce 1</code> 명령어로 SELinux 실행 합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ setenforce 0 // SELinux 끄기</span><br><span class="line">$ <span class="built_in">chcon</span> -R --<span class="built_in">type</span>=httpd_sys_rw_content_t /usr/share/tomcat/webapps/ROOT</span><br><span class="line">$ setenforce 1 // SELinux 켜기</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>아파치를 재시작 합니다.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl restart httpd</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>톰캣을 재시작 합니다.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl restart tomcat</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>이제 결과를 확인 하기 위하여 http:&#x2F;&#x2F;&#x2F;index.jsp로 접속합니다.</li>
+<li>8080포트 없이 진입했는데 Tomcat화면이 나오시면 성공입니다.</li>
+</ul>
+<p><img src="/images/cent-os-apache-tomcat/cent-os-apache-tomcat_10.png" alt="Cent OS Apache Tomcat 연동10" title="Cent OS Apache Tomcat 연동10"></p>
+<p>그러면 보시는 바와 같이 톰캣 페이지가 응답이 되지만, CSS, image 등이 제외된 상태로 HTML 문서만 응답이 됩니다.</p>
+<p><img src="/images/cent-os-apache-tomcat/cent-os-apache-tomcat_11.png" alt="Cent OS Apache Tomcat 연동11" title="Cent OS Apache Tomcat 연동11"></p>
+<p>그 이유는 아파치 환경 설정에서 tomcat connection 에서 설정한 JkMount 옵션 때문입니다.<br>.jsp 파일만 worker가 처리하도록 보냈기 때문에, 정적 파일들은 아파치에서 응답해야 합니다.<br>하지만 아파치에는 톰캣 페이지에서 제공해야 하는 정적 파일들이 없기 때문에 톰캣에서 받아온 HTML 문서만 응답할 수 밖에 없습니다.</p>
+<p>이로 미루어 보아, worker를 통해 아파치가 톰캣으로부터 jsp파일만 가져온 것을 확인할 수 있습니다.<br>즉, 아파치와 톰캣이 연동된 것입니다.</p>
+<p>간단한 애플리케이션이 있다면 worker를 수정해서 80포트로 접근했을 때 애플리케이션을 응답할 수 있도록 설정할 수 있습니다.<br>Tomcat Manager에서 웹 애플리케이션을 deploy 했을 때, 그 이름을 example 이라고 하겠습니다.<br>그러면 JkMount를 다음과 같이 수정해서 웹 애플리케이션이 아파치와 연동되서 실행될 수 있습니다</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/httpd/conf/extra/httpd-vhosts.conf</span><br></pre></td></tr></table></figure>
+
+<p>Tomcat connection 부분의 JkMount를 아래와 같이 수정합니다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerAdmin example@gmail.com</span><br><span class="line">    DocumentRoot /usr/share/tomcat/webapps/</span><br><span class="line">    ServerName localhost</span><br><span class="line"></span><br><span class="line">    &lt;Directory &quot;/usr/share/tomcat/webapps/ROOT/&quot;&gt;</span><br><span class="line">        AllowOverride none</span><br><span class="line">        Require all granted</span><br><span class="line">    &lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">    JkMount /example/* worker1 # // 수정</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+
+<p>다시 아파치를 재시작 합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl restart httpd</span><br></pre></td></tr></table></figure>
+
+<p>브라우저에서 http:&#x2F;&#x2F;&#x2F;example&#x2F;~~ )에 접속해봅니다.</p>
+<p>만약에 리소스 파일 계속 접근이 안된다면 <code>/usr/share/tomcat/webapps/ROOT</code> 디렉토리의 파일권한을 755로 변경 해줍니다.</p>
+<h3 id="Tomcat-ROOT-디렉토리로-변경"><a href="#Tomcat-ROOT-디렉토리로-변경" class="headerlink" title="Tomcat ROOT 디렉토리로 변경"></a>Tomcat ROOT 디렉토리로 변경</h3><p><code>/usr/share/tomcat/conf/server.xml</code> 파일에서 아래 처럼 변경 후 톰캣 재시작을 합니다.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># // 변경 전</span><br><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">&quot;localhost&quot;</span> <span class="attr">appBase</span>=<span class="string">&quot;webapps&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">unpackWARs</span>=<span class="string">&quot;true&quot;</span> <span class="attr">autoDeploy</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br><span class="line"></span><br><span class="line"># 변경 후</span><br><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">&quot;localhost&quot;</span> <span class="attr">appBase</span>=<span class="string">&quot;/home/www&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">unpackWARs</span>=<span class="string">&quot;false&quot;</span> <span class="attr">autoDeploy</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">&quot;/&quot;</span> <span class="attr">docBase</span>=<span class="string">&quot;.&quot;</span> <span class="attr">reloadable</span>=<span class="string">&quot;false&quot;</span> /&gt;</span></span><br><span class="line">        ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="WAR-파일-수동-압축-풀기"><a href="#WAR-파일-수동-압축-풀기" class="headerlink" title="WAR 파일 수동 압축 풀기"></a>WAR 파일 수동 압축 풀기</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ jar xvf &lt;war파일이름&gt;.war 입력</span><br></pre></td></tr></table></figure>
+
+<p><strong>:8080포트 차단하기</strong></p>
+<ul>
+<li>vi 에디터로 <code>/usr/share/tomcat/conf/server.xml</code> 파일을 오픈 합니다.</li>
+<li>Connector port가 <code>8080</code> 으로 되어 있는데 이부분을 <code>80</code> 으로 변경하면 됩니다.</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- A &quot;Connector&quot; represents an endpoint by which requests are received</span></span><br><span class="line"><span class="comment">    and responses are returned. Documentation at :</span></span><br><span class="line"><span class="comment">    Java HTTP Connector: /docs/config/http.html (blocking &amp; non-blocking)</span></span><br><span class="line"><span class="comment">    Java AJP  Connector: /docs/config/ajp.html</span></span><br><span class="line"><span class="comment">    APR (HTTP/AJP) Connector: /docs/apr.html</span></span><br><span class="line"><span class="comment">    Define a non-SSL HTTP/1.1 Connector on port 8080</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- // 변경 전 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">&quot;8080&quot;</span> <span class="attr">protocol</span>=<span class="string">&quot;HTTP/1.1&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">connectionTimeout</span>=<span class="string">&quot;20000&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">redirectPort</span>=<span class="string">&quot;8443&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- // 변경 후 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">&quot;80&quot;</span> <span class="attr">protocol</span>=<span class="string">&quot;HTTP/1.1&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">connectionTimeout</span>=<span class="string">&quot;20000&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">redirectPort</span>=<span class="string">&quot;8443&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h3 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://suwoni-codelab.com/linux/2017/05/29/Linux-CentOS-Apache-Tomcat/">https://suwoni-codelab.com/linux/2017/05/29/Linux-CentOS-Apache-Tomcat/</a></li>
+<li><a target="_blank" rel="noopener" href="https://goddaehee.tistory.com/77">https://goddaehee.tistory.com/77</a></li>
+<li><a target="_blank" rel="noopener" href="https://victorydntmd.tistory.com/225">https://victorydntmd.tistory.com/225</a></li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://woonyzzang.github.com/2019/09/17/cent-os-apache-tomcat/" data-id="clx8j46zi0014fr9k4ila6xcc" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "woonyzzang"
+        },
+        "headline": "Cent OS Apache와 Tomcat 연동",
+        "image": "https://woonyzzang.github.com/images/cent-os-apache-tomcat/cent-os-apache-tomcat_1.png",
+        "keywords": "linux centos",
+        "genre": "OS Linux CentOS",
+        "datePublished": "2019-09-17",
+        "dateCreated": "2019-09-17",
+        "dateModified": "2024-06-07",
+        "url": "https://woonyzzang.github.com/2019/09/17/cent-os-apache-tomcat/",
+        "description": "Apache와 Tomcat 연동Tomcat도 단독으로 서비스를 할 수 있으나 보편적으로 Apache와 연동하여 사용하는 경우가 많습니다. 그 이유는 아래와 같습니다.
+
+정적컨텐츠의 서비스 속도(이미지 동영상의 경우 Apache가 빠름)
+여러 대의 Apache와 Tomcat서버의 클러스터링 구성
+Apache 웹서버의 다양한 모듈 확장
+보안 강화
+
+연동 방식은",
+        "wordCount": 1809
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>팔로우:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/woonyzzang/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="cloud" href="https://altima-j-project-19b8286c.koyeb.app/" target="_blank">
+                        <i class="icon fa fa-cloud"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="jsfiddle" href="https://jsfiddle.net/user/woonyzzang/fiddles/" target="_blank">
+                        <i class="icon fa fa-jsfiddle"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    <!-- github card -->
+    
+    <div class="github-card" data-github="woonyzzang" data-width="100%" data-height="150" data-theme="default"></div>
+    
+    
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+
+    <!-- //github card -->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/09/17/cent-os-tomcat9-install/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">신규</strong>
+        <p class="article-nav-title">
+        
+            Cent OS Tomcat 9 수동 설치
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/09/17/cent-os-tomcat-install/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">이전</strong>
+        <p class="article-nav-title">Cent OS Tomcat 설치</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">카테고리</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/Hybrid/">Hybrid</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/IOS/">IOS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/Ionic/">Ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Net-Core/">.Net Core</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Node/">Node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Nuxt/">Nuxt</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/PHP/">PHP</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/PHP/Wordpress/">Wordpress</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Python/">Python</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Python/PyScript/">PyScript</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Wasm/">Wasm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Zendesk/">Zendesk</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/VSCode/">VSCode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">70</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/CSS/">CSS</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Javascript/">Javascript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/">Library</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/jQuery/">jQuery</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/">Module</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/Webpack/">Webpack</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/">SPA</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/JWT/">JWT</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/React-js/">React.js</a><span class="category-list-count">16</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/">Linux</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/CentOS/">CentOS</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/Vim/">Vim</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/AWS/">AWS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Azure/">Azure</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Docker/">Docker</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Gitlab/">Gitlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/IIS/">IIS</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Fiddler/">Fiddler</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Git/">Git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/OpenSSl/">OpenSSl</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Teams/">Teams</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/VMware/">VMware</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">16</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Architecture/">Architecture</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Descktop/">Descktop</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Log/">Log</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Mobile/">Mobile</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Others/">Others</a><span class="category-list-count">5</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">아카이브</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">5월 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">3월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">2월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">1월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">12월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">10월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">9월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">8월 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">4월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">1월 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">6월 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">3월 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">2월 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">3월 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">12월 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">8월 2019</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">3월 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">4월 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">10월 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8월 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">7월 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">6월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5월 2017</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">4월 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">3월 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2월 2017</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">태그 클라우드</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular-v1/" style="font-size: 10.77px;">angular v1</a> <a href="/tags/apmsetup/" style="font-size: 10px;">apmsetup</a> <a href="/tags/architecture/" style="font-size: 12.31px;">architecture</a> <a href="/tags/asp/" style="font-size: 12.31px;">asp</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/azure/" style="font-size: 16.92px;">azure</a> <a href="/tags/backbone/" style="font-size: 13.85px;">backbone</a> <a href="/tags/blazor/" style="font-size: 10px;">blazor</a> <a href="/tags/bundler/" style="font-size: 11.54px;">bundler</a> <a href="/tags/centos/" style="font-size: 15.38px;">centos</a> <a href="/tags/chrome/" style="font-size: 11.54px;">chrome</a> <a href="/tags/css/" style="font-size: 13.85px;">css</a> <a href="/tags/css3/" style="font-size: 13.85px;">css3</a> <a href="/tags/d3/" style="font-size: 16.15px;">d3</a> <a href="/tags/ddd/" style="font-size: 10px;">ddd</a> <a href="/tags/descktop/" style="font-size: 10.77px;">descktop</a> <a href="/tags/devops/" style="font-size: 14.62px;">devops</a> <a href="/tags/docker/" style="font-size: 14.62px;">docker</a> <a href="/tags/es6/" style="font-size: 12.31px;">es6</a> <a href="/tags/fiddler/" style="font-size: 10.77px;">fiddler</a> <a href="/tags/git/" style="font-size: 12.31px;">git</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/hybridApp/" style="font-size: 10.77px;">hybridApp</a> <a href="/tags/ionic-v1/" style="font-size: 13.08px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/jira/" style="font-size: 10px;">jira</a> <a href="/tags/jquery/" style="font-size: 10.77px;">jquery</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/jwt/" style="font-size: 10px;">jwt</a> <a href="/tags/linux/" style="font-size: 19.23px;">linux</a> <a href="/tags/loader/" style="font-size: 10.77px;">loader</a> <a href="/tags/log/" style="font-size: 10.77px;">log</a> <a href="/tags/mac/" style="font-size: 13.08px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 17.69px;">mobile</a> <a href="/tags/mvc/" style="font-size: 10px;">mvc</a> <a href="/tags/mvvm/" style="font-size: 10px;">mvvm</a> <a href="/tags/node/" style="font-size: 10.77px;">node</a> <a href="/tags/nuxt2/" style="font-size: 10px;">nuxt2</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/others/" style="font-size: 13.08px;">others</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/pr/" style="font-size: 10px;">pr</a> <a href="/tags/react/" style="font-size: 18.46px;">react</a> <a href="/tags/requirejs/" style="font-size: 10.77px;">requirejs</a> <a href="/tags/server/" style="font-size: 14.62px;">server</a> <a href="/tags/simulator/" style="font-size: 10px;">simulator</a> <a href="/tags/spa/" style="font-size: 13.85px;">spa</a> <a href="/tags/storybook/" style="font-size: 12.31px;">storybook</a> <a href="/tags/sublimeText/" style="font-size: 11.54px;">sublimeText</a> <a href="/tags/teams/" style="font-size: 10px;">teams</a> <a href="/tags/test/" style="font-size: 12.31px;">test</a> <a href="/tags/tip/" style="font-size: 10.77px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 12.31px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/visualsvn/" style="font-size: 10px;">visualsvn</a> <a href="/tags/vmware/" style="font-size: 10.77px;">vmware</a> <a href="/tags/vscode/" style="font-size: 11.54px;">vscode</a> <a href="/tags/wasm/" style="font-size: 10.77px;">wasm</a> <a href="/tags/webpack/" style="font-size: 11.54px;">webpack</a> <a href="/tags/webstorm/" style="font-size: 13.85px;">webstorm</a> <a href="/tags/windows/" style="font-size: 17.69px;">windows</a> <a href="/tags/wordpress/" style="font-size: 10px;">wordpress</a> <a href="/tags/zendesk/" style="font-size: 12.31px;">zendesk</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">링크</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://j-portfolio.herokuapp.com/dev/cms/">CMS Theme</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://j-portfolio.herokuapp.com/dev/listmap/listmap.xml">Markup Listmap</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-generator-css3">J Generator CSS3</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-html5-reference">J HTML5 Open Reference</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-prototype">J Prototype</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-draft-design">J Draft Design Gallery</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-responsive-design-view">J Responsive Design View</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-memo">J Memo</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-hiworks-mail-notifier">J Hiworks Notifier</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-core-module">J Core Module</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-core-editor">J Core Editor</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-cheat-sheet-api">J Cheat Sheet API</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2024 woonyzzang</p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://woonyzzang.github.com/2019/09/17/cent-os-apache-tomcat/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

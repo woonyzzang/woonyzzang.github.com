@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Javascript Mobile Browser Event API | J Dev</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="mobile,js">
+    
+    <meta name="description" content="JavaScript 모바일 브라우저 전용 이벤트모바일 브라우저 환경에서 특화되어 사용되는 이벤트 API를 살펴보자. 터치 이벤트 PC에서는 마우스나 키보드로 애플리케이션을 사용하는 데 필요한 동작과 정보를 입력한다면 모바일 환경에서는 사용자 터치로 필요한 동작과 정보를 입력한다. 동작과 정보를 입력하기 위해 기기의 화면에 손가락을 댔을 때 발생하는 이벤트가">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript Mobile Browser Event API">
+<meta property="og:url" content="https://woonyzzang.github.com/2017/05/15/javascript-mobile-browser-event-api/index.html">
+<meta property="og:site_name" content="J Dev">
+<meta property="og:description" content="JavaScript 모바일 브라우저 전용 이벤트모바일 브라우저 환경에서 특화되어 사용되는 이벤트 API를 살펴보자. 터치 이벤트 PC에서는 마우스나 키보드로 애플리케이션을 사용하는 데 필요한 동작과 정보를 입력한다면 모바일 환경에서는 사용자 터치로 필요한 동작과 정보를 입력한다. 동작과 정보를 입력하기 위해 기기의 화면에 손가락을 댔을 때 발생하는 이벤트가">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2017-05-15T09:49:00.000Z">
+<meta property="article:modified_time" content="2024-06-10T04:53:59.567Z">
+<meta property="article:author" content="woonyzzang">
+<meta property="article:tag" content="mobile">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+    
+
+    
+    <link rel="canonical" href="https://woonyzzang.github.com/2017/05/15/javascript-mobile-browser-event-api/"/>
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.png">
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/rss2.xml" title="J Dev" type="application/rss+xml">
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">홈</a>
+                                </li>
+                            
+                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/">App</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/Hybrid/">Hybrid</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/IOS/">IOS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/Ionic/">Ionic</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/">Backend</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Net-Core/">.Net Core</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Node/">Node</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Nuxt/">Nuxt</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/PHP/">PHP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Python/">Python</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Wasm/">Wasm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Zendesk/">Zendesk</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/">Editor</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/SublimeText/">SublimeText</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/VSCode/">VSCode</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Webstorm/">Webstorm</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/">Frontend</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/CSS/">CSS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/HTML/">HTML</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Library/">Library</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Module/">Module</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/SPA/">SPA</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/">OS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Mac/">Mac</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Windows/">Windows</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/AWS/">AWS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Azure/">Azure</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Docker/">Docker</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Gitlab/">Gitlab</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/IIS/">IIS</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/">Tools</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/APMSETUP/">APMSETUP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Fiddler/">Fiddler</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Git/">Git</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/OpenSSl/">OpenSSl</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Teams/">Teams</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/VMware/">VMware</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/">Web</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Architecture/">Architecture</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Descktop/">Descktop</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Log/">Log</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Mobile/">Mobile</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Others/">Others</a></li></ul></li></ul>
+                                
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="찾고자 하는 포스트를 검색하세요." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: '페이지',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Frontend/">Frontend</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Frontend/Javascript/">Javascript</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-javascript-mobile-browser-event-api" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Javascript Mobile Browser Event API
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2017/05/15/javascript-mobile-browser-event-api/" class="article-date">
+       <time datetime="2017-05-15T09:49:00.000Z" itemprop="datePublished">2017-05-15</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2017/05/15/javascript-mobile-browser-event-api/" class="article-date">
+     <time datetime="2024-06-10T04:53:59.567Z" itemprop="dateModified">2024-06-10</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/js/" rel="tag">js</a>, <a class="tag-link-link" href="/tags/mobile/" rel="tag">mobile</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <h3 id="JavaScript-모바일-브라우저-전용-이벤트"><a href="#JavaScript-모바일-브라우저-전용-이벤트" class="headerlink" title="JavaScript 모바일 브라우저 전용 이벤트"></a>JavaScript 모바일 브라우저 전용 이벤트</h3><p>모바일 브라우저 환경에서 특화되어 사용되는 이벤트 API를 살펴보자.</p>
+<p><strong>터치 이벤트</strong></p>
+<p>PC에서는 마우스나 키보드로 애플리케이션을 사용하는 데 필요한 동작과 정보를 입력한다면 모바일 환경에서는 사용자 터치로 필요한 동작과 정보를 입력한다. 동작과 정보를 입력하기 위해 기기의 화면에 손가락을 댔을 때 발생하는 이벤트가 터치 이벤트다.</p>
+<p>모바일 환경에서도 마우스 이벤트가 발생하지만 터치 이벤트보다 느리고 비정상적으로 발생하기 때문에 이용하기 어렵다. 또한 마우스 이벤트로는 손가락 여러 개로 터치했을 때의 모든 터치 정보를 얻을 수 없다. 모바일 환경에서 사용자 터치를 이용하는 플리킹이나 스크롤 같은 기능을 구현하려면 터치 이벤트에 대해 알아야 한다.</p>
+<p>터치 이벤트는 데스크톱 브라우저의 마우스 이벤트와 유사하나 몇 가지 다른 점이 있다. 터치 이벤트는 사용자가 2~3개의 손가락으로 화면을 조작할 경우 각 터치에 대한 정보를 모두 얻을 수 있다.<br>mouseover 이벤트에 대응하는 터치이벤트는 없다. 정확한 좌표값을 얻을 수 있는 마우스 이벤트와 달리 손가락 접촉면이 큰 터치 이벤트는 접촉 표면의 평균 좌표값을 얻는다.<br>터치 이벤트는 클릭 이벤트나, 스크롤 이벤트, 마우스 이벤트보다 먼저 발생한다. 터치 이벤트에서 기본 기능을 막거나 이벤트 버블링을 중지한다면 이후에 발생하는 이벤트에 영향을 줄 수 있으므로 주의해야 한다.</p>
+<p>현재 터치 이벥트는 웹킷 계열의 브라우저(iOS용 사파리, 안드로이드)에서만 지원하고 그 밖의 브라우저(오페라 미니, 파이어폭스, 인터넷 익스플로러 모바일 등)에서는 지원하지 않는다. 최근 출시한 윈도우8 모바일에서는 포인터(MSPointer) 이벤트가 추가돼서 이를 터치 이벤트 대신 사용할 수 있다.</p>
+<p><strong>터치 이벤트의 종류와 이벤트 객체의 속성</strong></p>
+<p>터치 이벤트에는 이벤트가 발생하는 시정에 따라 다음과 같이 네 가지 종류의 이벤트가 있다.</p>
+<table>
+<thead>
+<tr>
+<th>이벤트 이름</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>touchstart</td>
+<td>화면에 손가락이 닿을 때 발생한다.</td>
+</tr>
+<tr>
+<td>touchmove</td>
+<td>화면에 손가락을 댄 채로 움직일 때 발생한다.</td>
+</tr>
+<tr>
+<td>touchend</td>
+<td>화면에서 손가락을 뗄 때 발생한다.</td>
+</tr>
+<tr>
+<td>touchcancel</td>
+<td>시스템에서 이벤트를 취소시킬 때 발생한다.<br>터치 이벤트를 취소한다는 것에 대한 표준이 정의돼 있지 않아 정확한 발생 조건은<br>브라우저마다 다르다.<br>touchend 이벤트로 간주해도 무방하다.</td>
+</tr>
+</tbody></table>
+<p>터치에 대한 정보는 이벤트 객체의 touches 속성과 targetTouches 속성, changedTouches 속성에 배열 형태로 저장된다. 배열의 크기는 터치한 손가락 개수에 따라 결정된다. 멀티 터치를 지원하지 않는 안드로이드 3.0 미만의 브라우저에서는 배열의 크기가 항상 1이다.</p>
+<table>
+<thead>
+<tr>
+<th>속성</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>touches</td>
+<td>화면상의 모든 터치를 저장한 배열</td>
+</tr>
+<tr>
+<td>targetTouches</td>
+<td>ouches 속성과 유사하나 같은 요소 내에서 시작된 터치에 대한 정보만 반환</td>
+</tr>
+<tr>
+<td>changedTouches</td>
+<td>이전 이벤트로부터 변경이 있는 터치 정보를 저장한 배열</td>
+</tr>
+</tbody></table>
+<p>touchend 이벤트에서는 changedTouches 속성값만 제공하며, touches 속성과 targetTouches 속성의 배열 크기는 항상 0으로 반환한다. 그래서 touchend 이벤트에서 터치 정보가 필요할 때 touches 속성과 targetTouches 속성의 정보는 사용할 수 없다.</p>
+<p>배열에 저장된 객체는 Touch 타입의 객체며 마우스 이벤트와 거의 차이가 없다. 다음표는 Touch 객체의 속성을 정리한 표다.</p>
+<table>
+<thead>
+<tr>
+<th>속성</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>indentfier</td>
+<td>터치한 인식점을 구분하기 위한 인식점 번호</td>
+</tr>
+<tr>
+<td>screenX</td>
+<td>기기 화면을 기준으로 한 X 좌표</td>
+</tr>
+<tr>
+<td>screenY</td>
+<td>기기 화면을 기준으로 한 Y 좌표</td>
+</tr>
+<tr>
+<td>clientX</td>
+<td>브라우저 화면을 기준으로 한 X 좌표</td>
+</tr>
+<tr>
+<td>clientY</td>
+<td>브라우저 화면을 기준으로 한 Y 좌표</td>
+</tr>
+<tr>
+<td>pageX</td>
+<td>문서를 기준으로 한 X 좌표</td>
+</tr>
+<tr>
+<td>pageY</td>
+<td>문서를 기준으로 한 Y 좌표</td>
+</tr>
+<tr>
+<td>target</td>
+<td>터치된 DOM 객체</td>
+</tr>
+</tbody></table>
+<p><strong>터치 이벤트 발생 순서</strong></p>
+<p>터치 이벤트는 touchstart 이벤트 -&gt; touchmove 이벤트(n개) -&gt; touchend 이벤트의 순서로 모든 브라우저에서 동일하게 발생한다. 그러나 클릭 이벤트와 스크롤 이벤트, 마우스 이벤트까지 고려한 발생순서는 브라우저마다 다르다. 예를들어 iOS용 사파리의 스크롤 이벤트는 터치 이벤트 완료후 발생하지만 안드로이드 브라우저의 스크롤 이벤트는 touchmove 이벤트와 교차해서 발생하거나 여러번 발생하기도 한다.</p>
+<p>다음은 모바일 브라우저에서 이벤트 발생 순서를 정리한 표다.</p>
+<table>
+<thead>
+<tr>
+<th>동작</th>
+<th align="center"></th>
+<th>발생순서</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>터치</td>
+<td align="center"></td>
+<td>touchstart -&gt; touchend -&gt; mousemove -&gt; mousedown -&gt;<br>mouseup -&gt; mouseover -&gt; click<br>마우스 이벤트는 touchend 이벤트 이후에 발생된다.</td>
+</tr>
+<tr>
+<td>수직방향이동</td>
+<td align="center">사파리</td>
+<td>touchstart -&gt; touchmove(n개) -&gt; touchend -&gt;<br>(mousemove -&gt; mousedown - &gt; mouseup ) -&gt; scroll(0~n개)<br>scroll 이벤트는 마지막에 한 번 발생한다.<br>마우스 이벤트는 touchend 이벤트 이후에 발생한다.</td>
+</tr>
+<tr>
+<td>수직방향이동</td>
+<td align="center">안드로이드</td>
+<td>touchstart -&gt; [touchmove -&gt; mousemove](n 개) -&gt;<br>scroll(0<del>n개) -&gt;touchend -&gt; (mousemove) -&gt; scroll(0</del>n개)<br>안드로이드 브라우저에서는 스크롤 이벤트가 여러 번 발생한다.<br>mousemove 이벤트는 종종 touchend 이벤트 이후나<br>touchmove 이벤트 중간에 나타난다.</td>
+</tr>
+<tr>
+<td>수직방향이동</td>
+<td align="center">안드로이드 2.3<br>(갤럭시 S, 갤럭시 S2)<br>안드로이드 3.0 이상</td>
+<td>touchstart -&gt; touchmove -&gt; scroll(0~n번)<br>갤럭시 S와 갤럭시 S2의 안드로이드 2.3에서는<br>iOS용 사파리와 같은 형태로 scroll 이벤트가 마지막에<br>한 번만 나타난다.<br>안드로이드 3.0부터는 touchend 이벤트가 발생하지 않는다.</td>
+</tr>
+<tr>
+<td>수평방향이동</td>
+<td align="center"></td>
+<td>touchstart -&gt; [touchmove -&gt; mousemove](n개) -&gt;<br>touchend -&gt; mousemove(n개)<br>mousemove 이벤트는 종종 touchend 이벤트 이후나<br>touchmove 이벤트 중간에 나타난다.<br>touchstart -&gt; touchmove -&gt; scroll(0~n개)<br>안드로이드 3.0 부터는 수평방향으로 이동해도 scroll 이벤트가<br>발생하며, touchend 이벤트가 발생하지 않는다.</td>
+</tr>
+</tbody></table>
+<p><strong>제스처 이벤트</strong></p>
+<p>제스처 이벤트는 터치 이벤트와 비슷하다. 그러나 터치 이벤트는 한 손가락을 움직일 때 발생하는 이벤트고, 제스처 이벤트는 두 손가락을 움직을 때 발생하는 이벤트다. 휴대촌에서 손가락 두 개로 사진을 확대하고 축소할 때 브라우저에서 발생하는 이벤트가 제스처 이벤트다. 제스처 이벤트 객체에서는 사용자의 손가락 움직임이 확대 또는 축소 중인지, 회전 중인지에 대한 정보를 얻을 수 있다.</p>
+<p>제스처 이벤트에는 이벤트가 발생하는 시점에 따라 gersturestart 이벤트와 gersturechange 이벤트, gestuerend 이벤트로 세 종류의 이벤트가 있다. 터치 이벤트의 touchstart 이벤트, touchmove 이벤트, touchend 이벤트처럼 이벤트가 시작할 때, 손가락이 움직일 때, 이벤트가 끝났을 때 발생한다. 단, 이 이벤트는 iOS에서만 발생하고 안드로이드에서는 발생하지 않는다.</p>
+<table>
+<thead>
+<tr>
+<th>이벤트 이름</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gersturestart</td>
+<td>화면에 두 손가락이 닿을 때 발생한다.</td>
+</tr>
+<tr>
+<td>gersturechange</td>
+<td>화면에서 두 손가락이 움직일 때 발생한다.</td>
+</tr>
+<tr>
+<td>gestuerend</td>
+<td>화면에서 두 손가락을 뗄 때 발생한다.</td>
+</tr>
+</tbody></table>
+<p>두 손가락을 사용할 때 발생하는 제스처 이벤트 객체의 속성에는 두 가지가 있다. 하나는 두 손가락을 벌리거나 좁혀서 요소를 확대 또는 축소할 때 나타나는 정보인 scale 속성이고, 또 다른 하나는 두 손가락으로 요소를 회전할 때 나타나는 정보인 rotation 속성이다.</p>
+<p>(제스처 이벤트 객체의 속성)</p>
+<table>
+<thead>
+<tr>
+<th>속성</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>scale</td>
+<td>두 손가락을 벌리거나 좁혀서 확대 또는 축소한 비율</td>
+</tr>
+<tr>
+<td>rotation</td>
+<td>두 손가락을 돌려서 회전한 각도</td>
+</tr>
+</tbody></table>
+<p><strong>orientationcange 이벤트</strong></p>
+<p>모바일 환경에서는 기기의 회전 상태에 따라 화면의 방향이 가로나 세로로 변한다. 기기가 회전하면 화면의 발향이 가로에서 세로로, 또는 세로에서 가로로 바뀌고, 이때 orientationcange 이벤트가 발생한다. orientationcange 이벤트는 기기의 회전 상태에 따라 사용자에게 다른 UI를 보여주는 반응형 웹을 구현하는데 필요한 기능이다.<br>orientationcange 이벤트를 지원하는 환경은 다음과 같다.</p>
+<ul>
+<li>안드로이드 2.2 이상의 브라우저</li>
+<li>iOS 3.2 이상의 사파리</li>
+</ul>
+<p>orientationcange  이벤트가 발생하지 않는 하위 버전의 브라우저에서는 orientationcange 이벤트 대신 resize 이벤트를 이용해 모바일 기기의 회전 상태를 파악할 수 있다.</p>
+<p><strong>운영체제별 orientationcange 이벤트 특징</strong></p>
+<p>orientationcange 이벤트는 운영체제가 기기마다 다르게 동작한다. 이는 운영체제의 오류이거나 기기의 특성 때문인 경우가 대부분이다. 특히, 제조사가 다양한 안드로이드 기반의 기기에서는 그 차이가 더욱 크다.<br>이러한 차이는 모든 운영체제와 기기에서 회전 상태를 정상적으로 인식하고 동작하는 기능을 구현하려면 꼭 알아야 할 사항이다.</p>
+<p><strong>iOS에서 orientationcange 이벤트</strong></p>
+<p>iOS에서는 orientationcange 이벤트의 동작에 오류가 매우 적어 기기의 회전 상태를 확인하는데 매우 유용하다. 다만 iOS의 버전에 따라 resize 이벤트와 scroll 이벤트, orientationcange 이벤트의 발생 순서가 달라 이벤트에 따라 동작하는 기능을 구현할 때 주의해야 한다. iOS의 각 버전별로 이벤트가 발생하는 순서는 다음과 같다.</p>
+<table>
+<thead>
+<tr>
+<th>버전</th>
+<th>이벤트 발생 순서</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>6.x<br>5.x</td>
+<td>orientationcange  -&gt; resize -&gt; scroll</td>
+</tr>
+<tr>
+<td>4.x<br>3.x</td>
+<td>resize -&gt; orientationcange -&gt; scroll</td>
+</tr>
+</tbody></table>
+<p><strong>안드로이드에서 orientationcange 이벤트</strong></p>
+<p>안드로이드에서 orientationcange  이벤트는 운영체제의 버전과 제품에 따라 다르게 동작한다. 그러나 다음과 같은 공통점이 있다.</p>
+<p>버전에 상관없이 삼성에서 제조한 기기에서는 orientationcange 이벤트가 발생해도 window.innerHeight 속성값과 window.innerWidth 속성값은 회전하기 전의 값이다.<br>안드로이드 4.0 이상을 사용하는 삼성계열 이외의 기기에서는 orientationcange 이벤트가 발생했을 때 window.innerHeight 속성값과 window.innerWidth 속성값은 회전하기 후의 값이 된다.</p>
+<p>안드로이드 2.3부터는 기본 브라우저에서 모두 orientationcange 이벤트 -&gt; resize 이벤트 순서로 이벤트가 발생한다.</p>
+<p>다음 표는 안드로이드 버전과 제품에 따른 orientationcange  이벤트의 특징이다.</p>
+<table>
+<thead>
+<tr>
+<th>버전</th>
+<th>제품</th>
+<th>이벤트 발생 순서와 특징</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4.0</td>
+<td>갤럭시 S3 LTE<br>갤럭시 S3<br>갤럭시 S2<br>갤럭시 S<br>갤럭시 노트<br>옵티머스 LTE</td>
+<td>orientationcange -&gt; resize<br>orientationcange 이벤트가 발생할 때 window.innerHeight 속성과<br>window.innerWidth 속성은 회전하기 전의 상태 값을 반환이다.</td>
+</tr>
+<tr>
+<td>3.0</td>
+<td>갤럭시Tab2</td>
+<td>orientationcange -&gt; resize<br>orientationcange 이벤트가 발생할 때 window.innerHeight 속성과<br>window.innerWidth 속성은 회전하기 전의 상태 값을 반환이다.</td>
+</tr>
+<tr>
+<td>2.3</td>
+<td>갤럭시 S2<br>갤럭시 S<br>갤럭시 노트</td>
+<td>orientationcange -&gt; resize<br>orientationcange 이벤트가 발생할 때 window.innerHeight 속성과<br>window.innerWidth 속성은 회전하기 전의 상태 값을 반환이다.</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>갤럭시 S<br>갤럭시 K</td>
+<td>orientationcange -&gt; resize -&gt; orientationcange<br>첫번 째 orientationcange 이벤트가 발생할 때 window.innerHeight 속성과<br>window.innerWidth 속성은 회전하기 전의 상태 값을 반환이다.<br>두번 째 orientationcange 이벤트가 발생할 때는 회전한 후의 상태값을 반환한다.</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>옵티머스 2X<br>베가X</td>
+<td>orientationcange -&gt; resize<br>orientationcange 이벤트가 발생할 때 window.innerHeight 속성과<br>window.innerWidth 속성은 회전하기 전의 상태 값을 반환이다.</td>
+</tr>
+<tr>
+<td></td>
+<td>갤럭시 탭</td>
+<td>orientationcange -&gt; orientationcange -&gt;<br>orientationcange -&gt; orientationcange<br>첫 번째와 두 번째, 세 번째로 orientationcange 이벤트가 발생할 때는<br>window.innerHeight 속성과 window.innerWidth 속성이 회전하기 전의<br>상태 값을 반환한다.<br>네 번째 orientationcange 이벤트가 발생할 때는 회전한 후의 상태 값을 반환한다.</td>
+</tr>
+</tbody></table>
+<p><strong>devicemotion 이벤트</strong></p>
+<p>devicemotion  이벤트는 모바일 기기가 움직이거나 회전할 때 발생하는 이벤트로, 움직일 떄의 가속도와 회전 각도에 대한 정보를 제공한다. devicemotion 이벤트를 이용하면 기기를 움직여서 동작하는 게임이나 수평계 등을 제작할 수 있다.</p>
+<table>
+<thead>
+<tr>
+<th>속성 이름</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>acceleration</td>
+<td>중력을 제거한 가속도 정보<br>사용자가 모바일 기기를 움직일 때만 속성값에 변화가 생긴다.</td>
+</tr>
+<tr>
+<td>accelerationIncludingGravity</td>
+<td>중력을 포함한 가속도 정보.<br>모바일 기기를 가만히 뒤도 속성값에 변화가 생긴다.</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>devicemotion 이벤트가 발생하는 시간의 간격(ms)</td>
+</tr>
+<tr>
+<td>rotationRate</td>
+<td>X축, Y축, Z축을 기준으로 한 모바일 기기의 회전 속도</td>
+</tr>
+</tbody></table>
+<p>devicemotion 이벤트는 이벤트가 발생할 때 모바일 기기를 움직이는 속도와 회전한 정도를 속성값으로 전달한다. devicemotion 이벤트의 속성은 읽기 전용이라 값을 확인만 할 수 있고 값을 설정할 수 는 없다.</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://woonyzzang.github.com/2017/05/15/javascript-mobile-browser-event-api/" data-id="clx8j471h007jfr9kh5c96nit" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "woonyzzang"
+        },
+        "headline": "Javascript Mobile Browser Event API",
+        "image": "https://woonyzzang.github.com",
+        "keywords": "mobile js",
+        "genre": "Frontend Javascript",
+        "datePublished": "2017-05-15",
+        "dateCreated": "2017-05-15",
+        "dateModified": "2024-06-10",
+        "url": "https://woonyzzang.github.com/2017/05/15/javascript-mobile-browser-event-api/",
+        "description": "JavaScript 모바일 브라우저 전용 이벤트모바일 브라우저 환경에서 특화되어 사용되는 이벤트 API를 살펴보자.
+터치 이벤트
+PC에서는 마우스나 키보드로 애플리케이션을 사용하는 데 필요한 동작과 정보를 입력한다면 모바일 환경에서는 사용자 터치로 필요한 동작과 정보를 입력한다. 동작과 정보를 입력하기 위해 기기의 화면에 손가락을 댔을 때 발생하는 이벤트가",
+        "wordCount": 1175
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>팔로우:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/woonyzzang/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="cloud" href="https://altima-j-project-19b8286c.koyeb.app/" target="_blank">
+                        <i class="icon fa fa-cloud"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="jsfiddle" href="https://jsfiddle.net/user/woonyzzang/fiddles/" target="_blank">
+                        <i class="icon fa fa-jsfiddle"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    <!-- github card -->
+    
+    <div class="github-card" data-github="woonyzzang" data-width="100%" data-height="150" data-theme="default"></div>
+    
+    
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+
+    <!-- //github card -->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/05/15/javascript-mobile-browser-different-event/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">신규</strong>
+        <p class="article-nav-title">
+        
+            Javascript Mobile Browser Different Event
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/05/15/javascript-mobile-event-step/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">이전</strong>
+        <p class="article-nav-title">Javascript Mobile Event Step</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">카테고리</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/Hybrid/">Hybrid</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/IOS/">IOS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/Ionic/">Ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Net-Core/">.Net Core</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Node/">Node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Nuxt/">Nuxt</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/PHP/">PHP</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/PHP/Wordpress/">Wordpress</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Python/">Python</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Python/PyScript/">PyScript</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Wasm/">Wasm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Zendesk/">Zendesk</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/VSCode/">VSCode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">70</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/CSS/">CSS</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Javascript/">Javascript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/">Library</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/jQuery/">jQuery</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/">Module</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/Webpack/">Webpack</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/">SPA</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/JWT/">JWT</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/React-js/">React.js</a><span class="category-list-count">16</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/">Linux</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/CentOS/">CentOS</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/Vim/">Vim</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/AWS/">AWS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Azure/">Azure</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Docker/">Docker</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Gitlab/">Gitlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/IIS/">IIS</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Fiddler/">Fiddler</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Git/">Git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/OpenSSl/">OpenSSl</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Teams/">Teams</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/VMware/">VMware</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">16</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Architecture/">Architecture</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Descktop/">Descktop</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Log/">Log</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Mobile/">Mobile</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Others/">Others</a><span class="category-list-count">5</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">아카이브</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">5월 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">3월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">2월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">1월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">12월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">10월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">9월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">8월 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">4월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">1월 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">6월 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">3월 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">2월 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">3월 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">12월 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">8월 2019</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">3월 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">4월 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">10월 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8월 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">7월 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">6월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5월 2017</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">4월 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">3월 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2월 2017</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">태그 클라우드</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular-v1/" style="font-size: 10.77px;">angular v1</a> <a href="/tags/apmsetup/" style="font-size: 10px;">apmsetup</a> <a href="/tags/architecture/" style="font-size: 12.31px;">architecture</a> <a href="/tags/asp/" style="font-size: 12.31px;">asp</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/azure/" style="font-size: 16.92px;">azure</a> <a href="/tags/backbone/" style="font-size: 13.85px;">backbone</a> <a href="/tags/blazor/" style="font-size: 10px;">blazor</a> <a href="/tags/bundler/" style="font-size: 11.54px;">bundler</a> <a href="/tags/centos/" style="font-size: 15.38px;">centos</a> <a href="/tags/chrome/" style="font-size: 11.54px;">chrome</a> <a href="/tags/css/" style="font-size: 13.85px;">css</a> <a href="/tags/css3/" style="font-size: 13.85px;">css3</a> <a href="/tags/d3/" style="font-size: 16.15px;">d3</a> <a href="/tags/ddd/" style="font-size: 10px;">ddd</a> <a href="/tags/descktop/" style="font-size: 10.77px;">descktop</a> <a href="/tags/devops/" style="font-size: 14.62px;">devops</a> <a href="/tags/docker/" style="font-size: 14.62px;">docker</a> <a href="/tags/es6/" style="font-size: 12.31px;">es6</a> <a href="/tags/fiddler/" style="font-size: 10.77px;">fiddler</a> <a href="/tags/git/" style="font-size: 12.31px;">git</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/hybridApp/" style="font-size: 10.77px;">hybridApp</a> <a href="/tags/ionic-v1/" style="font-size: 13.08px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/jira/" style="font-size: 10px;">jira</a> <a href="/tags/jquery/" style="font-size: 10.77px;">jquery</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/jwt/" style="font-size: 10px;">jwt</a> <a href="/tags/linux/" style="font-size: 19.23px;">linux</a> <a href="/tags/loader/" style="font-size: 10.77px;">loader</a> <a href="/tags/log/" style="font-size: 10.77px;">log</a> <a href="/tags/mac/" style="font-size: 13.08px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 17.69px;">mobile</a> <a href="/tags/mvc/" style="font-size: 10px;">mvc</a> <a href="/tags/mvvm/" style="font-size: 10px;">mvvm</a> <a href="/tags/node/" style="font-size: 10.77px;">node</a> <a href="/tags/nuxt2/" style="font-size: 10px;">nuxt2</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/others/" style="font-size: 13.08px;">others</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/pr/" style="font-size: 10px;">pr</a> <a href="/tags/react/" style="font-size: 18.46px;">react</a> <a href="/tags/requirejs/" style="font-size: 10.77px;">requirejs</a> <a href="/tags/server/" style="font-size: 14.62px;">server</a> <a href="/tags/simulator/" style="font-size: 10px;">simulator</a> <a href="/tags/spa/" style="font-size: 13.85px;">spa</a> <a href="/tags/storybook/" style="font-size: 12.31px;">storybook</a> <a href="/tags/sublimeText/" style="font-size: 11.54px;">sublimeText</a> <a href="/tags/teams/" style="font-size: 10px;">teams</a> <a href="/tags/test/" style="font-size: 12.31px;">test</a> <a href="/tags/tip/" style="font-size: 10.77px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 12.31px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/visualsvn/" style="font-size: 10px;">visualsvn</a> <a href="/tags/vmware/" style="font-size: 10.77px;">vmware</a> <a href="/tags/vscode/" style="font-size: 11.54px;">vscode</a> <a href="/tags/wasm/" style="font-size: 10.77px;">wasm</a> <a href="/tags/webpack/" style="font-size: 11.54px;">webpack</a> <a href="/tags/webstorm/" style="font-size: 13.85px;">webstorm</a> <a href="/tags/windows/" style="font-size: 17.69px;">windows</a> <a href="/tags/wordpress/" style="font-size: 10px;">wordpress</a> <a href="/tags/zendesk/" style="font-size: 12.31px;">zendesk</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">링크</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://j-portfolio.herokuapp.com/dev/cms/">CMS Theme</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://j-portfolio.herokuapp.com/dev/listmap/listmap.xml">Markup Listmap</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-generator-css3">J Generator CSS3</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-html5-reference">J HTML5 Open Reference</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-prototype">J Prototype</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-draft-design">J Draft Design Gallery</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-responsive-design-view">J Responsive Design View</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-memo">J Memo</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-hiworks-mail-notifier">J Hiworks Notifier</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-core-module">J Core Module</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-core-editor">J Core Editor</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-cheat-sheet-api">J Cheat Sheet API</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2024 woonyzzang</p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://woonyzzang.github.com/2017/05/15/javascript-mobile-browser-event-api/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

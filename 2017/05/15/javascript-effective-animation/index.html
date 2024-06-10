@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Javascript Effective Animation | J Dev</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="js">
+    
+    <meta name="description" content="JavaScript 효과적인 애니메이션 구현하기애니메이션은 하나 이상의 이미지(frame)을 일정한 시간(second) 간격으로 순차적으로 호출해 이미지가 움직이는 것처럼 보이도록 착시 현상을 유도하는 기술이다. 이때 보이는 이미지의 개수와 시간 간격의 비를 FPS(frames per cecond)라고 하며, FPS 값이 클수록 더 자연스러운 애니메이션을">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript Effective Animation">
+<meta property="og:url" content="https://woonyzzang.github.com/2017/05/15/javascript-effective-animation/index.html">
+<meta property="og:site_name" content="J Dev">
+<meta property="og:description" content="JavaScript 효과적인 애니메이션 구현하기애니메이션은 하나 이상의 이미지(frame)을 일정한 시간(second) 간격으로 순차적으로 호출해 이미지가 움직이는 것처럼 보이도록 착시 현상을 유도하는 기술이다. 이때 보이는 이미지의 개수와 시간 간격의 비를 FPS(frames per cecond)라고 하며, FPS 값이 클수록 더 자연스러운 애니메이션을">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2017-05-15T11:52:08.000Z">
+<meta property="article:modified_time" content="2024-06-10T04:53:59.557Z">
+<meta property="article:author" content="woonyzzang">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+    
+
+    
+    <link rel="canonical" href="https://woonyzzang.github.com/2017/05/15/javascript-effective-animation/"/>
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.png">
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/rss2.xml" title="J Dev" type="application/rss+xml">
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">홈</a>
+                                </li>
+                            
+                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/">App</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/Hybrid/">Hybrid</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/IOS/">IOS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/App/Ionic/">Ionic</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/">Backend</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Net-Core/">.Net Core</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Node/">Node</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Nuxt/">Nuxt</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/PHP/">PHP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Python/">Python</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Wasm/">Wasm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Backend/Zendesk/">Zendesk</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/">Editor</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/SublimeText/">SublimeText</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/VSCode/">VSCode</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Editor/Webstorm/">Webstorm</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/">Frontend</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/CSS/">CSS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/HTML/">HTML</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Library/">Library</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/Module/">Module</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Frontend/SPA/">SPA</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/">OS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Mac/">Mac</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/OS/Windows/">Windows</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/AWS/">AWS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Azure/">Azure</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Docker/">Docker</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/Gitlab/">Gitlab</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/IIS/">IIS</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/">Tools</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/APMSETUP/">APMSETUP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Fiddler/">Fiddler</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Git/">Git</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/OpenSSl/">OpenSSl</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/Teams/">Teams</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tools/VMware/">VMware</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/">Web</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Architecture/">Architecture</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Descktop/">Descktop</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Log/">Log</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Mobile/">Mobile</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/Others/">Others</a></li></ul></li></ul>
+                                
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="찾고자 하는 포스트를 검색하세요." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: '페이지',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Frontend/">Frontend</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Frontend/Javascript/">Javascript</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-javascript-effective-animation" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Javascript Effective Animation
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2017/05/15/javascript-effective-animation/" class="article-date">
+       <time datetime="2017-05-15T11:52:08.000Z" itemprop="datePublished">2017-05-15</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2017/05/15/javascript-effective-animation/" class="article-date">
+     <time datetime="2024-06-10T04:53:59.557Z" itemprop="dateModified">2024-06-10</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/js/" rel="tag">js</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <h3 id="JavaScript-효과적인-애니메이션-구현하기"><a href="#JavaScript-효과적인-애니메이션-구현하기" class="headerlink" title="JavaScript 효과적인 애니메이션 구현하기"></a>JavaScript 효과적인 애니메이션 구현하기</h3><p>애니메이션은 하나 이상의 이미지(frame)을 일정한 시간(second) 간격으로 순차적으로 호출해 이미지가 움직이는 것처럼 보이도록 착시 현상을 유도하는 기술이다. 이때 보이는 이미지의 개수와 시간 간격의 비를 FPS(frames per cecond)라고 하며, FPS 값이 클수록 더 자연스러운 애니메이션을 표현할 수 있다.</p>
+<p>보통 눈의 잔상효과를 이용해 움직이는 동작을 표현할 때는 25<del>30FPS 정도를 사용하면 애니메이션 효과를 느끼게 할 수 있다. 하지만 더 자연스러운 애니메이션을 표현하려면 60</del>120FPS를 유지해야 한다. 웹에서는 60FPS 정도면 충분히 자연스러운 효과를 낼 수 있다.</p>
+<p><strong>자바스크립트 기반의 애니메이션</strong></p>
+<p>웹 기술의 발전과 더불어 현재는 자바스크립트 외의 다양한 방법으로 애니메이션을 구현할 수 있다. 하지만 웹이 생겼던 초기에는 애니메이션을 구현하는 방법이 많지 않았다. 그 가운데 가장 전통적이고 전형적인 방법은 setTimeout() 메서드와 setInterval() 메서드를 이용한 방법이다.</p>
+<p>자바스크립트 기반의 애니메이션 구현 방법은 ‘애니메이션 동작을 처리하는 함수’를 일정 시간(ms)마다 호출해 ‘애니메이션 대상(DOM)’을 이동하거나 상태를 변경해서 애니메이션을 구현하는 방법이다.</p>
+<p><strong>구현하기</strong></p>
+<p>자바스크립트 기반의 애니메이션은 대개 다음과 같은 순서로 구현한다.</p>
+<p>1.애니메이션 대상이 되는 DOM을 작성한다. 다음 예제에서는 100 x 100px 크기의 빨간색 사각형 영역을 마크업으로 구성했다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span> <span class="attr">style</span>=<span class="string">&quot;position:absolute;left:0;bordr:1px solid red;width:100px;height:100px&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.원하는 FPS에 해당하는 단위 시간(ms)을 구하고 단위 시간마다 애니메이션을 처리하는 함수를 호출한다. 단위시간은 다음과 같은 공식으로 구할 수 있다.</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">단위 시간(ms) = 1000 / 원하는 FPS</span><br><span class="line"></span><br><span class="line">예를 들어, 60FPS라면 &#x27;1000/60 = 약 16.7ms&#x27;의 단위 시간을 구할 수 있다. 즉, 16.7ms마다 이미지를 하나씩 보여주거나 상태를 변경하면 60FPS의 애니메이션을 표현할 수 있다.</span><br></pre></td></tr></table></figure>
+
+<p>3.애니메이션 대상이 될 DOM 요소의 상태를 변경하는 함수를 작성한다. 이 예제에서는 fAnimate() 함수로 작성했다.</p>
+<p>4.setTimeout() 메서드 또한 setInterval() 메서드를 이용해 fAnimate() 함수를 단위 시간(ms) 마다 호출한다.<br>다음은 setTimeout() 메서드를 이용해 아이디가 ‘box’인 DIV 요소를 1000&#x2F;60초(약 16.7ms)마다 5px씩 오른쪽으로 300px 이동하는 예다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elBox = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;box&#x27;</span>),</span><br><span class="line">    nAnimateTimer = <span class="literal">null</span>,</span><br><span class="line">    fAnimate = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        elBox.<span class="property">style</span>.<span class="property">left</span> = <span class="built_in">parseInt</span>(elBox.<span class="property">style</span>.<span class="property">left</span>, <span class="number">10</span>) + <span class="number">5</span> + <span class="string">&#x27;px&#x27;</span>;</span><br><span class="line">        </span><br><span class="line">    <span class="comment">//종료시점</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(elBox.<span class="property">style</span>.<span class="property">left</span>, <span class="number">10</span>) &lt; <span class="number">300</span>) &#123;</span><br><span class="line">        nAnimateTimer = <span class="built_in">setTimeout</span>(fAnimate, <span class="number">1000</span>/<span class="number">60</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">nAnimateTimer = <span class="built_in">setTimeout</span>(fAnimate, <span class="number">1000</span>/<span class="number">60</span>);</span><br></pre></td></tr></table></figure>
+<p>다음은 setInterval() 메서드를 사용해 아이디가 ‘box’인 DIV 요소를 1000&#x2F;60초(약 16.7ms)마다 5px씩 오른쪽으로 300px 만큼 이동하는 예다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elBox = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;box&#x27;</span>),</span><br><span class="line">    nAnimateinterval = <span class="literal">null</span>,</span><br><span class="line">    fAnimate = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        elBox.<span class="property">style</span>.<span class="property">left</span> = <span class="built_in">parseInt</span>(elBox.<span class="property">style</span>.<span class="property">left</span>, <span class="number">10</span>) + <span class="number">5</span> + <span class="string">&#x27;px&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//종료시점</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(elBox.<span class="property">style</span>.<span class="property">left</span>, <span class="number">10</span>) &lt; <span class="number">300</span>) &#123;</span><br><span class="line">        <span class="built_in">clearInterval</span>(nAnimateinterval);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">nAnimateinterval = <span class="built_in">setInterval</span>(fAnimate, <span class="number">1000</span>/<span class="number">60</span>);</span><br></pre></td></tr></table></figure>
+<p>setTimeout() 메서드는 함수를 한 번만 호출하고, setInterval() 메서드는 함수를 반복해서 호출한다는 차이가 있다. 하지만 종료 시점이 있고, 단위 시간마다 반복되는 구조라는 점에서 기본적인 구조는 동일하다.</p>
+<p><strong>자바스크립트 기반 애니메이션의 문제점</strong></p>
+<p>setTimeout() 메서드나 setInterval() 메서드로 애니메이션을 구현할 수 있지만, 이방법에는 두 가지 치명적인 문제점이 있다.<br>setTimeout() 메서드와 setInterval() 메서드를 사용할 때마다 브라우저는 애니메이션 대상인 DOM 요소를 변경하고, 이로 인해 리렌더링(re-rendering)이 단위 시간마다 발생한다. 과도한 리렌더링은 CPU의 점유율을 높여 모바일 기기의 전력이 빠르게 소모된다. 또한 브라우저가 백그라운드에서 실행되고 있을때, 최소화됐을 때, 화면에 보이지 않을 때 등 모든 상황에서 애니메이션이 계속 호출되어 전력이 소모된다.</p>
+<p>자바스크립트 엔진은 단일 스레드 기반으로 동작하며 비동기로 발생하느 이벤트를 큐(queue)에 쌓아 순차적으로 처리한다. 그래서 setTimeout() 메서드와 setInterval() 메서드에서 사용한 시잔의 정확성을 보장하지 못한다. 이로 인해 실제 애니메이션은 매끄럽지 못하게 표현되거나 부자연스럽게 표현된다.<br>setTimeout() 메서드나 setInterval() 메서드를 이용하더라도 앞에서 언급한 문제점을 모두 완벽하게 해결 할 수 없다. 하지만 그 영향을 최소화 할 수는 있다.</p>
+<p>첫 번째 방법은 DOM 기반의 스타일 변경을 최소화해 리렌더링을 최소화하는 방법이다. 다음과 같이 구현하면 스타일 변경을 줄일 수 있다.<br>애니메이션 대상의 위치 속성을 ‘position:absolute’로 지정하면 이러한 대상 요소의 위치를 변경할 때 다른 요소의 미치는 영향을 줄일 수 있다.</p>
+<p>대상 요소의 투명도와 배경 이미지의 변경을 자제한다. 배경 이미지 대신 고정된 크기의 IMG 요소로 대체 하루 있으면 좋다.<br>두 번째 방법은 setTimeout() 메서드 대신 requestAnimationFrame API를 사용하는 방법이다.</p>
+<p>requestAnimationFrame API와 setTimeout() 메서드는 기능이 거의 같다. 하지만 setTimeout() 메서드가 단위 시간마다 무조건 애니메이션을 호출하는 것과 달리, requestAnimationFrame API는 브라우저에서 화면 업데이트가 가능한 시기를 통보받아 애니메이션을 호출한다. 그렇기 때문에 끊김 없는 부드러운 애니메이션을 구현할 수 있으며, 불필요한 자원 사용을 방지해 전력소비를 줄일 수 있다.</p>
+<p>다음은 requestAnimationFrame API를 사용해 애니메이션을 구현한 예다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">requestAnimationFrame</span> = (<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">window</span>.<span class="property">requestAnimationFrame</span> || <span class="variable language_">window</span>.<span class="property">webktRequestAnimationFrame</span> || <span class="variable language_">window</span>.<span class="property">mozRequestAnimationFrame</span> || <span class="variable language_">window</span>.<span class="property">oRequestAnimationFrame</span> || <span class="variable language_">window</span>.<span class="property">msRequestAnimationFrame</span> || <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(callback, <span class="number">1000</span>/<span class="number">60</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> elBox = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;box&#x27;</span>),</span><br><span class="line">    nAnimateTimer = <span class="literal">null</span>,</span><br><span class="line">    fAnimate = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    elBox.<span class="property">style</span>.<span class="property">left</span> = <span class="built_in">parseInt</span>(elBox.<span class="property">style</span>.<span class="property">left</span>, <span class="number">10</span>) + <span class="number">5</span> + <span class="string">&#x27;px&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//종료시점</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(elBox.<span class="property">style</span>.<span class="property">left</span>, <span class="number">10</span>) &lt; <span class="number">300</span>) &#123;</span><br><span class="line">        nAnimateTimer = requestAnimationFrame (fAnimate);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">nAnimateTimer = requestAnimationFrame (fAnimate);</span><br></pre></td></tr></table></figure>
+<p>requestAnimationFrame API는 W3C의 명세 초안(draft)으로 애니메이션을 위한 효과적인 그래픽 타이머다. 하지만 안타깝게도 현재는 크롬 10 이상, 인터넷 익스 플로러 10 이상, 오페라 모바일, 파이어폭스4 이상에서 고유의 접두어(prefix)를 붙여야 사용할 수 있고, 모바일 웹 브라우저에서는 이 메서드가 동작하지 않는다. 그러나 머지않아 모든 모바일 브라우저에서 사용 할 수 있을 것이다.</p>
+<p><strong>CSS3 기반의 애니메이션</strong></p>
+<p>CSS3 기반의 애니메이션은 자바스크립트 기반의 애니메이션과 달리 애니메이션의 처음과 끝은 개발자가 아닌 브라우저가 인지하고 관리한다. 따라서 다음과 같은 장점이 있다.</p>
+<p>웹 브라우저는 단일 스레드를 사용하기 때문에 애니메이션이 동작하는 도중에 비동기식 작업이 진행되면 애니메이션이 매끄럽게 진행되지 못하지만 CSS3 기반의 애니메이션을 이용할 때는 이러한 간섭이 발생하지 않는다.<br>하드웨어인 GPU의 가속 기능을 사용할 수 있어서 속도가 빠르다.<br>복잡한 계산으로 얻을 수 있는 애니메이션 이동 곡선을 속성값 설정만으로 간단하게 구현할 수 있다.<br>CSS3에서는 동적인 애니메이션 처리를 쉽게 적용할 수 있는 transition 속성과 transform 속성, 직관적인 @keyframe 애니메이션등을 제공하고 있다.</p>
+<p><strong>구현하기</strong></p>
+<p>CSS3 트랜지션은 CSS 속성을 변경함으로써 대상 요소를 일정 시간 동안 자연스럽게 이동하는 기술이다. CSS만을 이용해 구현할 수도 있지만 자바스크립트를 함께 사용하면 더욱 효과적으로 애니메이션을 구현할 수 있다.</p>
+<p>CSS3 트랜지션을 이용한 애니메이션은 보통 다음과 같은 순서로 구현한다.</p>
+<p>1.애니메이션 대상이 되는 DOM의 처음 스타일을 지정한다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span> <span class="attr">style</span>=<span class="string">&quot;position:absolute;border:1px solid red;left:0px;width:100px;height:100px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.애니메이션 대상 요소에 트랜지션을 지정한다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// -webkit-transition : [변경될 대상의 스타일] [duration] [timing function] [delay]</span><br><span class="line">// 애니메이션을 적용할 스타일과 애니메이션 지속 시간(duration), 애니메이션 방식(timing function), 초기 지연(delay)을 지정할 수 있다. 다음은 애니메이션이 천천히 끝나게 하는 ease-out 방식으로 2초동안 left 속성을 변경하는 예다.</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-class">.leftTransition</span>&#123;-webkit-<span class="attribute">transition</span><span class="selector-pseudo">:left</span> <span class="number">2s</span> ease-out&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">var</span> ele = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;box&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">ele.<span class="property">className</span> = <span class="string">&#x27;leftTransition&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>3.자바스크립트로 마지막 상태의 스타일을 지정한다.</p>
+<p>4.애니메이션이 완료되면 onTransitionEnd 이벤트가 발생한다. 다은은 left 속성을 300px로 지정하는 예다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ele = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;box&#x27;</span>);</span><br><span class="line">ele.<span class="property">style</span>.<span class="property">left</span>= <span class="string">&#x27;300px&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>transform 속성을 이용한 애니메이션</strong></p>
+<p>transform속성을 이용하면 left 속성과 top 속성을 변경하지 않고, translate 값을 변경해 애니메이션을 구현할 수 있다.</p>
+<p>이 방법은 다음과 같은 장점이 있다.</p>
+<p>레이어(layer)로 구성되어 애니메이션이 발생하는 동안에 레이어 병합을 사용하기 때문에 애니메이션 도중 렌더링이 계속 발생하지 않아 속도가 빠르다.<br>traslate3d 속성을 사용해 GPU 가속 기능을 사용할 수 있다. 단 안드로이드는 3.0(허니콤) 이상에서 지원한다.<br>transform 속성과 translate 속성을 이용하려면 다음과 같이 transition 속성에서 변경될 대상의 스타일을 transform으로 지정하고, translate 속성을 사용한다.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line"><span class="selector-class">.leftTransition</span>&#123;-webkit-<span class="attribute">transition</span><span class="selector-pseudo">:left</span> <span class="number">2s</span> ease-out;-webkit-<span class="attribute">transform</span>:<span class="built_in">translate</span>(<span class="number">0</span>,<span class="number">0</span>)&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>이 때 GPU 기능을 사용하려면 translate 대신 translate3d로 지정하고, translate 속성에 z좌표를 하나 더 지정한다.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line"><span class="selector-class">.leftTransition</span>&#123;-webkit-<span class="attribute">transition</span><span class="selector-pseudo">:left</span> <span class="number">2s</span> ease-out;-webkit-<span class="attribute">transform</span>:<span class="built_in">translate3d</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>CSS3 기반 애니메이션의 문제점</strong></p>
+<p>웹킷 기반의 모바일 브라우저는 CSS3 트랜지션을 모두 활용해 최적의 애니메이션을 구현할 수 있다. 하지만 다음과 같은 문제점이 있다.</p>
+<p>CSS3 사용해서 얻을 수 있는 최고 효과인 성능 향상을 얻으려면 3D 속성을 사용해 GPU 가속을 활성화해야 하지만 3D 속성에 관련된 오류가 여럿 있어 현실적으로 트랜지션을 적용하는 데 많은 어려움이 있다.<br>GPU 가속 기능을 사용하면 네이티브 앱과 같은 성능을 얻을 수 있는 반면, 전력 소모는 증가한다.<br>애플의 모바일 기기는 안정적인 GPU를 탑재해 최고의 성능을 얻을 수 있다. 하지만 그 외 제조사의 기기에는 GPU가 있다고 해도 제조사에 따라 GPU의 성능에 확연한 차이가 있다.<br>기술적으로는 웹에서 애니메이션을 구현하는 최고의 방법은 CSS3를 이용하는 것이다. CSS3를 이용하면 전력 소모 문제를 제외하고는 모든 면에서 다른 방법보다 우수하다. 하지만 실제로는 CSS3를 구현한 모바일 브라우저 및 제조사의 오류로 인해 이 방법을 사용하기는 힘들다. 그러나 브라우저 오류를 우회할 수 있는 여러 방법으로 CSS3와 관련되 오류를 피할 수 있다.</p>
+<p>iOS의 브라우저에서는 ‘애니메이션 대상’에 CSS3 Transform 3D(translate3d, preserve-3d) 속성을 처음에 지정할 때 해당 요소가 깜빡이는 문제가 있다. iOS는 CSS3 Transform 3D 속성을 지정할 때 애니메이션에 필요한 정보를 OpenGL Textrue 형태로 GPU에 저장한다. 이때 요소가 깜빡이는 현상이 나타난다. 이 문제를 해결할려면 애니메이션 대상이 되는 요소를 보이지 않게 하고 CSS3를 설정한 다음 요소를 보이게 한다.</p>
+<p>그 외에도 iOS 브라우저에서는 화면 전체가 깜빡이는 현상이 나타날 때도 있다. CSS3의 translate3d 속성을 사용하는 웹 페이지에 em 값의 절대치가 큰(-9999em,200em 등) 요소가 있으면 페이지 전체가 깜빡이게 된다. 이 때는 em값을 -70 ~70em의 값으로 바꾸거나 단위를 em에서 px로 수정하면 문제를 해결할 수 있다.</p>
+<p><strong>iOS 4에서 화면 깜빡거림</strong></p>
+<p>iOS 4는 1024 x 1024px의 텍스처(texture) 단위로 정보를 생성하는데, 1024 x 1024px 범위를 넘는 콘텐츠가 있을 때는 지속적으로 화면이 깜빡거리거나 애니메이션이 지연되는 문제가 생실 수 있다 iOS 5는 iOS 4보다 큰 텍스처 단위로 정보를 생성하기 때문에 문제가 발생되지 않는다.</p>
+<p>iOS에서 발생되는 애니메이션 관련 문제의 더 많은 사례는 <a target="_blank" rel="noopener" href="http://joehewitt.com/2011/10/05/fast-animation-with-ios-webkit/">http://joehewitt.com/2011/10/05/fast-animation-with-ios-webkit/</a> 을 참고한다.<br>안드로이드 브라우저에서는 애니메이션 동작 후 링크를 눌렀을 때의 하이라이트가 정상적으로 나오지 않고, 이동 전 영역의 좌표가 터치한 영역으로 표시되는 문제가 있다.</p>
+<p>이 문제를 해결하려면 다음과 같은 순서로 수정해야 한다.</p>
+<p>애니메이션이 끝나면 자바스크립트로 지정한 CSS3 속성(translate, translate3d)을 해지하게 한다.<br>자바스크립트로 대상 요소의 위치(left,top,offset)를 다시 지정한다.<br>애니메이션 내부 영역 태그에서 focus() 메서드를 호출한다.</p>
+<p><strong>참고</strong></p>
+<p>&lt;a&gt; 태그에는 포커스가 이동해도 소프트 키보드가 나타나지 않기 때문에 내부 영역의 태그로는 &lt;a&gt; 태그를 사용한다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:void(0)&quot;</span> <span class="attr">style</span>=<span class="string">&quot;position:absolute;left:-9999px&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>그 밖에 translate3d 속성과 함께 다른 속성을 사용하면 애니메인션이 작동하지 않는 문제도 있다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;-webkit-transition:-webkit-transform 2s ease-out;-webkit-transform:translate3d(30px,0,0),rotate(45deg)&quot;</span>&gt;</span>애니메이션<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>자바스크립트 기반 애니메이션과 CSS3기반 애니메이션의 혼합</strong></p>
+<p>앞에서 설명한 자바스크립트 기반 애니메이션과 CSS3 기반 애니메이션은 각기 장단점이 있다. 이번에는 이 두가지 방법을 혼용해서 애니메이션을 구현하는 방법을 설명하겠다. 이 방법의 핵심은 애니메이션 주기는 자바스크립트로 구현하고 DOM 요소의 이동 및 변경은 CSS3로 구현하는 것이다. 이렇게 혼용한 방식을 적용하면 다음과 같은 장점이 있다.</p>
+<p>CSS3를 사용해 DOM 요소를 이동하거나 DOM 요소의 상태를 변경하기 때문에 GPU 가속을 사용할 수 있고, 리렌더링이 발생하지 않는다.<br>안드로이드 브라우저에서 translate() 메서드나 translate3d() 메서드로 인해 발생하는 잔상 및 깜빡임 현상이 거의 발생하지 않는다.</p>
+<p><strong>구현하기</strong></p>
+<p>자바스크립트로 단위 시간마다 함수를 호출하고, 함수가 호출될 때마다 처리되는 DOM 요소의 이동 및 상태 변화는 CSS3를 사용하도록 애니메이션을 구성한다.</p>
+<p>자바스크립트 방식 CSS3 방식을 혼합한 애니메이션은 대게 다음과 같은 순서로 구현한다.</p>
+<p>1.애니메이션 대상이 되는 DOM 작성한다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span> <span class="attr">style</span>=<span class="string">&quot;position:absolute;left:10px;border:1px solid red;width:100px;height:100px;&quot;</span> <span class="attr">class</span>=<span class="string">&quot;leftTranslate3d&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.원하는 FPS에 해당하는 단위 시간(ms)을 구한다.</p>
+<p>3.애니메이션 대상에 트랜지션을 지정한다. 이 때 애니메이션 지속 시간(duration)은 0으로 지정한다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-class">.leftTransition</span>&#123;-webkit-<span class="attribute">transition</span><span class="selector-pseudo">:left</span> <span class="number">2s</span> ease-out&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span> <span class="attr">style</span>=<span class="string">&quot;position:absolute;left:10px;border:1px solid red;width:100px;height:100px;&quot;</span> <span class="attr">class</span>=<span class="string">&quot;leftTranslate3d&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>4.애니메이션 대상을 이동하는 fAnimate() 함수를 작성한다. DOM 요소의 이동은 CSS3를 사용해 구현한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fAnimate = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    nLength += <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">    elBox.<span class="property">style</span>.<span class="property">webkitTransform</span> = <span class="string">&#x27;translate3d(&#x27;</span> + nLength + <span class="string">&#x27;px, 0px, 0)&#x27;</span>;</span><br><span class="line">    nAnimateTimer = <span class="built_in">setTimeout</span>(<span class="number">1000</span>/<span class="number">60</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>5.setTimeout() 메서드 setInterval() 메서드, requestAnimationFrame() 메서드 등을 이용해 fAnimate() 함수를 단위 시간(ms)마다 호출한다. 다음은 setTimeout() 메서도로 아이디가 ‘box’인 DIV 요소를 단위 시간(약 16.7ms)마다 5px씩 오른쪽으로 이동하는 예다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elBox = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;box&#x27;</span>),</span><br><span class="line">    nAnimateTimer = <span class="literal">null</span>,</span><br><span class="line">    nLength = <span class="number">0</span>;,</span><br><span class="line">    fAnimate = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        nLength += <span class="number">5</span>;</span><br><span class="line">        elBox.<span class="property">style</span>.<span class="property">webkitTransform</span> = <span class="string">&#x27;translate3d(&#x27;</span> + nLength + <span class="string">&#x27;px, 0px, 0)&#x27;</span>;</span><br><span class="line">        nAnimateTimer = <span class="built_in">setTimeout</span>(<span class="number">1000</span>/<span class="number">60</span>);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">nAnimateTimer = <span class="built_in">setTimeout</span>(<span class="number">1000</span>/<span class="number">60</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>자바스크립트와 CSS3를 혼합한 애니메이션의 문제점</strong></p>
+<p>자바스크립트와 CSS3를 혼합해서 사용하기 때문에 이 방식 또한 자바스크립트 기반 방식에 있는 문제점을 똑같이 안고 있다.</p>
+<p>애니메이션 시간 주기를 자바스크립트로 제어하기 때문에 구현이 어렵다.<br>시간 주기가 자바스크립트로 구현되기 때문에 CSS3 방식에 비해 애니메이션이 매끄럽지 못하다.<br>requestAnimationFrame API를 사용하지 못하는 지금의 모바일 환경에서는 setTimeout() 메서드나 setInterval() 메서드로 호출하기 때문에 시간의 정확성을 보장받지 못해 실제 애니메이션은 매끄럽지 못하거나 부자연스럽게 표현된다.<br>자바스크립트와 CSS3 혼합한 애니메이션은 자바스크립트에 비해 더 훌륭한 성능을 보장하고 CSS3 문제점을 해셜 할 수는 있는 방법이지만, 위에서 언급한 애니메이션 구현 방법 및 품질, 전력 소모에 대한 문제는 여전히 남아있다.</p>
+<p>다음 표를 살펴보면 성능 면에서는 자바스크립트와 CSS3를 혼용하는 방법과 CSS3에 기반을 둔 방법이 가장 우수하고, 애니메이션 품질면에서는 CSS3 기반 애니메이션이 좋다. 구현 난이도 부분에서는 자바스크립트 기반 방식이 유리하다는 점을 알 수 있다. 하지만 절대적으로 모든 면에서 우수한 방법은 없다.</p>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>자바스크립트 기반</th>
+<th>CSS3 기반</th>
+<th>자바스크립트 + CSS3 기반</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>동작 방식</td>
+<td>브라우저는 애니메이션을<br>인지하지 못하고, 무조건<br>DOM과 스타일을 변경<br>하는 작업을 한다.</td>
+<td>애니메이션 시작 시<br>브라우저가 애니메이션의<br>처음과 끝을 인지해서<br>작동한다.</td>
+<td>애니메이션 처리 함수<br>호출 주기는 브라우저가<br>인지하지 못하나, 변경되는<br>대상의 상태 변화는 인지<br>할 수 있다.</td>
+</tr>
+<tr>
+<td>성능</td>
+<td>보통<br>단, requestAnimationFrame<br>API를 적용할 때 효과적이다.</td>
+<td>좋음</td>
+<td>좋음</td>
+</tr>
+<tr>
+<td>GPU 가속</td>
+<td>사용 못함</td>
+<td>사용</td>
+<td>사용</td>
+</tr>
+<tr>
+<td>애니메이션 품질</td>
+<td>하</td>
+<td>상</td>
+<td>중</td>
+</tr>
+<tr>
+<td>구현 난이도</td>
+<td>상</td>
+<td>하</td>
+<td>중</td>
+</tr>
+<tr>
+<td>전력 소모</td>
+<td>많음</td>
+<td>GPU 가속시 현저히 증가</td>
+<td>GPU 가속시 현저히 증가</td>
+</tr>
+<tr>
+<td>안정성</td>
+<td>좋음</td>
+<td>안드로이드 기기에서<br>오류가 많음<br>iOS 기기에서는 최고의<br>성능과 품질을 제공함</td>
+<td>좋음</td>
+</tr>
+</tbody></table>
+<p>향후 모바일 브라우저 개발 회사와 모바일 기기 제조사가 CSS3와 GPU 안정성을 확보함으로써 성능, 구현, 품질, 안정성이 뛰어난 CSS3 방식의 애니메이션을 사용할 수 있겠지만, 현재는 상황에 맞는 적절한 현실적인 대안을 찾아야 한다. 현재 가장 현실적인 대안은 운영체제와 모바일 기기에 따라 CSS3 방식 애니메이션을 사용하거나 자바스크립트와 CSS3를 혼용한 애니메이션을 사용하는 것이다.</p>
+<p>물론 기기마다 약간의 특성이 있지만 다음과 같은 방법으로 애니메이션을 구현한다면 모바일 웹에서 최적의 애니메이션 성능을 나타낼 수 있을 것이다.</p>
+<table>
+<thead>
+<tr>
+<th>구현 방식</th>
+<th>적용 운영체제와 모바일 기기</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CSS3</td>
+<td>CSS3 방식 애니메이션의 안정성이 확보된 iOS 기기<br>GPU 가속이 원활히 이워지는 삼정전자의 안드로이드 기기</td>
+</tr>
+<tr>
+<td>자바스크립트와 CSS3 혼용</td>
+<td>CSS3 방식 애니메이션의 안정성이 낮은 대부분의 안드로이드 기기</td>
+</tr>
+</tbody></table>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://woonyzzang.github.com/2017/05/15/javascript-effective-animation/" data-id="clx8j471c0071fr9k0gmn6kbn" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "woonyzzang"
+        },
+        "headline": "Javascript Effective Animation",
+        "image": "https://woonyzzang.github.com",
+        "keywords": "js",
+        "genre": "Frontend Javascript",
+        "datePublished": "2017-05-15",
+        "dateCreated": "2017-05-15",
+        "dateModified": "2024-06-10",
+        "url": "https://woonyzzang.github.com/2017/05/15/javascript-effective-animation/",
+        "description": "JavaScript 효과적인 애니메이션 구현하기애니메이션은 하나 이상의 이미지(frame)을 일정한 시간(second) 간격으로 순차적으로 호출해 이미지가 움직이는 것처럼 보이도록 착시 현상을 유도하는 기술이다. 이때 보이는 이미지의 개수와 시간 간격의 비를 FPS(frames per cecond)라고 하며, FPS 값이 클수록 더 자연스러운 애니메이션을 ",
+        "wordCount": 2443
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>팔로우:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/woonyzzang/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="cloud" href="https://altima-j-project-19b8286c.koyeb.app/" target="_blank">
+                        <i class="icon fa fa-cloud"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="jsfiddle" href="https://jsfiddle.net/user/woonyzzang/fiddles/" target="_blank">
+                        <i class="icon fa fa-jsfiddle"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    <!-- github card -->
+    
+    <div class="github-card" data-github="woonyzzang" data-width="100%" data-height="150" data-theme="default"></div>
+    
+    
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+
+    <!-- //github card -->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/05/15/javascript-animation-performance/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">신규</strong>
+        <p class="article-nav-title">
+        
+            Javascript Animation Performance
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/05/15/javascript-pages-show-hide-event/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">이전</strong>
+        <p class="article-nav-title">Javascript PagesShow PagesHide Event</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">카테고리</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/App/Hybrid/">Hybrid</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/IOS/">IOS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/Ionic/">Ionic</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Net-Core/">.Net Core</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Node/">Node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Nuxt/">Nuxt</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/PHP/">PHP</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/PHP/Wordpress/">Wordpress</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Python/">Python</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Python/PyScript/">PyScript</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Wasm/">Wasm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/Zendesk/">Zendesk</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/">Editor</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/SublimeText/">SublimeText</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/VSCode/">VSCode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Visualstudio/">Visualstudio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Editor/Webstorm/">Webstorm</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">70</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/CSS/">CSS</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Javascript/">Javascript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/">Library</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/D3-js/">D3.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Library/jQuery/">jQuery</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/">Module</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/Require-js/">Require.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/Module/Webpack/">Webpack</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/">SPA</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/Angular-js/">Angular.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/Backbone-js/">Backbone.js</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/JWT/">JWT</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/SPA/React-js/">React.js</a><span class="category-list-count">16</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/">OS</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/">Linux</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/CentOS/">CentOS</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Linux/Vim/">Vim</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Mac/">Mac</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OS/Windows/">Windows</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Server/AWS/">AWS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Azure/">Azure</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Docker/">Docker</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/Gitlab/">Gitlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/IIS/">IIS</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/APMSETUP/">APMSETUP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Fiddler/">Fiddler</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Git/">Git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/OpenSSl/">OpenSSl</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/Teams/">Teams</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/VMware/">VMware</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">16</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Architecture/">Architecture</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Descktop/">Descktop</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Log/">Log</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Mobile/">Mobile</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Others/">Others</a><span class="category-list-count">5</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">아카이브</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">5월 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">3월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">2월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">1월 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">12월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">10월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">9월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">8월 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">4월 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">1월 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">6월 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">3월 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">2월 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">3월 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">12월 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">8월 2019</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">3월 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">4월 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">10월 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8월 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">7월 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">6월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5월 2017</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">4월 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">3월 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2월 2017</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">태그 클라우드</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular-v1/" style="font-size: 10.77px;">angular v1</a> <a href="/tags/apmsetup/" style="font-size: 10px;">apmsetup</a> <a href="/tags/architecture/" style="font-size: 12.31px;">architecture</a> <a href="/tags/asp/" style="font-size: 12.31px;">asp</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/azure/" style="font-size: 16.92px;">azure</a> <a href="/tags/backbone/" style="font-size: 13.85px;">backbone</a> <a href="/tags/blazor/" style="font-size: 10px;">blazor</a> <a href="/tags/bundler/" style="font-size: 11.54px;">bundler</a> <a href="/tags/centos/" style="font-size: 15.38px;">centos</a> <a href="/tags/chrome/" style="font-size: 11.54px;">chrome</a> <a href="/tags/css/" style="font-size: 13.85px;">css</a> <a href="/tags/css3/" style="font-size: 13.85px;">css3</a> <a href="/tags/d3/" style="font-size: 16.15px;">d3</a> <a href="/tags/ddd/" style="font-size: 10px;">ddd</a> <a href="/tags/descktop/" style="font-size: 10.77px;">descktop</a> <a href="/tags/devops/" style="font-size: 14.62px;">devops</a> <a href="/tags/docker/" style="font-size: 14.62px;">docker</a> <a href="/tags/es6/" style="font-size: 12.31px;">es6</a> <a href="/tags/fiddler/" style="font-size: 10.77px;">fiddler</a> <a href="/tags/git/" style="font-size: 12.31px;">git</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/hybridApp/" style="font-size: 10.77px;">hybridApp</a> <a href="/tags/ionic-v1/" style="font-size: 13.08px;">ionic v1</a> <a href="/tags/ionic-v2/" style="font-size: 10px;">ionic v2</a> <a href="/tags/jira/" style="font-size: 10px;">jira</a> <a href="/tags/jquery/" style="font-size: 10.77px;">jquery</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/jwt/" style="font-size: 10px;">jwt</a> <a href="/tags/linux/" style="font-size: 19.23px;">linux</a> <a href="/tags/loader/" style="font-size: 10.77px;">loader</a> <a href="/tags/log/" style="font-size: 10.77px;">log</a> <a href="/tags/mac/" style="font-size: 13.08px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mobile/" style="font-size: 17.69px;">mobile</a> <a href="/tags/mvc/" style="font-size: 10px;">mvc</a> <a href="/tags/mvvm/" style="font-size: 10px;">mvvm</a> <a href="/tags/node/" style="font-size: 10.77px;">node</a> <a href="/tags/nuxt2/" style="font-size: 10px;">nuxt2</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/others/" style="font-size: 13.08px;">others</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/pr/" style="font-size: 10px;">pr</a> <a href="/tags/react/" style="font-size: 18.46px;">react</a> <a href="/tags/requirejs/" style="font-size: 10.77px;">requirejs</a> <a href="/tags/server/" style="font-size: 14.62px;">server</a> <a href="/tags/simulator/" style="font-size: 10px;">simulator</a> <a href="/tags/spa/" style="font-size: 13.85px;">spa</a> <a href="/tags/storybook/" style="font-size: 12.31px;">storybook</a> <a href="/tags/sublimeText/" style="font-size: 11.54px;">sublimeText</a> <a href="/tags/teams/" style="font-size: 10px;">teams</a> <a href="/tags/test/" style="font-size: 12.31px;">test</a> <a href="/tags/tip/" style="font-size: 10.77px;">tip</a> <a href="/tags/ubuntu/" style="font-size: 12.31px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/visualstudio/" style="font-size: 10px;">visualstudio</a> <a href="/tags/visualsvn/" style="font-size: 10px;">visualsvn</a> <a href="/tags/vmware/" style="font-size: 10.77px;">vmware</a> <a href="/tags/vscode/" style="font-size: 11.54px;">vscode</a> <a href="/tags/wasm/" style="font-size: 10.77px;">wasm</a> <a href="/tags/webpack/" style="font-size: 11.54px;">webpack</a> <a href="/tags/webstorm/" style="font-size: 13.85px;">webstorm</a> <a href="/tags/windows/" style="font-size: 17.69px;">windows</a> <a href="/tags/wordpress/" style="font-size: 10px;">wordpress</a> <a href="/tags/zendesk/" style="font-size: 12.31px;">zendesk</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">링크</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://j-portfolio.herokuapp.com/dev/cms/">CMS Theme</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://j-portfolio.herokuapp.com/dev/listmap/listmap.xml">Markup Listmap</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-generator-css3">J Generator CSS3</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-html5-reference">J HTML5 Open Reference</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-prototype">J Prototype</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-draft-design">J Draft Design Gallery</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-responsive-design-view">J Responsive Design View</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-memo">J Memo</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-hiworks-mail-notifier">J Hiworks Notifier</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-core-module">J Core Module</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-core-editor">J Core Editor</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woonyzzang/j-cheat-sheet-api">J Cheat Sheet API</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2024 woonyzzang</p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://woonyzzang.github.com/2017/05/15/javascript-effective-animation/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>
