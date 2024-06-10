@@ -9,6 +9,20 @@
 
 
     <url>
+        <loc>https://woonyzzang.github.com/categories/Web/Architecture/</loc>
+        <lastmod>2024-06-10T09:07:17.781Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://woonyzzang.github.com/categories/Web/</loc>
+        <lastmod>2024-06-10T09:07:17.781Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://woonyzzang.github.com/categories/Frontend/Javascript/</loc>
         <lastmod>2024-06-10T05:06:39.246Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -73,13 +87,6 @@
 
     <url>
         <loc>https://woonyzzang.github.com/categories/Web/Others/</loc>
-        <lastmod>2024-06-10T04:53:59.575Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://woonyzzang.github.com/categories/Web/</loc>
         <lastmod>2024-06-10T04:53:59.575Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -184,14 +191,14 @@
     </url>
 
     <url>
-        <loc>https://woonyzzang.github.com/categories/Backend/Wasm/</loc>
+        <loc>https://woonyzzang.github.com/categories/Editor/Visualstudio/</loc>
         <lastmod>2024-06-07T09:27:28.381Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://woonyzzang.github.com/categories/Editor/Visualstudio/</loc>
+        <loc>https://woonyzzang.github.com/categories/Backend/Wasm/</loc>
         <lastmod>2024-06-07T09:27:28.381Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -326,13 +333,6 @@
     <url>
         <loc>https://woonyzzang.github.com/categories/Frontend/HTML/</loc>
         <lastmod>2024-06-07T09:27:28.303Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://woonyzzang.github.com/categories/Web/Architecture/</loc>
-        <lastmod>2024-06-07T09:27:28.301Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
