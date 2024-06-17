@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://woonyzzang.github.com/2024/06/03/redux-cqrs-pattern/</loc>
+        <lastmod>2024-06-17T13:18:23.675Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://woonyzzang.github.com/2023/08/22/pr-code-review/</loc>
         <lastmod>2024-06-14T10:41:36.583Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -59,14 +67,6 @@
     <url>
         <loc>https://woonyzzang.github.com/2017/02/23/chrome-console/</loc>
         <lastmod>2024-06-14T10:41:36.571Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://woonyzzang.github.com/2024/06/03/redux-cqrs-pattern/</loc>
-        <lastmod>2024-06-10T09:07:17.781Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -1057,14 +1057,6 @@
     </url>
 
     <url>
-        <loc>https://woonyzzang.github.com/2019/09/17/cent-os-tomcat-install/</loc>
-        <lastmod>2024-06-07T09:27:28.272Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://woonyzzang.github.com/2019/09/22/cent-os-terminal-recording/</loc>
         <lastmod>2024-06-07T09:27:28.272Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -1074,6 +1066,14 @@
 
     <url>
         <loc>https://woonyzzang.github.com/2019/09/17/cent-os-tomcat9-install/</loc>
+        <lastmod>2024-06-07T09:27:28.272Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://woonyzzang.github.com/2019/09/17/cent-os-tomcat-install/</loc>
         <lastmod>2024-06-07T09:27:28.272Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

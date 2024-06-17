@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>https://woonyzzang.github.com/tags/cqrs/</loc>
+        <lastmod>2024-06-17T13:18:23.675Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://woonyzzang.github.com/tags/ddd/</loc>
+        <lastmod>2024-06-17T13:18:23.675Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://woonyzzang.github.com/tags/architecture/</loc>
+        <lastmod>2024-06-17T13:18:23.675Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://woonyzzang.github.com/tags/pr/</loc>
         <lastmod>2024-06-14T10:41:36.583Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -54,27 +75,6 @@
     <url>
         <loc>https://woonyzzang.github.com/tags/js/</loc>
         <lastmod>2024-06-14T10:41:36.579Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://woonyzzang.github.com/tags/cqrs/</loc>
-        <lastmod>2024-06-10T09:07:17.781Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://woonyzzang.github.com/tags/ddd/</loc>
-        <lastmod>2024-06-10T09:07:17.781Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://woonyzzang.github.com/tags/architecture/</loc>
-        <lastmod>2024-06-10T09:07:17.781Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
