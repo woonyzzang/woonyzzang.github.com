@@ -9,8 +9,96 @@
     <atom:link href="https://woonyzzang.github.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>FrontEnd Dev</description>
-    <pubDate>Mon, 17 Jun 2024 13:18:23 GMT</pubDate>
+    <pubDate>Sat, 29 Mar 2025 07:17:46 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Ubuntu OS Node Update</title>
+      <link>https://woonyzzang.github.com/2025/03/29/ubuntu-os-node-update/</link>
+      <guid>https://woonyzzang.github.com/2025/03/29/ubuntu-os-node-update/</guid>
+      <pubDate>Sat, 29 Mar 2025 06:51:37 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;Ubuntu-OS-Node-버전-업데이트&quot;&gt;&lt;a href=&quot;#Ubuntu-OS-Node-버전-업데이트&quot; class=&quot;headerlink&quot; title=&quot;Ubuntu OS - Node 버전 업데이트&quot;&gt;&lt;/a&gt;Ubuntu OS - Node 버</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="Ubuntu-OS-Node-버전-업데이트"><a href="#Ubuntu-OS-Node-버전-업데이트" class="headerlink" title="Ubuntu OS - Node 버전 업데이트"></a>Ubuntu OS - Node 버전 업데이트</h3><h3 id="기존-node-삭제"><a href="#기존-node-삭제" class="headerlink" title="기존 node 삭제"></a>기존 node 삭제</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt remove nodejs</span><br></pre></td></tr></table></figure><h3 id="Node-레파지토리-추가"><a href="#Node-레파지토리-추가" class="headerlink" title="Node 레파지토리 추가"></a>Node 레파지토리 추가</h3><p>최신 LTS 버전의 Node.js 를 설치 하려면, 먼저 curl 명령어를 실행하여 NodeSource 저장소를 시스템에 추가해야 한다.<br>다른 버전을 사용하려면 setup_22.x 에서 원하는 버전명으로 변경해서 사용한다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -</span><br></pre></td></tr></table></figure><h3 id="node-재설치"><a href="#node-재설치" class="headerlink" title="node 재설치"></a>node 재설치</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install nodejs</span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      <category domain="https://woonyzzang.github.com/categories/OS/">OS</category>
+      
+      <category domain="https://woonyzzang.github.com/categories/OS/Linux/">Linux</category>
+      
+      <category domain="https://woonyzzang.github.com/categories/OS/Linux/Ubuntu/">Ubuntu</category>
+      
+      
+      <category domain="https://woonyzzang.github.com/tags/linux/">linux</category>
+      
+      <category domain="https://woonyzzang.github.com/tags/ubuntu/">ubuntu</category>
+      
+      
+      <comments>https://woonyzzang.github.com/2025/03/29/ubuntu-os-node-update/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Docker Harbor</title>
+      <link>https://woonyzzang.github.com/2025/02/19/docker-harbor/</link>
+      <guid>https://woonyzzang.github.com/2025/02/19/docker-harbor/</guid>
+      <pubDate>Wed, 19 Feb 2025 04:57:41 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;Harbor-란&quot;&gt;&lt;a href=&quot;#Harbor-란&quot; class=&quot;headerlink&quot; title=&quot;Harbor 란?&quot;&gt;&lt;/a&gt;Harbor 란?&lt;/h3&gt;&lt;p&gt;Harbor 는 &lt;strong&gt;컨테이너 레지스트리&lt;/strong&gt; 관리 플랫폼 </description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="Harbor-란"><a href="#Harbor-란" class="headerlink" title="Harbor 란?"></a>Harbor 란?</h3><p>Harbor 는 <strong>컨테이너 레지스트리</strong> 관리 플랫폼 이다. Docker 와 같은 컨테이너 이미지의 저장소를 관리하는 시스템으로, 특히 <strong>이미지 저장소</strong>와 <strong>보안 관리</strong>에 중점을 둔다.</p><ul><li><strong>개인 &#x2F; 기업용 프라이빗 레지스트리:</strong><ul><li>Docker Hub 와 같은 공용 레지스트리 외에, 기업이나 팀에서는 자체적으로 Harbor 를 설치해 보안성과 제어권을 강화한 프라이빗 레지스트리를 운영할 수 있다.</li></ul></li></ul><hr><h3 id="호스트-서버-구축"><a href="#호스트-서버-구축" class="headerlink" title="호스트 서버 구축"></a>호스트 서버 구축</h3><ul><li>Harbor: <a href="https://goharbor.io/">https://goharbor.io/</a></li><li>Harbor 설치 가이드: <a href="https://goharbor.io/docs/">https://goharbor.io/docs/</a></li></ul><h3 id="Harbor-접속"><a href="#Harbor-접속" class="headerlink" title="Harbor 접속"></a>Harbor 접속</h3><p>Harbor의 설치가 완료되면 접속 가능한 포털 주소와 관리자 계정이 제공된다.<br>포털은 서버나 브라우저를 통해 접속할 수 있다</p><p><img src="/images/docker-harbor/docker-harbor_1.png" alt="Harbor 로그인" title="Harbor 로그인"></p><p>관리자 계정에는 생성된 모든 프로젝트 및 이미지에 대한 관리 권한이 존재한다.<br>실제 개발 작업 시에는 각 사용자 계정을 등록하여 프로젝트와 이미지를 관리한다.<br>admin 계정으로 로그인하면 아래와 같은 페이지가 나타난다.</p><p><img src="/images/docker-harbor/docker-harbor_2.png" alt="Harbor 프로젝트" title="Harbor 프로젝트"></p><h3 id="프로젝트-관리"><a href="#프로젝트-관리" class="headerlink" title="프로젝트 관리"></a>프로젝트 관리</h3><p>Harbor 에서는 Registry 가 아닌 “Project” 라는 이름으로 정보 저장소를 제공한다.</p><h3 id="프로젝트-만들기"><a href="#프로젝트-만들기" class="headerlink" title="프로젝트 만들기"></a>프로젝트 만들기</h3><p><code>NEW PROJECT</code> 버튼을 클릭하여 새 프로젝트를 만들 수 있다.<br>프로젝트 생성 시, 공개 여부를 선택할 수 있다. 추후 프로젝트 페이지의 Configuration 탭에서 수정할 수 있다.</p><p><img src="/images/docker-harbor/docker-harbor_3.png" alt="Harbor 프로젝트 생성" title="Harbor 프로젝트 생성"></p><h3 id="프로젝트-페이지"><a href="#프로젝트-페이지" class="headerlink" title="프로젝트 페이지"></a>프로젝트 페이지</h3><p>생성된 프로젝트를 클릭하면 저장된 이미지의 목록을 보여주는 Repositories 탭을 비롯해 다양한 관리 탭이 존재한다.</p><p><img src="/images/docker-harbor/docker-harbor_4.png" alt="Harbor 프로젝트 이미지" title="Harbor 프로젝트 이미지"></p><hr><h3 id="Harbor-사용-가이드"><a href="#Harbor-사용-가이드" class="headerlink" title="Harbor 사용 가이드"></a>Harbor 사용 가이드</h3><p>Client 로 포털에 접속하여 도커 이미지를 업로드하고 다운로드 받을 수 있다.</p><h4 id="Harbor-로그인"><a href="#Harbor-로그인" class="headerlink" title="Harbor 로그인"></a>Harbor 로그인</h4><p>하버에 로그인하려면 아래 명령어를 사용하여 사용자 이름과 도메인을 입력한다. 패스워드를 입력하면 “Login Succeeded” 메시지가 출력된다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker login -u [USER NAME] [DOMAIN NAME]</span><br></pre></td></tr></table></figure><h4 id="Harbor-이미지-만들기"><a href="#Harbor-이미지-만들기" class="headerlink" title="Harbor 이미지 만들기"></a>Harbor 이미지 만들기</h4><p>도커 이미지 ID를 사용하여 이미지를 생성한다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker tag [IMAGE ID] [DOMAIN NAME]/[PROJECT]/IMAGE[:TAG]</span><br></pre></td></tr></table></figure><h4 id="Harbor-이미지-올리기"><a href="#Harbor-이미지-올리기" class="headerlink" title="Harbor 이미지 올리기"></a>Harbor 이미지 올리기</h4><p>도커 이미지를 하버에 푸시하려면 이미지 이름을 변경한 후 아래 명령어를 사용하여 이미지를 업로드 한다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker push [DOMAIN NAME]/[PROJECT]/IMAGE[:TAG]</span><br></pre></td></tr></table></figure><h3 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 도커 이미지 확인</span><br><span class="line">$ docker images</span><br><span class="line"></span><br><span class="line">// 도커 이미지 결과</span><br><span class="line">REPOSITORY        TAG       IMAGE ID       CREATED          SIZE</span><br><span class="line">test-cass/cass     v1.0      d5bf39116fca   25 minutes ago   1.71GB</span><br><span class="line">test-cass/search   v1.0      88f3db0c15ca   25 minutes ago   2.47GB</span><br><span class="line"></span><br><span class="line">// 하버 태그 등록</span><br><span class="line">$ docker tag d5bf39116fca harbor.example.co.kr/cass/cass:v1.0</span><br><span class="line">$ docker tag 88f3db0c15ca harbor.example.co.kr/cass/search:v1.0</span><br><span class="line"></span><br><span class="line">// 하버 이미지 푸시</span><br><span class="line">$ docker push harbor.example.co.kr/cass/cass:v1.0</span><br><span class="line">$ docker push harbor.example.co.kr/cass/search:v1.0</span><br></pre></td></tr></table></figure><h3 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h3><ul><li><a href="https://velog.io/@tkfrn4799/harbor-private-docker-registry">https://velog.io/@tkfrn4799/harbor-private-docker-registry</a></li></ul>]]></content:encoded>
+      
+      
+      <category domain="https://woonyzzang.github.com/categories/Server/">Server</category>
+      
+      <category domain="https://woonyzzang.github.com/categories/Server/Docker/">Docker</category>
+      
+      
+      <category domain="https://woonyzzang.github.com/tags/docker/">docker</category>
+      
+      
+      <comments>https://woonyzzang.github.com/2025/02/19/docker-harbor/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Docker Mac Apple Silicon</title>
+      <link>https://woonyzzang.github.com/2024/12/31/docker-mac-apple-silicon/</link>
+      <guid>https://woonyzzang.github.com/2024/12/31/docker-mac-apple-silicon/</guid>
+      <pubDate>Tue, 31 Dec 2024 06:22:59 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;Docker-맥-Apple-Silicon-M1-M2-실행-이슈-해결&quot;&gt;&lt;a href=&quot;#Docker-맥-Apple-Silicon-M1-M2-실행-이슈-해결&quot; class=&quot;headerlink&quot; title=&quot;Docker 맥 Apple Sil</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="Docker-맥-Apple-Silicon-M1-M2-실행-이슈-해결"><a href="#Docker-맥-Apple-Silicon-M1-M2-실행-이슈-해결" class="headerlink" title="Docker 맥 Apple Silicon (M1, M2) 실행 이슈 해결"></a>Docker 맥 Apple Silicon (M1, M2) 실행 이슈 해결</h3><p><strong>Apple Silicon</strong> 은 <strong>Apple</strong> 이 설계한 <strong>ARM 기반의 프로세서</strong> 이며, Intel의 x86 아키텍처를 대체하는 칩셋으로, Apple은 2020년 말에 출시된 특정 Mac 컴퓨터 모델부터 Intel 프로세서에서 Apple Silicon 으로 전환하기 시작하였는데 도커에서 실행 문제가 발생할 경우가 존재한다.</p><h3 id="해결-방법-1"><a href="#해결-방법-1" class="headerlink" title="해결 방법 1"></a>해결 방법 1</h3><p><code>docker-compose.yml</code> 파일에 <code>platform: linux/amd64</code> 옵션 추가</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3.8&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">cass:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">cassandra:latest</span></span><br><span class="line">    <span class="attr">platform:</span> <span class="string">linux/amd64</span> <span class="comment"># ARM 기반에서 x86_64 (amd64) 아키텍처로 실행 추가</span></span><br></pre></td></tr></table></figure><h3 id="해결-방법-2"><a href="#해결-방법-2" class="headerlink" title="해결 방법 2"></a>해결 방법 2</h3><p><code>Dockerfile</code> 파일 첫번째 코드 라인 FROM 앞에 <code>--platform=linux/amd64</code> 옵션 추가</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">FROM</span> <span class="string">--platform=linux/amd64</span> <span class="string">node:20-slim</span></span><br><span class="line"><span class="string">...</span></span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      <category domain="https://woonyzzang.github.com/categories/Server/">Server</category>
+      
+      <category domain="https://woonyzzang.github.com/categories/Server/Docker/">Docker</category>
+      
+      
+      <category domain="https://woonyzzang.github.com/tags/docker/">docker</category>
+      
+      
+      <comments>https://woonyzzang.github.com/2024/12/31/docker-mac-apple-silicon/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>CQRS 패턴을 Redux 와 비교</title>
@@ -523,92 +611,6 @@
       
       
       <comments>https://woonyzzang.github.com/2023/01/03/devops-pipeline-azure-static-web-app/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Azure Static Web App</title>
-      <link>https://woonyzzang.github.com/2023/01/03/azure-static-web-app/</link>
-      <guid>https://woonyzzang.github.com/2023/01/03/azure-static-web-app/</guid>
-      <pubDate>Tue, 03 Jan 2023 12:06:56 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h3 id=&quot;Azure-Static-Web-App-서비스&quot;&gt;&lt;a href=&quot;#Azure-Static-Web-App-서비스&quot; class=&quot;headerlink&quot; title=&quot;Azure Static Web App 서비스&quot;&gt;&lt;/a&gt;Azure Static W</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h3 id="Azure-Static-Web-App-서비스"><a href="#Azure-Static-Web-App-서비스" class="headerlink" title="Azure Static Web App 서비스"></a>Azure Static Web App 서비스</h3><ul><li>Azure 에서 정적 컨텐츠 (js, css, images) 들을 호스팅 할 수 있는 Pass 서비스</li><li>서버 사이드 렌더링이 필요하지 않는 CSR 이 가능한 Angular, React, Svelte, Vue 또는 blazor 같은 라이브러리와 프레임워크를 사용하여 빌드</li><li>Azure Functions 를 통하여 API 를 제공 받을 수 있다.</li><li>Azure Web App 과 같이 배포, 무료 SSL, CORS 및 보안 서비스 등을 Azure 에서 관리하는 형태로 제공한다.</li><li>주요 기능<ul><li>HTML, CSS, JavaScript 및 이미지와 같은 정적 컨텐츠에 대한 호스팅</li><li>자동으로 갱신되는 무료 SSL 인증서</li><li>CORS 구성이 필요 없는 API 를 호출할 때 역방향 프록시를 사용하는 원할한 보안 모델</li><li>Github 및 Azure DevOps 와 통합되는 쉬운 배포</li><li>보안</li><li>배포 슬롯 (무중단 배포 및 테스트 환경 제공)</li></ul></li></ul><h3 id="Static-Web-Apps로-수행할-수-있는-작업"><a href="#Static-Web-Apps로-수행할-수-있는-작업" class="headerlink" title="Static Web Apps로 수행할 수 있는 작업"></a>Static Web Apps로 수행할 수 있는 작업</h3><ul><li>Azure Functions 백 엔드를 통해WebAssembly 애플리케이션을 만드는 <a href="https://docs.microsoft.com/ko-kr/azure/static-web-apps/getting-started?tabs=angular">Angular</a>, <a href="https://docs.microsoft.com/ko-kr/azure/static-web-apps/getting-started?tabs=react">React</a>, <a href="https://docs.microsoft.com/ko-kr/learn/modules/publish-app-service-static-web-app-api/">Svelte</a>, <a href="https://docs.microsoft.com/ko-kr/azure/static-web-apps/getting-started?tabs=vue">Vue</a>, <a href="https://docs.microsoft.com/ko-kr/azure/static-web-apps/deploy-blazor">Blazor</a> 같은 JavaScript 프레임워크와 라이브러리를 사용하여 최신 웹 애플리케이션을 빌드 한다.</li><li><a href="https://learn.microsoft.com/ko-kr/azure/static-web-apps/publish-gatsby">Gatsby</a>, <a href="https://docs.microsoft.com/ko-kr/azure/static-web-apps/publish-hugo">Hugo</a>, <a href="https://docs.microsoft.com/ko-kr/azure/static-web-apps/publish-vuepress">VuePress</a> 와 같은 프레임워크를 사용하여 정적 사이트를 게시 합니다.</li><li><a href="https://learn.microsoft.com/ko-kr/azure/static-web-apps/nextjs">Next.js</a> 및 <a href="https://docs.microsoft.com/ko-kr/azure/static-web-apps/deploy-nuxtjs">Nuxt.js</a> 와 같은 프레임워크를 사용하여 웹 애플리케이션 을 배포합니다.<ul><li><u>웹 어플리케이션 배포란 서버렌더링 (SSR) 지원이 아닌 제너레이터 (SSG) 로 의해 빌드된 정적 파일들을 의미함.</u></li></ul></li></ul><h2 id="Azure-Static-Web-Apps의-할당량"><a href="#Azure-Static-Web-Apps의-할당량" class="headerlink" title="Azure Static Web Apps의 할당량"></a>Azure Static Web Apps의 할당량</h2><ul><li><a href="https://docs.microsoft.com/ko-kr/azure/static-web-apps/quotas">Azure Static Web Apps의 할당량</a></li></ul><table><thead><tr><th>기능</th><th>무료 요금제</th><th>표준 계획</th></tr></thead><tbody><tr><td>포함된 대역폭</td><td>구독당 월 100GB</td><td>구독당 월 100GB</td></tr><tr><td>초과분 대역폭</td><td>사용할 수 없음</td><td>GB당 $0.20</td></tr><tr><td>Azure 구독당 앱</td><td>10</td><td>제한 없음</td></tr><tr><td>앱 크기</td><td>250MB</td><td>500MB</td></tr><tr><td>계획 크기</td><td>단일 배포의 경우 최대 앱 크기 500MB, 모든 준비 및 프로덕션 환경의 경우 최대 0.50GB</td><td>단일 배포의 경우 최대 500MB의 앱 크기, 모든 준비 및 프로덕션 환경에서 결합하여 최대 2.00GB</td></tr><tr><td>사전 프로덕션 환경</td><td>3</td><td>10</td></tr><tr><td>사용자 지정 도메인</td><td>앱당 2 개</td><td>앱당 5 개</td></tr><tr><td>권한 부여(기본 제공 역할)</td><td>기본 제공 <code>authenticated</code> 역할로 인증할 수 있는 무제한 최종 사용자</td><td>기본 제공 <code>authenticated</code> 역할로 인증할 수 있는 무제한 최종 사용자</td></tr><tr><td>권한 부여(사용자 지정 역할)</td><td>초대를 통해 사용자 지정 역할에 속할 수 있는 최대 25 명의 최종 사용자</td><td>초대를 통해 사용자 지정 역할에 속할 수 있는 최대 25 명의 최종 사용자 또는 서버리스 함수를 통해 사용자 지정 역할을 할당할 수 있는 무제한 최종 사용자</td></tr></tbody></table>]]></content:encoded>
-      
-      
-      <category domain="https://woonyzzang.github.com/categories/Server/">Server</category>
-      
-      <category domain="https://woonyzzang.github.com/categories/Server/Azure/">Azure</category>
-      
-      
-      <category domain="https://woonyzzang.github.com/tags/azure/">azure</category>
-      
-      
-      <comments>https://woonyzzang.github.com/2023/01/03/azure-static-web-app/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Zendesk 라이브 테마 코드 편집</title>
-      <link>https://woonyzzang.github.com/2023/01/03/zendesk-theme-live-edit/</link>
-      <guid>https://woonyzzang.github.com/2023/01/03/zendesk-theme-live-edit/</guid>
-      <pubDate>Tue, 03 Jan 2023 03:25:42 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h3 id=&quot;젠데스크-라이브-테마-코드-편집하기&quot;&gt;&lt;a href=&quot;#젠데스크-라이브-테마-코드-편집하기&quot; class=&quot;headerlink&quot; title=&quot;젠데스크 라이브 테마 코드 편집하기&quot;&gt;&lt;/a&gt;젠데스크 라이브 테마 코드 편집하기&lt;/h3&gt;&lt;ul&gt;
-</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h3 id="젠데스크-라이브-테마-코드-편집하기"><a href="#젠데스크-라이브-테마-코드-편집하기" class="headerlink" title="젠데스크 라이브 테마 코드 편집하기"></a>젠데스크 라이브 테마 코드 편집하기</h3><ul><li>Admin: <a href="https://www.zendesk.kr/login/#login">로그인</a><ul><li>젠데스크 관리자 계정 접근 권한 필요.</li></ul></li></ul><p><strong>1. 디자인 사용자 지정 메뉴 &gt; 사용자 지정 버튼 클릭</strong></p><p><img src="/images/zendesk-theme-live-edit/zendesk-theme-live-edit1.png" alt="라이브 테마 선택 화면"></p><p><strong>2. 디자인 사용자 지정 메뉴 &gt; 사용자 지정 버튼 클릭 &gt; 코드 편집 버튼 클릭</strong></p><p><img src="/images/zendesk-theme-live-edit/zendesk-theme-live-edit2.png" alt="테마 미리보기 화면"></p><p><strong>3.위지익 에디트 코드 편집 (게시버튼 클릭 시 라이브 반영)</strong></p><p><img src="/images/zendesk-theme-live-edit/zendesk-theme-live-edit3.png" alt="위지익 에디트 편집 화면"></p>]]></content:encoded>
-      
-      
-      <category domain="https://woonyzzang.github.com/categories/Backend/">Backend</category>
-      
-      <category domain="https://woonyzzang.github.com/categories/Backend/Zendesk/">Zendesk</category>
-      
-      
-      <category domain="https://woonyzzang.github.com/tags/zendesk/">zendesk</category>
-      
-      
-      <comments>https://woonyzzang.github.com/2023/01/03/zendesk-theme-live-edit/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Azure VM</title>
-      <link>https://woonyzzang.github.com/2023/01/03/azure-vm/</link>
-      <guid>https://woonyzzang.github.com/2023/01/03/azure-vm/</guid>
-      <pubDate>Tue, 03 Jan 2023 01:51:44 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h3 id=&quot;Azure-VM-초기-셋팅&quot;&gt;&lt;a href=&quot;#Azure-VM-초기-셋팅&quot; class=&quot;headerlink&quot; title=&quot;Azure VM 초기 셋팅&quot;&gt;&lt;/a&gt;Azure VM 초기 셋팅&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;VM: Linux - Cent</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h3 id="Azure-VM-초기-셋팅"><a href="#Azure-VM-초기-셋팅" class="headerlink" title="Azure VM 초기 셋팅"></a>Azure VM 초기 셋팅</h3><ul><li>VM: Linux - Centos7 환경</li></ul><p><strong>yum 엡데이트</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum update</span><br></pre></td></tr></table></figure><hr><h3 id="Node-설치"><a href="#Node-설치" class="headerlink" title="Node 설치"></a>Node 설치</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash</span><br></pre></td></tr></table></figure><ul><li><p><strong>bashrc 파일 수정</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim ~/bashrc</span><br></pre></td></tr></table></figure></li><li><p><strong>코드 삽입</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export NVM_DIR=&quot;$HOME/.nvm&quot;</span><br><span class="line">[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;</span><br><span class="line">[ -s &quot;$NVM_DIR/bash_completion&quot; ] &amp;&amp; \. &quot;$NVM_DIR/bash_completion&quot;</span><br></pre></td></tr></table></figure></li><li><p><strong>bashrc 업데이트 갱신</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure></li><li><p><strong>NPM 설치</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ nvm insatall --lts</span><br><span class="line">or</span><br><span class="line">$ nvm install 16.15.1</span><br></pre></td></tr></table></figure></li><li><p><strong>NPM 버전 기본 셋팅</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm <span class="built_in">alias</span> default 16.15.1</span><br></pre></td></tr></table></figure></li><li><p><strong>node 설치 확인 명령어</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ $ node -v</span><br></pre></td></tr></table></figure></li></ul><p><img src="/images/azure-vm/azure-vm1.png" alt="node 설치 확인"></p><hr><h3 id="Dotnet-Core-3-1-201-수동-설치"><a href="#Dotnet-Core-3-1-201-수동-설치" class="headerlink" title="Dotnet Core 3.1.201 수동 설치"></a><del>Dotnet Core 3.1.201 수동 설치</del></h3><ul><li>패키지 설치 필요 없는거 같음.</li></ul><hr><h3 id="libicu-패키지-설치"><a href="#libicu-패키지-설치" class="headerlink" title="libicu 패키지 설치"></a>libicu 패키지 설치</h3><ul><li><a href="https://docs.microsoft.com/ko-kr/dotnet/core/install/linux-centos#dependencies">CentOS Linux에 .NET 설치 - .NET</a></li><li>인프라 요청 &gt; <code>libicu</code> 패키지 다운로드 허용 문서 요청</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install libicu</span><br></pre></td></tr></table></figure><hr><h2 id="Azure-DevOps-Azagent-Registration-script-실행"><a href="#Azure-DevOps-Azagent-Registration-script-실행" class="headerlink" title="Azure DevOps &gt; Azagent (Registration script) 실행"></a>Azure DevOps &gt; Azagent (Registration script) 실행</h2><p>반드시 Azagent 리눅스용 Resistration script 실행 시 ‘libicu’ 의존성 패키지 설치가 되어 있어야 한다.</p><p><img src="/images/azure-vm/azure-vm2.png" alt="의존성 패키지 에러"></p><ul><li>[v] Personal Access Token 활성화 체크</li><li>Personal Access Token:</li></ul><p><img src="/images/azure-vm/azure-vm3.png" alt="Personal Access Token 생성"></p><p><img src="/images/azure-vm/azure-vm4.png" alt="Azagent 정상 설치 완료"></p><hr><h3 id="Azagent-프로세스-구동-확인"><a href="#Azagent-프로세스-구동-확인" class="headerlink" title="Azagent 프로세스 구동 확인"></a>Azagent 프로세스 구동 확인</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -e</span><br></pre></td></tr></table></figure><p><img src="/images/azure-vm/azure-vm5.png" alt="Azagent 프로세스 구동 확인"></p><hr><h3 id="웹서버-루트-폴더-셋팅"><a href="#웹서버-루트-폴더-셋팅" class="headerlink" title="웹서버 루트 폴더 셋팅"></a>웹서버 루트 폴더 셋팅</h3><ul><li>경로: &#x2F;home&#x2F;service_dev_ptltest</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo <span class="built_in">chmod</span> 755 wwwroot</span><br></pre></td></tr></table></figure><h2 id="PM2-셋팅"><a href="#PM2-셋팅" class="headerlink" title="PM2 셋팅"></a>PM2 셋팅</h2><ul><li>경로: &#x2F;home&#x2F;service_dev_ptltest</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 $ sudo <span class="built_in">chmod</span> 755 .pm</span><br><span class="line">2 $ sudo <span class="built_in">chown</span> service_dev_ptltest .pm</span><br><span class="line">3 $ sudo <span class="built_in">chgrp</span> wheel .pm</span><br></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      <category domain="https://woonyzzang.github.com/categories/Server/">Server</category>
-      
-      <category domain="https://woonyzzang.github.com/categories/Server/Azure/">Azure</category>
-      
-      
-      <category domain="https://woonyzzang.github.com/tags/azure/">azure</category>
-      
-      
-      <comments>https://woonyzzang.github.com/2023/01/03/azure-vm/#disqus_thread</comments>
       
     </item>
     

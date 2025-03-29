@@ -9,14 +9,42 @@
 
 
     <url>
-        <loc>https://woonyzzang.github.com/categories/Server/Azure/</loc>
-        <lastmod>2024-06-25T20:43:41.038Z</lastmod>
+        <loc>https://woonyzzang.github.com/categories/OS/Linux/Ubuntu/</loc>
+        <lastmod>2025-03-29T07:17:46.266Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://woonyzzang.github.com/categories/OS/Linux/</loc>
+        <lastmod>2025-03-29T07:17:46.266Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://woonyzzang.github.com/categories/OS/</loc>
+        <lastmod>2025-03-29T07:17:46.266Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://woonyzzang.github.com/categories/Server/Docker/</loc>
+        <lastmod>2025-03-29T07:17:46.256Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://woonyzzang.github.com/categories/Server/</loc>
+        <lastmod>2025-03-29T07:17:46.256Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://woonyzzang.github.com/categories/Server/Azure/</loc>
         <lastmod>2024-06-25T20:43:41.038Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -135,13 +163,6 @@
     </url>
 
     <url>
-        <loc>https://woonyzzang.github.com/categories/Server/Docker/</loc>
-        <lastmod>2024-06-10T04:53:59.544Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://woonyzzang.github.com/categories/Backend/PHP/Wordpress/</loc>
         <lastmod>2024-06-07T09:27:28.387Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -157,13 +178,6 @@
 
     <url>
         <loc>https://woonyzzang.github.com/categories/OS/Windows/</loc>
-        <lastmod>2024-06-07T09:27:28.386Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://woonyzzang.github.com/categories/OS/</loc>
         <lastmod>2024-06-07T09:27:28.386Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -213,20 +227,6 @@
 
     <url>
         <loc>https://woonyzzang.github.com/categories/OS/Linux/Vim/</loc>
-        <lastmod>2024-06-07T09:27:28.380Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://woonyzzang.github.com/categories/OS/Linux/Ubuntu/</loc>
-        <lastmod>2024-06-07T09:27:28.380Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://woonyzzang.github.com/categories/OS/Linux/</loc>
         <lastmod>2024-06-07T09:27:28.380Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
